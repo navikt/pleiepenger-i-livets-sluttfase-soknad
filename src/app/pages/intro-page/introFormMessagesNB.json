@@ -1,0 +1,16 @@
+{
+    "introform.informationPoster.avsnitt.1": "Her kan du registrere at du er alene om omsorgen for barn i forbindelse med bruk av omsorgsdager.",
+    "introform.informationPoster.avsnitt.2.html": "<strong>Det er viktig å presisere at denne registreringen kun gjelder for bruk av omsorgsdager.</strong> Dette fordi det er forskjellige regler for hva som blir ansett som aleneomsorg for andre enslig forsørger-stønader fra NAV. Hvis du skal",
+    "introform.informationPoster.avsnitt.2.lenkeTittel": "søke om andre stønader fordi har aleneomsorg for barn, kan du lese mer om det her.",
+    "introform.informationPoster.avsnitt.3": "Når det gjelder omsorgsdager blir du ansett som at du er alene om omsorgen når du og den andre forelderen til barnet ikke bor sammen, og barnet bor fast bare hos deg. Det betyr at barnet må ha folkeregistrert adresse hos deg. Hvis du og den andre forelderen har en avtale om delt bosted, bor barnet fast hos dere begge og ingen av dere blir ansett som alene om omsorgen.",
+    "introform.informationPoster.avsnitt.4": "Du som er alene om omsorgen får doblet antall omsorgsdager. Dette må registreres hos NAV slik at vi kan utbetale for riktig antall dager. Dette gjelder både hvis arbeidsgiver skal utbetale omsorgspenger til deg for brukte omsorgsdager, og hvis du selv skal søke om utbetaling direkte fra NAV.",
+    "introform.informationPoster.avsnitt.5": "Hvis du registrerer at du er alene om omsorgen nå, og senere inngår avtale om delt bosted eller flytter sammen med den andre forelderen, må du gi beskjed til NAV. Det gjør du ved å",
+    "introform.informationPoster.avsnitt.5.lenkeTittel": "skrive en beskjed til oss.",
+
+    "introForm.erSokerlestInformasjonen.spm": "Har du lest informasjonen over?",
+    "introForm.erSokerlestInformasjonen.stopMessage": "Du må lese informasjonen over for å gå videre.",
+    "introForm.erSokerAleneOmsorg.spm": "Er du alene om omsorgen for barn?",
+    "introForm.erSokerAleneOmsorg.stopMessage": "Du må være alene om omsorgen for minst ett barn for å kunne registrere deg med aleneomsorg.",
+
+    "introForm.start": "Start registrering"
+}
