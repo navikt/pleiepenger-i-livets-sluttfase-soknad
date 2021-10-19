@@ -5,7 +5,9 @@
     "application.loadError.message": "Beklager, her har det dessverre skjedd en feil. Dersom feilen fortsetter, prøv igjen litt senere.",
 
     "page.error.pageTitle": "Noe gikk galt ...",
-    "page.form.ubesvarteSpørsmålInfo": "For å komme videre, må du svare på alle spørsmålene ovenfor",
+
+    "backlink.label": "Tilbake",
+    "hvaBetyrDette": "Hva betyr dette?",
 
     "page.ikkeMyndig.sidetittel": "Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase",
     "page.ikkeMyndig.banner.tittel": "Hei!",
@@ -13,64 +15,30 @@
     "page.ikkeMyndig.banner.lastNed": "Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase",
     "page.ikkeMyndig.tittel": "Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase",
 
-    "arbeidstaker": "arbeidstaker",
-
-    "validationText.mindre_5_bokstaver": "Du må skrive minst 5 tegn",
-    "validationText.mer_1000_bokstaver": "Du kan skrive max 1000 tegn",
-    "validationText.barn_ikke_registrert": "Du må legge til minst ett barn for å fortsette",
-
-    "Fødselsnummer": "Fødselsnummer",
-
-    "backlink.label": "Tilbake",
-
-    "hvaBetyrDette": "Hva betyr dette?",
-
-    "lesMerOmFastBostedOgSamvær": "Les mer om fast bosted og samvær",
-
     "step.velkommen.banner.tittel": "Hei!",
     "step.velkommen.banner.tekst": "Jeg vil hjelpe deg med å registrere søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase.",
     "step.velkommen.tittel": "Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase",
     "step.velkommen.personopplysninger.lenketekst": "Les om hvordan NAV behandler personopplysningene dine",
     "step.velkommen.button.start": "Fortsett",
 
+    "step.opplysninger-om-pleietrengende-person.pageTitle": "Opplysninger om den pleietrengende",
+    "step.opplysninger-om-pleietrengende-person.stepTitle": "Opplysninger om den pleietrengende",
+    "step.opplysninger-om-pleietrengende-person.nextButtonLabel": "Fortsett",
+    "step.opplysninger-om-pleietrengende-person.counsellorPanel.info": "TODO",
+    "step.opplysninger-om-pleietrengende-person.spm.fnr": "Skriv inn fødselsnummeret til den pleietrengende person",
+    "step.opplysninger-om-pleietrengende-person.spm.harIkkeFnr": "Jeg har ikke fødselsnummer",
+
     "step.om-barn.fødselsnummer": "Fødselsnummer",
     "step.om-barn.nextButtonLabel": "Fortsett",
     "step.om-barn.hvorMangeBarn.spm": "Hvor mange felles barn har dere? Inkludert eventuelle fosterbarn",
     "step.om-barn.hvorforSpører.svar": "Vi trenger å vite alderen på barn for å kunne beregne hvor mange omsorgsdager du kan ha rett på og hvor lenge du har rett til å bruke omsorgsdager.",
 
-    "step.om-omsorgen-for-barn.pageTitle": "Om aleneomsorg for barn",
-    "step.om-omsorgen-for-barn.stepTitle": "Om aleneomsorg for barn",
-    "step.om-omsorgen-for-barn.stepIntro.1": "Når det gjelder omsorgsdager blir du ansett som at du er alene om omsorgen når du og den andre forelderen til barnet ikke bor sammen, og barnet bor fast bare hos deg. Det betyr at barnet må ha folkeregistrert adresse hos deg.",
-    "step.om-omsorgen-for-barn.stepIntro.2": "Hvis du og den andre forelderen har en avtale om delt bosted, bor barnet fast hos dere begge og ingen av dere blir ansett som alene om omsorgen. Det betyr at hvis dere har en slik avtale om delt bosted, skal du ikke registrere aleneomsorg.",
-
-    "step.om-omsorgen-for-barn.form.spm.hvilkeAvBarnaAleneomsorg": "Kryss av for barn du er alene om omsorgen for:",
-    "step.om-omsorgen-for-barn.form.født": "Født",
-    "step.om-omsorgen-for-barn.ingenbarn": "Du må ha minst ett barn for å kunne gå videre.",
-    "step.om-omsorgen-for-barn.nextButtonLabel": "Fortsett",
-
-    "step.tidspunkt-for-aleneomsorg.pageTitle": "Tidspunkt for aleneomsorg",
-    "step.tidspunkt-for-aleneomsorg.stepTitle": "Tidspunkt for aleneomsorg",
-    "step.tidspunkt-for-aleneomsorg.stepIntro": "Nå trenger vi å vite når du ble alene om omsorgen for barn. Hvis du ble alene om omsorgen tidligere enn i fjor trenger vi ikke å vite konkret dato.",
-    "step.tidspunkt-for-aleneomsorg.info": "Oppgi tidspunkt for når du ble alene om omsorgen",
-    "step.tidspunkt-for-aleneomsorg.spm": "Hvilket år ble du alene om omsorgen for {navn}?",
-    "step.tidspunkt-for-aleneomsorg.radioPanelGroupLabel.siste2årene": "I {yearAgo} eller {yearNow}",
-    "step.tidspunkt-for-aleneomsorg.radioPanelGroupLabel.tidligere": "I {twoYearsAgo} eller tidligere",
-    "step.tidspunkt-for-aleneomsorg.siste2årene.dato.spm": "Hvilken dato ble du alene om omsorgen for {navn}?",
-    "step.tidspunkt-for-aleneomsorg.nextButtonLabel": "Fortsett",
-
     "step.oppsummering.pageTitle": "Oppsummering",
     "step.oppsummering.stepTitle": "Oppsummering",
-    "step.oppsummering.nextButtonLabel": "Send inn registrering",
+    "step.oppsummering.nextButtonLabel": "Send inn søknad",
     "step.oppsummering.info": "Les gjennom oppsummeringen og sjekk at alt er riktig før du sender inn registreringen. Hvis du vil gjøre endringer, kan du gå tilbake.",
 
     "step.oppsummering.søker.header": "Om deg",
-
-    "step.oppsummering.deres-felles-barn.header": "Barn",
-    "step.oppsummering.deres-felles-barn.barn": "Barn",
-
-    "step.oppsummering.om-omsorgen-for-barn.barnList.tittle": "Barn du er alene om omsorgen for",
-    "step.oppsummering.om-omsorgen-for-barn.harOmsorgFor.tidspunktForAleneomsorg": "Tidspunkt for aleneomsorg: {dato}",
-    "step.oppsummering.om-omsorgen-for-barn.harOmsorgFor.tidspunktForAleneomsorg.tidligere": "Du ble alene om omsorgen for over 2 år siden.",
 
     "step.oppsummering.bekrefterOpplysninger": "Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til omsorgsdager.",
 
@@ -86,16 +54,10 @@
     "samtykke.harForståttLabel.lenketekst": "dine plikter",
     "fieldvalidation.mottakersFnrErSøkersFnr": "Du har tastet inn ditt eget fødselsnummer",
 
-    "kvittering.tittel": "Registrering av aleneomsorg for omsorgsdager er mottatt",
+    "kvittering.tittel": "Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfaseer mottatt",
     "kvittering.info.tittel": "Hva skjer videre nå?",
-    "kvittering.info.1": "Når vi har behandlet registreringen din får du en bekreftelse både per post og på Ditt NAV.",
+    "kvittering.info.1": "Når vi har behandlet søknaden din får du en bekreftelse både per post og på Ditt NAV.",
 
     "validation.harForståttRettigheterOgPlikter.notChecked": "Du må bekrefte at du har lest og forstått dine plikter.",
-    "validation.harBekreftetOpplysninger.notChecked": "Du må bekrefte at opplysningene du har gitt er riktige.",
-    "validation.harAleneomsorgFor.listIsEmpty": "Du må krysse av for barn du er alene om omsorgen for.",
-    "validation.tidspunktForAleneomsorg.noValue": "Du må oppgi hvilket år du ble alene om omsorgen for barnet.",
-    "validation.tidspunktForAleneomsorg.dato.dateHasNoValue": "Du må oppgi hvilken dato du ble alene om omsorgen for barnet.",
-    "validation.tidspunktForAleneomsorg.dato.dateIsAfterMax": "Du må oppgi dagensdato eller tidligere.",
-    "validation.tidspunktForAleneomsorg.dato.dateIsBeforeMin": "Du kan ikke oppgi dato tidligere enn to år fra dagensår.",
-    "validation.tidspunktForAleneomsorg.dato.dateHasInvalidFormat": "Datoen når du ble du alene om omsorgen for barnet er ugyldig. Gyldig format er dd.mm.åååå."
+    "validation.harBekreftetOpplysninger.notChecked": "Du må bekrefte at opplysningene du har gitt er riktige."
 }

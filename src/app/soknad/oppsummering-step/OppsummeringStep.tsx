@@ -14,7 +14,7 @@ import { StepID } from '../soknadStepsConfig';
 import SøkerSummary from './SøkerSummary';
 import { getCheckedValidator } from '@navikt/sif-common-formik/lib/validation';
 import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
-import GjeldendePersonSummary from './GjeldendePersonSummary';
+import PleietrengendePersonSummary from './PleietrengendePersonSummary';
 
 type Props = {
     søker: Person;
@@ -42,7 +42,7 @@ const OppsummeringStep = ({ søker, apiValues }: Props) => {
                         <Box margin="xxl">
                             <ResponsivePanel border={true}>
                                 <SøkerSummary søker={søker} apiValues={apiValues} />
-                                <GjeldendePersonSummary gjeldendePerson={apiValues.gjeldendePerson} />
+                                <PleietrengendePersonSummary pleietrengendePerson={apiValues.pleietrengendePerson} />
                             </ResponsivePanel>
                         </Box>
 
