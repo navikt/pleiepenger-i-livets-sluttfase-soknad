@@ -72,7 +72,7 @@ const Soknad = ({ søker, soknadTempStorage: tempStorage }: Props) => {
         await resetSoknad();
         const sId = ulid();
         setSoknadId(sId);
-        const firstStep = StepID.OPPLYSNINGER_OM_GJELDENDE_PERSON;
+        const firstStep = StepID.OPPLYSNINGER_OM_PLEIETRENGENDE_PERSON;
 
         await soknadTempStorage.create();
         await logSoknadStartet(SKJEMANAVN);

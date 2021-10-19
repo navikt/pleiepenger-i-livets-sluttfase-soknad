@@ -19,7 +19,7 @@ import OppsummeringStep from './oppsummering-step/OppsummeringStep';
 import { useSoknadContext } from './SoknadContext';
 import { StepID } from './soknadStepsConfig';
 import VelkommenPage from './velkommen-page/VelkommenPage';
-import OpplysningerOmGjeldendePersonStep from './opplysninger-om-gjeldende-person-step/OpplysningerOmGjeldendePersonStep';
+import OpplysningerOmPleietrengendePersonStep from './opplysninger-om-pleietrengende-step/OpplysningerOmGjeldendePersonStep';
 
 interface Props {
     soknadId?: string;
@@ -33,8 +33,8 @@ const SoknadRoutes = ({ soknadId, søker }: Props) => {
     const { soknadStepsConfig, sendSoknadStatus } = useSoknadContext();
     const renderSoknadStep = (søker: Person, stepID: StepID): React.ReactNode => {
         switch (stepID) {
-            case StepID.OPPLYSNINGER_OM_GJELDENDE_PERSON:
-                return <OpplysningerOmGjeldendePersonStep />;
+            case StepID.OPPLYSNINGER_OM_PLEIETRENGENDE_PERSON:
+                return <OpplysningerOmPleietrengendePersonStep søker={søker} />;
             case StepID.OPPSUMMERING:
                 const apiValues = mapFormDataToApiData(intl.locale, values);
                 return <OppsummeringStep apiValues={apiValues} søker={søker} />;

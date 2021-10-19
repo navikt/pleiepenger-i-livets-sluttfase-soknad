@@ -11,7 +11,7 @@ export const getAvailableSteps = (values: SoknadFormData): StepID[] => {
     const steps: StepID[] = [];
 
     if (welcomingPageIsComplete(values)) {
-        steps.push(StepID.OPPLYSNINGER_OM_GJELDENDE_PERSON);
+        steps.push(StepID.OPPLYSNINGER_OM_PLEIETRENGENDE_PERSON);
     }
 
     if (opplysningerOmGjeldendePersonIsComplete(values)) {

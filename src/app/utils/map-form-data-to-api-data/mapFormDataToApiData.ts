@@ -7,10 +7,13 @@ export const mapFormDataToApiData = (locale = 'nb', formData: SoknadFormData): S
             språk: locale === 'en' ? 'nn' : 'nb',
             harBekreftetOpplysninger: formData.harBekreftetOpplysninger,
             harForståttRettigheterOgPlikter: formData.harForståttRettigheterOgPlikter,
-            gjeldendePerson: {
-                navn: formData.gjeldendePerson.navn,
+            pleietrengendePerson: {
+                fornavn: formData.gjeldendePerson.fornavn,
+                etternavn: formData.gjeldendePerson.etternavn,
+                adresse: formData.gjeldendePerson.adresse,
+                postnummer: formData.gjeldendePerson.postnummer,
+                poststed: formData.gjeldendePerson.poststed,
                 fødselsnummer: formData.gjeldendePerson.fødselsnummer,
-                fødselsdato: formData.gjeldendePerson.fødselsdato,
             },
         };
         return apiData;
