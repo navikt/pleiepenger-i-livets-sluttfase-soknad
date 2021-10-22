@@ -1,16 +1,16 @@
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 
 export enum IntroFormField {
-    'erSokerlestInformasjonen' = 'erSokerlestInformasjonen',
-    'erSokerAleneOmsorg' = 'erSokerAleneOmsorg',
+    'erPleietrengendeILivetsSluttfase' = 'erPleietrengendeILivetsSluttfase',
+    'pleierDuDenSykeHjemme' = 'pleierDuDenSykeHjemme',
 }
 
 export interface IntroFormData {
-    [IntroFormField.erSokerlestInformasjonen]: YesOrNo;
-    [IntroFormField.erSokerAleneOmsorg]: YesOrNo;
+    [IntroFormField.erPleietrengendeILivetsSluttfase]: YesOrNo;
+    [IntroFormField.pleierDuDenSykeHjemme]: YesOrNo;
 }
 
 export const introFormInitialValues: Partial<IntroFormData> = {
-    [IntroFormField.erSokerlestInformasjonen]: YesOrNo.UNANSWERED,
-    [IntroFormField.erSokerAleneOmsorg]: YesOrNo.UNANSWERED,
+    [IntroFormField.erPleietrengendeILivetsSluttfase]: YesOrNo.UNANSWERED,
+    [IntroFormField.pleierDuDenSykeHjemme]: YesOrNo.UNANSWERED,
 };

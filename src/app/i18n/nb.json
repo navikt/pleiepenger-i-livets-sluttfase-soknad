@@ -4,6 +4,7 @@
     "application.loadError.title": "Noe gikk galt ...",
     "application.loadError.message": "Beklager, her har det dessverre skjedd en feil. Dersom feilen fortsetter, prøv igjen litt senere.",
 
+    "page.form.ubesvarteSpørsmålInfo": "For å komme videre, må du svare JA på alle spørsmålene ovenfor",
     "page.error.pageTitle": "Noe gikk galt ...",
 
     "backlink.label": "Tilbake",
