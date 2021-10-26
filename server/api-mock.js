@@ -1,5 +1,6 @@
 const os = require('os');
 const fs = require('fs');
+const Busboy = require('busboy');
 const express = require('express');
 const server = express();
 
@@ -26,7 +27,7 @@ server.use((req, res, next) => {
     next();
 });
 
-const MELLOMLAGRING_JSON = `${os.tmpdir()}/pleiepenger-i-livets-sluttfase-mellomlagring.json`;
+const MELLOMLAGRING_JSON = `${os.tmpdir()}/pleiepenger-i-livets-sluttfase-mellomlagring1.json`;
 
 const isJSON = (str) => {
     try {
@@ -183,6 +184,17 @@ const startExpressServer = () => {
     server.delete('/mellomlagring', (req, res) => {
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify({}, null, 2));
         res.sendStatus(200);
+    });
+
+    server.post('/vedlegg', (req, res) => {
+        res.set('Access-Control-Expose-Headers', 'Location');
+        res.set('Location', 'nav.no');
+        const busboy = new Busboy({ headers: req.headers });
+        busboy.on('finish', () => {
+            res.writeHead(200, { Location: '/vedlegg' });
+            res.end();
+        });
+        req.pipe(busboy);
     });
 
     server.listen(port, () => {

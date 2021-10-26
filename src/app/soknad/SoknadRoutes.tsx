@@ -19,7 +19,11 @@ import OppsummeringStep from './oppsummering-step/OppsummeringStep';
 import { useSoknadContext } from './SoknadContext';
 import { StepID } from './soknadStepsConfig';
 import VelkommenPage from './velkommen-page/VelkommenPage';
-import OpplysningerOmPleietrengendePersonStep from './opplysninger-om-pleietrengende-step/OpplysningerOmGjeldendePersonStep';
+import OpplysningerOmPleietrengendeStep from './opplysninger-om-pleietrengende-step/OpplysningerOmPleietrengendeStep';
+import FraværStep from './fravær-step/FraværStep';
+import ArbeidssituasjonStep from './arbeidssituasjon-step/ArbeidssituasjonStep';
+import FraværFraStep from './fravær-fra-step/FraværFraStep';
+import MedlemsskapStep from './medlemskap-step/MedlemsskapStep';
 
 interface Props {
     soknadId?: string;
@@ -29,14 +33,22 @@ interface Props {
 const SoknadRoutes = ({ soknadId, søker }: Props) => {
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
-    const availableSteps = getAvailableSteps(values);
+    const availableSteps = getAvailableSteps(values, søker);
     const { soknadStepsConfig, sendSoknadStatus } = useSoknadContext();
     const renderSoknadStep = (søker: Person, stepID: StepID): React.ReactNode => {
         switch (stepID) {
-            case StepID.OPPLYSNINGER_OM_PLEIETRENGENDE_PERSON:
-                return <OpplysningerOmPleietrengendePersonStep søker={søker} />;
+            case StepID.OPPLYSNINGER_OM_PLEIETRENGENDE:
+                return <OpplysningerOmPleietrengendeStep søker={søker} />;
+            case StepID.FRAVÆR:
+                return <FraværStep values={values} />;
+            case StepID.ARBEIDSSITUASJON:
+                return <ArbeidssituasjonStep />;
+            case StepID.FRAVÆR_FRA:
+                return <FraværFraStep />;
+            case StepID.MEDLEMSKAP:
+                return <MedlemsskapStep />;
             case StepID.OPPSUMMERING:
-                const apiValues = mapFormDataToApiData(intl.locale, values);
+                const apiValues = mapFormDataToApiData(intl.locale, values, intl);
                 return <OppsummeringStep apiValues={apiValues} søker={søker} />;
         }
     };

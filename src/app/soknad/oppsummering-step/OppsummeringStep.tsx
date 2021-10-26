@@ -11,10 +11,18 @@ import { useSoknadContext } from '../SoknadContext';
 import SoknadFormComponents from '../SoknadFormComponents';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
-import SøkerSummary from './SøkerSummary';
+import SøkerSummary from './components/SøkerSummary';
 import { getCheckedValidator } from '@navikt/sif-common-formik/lib/validation';
 import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
-import PleietrengendePersonSummary from './PleietrengendePersonSummary';
+import PleietrengendePersonSummary from './components/PleietrengendePersonSummary';
+import SummarySection from '@navikt/sif-common-soknad/lib/soknad-summary/summary-section/SummarySection';
+import UtbetalingsperioderSummaryView from './components/UtbetalingsperioderSummaryView';
+import UtenlandsoppholdISøkeperiodeSummaryView from './components/UtenlandsoppholdISøkeperiodeSummaryView';
+import FrilansSummary from './components/FrilansSummary';
+import SelvstendigSummary from './components/SelvstendigSummary';
+import MedlemskapSummaryView from './components/MedlemskapSummaryView';
+import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
+import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
 
 type Props = {
     søker: Person;
@@ -24,7 +32,7 @@ type Props = {
 const OppsummeringStep = ({ søker, apiValues }: Props) => {
     const intl = useIntl();
     const { sendSoknadStatus, sendSoknad } = useSoknadContext();
-
+    console.log(apiValues);
     return (
         <SoknadFormStep
             id={StepID.OPPSUMMERING}
@@ -36,13 +44,54 @@ const OppsummeringStep = ({ søker, apiValues }: Props) => {
                 <CounsellorPanel kompakt={true} type="normal">
                     <FormattedMessage id="step.oppsummering.info" />
                 </CounsellorPanel>
-                {apiValues === undefined && <div>Api verdier mangler</div>}
+                {apiValues === undefined && <FormattedMessage id="apiVerdierMangler" />}
                 {apiValues !== undefined && (
                     <>
                         <Box margin="xxl">
                             <ResponsivePanel border={true}>
                                 <SøkerSummary søker={søker} apiValues={apiValues} />
-                                <PleietrengendePersonSummary pleietrengendePerson={apiValues.pleietrengendePerson} />
+
+                                <PleietrengendePersonSummary pleietrengende={apiValues.pleietrengende} />
+
+                                {/* Omsorgsdager du søker utbetaling for */}
+                                <SummarySection header={intlHelper(intl, 'step.oppsummering.utbetalinger.header')}>
+                                    <UtbetalingsperioderSummaryView
+                                        utbetalingsperioder={apiValues.utbetalingsperioder}
+                                    />
+                                    <UtenlandsoppholdISøkeperiodeSummaryView utenlandsopphold={apiValues.opphold} />
+                                </SummarySection>
+
+                                {/* Frilansinntekt */}
+                                <FrilansSummary frilans={apiValues.frilans} />
+
+                                {/* Næringsinntekt */}
+                                <SelvstendigSummary virksomhet={apiValues.selvstendigNæringsdrivende} />
+
+                                {/* Medlemskap i folketrygden */}
+                                <SummarySection header={intlHelper(intl, 'step.oppsummering.medlemskap.header')}>
+                                    <MedlemskapSummaryView bosteder={apiValues.bosteder} />
+                                </SummarySection>
+                                {/* Vedlegg */}
+                                <SummarySection header={intlHelper(intl, 'step.oppsummering.dokumenter.header')}>
+                                    <Box margin="s">
+                                        <SummaryBlock
+                                            header={
+                                                apiValues.vedlegg.length > 0
+                                                    ? intlHelper(intl, 'steg.oppsummering.bekreftelseFraLege.header')
+                                                    : ''
+                                            }>
+                                            {apiValues.vedlegg.length === 0 && (
+                                                <FormattedMessage id={'step.oppsummering.dokumenter.ingenVedlegg'} />
+                                            )}
+                                            {apiValues.vedlegg.length > 0 && (
+                                                <UploadedDocumentsList
+                                                    attachments={apiValues._attachments}
+                                                    includeDeletionFunctionality={false}
+                                                />
+                                            )}
+                                        </SummaryBlock>
+                                    </Box>
+                                </SummarySection>
                             </ResponsivePanel>
                         </Box>
 

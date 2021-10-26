@@ -25,7 +25,7 @@ import { initialSoknadFormData } from './initialSoknadValues';
 import { initialSendSoknadState, SendSoknadStatus, SoknadContextProvider } from './SoknadContext';
 import SoknadFormComponents from './SoknadFormComponents';
 import SoknadRoutes from './SoknadRoutes';
-import { soknadStepsConfig, StepID } from './soknadStepsConfig';
+import { getSoknadStepsConfig, StepID } from './soknadStepsConfig';
 import soknadTempStorage, { isStorageDataValid } from './SoknadTempStorage';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { SKJEMANAVN } from '../App';
@@ -72,7 +72,7 @@ const Soknad = ({ søker, soknadTempStorage: tempStorage }: Props) => {
         await resetSoknad();
         const sId = ulid();
         setSoknadId(sId);
-        const firstStep = StepID.OPPLYSNINGER_OM_PLEIETRENGENDE_PERSON;
+        const firstStep = StepID.OPPLYSNINGER_OM_PLEIETRENGENDE;
 
         await soknadTempStorage.create();
         await logSoknadStartet(SKJEMANAVN);
@@ -164,6 +164,7 @@ const Soknad = ({ søker, soknadTempStorage: tempStorage }: Props) => {
                         initialValues={initialFormData}
                         onSubmit={() => null}
                         renderForm={({ values }) => {
+                            const soknadStepsConfig = getSoknadStepsConfig(values);
                             const navigateToNextStepFromStep = async (stepID: StepID) => {
                                 const stepToPersist = soknadStepsConfig[stepID].nextStep;
                                 if (stepToPersist && soknadId) {

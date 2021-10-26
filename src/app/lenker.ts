@@ -3,6 +3,7 @@ interface Lenker {
     personvern: string;
     rettOgPlikt: string;
     saksbehandlingstider: string;
+    medlemskap: string;
 }
 
 const LenkerBokmål: Lenker = {
@@ -11,6 +12,8 @@ const LenkerBokmål: Lenker = {
         'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/personvern-i-arbeids-og-velferdsetaten/personvernerkl%C3%A6ring-for-arbeids-og-velferdsetaten',
     rettOgPlikt: 'https://nav.no/rettOgPlikt',
     saksbehandlingstider: 'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV',
+    medlemskap:
+        'https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+Norge/Relatert+informasjon/medlemskap-i-folketrygden',
 };
 
 const getLenker = (locale?: string): Lenker => {
