@@ -31,6 +31,7 @@ axios.interceptors.response.use(
 
 export enum ApiEndpoint {
     'soker' = 'soker',
+    'arbeidsgiver' = 'arbeidsgiver',
     'mellomlagring' = 'mellomlagring',
     'barn' = 'barn',
     'sendSoknad' = 'soknad',

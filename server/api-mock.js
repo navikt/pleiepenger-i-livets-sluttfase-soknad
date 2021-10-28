@@ -70,17 +70,10 @@ const søkerMockIkkeMyndig = {
     myndig: false,
 };
 
-const barnMock = {
-    barnOppslag: [
-        { fødselsdato: '1990-01-02', fornavn: 'Barn', mellomnavn: 'Barne', etternavn: 'Barnesen', aktørId: '1' },
-        { fødselsdato: '1990-01-02', fornavn: 'Mock', etternavn: 'Mocknes', aktørId: '2' },
-    ],
-};
-
-const barnMock2 = {
-    barnOppslag: [
-        { fødselsdato: '1990-01-02', fornavn: 'Barn', mellomnavn: 'Barne', etternavn: 'Barnesen', aktørId: '1' },
-        { fødselsdato: '1990-01-02', fornavn: 'Mock', etternavn: 'Mocknes', aktørId: '2' },
+const arbeidsgivereMock = {
+    organisasjoner: [
+        { navn: 'Arbeids- og velferdsetaten', organisasjonsnummer: '123451234' },
+        { navn: 'Arbeids- og sosialdepartementet', organisasjonsnummer: '123451235' },
     ],
 };
 
@@ -106,6 +99,11 @@ const startExpressServer = () => {
         setTimeout(() => {
             res.send(søkerMockIkkeMyndig);
         }, 200);
+    });
+    server.get('/arbeidsgiver', (req, res) => {
+        res.send(arbeidsgivereMock);
+        // res.send(arbeidsgiverMock);
+        // res.send(ingenArbeidsgivererMock);
     });
     server.get('/soker-not-logged-in', (req, res) => {
         res.sendStatus(401);

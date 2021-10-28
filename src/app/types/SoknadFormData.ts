@@ -4,6 +4,7 @@ import { Utenlandsopphold } from '@navikt/sif-common-forms/lib';
 import { FraværDag, FraværPeriode } from '../components/fravær';
 import { Virksomhet } from '@navikt/sif-common-forms/lib/virksomhet/types';
 import { AktivitetFravær } from './AktivitetFravær';
+import { ArbeidsforholdFormData } from './ArbeidsforholdTypes';
 
 export interface Pleietrengende {
     etternavn: string;
@@ -34,6 +35,7 @@ export enum SoknadFormField {
     aktivitetFravær = 'aktivitetFravær',
 
     // Inntekt
+    arbeidsforhold = 'arbeidsforhold',
     frilans_erFrilanser = 'frilans_erFrilanser',
     frilans_startdato = 'frilans_startdato',
     frilans_jobberFortsattSomFrilans = 'frilans_jobberFortsattSomFrilans',
@@ -67,6 +69,7 @@ export interface SoknadFormData {
     [SoknadFormField.aktivitetFravær]: AktivitetFravær[];
 
     // Inntekt
+    [SoknadFormField.arbeidsforhold]: ArbeidsforholdFormData[];
     [SoknadFormField.frilans_erFrilanser]: YesOrNo;
     [SoknadFormField.frilans_startdato]?: string;
     [SoknadFormField.frilans_jobberFortsattSomFrilans]?: YesOrNo;

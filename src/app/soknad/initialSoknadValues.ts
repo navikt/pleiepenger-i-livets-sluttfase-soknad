@@ -11,13 +11,15 @@ export const initialSoknadFormData: Partial<SoknadFormData> = {
     [SoknadFormField.fraværDager]: [],
     [SoknadFormField.perioder_harVærtIUtlandet]: YesOrNo.UNANSWERED,
     [SoknadFormField.perioder_utenlandsopphold]: [],
+
     // Arbeidssituasjon
+    [SoknadFormField.arbeidsforhold]: [],
     [SoknadFormField.frilans_erFrilanser]: YesOrNo.UNANSWERED,
     [SoknadFormField.selvstendig_erSelvstendigNæringsdrivende]: YesOrNo.UNANSWERED,
     [SoknadFormField.selvstendig_harFlereVirksomheter]: YesOrNo.UNANSWERED,
     [SoknadFormField.aktivitetFravær]: [],
 
-    // STEG 7: Medlemskap
+    // Medlemskap
     [SoknadFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.UNANSWERED,
     [SoknadFormField.utenlandsoppholdSiste12Mnd]: [],
     [SoknadFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.UNANSWERED,

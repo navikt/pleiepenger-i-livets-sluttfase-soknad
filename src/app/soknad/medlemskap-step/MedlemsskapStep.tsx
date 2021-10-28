@@ -18,8 +18,10 @@ import SoknadFormStep from '../SoknadFormStep';
 
 const MedlemsskapStep = () => {
     const intl = useIntl();
+
     // TODO
     const { values } = useFormikContext<SoknadFormData>();
+    console.log(values);
     return (
         <SoknadFormStep id={StepID.MEDLEMSKAP}>
             <CounsellorPanel>

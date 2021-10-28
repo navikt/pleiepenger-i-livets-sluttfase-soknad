@@ -72,6 +72,8 @@
     "step.arbeidssituasjon.info.1": "Nå trenger vi å vite hva som var arbeidssituasjonen din i dagene du søker utbetaling for.",
     "step.arbeidssituasjon.advarsel.ingenSituasjonValgt": "Du må velge minst én av situasjonene over.",
 
+    "step.arbeidssituasjon.arbeidsforhold.harHattFravær.spm": "Har du hatt fravær fra {organisasjonsnavn} fordi du har brukt pleiepengedager? ",
+
     "step.arbeidssituasjon.frilanser.hjelpetekst.tittel": "Hva betyr det å være frilanser?",
     "step.arbeidssituasjon.frilanser.hjelpetekst": "Du er frilanser når du mottar lønn for enkeltstående oppdrag uten å være fast eller midlertidig ansatt hos den du utfører oppdraget for. Hvis du er usikker på om du er frilanser må du sjekke om oppdragene dine er registrert som frilansoppdrag på",
     "step.arbeidssituasjon.frilanser.hjelpetekst.skatteetatenLenke": "skatteetaten sine nettsider.",

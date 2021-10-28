@@ -48,9 +48,8 @@ export interface YesNoSpørsmålOgSvar {
 
 export interface SoknadApiData {
     språk: Locale;
-    pleietrengende: PleietrengendeApi;
     harForståttRettigheterOgPlikter: boolean;
-    harBekreftetOpplysninger: boolean;
+    pleietrengende: PleietrengendeApi;
     utbetalingsperioder: UtbetalingsperiodeApi[]; // perioder
     opphold: UtenlandsoppholdApiData[]; // hvis ja på har oppholdt seg i utlandet
     bosteder: UtenlandsoppholdApiData[]; // medlemskap-siden
@@ -58,4 +57,5 @@ export interface SoknadApiData {
     selvstendigNæringsdrivende?: VirksomhetApiData;
     vedlegg: string[];
     _attachments: Attachment[];
+    harBekreftetOpplysninger: boolean;
 }

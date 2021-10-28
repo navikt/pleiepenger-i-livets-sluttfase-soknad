@@ -11,6 +11,13 @@ import FrilansFormPart from './components/FrilansFormPart';
 import SelvstendigNæringsdrivendeFormPart from './components/SelvstendigNæringsdrivendeFormPart';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
+import { ArbeidsgiverResponse } from '../../types/Arbeidsgiver';
+import ArbeidsforholdSituasjon from '../../components/formik-arbeidsforhold/ArbeidsforholdSituasjon';
+import { cleanupArbeidssituasjonStep } from './cleanupArbeidssituasjonStep';
+
+interface Props {
+    arbeidsgivere: ArbeidsgiverResponse;
+}
 
 const shouldShowSubmitButton = (søknadFormData: SoknadFormData): boolean => {
     const erFrilanser: YesOrNo = søknadFormData[SoknadFormField.frilans_erFrilanser];
@@ -20,18 +27,39 @@ const shouldShowSubmitButton = (søknadFormData: SoknadFormData): boolean => {
     return !(erFrilanser === YesOrNo.NO && erSelvstendigNæringsdrivende === YesOrNo.NO);
 };
 
-const ArbeidssituasjonStep = () => {
+const ArbeidssituasjonStep = ({ arbeidsgivere }: Props) => {
     const { values } = useFormikContext<SoknadFormData>();
     const showSubmitButton = shouldShowSubmitButton(values);
-
+    console.log(values);
+    /*values.arbeidsforhold = arbeidsgivere.organisasjoner.map((arbeidsgiver) => ({
+        navn: arbeidsgiver.navn,
+        organisasjonsnummer: arbeidsgiver.organisasjonsnummer,
+        harHattFraværHosArbeidsgiver: YesOrNo.UNANSWERED,
+    }));*/
     return (
-        <SoknadFormStep id={StepID.ARBEIDSSITUASJON} showSubmitButton={showSubmitButton}>
+        <SoknadFormStep
+            id={StepID.ARBEIDSSITUASJON}
+            showSubmitButton={showSubmitButton}
+            onStepCleanup={() => cleanupArbeidssituasjonStep(values, arbeidsgivere.organisasjoner)}>
             <CounsellorPanel>
                 <p>
                     <FormattedHtmlMessage id="step.arbeidssituasjon.info.1" />
                 </p>
             </CounsellorPanel>
-
+            {arbeidsgivere.organisasjoner.length > 0 && (
+                <FormBlock>
+                    <div className="arbeidsforhold-liste">
+                        {arbeidsgivere.organisasjoner.map((forhold, index) => (
+                            <Box padBottom="xl" key={forhold.organisasjonsnummer}>
+                                <ArbeidsforholdSituasjon
+                                    parentFieldName={`${SoknadFormField.arbeidsforhold}.${index}`}
+                                    organisasjonsnavn={forhold.navn}
+                                />
+                            </Box>
+                        ))}
+                    </div>
+                </FormBlock>
+            )}
             <Box margin="xxl" padBottom="l">
                 <FrilansFormPart formValues={values} />
             </Box>

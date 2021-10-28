@@ -1,9 +1,10 @@
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
+import { Arbeidsgiver } from '../../types/Arbeidsgiver';
 import { SoknadFormData } from '../../types/SoknadFormData';
 import { initialSoknadFormData } from '../initialSoknadValues';
 
-export const cleanupArbeidssituasjonStep = (values: SoknadFormData): SoknadFormData => {
-    const { frilans_erFrilanser, selvstendig_erSelvstendigNæringsdrivende } = values;
+export const cleanupArbeidssituasjonStep = (values: SoknadFormData, arbeidsgivere: Arbeidsgiver[]): SoknadFormData => {
+    const { frilans_erFrilanser, selvstendig_erSelvstendigNæringsdrivende, arbeidsforhold } = values;
     const cleanedValues = { ...values };
 
     // Cleanup frilanser
@@ -21,5 +22,14 @@ export const cleanupArbeidssituasjonStep = (values: SoknadFormData): SoknadFormD
         cleanedValues.selvstendig_virksomhet = undefined;
         cleanedValues.selvstendig_harFlereVirksomheter = undefined;
     }
+
+    if (arbeidsgivere.length > 0 && arbeidsforhold.length > 0) {
+        cleanedValues.arbeidsforhold = arbeidsforhold.map((forhold, index) => ({
+            navn: arbeidsgivere[index].navn,
+            organisasjonsnummer: arbeidsgivere[index].organisasjonsnummer,
+            harHattFraværHosArbeidsgiver: forhold.harHattFraværHosArbeidsgiver,
+        }));
+    }
+
     return cleanedValues;
 };

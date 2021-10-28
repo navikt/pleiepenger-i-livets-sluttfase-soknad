@@ -12,10 +12,11 @@ import { getUtbetalingsdatoerFraFravær } from '../../utils/fraværUtils';
 import { StepID } from '../soknadStepsConfig';
 import SoknadFormStep from '../SoknadFormStep';
 import SoknadFormComponents from '../SoknadFormComponents';
+import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 
 const FraværFraStep = () => {
     const {
-        values: { fraværDager, fraværPerioder },
+        values: { fraværDager, fraværPerioder, arbeidsforhold },
     } = useFormikContext<SoknadFormData>();
     const getFieldName = (dato: Date): string => {
         const key = dateToISOString(dato);
@@ -35,6 +36,10 @@ const FraværFraStep = () => {
         formData.aktivitetFravær = aktivitetFravær;
         return formData;
     };
+
+    const arbeidsgiverRadios = arbeidsforhold
+        .filter((forhold) => forhold.harHattFraværHosArbeidsgiver === YesOrNo.YES)
+        .map((forhold) => ({ label: forhold.navn, value: forhold.organisasjonsnummer }));
 
     return (
         <SoknadFormStep id={StepID.FRAVÆR_FRA} onStepCleanup={onStepCleanup}>
@@ -62,8 +67,9 @@ const FraværFraStep = () => {
                                         label: 'Selvstendig næringsdrivende',
                                         value: Aktivitet.SELVSTENDIG_VIRKSOMHET,
                                     },
+                                    ...arbeidsgiverRadios,
                                     {
-                                        label: 'Både frilanser og selvstendig næringsdrivende',
+                                        label: 'Alle', // TODO
                                         value: Aktivitet.BEGGE,
                                     },
                                 ]}

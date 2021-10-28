@@ -23,8 +23,8 @@ const SoknadRemoteDataFetcher = () => {
                     contentRenderer={() => <SoknadErrorMessages.GeneralApplicationError />}
                 />
             )}
-            success={([person, soknadTempStorage]) => {
-                return <Soknad søker={person} soknadTempStorage={soknadTempStorage} />;
+            success={([person, arbeidsgivere, soknadTempStorage]) => {
+                return <Soknad søker={person} arbeidsgivere={arbeidsgivere} soknadTempStorage={soknadTempStorage} />;
             }}
         />
     );
