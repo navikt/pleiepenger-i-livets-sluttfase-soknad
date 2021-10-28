@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const mustacheExpress = require('mustache-express');
 const envSettings = require('../../../envSettings');
 
@@ -23,13 +24,15 @@ const configureDevServer = (decoratorFragments) => ({
         });
     },
     static: {
+        directory: path.resolve(`${__dirname}/../../../dist`),
+        serveIndex: true,
         watch: false,
     },
     devMiddleware: {
+        index: true,
         stats: 'minimal',
         publicPath: `${process.env.PUBLIC_PATH}/dist`,
     },
-    port: 8080,
 });
 
 module.exports = configureDevServer;
