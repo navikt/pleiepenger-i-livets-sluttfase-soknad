@@ -23,6 +23,7 @@ import SelvstendigSummary from './components/SelvstendigSummary';
 import MedlemskapSummaryView from './components/MedlemskapSummaryView';
 import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
+import ArbeidsforholdSummaryView from './components/ArbeidsforholdSummaryView';
 
 type Props = {
     søker: Person;
@@ -32,7 +33,7 @@ type Props = {
 const OppsummeringStep = ({ søker, apiValues }: Props) => {
     const intl = useIntl();
     const { sendSoknadStatus, sendSoknad } = useSoknadContext();
-    console.log(apiValues);
+    console.log('api: ', apiValues);
     return (
         <SoknadFormStep
             id={StepID.OPPSUMMERING}
@@ -60,6 +61,11 @@ const OppsummeringStep = ({ søker, apiValues }: Props) => {
                                     />
                                     <UtenlandsoppholdISøkeperiodeSummaryView utenlandsopphold={apiValues.opphold} />
                                 </SummarySection>
+
+                                {/* Arbeidstaker */}
+                                {apiValues._arbeidsforhold.length > 0 && (
+                                    <ArbeidsforholdSummaryView arbeidsforhold={apiValues._arbeidsforhold} />
+                                )}
 
                                 {/* Frilansinntekt */}
                                 <FrilansSummary frilans={apiValues.frilans} />

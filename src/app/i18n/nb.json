@@ -30,8 +30,7 @@
     "step.opplysninger-om-pleietrengende.stepTitle": "Opplysninger om den pleietrengende",
     "step.opplysninger-om-pleietrengende.nextButtonLabel": "Fortsett",
     "step.opplysninger-om-pleietrengende.counsellorPanel.info": "TODO",
-    "step.opplysninger-om-pleietrengende.spm.fornavn": "Fornavn",
-    "step.opplysninger-om-pleietrengende.spm.etternavn": "Etternavn",
+    "step.opplysninger-om-pleietrengende.spm.navn": "Navn",
     "step.opplysninger-om-pleietrengende.spm.fnr": "Fødselsnummer",
     "step.opplysninger-om-pleietrengende.vedlegg.tittel": "Bekreftelse fra lege",
     "step.opplysninger-om-pleietrengende.vedlegg": "Last opp bekreftelse fra lege",
@@ -130,6 +129,9 @@
     "aktivitetFravær.SELVSTENDIG_VIRKSOMHET": "selvstendig næringsdrivende",
     "aktivitetFravær.FRILANSER": "frilanser",
 
+    "step.oppsummering.arbeidsforhold.header": "Arbeidsforhold",
+    "step.oppsummering.arbeidsforhold.harHattFravær.spm": "Har du hatt fravær fra {organisasjonsnavn} fordi du har brukt pleiepengedager? ",
+
     "step.oppsummering.frilanser.header": "Frilanser",
     "step.oppsummering.frilanser.harDuHattInntekt.header": "Var du frilanser i dagene du søker utbetaling for?",
     "step.oppsummering.frilanser.nårStartet.header": "Når startet du som frilanser?",
@@ -192,11 +194,10 @@
     "kvittering.info.1": "Når vi har behandlet søknaden din får du en bekreftelse både per post og på Ditt NAV.",
 
     "validation.harForståttRettigheterOgPlikter.notChecked": "Du må bekrefte at du har lest og forstått dine plikter.",
-    "validation.pleietrengende.fornavn.stringHasNoValue": "Du må skrive inn fornavnet til den pleietrengende.",
-    "validation.pleietrengende.etternavn.stringHasNoValue": "Du må skrive inn etternavnet til den pleietrengende.",
-    "validation.pleietrengende.fødselsnummer.fødselsnummerHasNoValue": "Du må skrive inn fødselsnummeret til den pleietrengende.",
-    "validation.pleietrengende.fødselsnummer.fødselsnummerIsInvalid": " Du har oppgitt et ugyldig fødselsnummer. Kontroller at du har tastet inn riktig.",
-    "validation.pleietrengende.fødselsnummer.fødselsnummerIsNot11Chars": "Du har oppgitt et ugyldig fødselsnummer. Et gyldig fødselsnummer består av 11 siffer.",
+    "validation.pleietrengende.navn.stringHasNoValue": "Du må skrive inn fornavnet til den pleietrengende.",
+    "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerHasNoValue": "Du må skrive inn fødselsnummeret til den pleietrengende.",
+    "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerIsInvalid": " Du har oppgitt et ugyldig fødselsnummer. Kontroller at du har tastet inn riktig.",
+    "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerIsNot11Chars": "Du har oppgitt et ugyldig fødselsnummer. Et gyldig fødselsnummer består av 11 siffer.",
 
     "validation.harPerioderMedFravær.yesOrNoIsUnanswered": "todo",
     "validation.harBekreftetOpplysninger.notChecked": "Du må bekrefte at opplysningene du har gitt er riktige."

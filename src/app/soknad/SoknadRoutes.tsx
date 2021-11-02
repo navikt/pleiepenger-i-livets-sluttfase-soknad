@@ -83,8 +83,10 @@ const SoknadRoutes = ({ soknadId, søker, arbeidsgivere }: Props) => {
                 />
             </Route>
             {soknadId === undefined && <Redirect key="redirectToWelcome" to={AppRoutes.SOKNAD} />}
+
             {soknadId &&
                 availableSteps.map((step) => {
+                    // console.log(soknadStepsConfig[step]);
                     return (
                         <Route
                             key={step}

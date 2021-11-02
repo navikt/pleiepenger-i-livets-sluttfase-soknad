@@ -57,7 +57,10 @@ const FraværStep = ({ values }: Props) => {
     const forrigeÅr = inneværendeÅr - 1;
 
     return (
-        <SoknadFormStep id={StepID.FRAVÆR} showSubmitButton={kanIkkeFortsette === false}>
+        <SoknadFormStep
+            id={StepID.FRAVÆR}
+            showSubmitButton={kanIkkeFortsette === false}
+            onStepCleanup={fraværStepUtils.cleanupFraværStep}>
             <FormBlock>
                 <FraværStepInfo.IntroVeileder />
             </FormBlock>

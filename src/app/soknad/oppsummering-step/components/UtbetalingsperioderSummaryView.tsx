@@ -43,6 +43,7 @@ export const toMaybeUtbetalingsperiodeDag = (p: UtbetalingsperiodeApi): Utbetali
                 antallTimerPlanlagt: antallTimerPlanlagtTime,
                 antallTimerBorte: antallTimerBorteTime,
                 aktivitetFravær: p.aktivitetFravær,
+                organisasjonsnummere: p.organisasjonsnummere,
             };
         }
     }

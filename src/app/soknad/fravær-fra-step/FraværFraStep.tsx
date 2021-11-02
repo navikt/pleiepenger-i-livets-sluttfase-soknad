@@ -16,7 +16,13 @@ import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 
 const FraværFraStep = () => {
     const {
-        values: { fraværDager, fraværPerioder, arbeidsforhold },
+        values: {
+            fraværDager,
+            fraværPerioder,
+            arbeidsforhold,
+            selvstendig_erSelvstendigNæringsdrivende,
+            frilans_erFrilanser,
+        },
     } = useFormikContext<SoknadFormData>();
     const getFieldName = (dato: Date): string => {
         const key = dateToISOString(dato);
@@ -41,6 +47,27 @@ const FraværFraStep = () => {
         .filter((forhold) => forhold.harHattFraværHosArbeidsgiver === YesOrNo.YES)
         .map((forhold) => ({ label: forhold.navn, value: forhold.organisasjonsnummer }));
 
+    const snFRadios = () => {
+        const frilans = {
+            label: 'Frilanser',
+            value: Aktivitet.FRILANSER,
+        };
+        const sn = {
+            label: 'Selvstendig næringsdrivende',
+            value: Aktivitet.SELVSTENDIG_VIRKSOMHET,
+        };
+
+        if (selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES && frilans_erFrilanser === YesOrNo.YES) {
+            return [frilans, sn];
+        }
+        if (selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES && frilans_erFrilanser === YesOrNo.NO) {
+            return [sn];
+        }
+        if (selvstendig_erSelvstendigNæringsdrivende === YesOrNo.NO && frilans_erFrilanser === YesOrNo.YES) {
+            return [frilans];
+        }
+        return [];
+    };
     return (
         <SoknadFormStep id={StepID.FRAVÆR_FRA} onStepCleanup={onStepCleanup}>
             <FormBlock>
@@ -59,18 +86,11 @@ const FraværFraStep = () => {
                                 name={fieldName as SoknadFormField}
                                 legend={<FormattedMessage id="step.fravaerFra.dag.spm" values={{ dato }} />}
                                 radios={[
-                                    {
-                                        label: 'Frilanser',
-                                        value: Aktivitet.FRILANSER,
-                                    },
-                                    {
-                                        label: 'Selvstendig næringsdrivende',
-                                        value: Aktivitet.SELVSTENDIG_VIRKSOMHET,
-                                    },
+                                    ...snFRadios(),
                                     ...arbeidsgiverRadios,
                                     {
                                         label: 'Alle', // TODO
-                                        value: Aktivitet.BEGGE,
+                                        value: Aktivitet.ALLE,
                                     },
                                 ]}
                                 validate={(value) => {

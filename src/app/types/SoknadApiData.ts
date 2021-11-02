@@ -3,11 +3,11 @@ import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 import { VirksomhetApiData } from '@navikt/sif-common-forms/lib';
 import { ApiAktivitet } from './AktivitetFravær';
+import { ArbeidsforholdFormData } from './ArbeidsforholdTypes';
 
 export interface PleietrengendeApi {
-    etternavn: string;
-    fornavn: string;
-    fødselsnummer: string;
+    navn: string;
+    norskIdentitetsnummer: string;
 }
 
 export interface MedlemskapApiData {
@@ -31,6 +31,7 @@ export interface UtbetalingsperiodeApi {
     antallTimerBorte: string | null; // f eks PT5H30M | "null" (type Duration)
     antallTimerPlanlagt: string | null; // f eks PT5H30M | "null" (type Duration)
     aktivitetFravær: ApiAktivitet[];
+    organisasjonsnummere: Array<string> | null;
 }
 
 export interface Frilans {
@@ -55,6 +56,7 @@ export interface SoknadApiData {
     bosteder: UtenlandsoppholdApiData[]; // medlemskap-siden
     frilans?: Frilans;
     selvstendigNæringsdrivende?: VirksomhetApiData;
+    _arbeidsforhold: ArbeidsforholdFormData[];
     vedlegg: string[];
     _attachments: Attachment[];
     harBekreftetOpplysninger: boolean;

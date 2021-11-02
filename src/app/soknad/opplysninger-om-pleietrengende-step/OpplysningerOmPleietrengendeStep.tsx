@@ -23,6 +23,7 @@ type Props = {
 const OpplysningerOmPleietrengendeStep = ({ søker }: Props) => {
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
+    console.log(values);
     return (
         <SoknadFormStep id={StepID.OPPLYSNINGER_OM_PLEIETRENGENDE}>
             <CounsellorPanel>
@@ -34,23 +35,16 @@ const OpplysningerOmPleietrengendeStep = ({ søker }: Props) => {
             <FormBlock>
                 <Box margin="l">
                     <SoknadFormComponents.Input
-                        name={SoknadFormField.pleietrengende__fornavn}
-                        label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.fornavn')}
+                        name={SoknadFormField.pleietrengende__navn}
+                        label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.navn')}
                         validate={validateNavn}
                         style={{ maxWidth: '20rem' }}
                     />
                 </Box>
+
                 <Box margin="l">
                     <SoknadFormComponents.Input
-                        name={SoknadFormField.pleietrengende__etternavn}
-                        label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.etternavn')}
-                        validate={validateNavn}
-                        style={{ maxWidth: '20rem' }}
-                    />
-                </Box>
-                <Box margin="l">
-                    <SoknadFormComponents.Input
-                        name={SoknadFormField.pleietrengende__fødselsnummer}
+                        name={SoknadFormField.pleietrengende__norskIdentitetsnummer}
                         label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.fnr')}
                         validate={getFødselsnummerValidator({
                             required: true,

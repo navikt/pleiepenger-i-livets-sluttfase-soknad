@@ -23,19 +23,16 @@ const shouldShowSubmitButton = (søknadFormData: SoknadFormData): boolean => {
     const erFrilanser: YesOrNo = søknadFormData[SoknadFormField.frilans_erFrilanser];
     const erSelvstendigNæringsdrivende: YesOrNo | undefined =
         søknadFormData[SoknadFormField.selvstendig_erSelvstendigNæringsdrivende];
-
-    return !(erFrilanser === YesOrNo.NO && erSelvstendigNæringsdrivende === YesOrNo.NO);
+    const erArbeidstaker =
+        søknadFormData.arbeidsforhold.length > 0 &&
+        søknadFormData.arbeidsforhold.some((forhold) => forhold.harHattFraværHosArbeidsgiver === YesOrNo.YES);
+    return !(erFrilanser === YesOrNo.NO && erSelvstendigNæringsdrivende === YesOrNo.NO) || erArbeidstaker;
 };
 
 const ArbeidssituasjonStep = ({ arbeidsgivere }: Props) => {
     const { values } = useFormikContext<SoknadFormData>();
     const showSubmitButton = shouldShowSubmitButton(values);
-    console.log(values);
-    /*values.arbeidsforhold = arbeidsgivere.organisasjoner.map((arbeidsgiver) => ({
-        navn: arbeidsgiver.navn,
-        organisasjonsnummer: arbeidsgiver.organisasjonsnummer,
-        harHattFraværHosArbeidsgiver: YesOrNo.UNANSWERED,
-    }));*/
+
     return (
         <SoknadFormStep
             id={StepID.ARBEIDSSITUASJON}

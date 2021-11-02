@@ -12,18 +12,35 @@ const welcomingPageIsComplete = ({ harForståttRettigheterOgPlikter }: SoknadFor
 const opplysningerOmPleietrengendeIsComplete = (values: SoknadFormData, søker: Person): boolean =>
     welcomingPageIsComplete(values) &&
     values.pleietrengende !== undefined &&
-    validateNavn(values.pleietrengende.etternavn) === undefined &&
-    validateNavn(values.pleietrengende.fornavn) === undefined &&
+    validateNavn(values.pleietrengende.navn) === undefined &&
     getFødselsnummerValidator({
         required: true,
         disallowedValues: [søker.fødselsnummer],
-    })(values.pleietrengende.fødselsnummer) === undefined;
+    })(values.pleietrengende.norskIdentitetsnummer) === undefined;
 
 // TODO
 const fraværStepIsComplete = (): boolean => true;
 const arbeidssituasjonStepIsComplete = (): boolean => true;
-const showFraværFraStep = ({ frilans_erFrilanser, selvstendig_erSelvstendigNæringsdrivende }: SoknadFormData) =>
-    frilans_erFrilanser === YesOrNo.YES && selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES;
+
+export const showFraværFraStep = ({
+    frilans_erFrilanser,
+    selvstendig_erSelvstendigNæringsdrivende,
+    arbeidsforhold,
+}: SoknadFormData) => {
+    // console.log(arbeidsforhold.some((f) => f.harHattFraværHosArbeidsgiver === YesOrNo.YES));
+    // console.log(frilans_erFrilanser === YesOrNo.YES || selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES);
+    /*console.log(
+        (frilans_erFrilanser === YesOrNo.YES || selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES) &&
+            arbeidsforhold.some((f) => f.harHattFraværHosArbeidsgiver === YesOrNo.YES)
+    );*/
+    let count = 0;
+    if (frilans_erFrilanser === YesOrNo.YES) count++;
+    if (selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES) count++;
+    count += arbeidsforhold.filter((f) => f.harHattFraværHosArbeidsgiver === YesOrNo.YES).length;
+    console.log(count);
+    return count > 1;
+};
+
 const fraværFraStepIsComplete = (): boolean => true;
 const medlemskapStepIsComplete = (): boolean => true;
 
@@ -52,6 +69,6 @@ export const getAvailableSteps = (values: SoknadFormData, søker: Person): StepI
     return steps;
 };
 
-export const isStepAvailable = (stepId: StepID, availableSteps: StepID[]): boolean => {
+/*export const isStepAvailable = (stepId: StepID, availableSteps: StepID[]): boolean => {
     return availableSteps.find((id) => id === stepId) !== undefined;
-};
+};*/

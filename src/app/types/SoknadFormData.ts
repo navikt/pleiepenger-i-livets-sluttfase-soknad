@@ -7,9 +7,8 @@ import { AktivitetFravær } from './AktivitetFravær';
 import { ArbeidsforholdFormData } from './ArbeidsforholdTypes';
 
 export interface Pleietrengende {
-    etternavn: string;
-    fornavn: string;
-    fødselsnummer: string;
+    navn: string;
+    norskIdentitetsnummer: string;
 }
 
 export enum SoknadFormField {
@@ -18,9 +17,8 @@ export enum SoknadFormField {
 
     // Opplysninger om pleietrengende
     pleietrengende = 'pleietrengende',
-    pleietrengende__etternavn = 'pleietrengende.etternavn',
-    pleietrengende__fornavn = 'pleietrengende.fornavn',
-    pleietrengende__fødselsnummer = 'pleietrengende.fødselsnummer',
+    pleietrengende__navn = 'pleietrengende.navn',
+    pleietrengende__norskIdentitetsnummer = 'pleietrengende.norskIdentitetsnummer',
     bekreftelseFraLege = 'bekreftelseFraLege',
 
     // Fravær

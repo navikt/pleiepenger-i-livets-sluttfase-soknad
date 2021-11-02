@@ -1,7 +1,7 @@
-import { YesOrNo } from '@navikt/sif-common-formik/lib';
 import { SoknadApplicationType, SoknadStepsConfig } from '@navikt/sif-common-soknad/lib/soknad-step/soknadStepTypes';
 import soknadStepUtils from '@navikt/sif-common-soknad/lib/soknad-step/soknadStepUtils';
 import { SoknadFormData } from 'app/types/SoknadFormData';
+import { showFraværFraStep } from '../utils/getAvailableSteps';
 
 export enum StepID {
     'OPPLYSNINGER_OM_PLEIETRENGENDE' = 'opplysninger-om-pleietrengende',
@@ -14,8 +14,7 @@ export enum StepID {
 
 const getSoknadSteps = (values: SoknadFormData): StepID[] => {
     // TODO Arbeidsgiver sjekk
-    const inkluderFraværFraStep =
-        values.selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES && values.frilans_erFrilanser === YesOrNo.YES;
+    const inkluderFraværFraStep = showFraværFraStep(values);
     return [
         StepID.OPPLYSNINGER_OM_PLEIETRENGENDE,
         StepID.FRAVÆR,
