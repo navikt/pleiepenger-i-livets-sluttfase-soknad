@@ -142,7 +142,7 @@ export const mapFraværPeriodeTilUtbetalingsperiodeApi = (
         antallTimerPlanlagt: null,
         antallTimerBorte: null,
         aktivitetFravær: aktivitetFravær.apiAktiviteter,
-        organisasjonsnummere: aktivitetFravær.orgnummere.length > 0 ? aktivitetFravær.orgnummere : null,
+        organisasjonsnummer: aktivitetFravær.orgnummere.length > 0 ? aktivitetFravær.orgnummere : null,
     };
 };
 
@@ -156,7 +156,7 @@ export const mapFraværDagTilUtbetalingsperiodeApi = (
         antallTimerPlanlagt: timeToIso8601Duration(decimalTimeToTime(parseFloat(fraværDag.timerArbeidsdag))),
         antallTimerBorte: timeToIso8601Duration(decimalTimeToTime(parseFloat(fraværDag.timerFravær))),
         aktivitetFravær: aktivitetFravær.apiAktiviteter,
-        organisasjonsnummere: aktivitetFravær.orgnummere.length > 0 ? aktivitetFravær.orgnummere : null,
+        organisasjonsnummer: aktivitetFravær.orgnummere.length > 0 ? aktivitetFravær.orgnummere : null,
     };
 };
 
