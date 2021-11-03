@@ -30,7 +30,7 @@ export interface UtbetalingsperiodeApi {
     antallTimerBorte: string | null; // f eks PT5H30M | "null" (type Duration)
     antallTimerPlanlagt: string | null; // f eks PT5H30M | "null" (type Duration)
     aktivitetFravær: ApiAktivitet[];
-    organisasjonsnummere: Array<string> | null;
+    organisasjonsnummer: Array<string> | null;
 }
 
 export interface Frilans {
