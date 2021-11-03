@@ -50,7 +50,7 @@ export interface SoknadApiData {
     språk: Locale;
     harForståttRettigheterOgPlikter: boolean;
     pleietrengende: PleietrengendeApi;
-    utbetalingsperioder: UtbetalingsperiodeApi[];
+    fraværsperioder: UtbetalingsperiodeApi[];
     utenlandsopphold: BostedUtlandApiData[];
     medlemskap: MedlemskapApiData;
     frilans?: Frilans;

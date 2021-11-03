@@ -57,7 +57,7 @@ export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape):
                 navn: formData.pleietrengende.navn,
                 norskIdentitetsnummer: formData.pleietrengende.norskIdentitetsnummer,
             },
-            utbetalingsperioder: getUtbetalingsperioderApiFromFormData(formData),
+            fraværsperioder: getUtbetalingsperioderApiFromFormData(formData),
             frilans,
             selvstendigNæringsdrivende: virksomhet,
             ...getMedlemsskapApiData(formData, locale),

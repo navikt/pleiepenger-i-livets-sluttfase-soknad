@@ -56,9 +56,7 @@ const OppsummeringStep = ({ søker, apiValues }: Props) => {
 
                                 {/* Omsorgsdager du søker utbetaling for */}
                                 <SummarySection header={intlHelper(intl, 'step.oppsummering.utbetalinger.header')}>
-                                    <UtbetalingsperioderSummaryView
-                                        utbetalingsperioder={apiValues.utbetalingsperioder}
-                                    />
+                                    <UtbetalingsperioderSummaryView utbetalingsperioder={apiValues.fraværsperioder} />
                                     <UtenlandsoppholdISøkeperiodeSummaryView
                                         utenlandsopphold={apiValues.utenlandsopphold}
                                     />
