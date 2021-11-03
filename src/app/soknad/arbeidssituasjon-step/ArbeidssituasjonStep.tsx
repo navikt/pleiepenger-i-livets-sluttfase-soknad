@@ -32,7 +32,7 @@ const shouldShowSubmitButton = (søknadFormData: SoknadFormData): boolean => {
 const ArbeidssituasjonStep = ({ arbeidsgivere }: Props) => {
     const { values } = useFormikContext<SoknadFormData>();
     const showSubmitButton = shouldShowSubmitButton(values);
-
+    console.log(values);
     return (
         <SoknadFormStep
             id={StepID.ARBEIDSSITUASJON}

@@ -3,11 +3,11 @@ import { apiStringDateToDate, prettifyDateExtended } from '@navikt/sif-common-co
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 
 import './utenlandsoppholdSummaryItem.less';
-import { UtenlandsoppholdApiData } from '../../../types/SoknadApiData';
+import { BostedUtlandApiData } from '../../../types/SoknadApiData';
 
 const bem = bemUtils('utenlandsoppholdSummaryItem');
 
-export const renderUtenlandsoppholdIPeriodenSummary = (opphold: UtenlandsoppholdApiData): React.ReactNode => {
+export const renderUtenlandsoppholdIPeriodenSummary = (opphold: BostedUtlandApiData): React.ReactNode => {
     return (
         <div className={bem.block}>
             <span className={bem.element('dates')}>

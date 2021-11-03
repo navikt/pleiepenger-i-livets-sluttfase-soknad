@@ -13,16 +13,15 @@ export interface PleietrengendeApi {
 export interface MedlemskapApiData {
     harBoddIUtlandetSiste12Mnd: boolean;
     skalBoIUtlandetNeste12Mnd: boolean;
-    utenlandsoppholdNeste12Mnd: UtenlandsoppholdApiData[];
-    utenlandsoppholdSiste12Mnd: UtenlandsoppholdApiData[];
+    utenlandsoppholdNeste12Mnd: BostedUtlandApiData[];
+    utenlandsoppholdSiste12Mnd: BostedUtlandApiData[];
 }
 
-export interface UtenlandsoppholdApiData {
+export interface BostedUtlandApiData {
     fraOgMed: ApiStringDate;
     tilOgMed: ApiStringDate;
     landkode: string;
     landnavn: string;
-    erEØSLand: boolean;
 }
 
 export interface UtbetalingsperiodeApi {
@@ -51,9 +50,9 @@ export interface SoknadApiData {
     språk: Locale;
     harForståttRettigheterOgPlikter: boolean;
     pleietrengende: PleietrengendeApi;
-    utbetalingsperioder: UtbetalingsperiodeApi[]; // perioder
-    opphold: UtenlandsoppholdApiData[]; // hvis ja på har oppholdt seg i utlandet
-    bosteder: UtenlandsoppholdApiData[]; // medlemskap-siden
+    utbetalingsperioder: UtbetalingsperiodeApi[];
+    utenlandsopphold: BostedUtlandApiData[];
+    medlemskap: MedlemskapApiData;
     frilans?: Frilans;
     selvstendigNæringsdrivende?: VirksomhetApiData;
     _arbeidsforhold: ArbeidsforholdFormData[];

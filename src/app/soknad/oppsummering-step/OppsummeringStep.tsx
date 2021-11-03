@@ -59,7 +59,9 @@ const OppsummeringStep = ({ søker, apiValues }: Props) => {
                                     <UtbetalingsperioderSummaryView
                                         utbetalingsperioder={apiValues.utbetalingsperioder}
                                     />
-                                    <UtenlandsoppholdISøkeperiodeSummaryView utenlandsopphold={apiValues.opphold} />
+                                    <UtenlandsoppholdISøkeperiodeSummaryView
+                                        utenlandsopphold={apiValues.utenlandsopphold}
+                                    />
                                 </SummarySection>
 
                                 {/* Arbeidstaker */}
@@ -75,7 +77,7 @@ const OppsummeringStep = ({ søker, apiValues }: Props) => {
 
                                 {/* Medlemskap i folketrygden */}
                                 <SummarySection header={intlHelper(intl, 'step.oppsummering.medlemskap.header')}>
-                                    <MedlemskapSummaryView bosteder={apiValues.bosteder} />
+                                    <MedlemskapSummaryView medlemskap={apiValues.medlemskap} />
                                 </SummarySection>
                                 {/* Vedlegg */}
                                 <SummarySection header={intlHelper(intl, 'step.oppsummering.dokumenter.header')}>

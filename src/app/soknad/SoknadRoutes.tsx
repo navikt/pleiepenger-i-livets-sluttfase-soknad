@@ -50,7 +50,7 @@ const SoknadRoutes = ({ soknadId, søker, arbeidsgivere }: Props) => {
             case StepID.MEDLEMSKAP:
                 return <MedlemsskapStep />;
             case StepID.OPPSUMMERING:
-                const apiValues = mapFormDataToApiData(intl.locale, values, intl);
+                const apiValues = mapFormDataToApiData(values, intl);
                 return <OppsummeringStep apiValues={apiValues} søker={søker} />;
         }
     };
