@@ -27,17 +27,10 @@ export const showFraværFraStep = ({
     selvstendig_erSelvstendigNæringsdrivende,
     arbeidsforhold,
 }: SoknadFormData) => {
-    // console.log(arbeidsforhold.some((f) => f.harHattFraværHosArbeidsgiver === YesOrNo.YES));
-    // console.log(frilans_erFrilanser === YesOrNo.YES || selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES);
-    /*console.log(
-        (frilans_erFrilanser === YesOrNo.YES || selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES) &&
-            arbeidsforhold.some((f) => f.harHattFraværHosArbeidsgiver === YesOrNo.YES)
-    );*/
     let count = 0;
     if (frilans_erFrilanser === YesOrNo.YES) count++;
     if (selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES) count++;
     count += arbeidsforhold.filter((f) => f.harHattFraværHosArbeidsgiver === YesOrNo.YES).length;
-    console.log(count);
     return count > 1;
 };
 

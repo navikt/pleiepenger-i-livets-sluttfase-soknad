@@ -54,7 +54,7 @@ const FraværFraStep = () => {
         };
         const sn = {
             label: 'Selvstendig næringsdrivende',
-            value: Aktivitet.SELVSTENDIG_VIRKSOMHET,
+            value: Aktivitet.SELVSTENDIG_NÆRINGSDRIVENDE,
         };
 
         if (selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES && frilans_erFrilanser === YesOrNo.YES) {
@@ -68,6 +68,7 @@ const FraværFraStep = () => {
         }
         return [];
     };
+    const aktivitetOptions = [...snFRadios(), ...arbeidsgiverRadios];
     return (
         <SoknadFormStep id={StepID.FRAVÆR_FRA} onStepCleanup={onStepCleanup}>
             <FormBlock>
@@ -82,17 +83,10 @@ const FraværFraStep = () => {
                     const dato = dayjs(date).format('dddd D. MMM YYYY');
                     return (
                         <FormBlock key={fieldName}>
-                            <SoknadFormComponents.RadioGroup
+                            <SoknadFormComponents.CheckboxPanelGroup
                                 name={fieldName as SoknadFormField}
                                 legend={<FormattedMessage id="step.fravaerFra.dag.spm" values={{ dato }} />}
-                                radios={[
-                                    ...snFRadios(),
-                                    ...arbeidsgiverRadios,
-                                    {
-                                        label: 'Alle', // TODO
-                                        value: Aktivitet.ALLE,
-                                    },
-                                ]}
+                                checkboxes={aktivitetOptions}
                                 validate={(value) => {
                                     const error = getRequiredFieldValidator()(value);
                                     return error

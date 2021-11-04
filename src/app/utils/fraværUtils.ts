@@ -37,7 +37,6 @@ export const delFraværPerioderOppIDager = (perioder: FraværPeriode[]): Fravær
 };
 
 export const getAktivitetFromAktivitetFravær = (
-    aktivitetFravær: AktivitetFravær[],
     erFrilanser: boolean,
     erSelvstendigNæringsdrivende: boolean,
     arbeidsforholdMedFravær: string[]
@@ -46,65 +45,56 @@ export const getAktivitetFromAktivitetFravær = (
         return { apiAktiviteter: [ApiAktivitet.FRILANSER], orgnummere: [] };
     }
     if (erSelvstendigNæringsdrivende && !erFrilanser) {
-        return { apiAktiviteter: [ApiAktivitet.SELVSTENDIG_VIRKSOMHET], orgnummere: [] };
+        return { apiAktiviteter: [ApiAktivitet.SELVSTENDIG_NÆRINGSDRIVENDE], orgnummere: [] };
     }
 
-    if (!erSelvstendigNæringsdrivende && !erFrilanser && arbeidsforholdMedFravær.length === 1) {
+    if (arbeidsforholdMedFravær.length === 1 && !erSelvstendigNæringsdrivende && !erFrilanser) {
         return { apiAktiviteter: [ApiAktivitet.ARBEIDSTAKER], orgnummere: arbeidsforholdMedFravær };
     }
     return {
-        apiAktiviteter: [
-            ...(erFrilanser ? [ApiAktivitet.FRILANSER] : []),
-            ...(erSelvstendigNæringsdrivende ? [ApiAktivitet.SELVSTENDIG_VIRKSOMHET] : []),
-            ...(arbeidsforholdMedFravær.length > 0 ? [ApiAktivitet.ARBEIDSTAKER] : []),
-        ],
-        orgnummere: arbeidsforholdMedFravær.length > 0 ? arbeidsforholdMedFravær : [],
+        apiAktiviteter: [],
+        orgnummere: [],
     };
 };
 
-export const getApiAktivitetFromAktivitet = (
-    aktivitet: string,
-    arbeidsforholdMedFravær: string[],
-    erFrilanser: boolean,
-    erSN: boolean
-): Aktiviteter => {
-    switch (aktivitet) {
-        case Aktivitet.ALLE:
-            const getApiAktiviteter = () => {
-                if (arbeidsforholdMedFravær.length > 0 && erFrilanser && erSN) {
-                    return [ApiAktivitet.FRILANSER, ApiAktivitet.SELVSTENDIG_VIRKSOMHET, ApiAktivitet.ARBEIDSTAKER];
-                } else if (arbeidsforholdMedFravær.length > 1 && !erFrilanser && !erSN) {
-                    return [ApiAktivitet.ARBEIDSTAKER];
-                } else if (arbeidsforholdMedFravær.length === 0 && erFrilanser && erSN) {
-                    return [ApiAktivitet.FRILANSER, ApiAktivitet.SELVSTENDIG_VIRKSOMHET];
-                } else if (arbeidsforholdMedFravær.length > 0 && erFrilanser && !erSN) {
-                    return [ApiAktivitet.FRILANSER, ApiAktivitet.ARBEIDSTAKER];
-                } else return [ApiAktivitet.SELVSTENDIG_VIRKSOMHET, ApiAktivitet.ARBEIDSTAKER];
-            };
-
-            return {
-                apiAktiviteter: getApiAktiviteter(),
-                orgnummere: arbeidsforholdMedFravær,
-            };
-        case Aktivitet.SELVSTENDIG_VIRKSOMHET:
-            return { apiAktiviteter: [ApiAktivitet.SELVSTENDIG_VIRKSOMHET], orgnummere: [] };
-        case Aktivitet.FRILANSER:
-            return { apiAktiviteter: [ApiAktivitet.FRILANSER], orgnummere: [] };
-        default:
-            return { apiAktiviteter: [ApiAktivitet.ARBEIDSTAKER], orgnummere: [aktivitet] };
+export const getApiAktivitetFromAktivitet = (aktivitet: string[]): Aktiviteter => {
+    const cleanAktivitetFraOrgNummere = (akt: string): boolean => {
+        switch (akt) {
+            case Aktivitet.FRILANSER: {
+                return true;
+            }
+            case Aktivitet.SELVSTENDIG_NÆRINGSDRIVENDE: {
+                return true;
+            }
+        }
+        return false;
+    };
+    const cleanAktivitetFraAktiviteter = (akt: string): boolean => {
+        switch (akt) {
+            case Aktivitet.FRILANSER: {
+                return false;
+            }
+            case Aktivitet.SELVSTENDIG_NÆRINGSDRIVENDE: {
+                return false;
+            }
+        }
+        return true;
+    };
+    const cleanedAktiviteterFraOrgNummere = aktivitet.filter((a) => cleanAktivitetFraOrgNummere(a));
+    const cleanedAktiviteterFraAktiviteter = aktivitet.filter((a) => cleanAktivitetFraAktiviteter(a));
+    if (cleanedAktiviteterFraAktiviteter.length > 0) {
+        cleanedAktiviteterFraOrgNummere.push(Aktivitet.ARBEIDSTAKER);
     }
+    return {
+        apiAktiviteter: cleanedAktiviteterFraOrgNummere,
+        orgnummere: cleanedAktiviteterFraAktiviteter,
+    };
 };
 
-export const getApiAktivitetForDag = (
-    dato: Date,
-    fravær: AktivitetFravær[],
-    arbeidsforholdMedFravær: string[],
-    erFrilanser: boolean,
-    erSN: boolean
-): Aktiviteter => {
+export const getApiAktivitetForDag = (dato: Date, fravær: AktivitetFravær[]): Aktiviteter => {
     const aktivitetFravær = fravær.find((fa) => dayjs(fa.dato).isSame(dato, 'day'));
     if (!aktivitetFravær) {
         throw new Error('Missing aktivitet for date');
     }
-    return getApiAktivitetFromAktivitet(aktivitetFravær.aktivitet, arbeidsforholdMedFravær, erFrilanser, erSN);
+    return getApiAktivitetFromAktivitet(aktivitetFravær.aktivitet);
 };

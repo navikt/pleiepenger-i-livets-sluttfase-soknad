@@ -21,7 +21,7 @@ const MedlemsskapStep = () => {
 
     // TODO
     const { values } = useFormikContext<SoknadFormData>();
-    console.log(values);
+
     return (
         <SoknadFormStep id={StepID.MEDLEMSKAP}>
             <CounsellorPanel>

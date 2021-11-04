@@ -86,7 +86,6 @@ const SoknadRoutes = ({ soknadId, søker, arbeidsgivere }: Props) => {
 
             {soknadId &&
                 availableSteps.map((step) => {
-                    // console.log(soknadStepsConfig[step]);
                     return (
                         <Route
                             key={step}

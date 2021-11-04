@@ -9,12 +9,15 @@ import { timeText } from '@navikt/sif-common-forms/lib/fravær';
 import dayjs from 'dayjs';
 import flatten from 'lodash/flatten';
 import uniq from 'lodash/uniq';
-import { ApiAktivitet } from '../../../types/AktivitetFravær';
+// import { ApiAktivitet } from '../../../types/AktivitetFravær';
 import { UtbetalingsperiodeApi } from '../../../types/SoknadApiData';
 import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
+import { ArbeidsforholdFormData } from 'app/types/ArbeidsforholdTypes';
+import { ApiAktivitet } from '../../../types/AktivitetFravær';
 
 export interface Props {
     utbetalingsperioder: UtbetalingsperiodeApi[];
+    arbeidsforhold: ArbeidsforholdFormData[];
 }
 
 type UtbetalingsperiodeDag = Omit<
@@ -54,15 +57,41 @@ export const outNull = (
     maybeUtbetalingsperiodeDag: UtbetalingsperiodeDag | null
 ): maybeUtbetalingsperiodeDag is UtbetalingsperiodeDag => maybeUtbetalingsperiodeDag !== null;
 
-const getFraværAktivitetString = (aktivitetFravær: ApiAktivitet[], intl: IntlShape) => {
-    return aktivitetFravær.length === 2
+const getFraværAktivitetString = (
+    periode: UtbetalingsperiodeApi,
+    arbeidsforhold: ArbeidsforholdFormData[],
+    intl: IntlShape
+) => {
+    const getArbeidsgiverNavner = () => {
+        return arbeidsforhold
+            .filter((forhold) =>
+                periode.organisasjonsnummer === null
+                    ? []
+                    : periode.organisasjonsnummer.find((nummer) => nummer === forhold.organisasjonsnummer) !== undefined
+            )
+            .map((f) => f.navn);
+    };
+
+    const getApiAktiviteter = () => periode.aktivitetFravær.filter((a) => a !== ApiAktivitet.ARBEIDSTAKER);
+    const aktiviteterArray = [...getArbeidsgiverNavner(), ...getApiAktiviteter()];
+    const aString = '';
+    const aktiviteterString = aktiviteterArray.map((a) => {
+        console.log(ApiAktivitet.FRILANSER);
+        const aktivitet =
+            a === ApiAktivitet.FRILANSER || a === ApiAktivitet.SELVSTENDIG_NÆRINGSDRIVENDE
+                ? `${intlHelper(intl, `aktivitetFravær.${a}`)}, `
+                : `${a}, `;
+        return aString.concat(aktivitet);
+    });
+    return aktiviteterString;
+    /*return periode.aktivitetFravær.length === 2
         ? intlHelper(intl, `step.oppsummering.fravær.aktivitet.2`, {
               aktivitet1: intlHelper(intl, `aktivitetFravær.${aktivitetFravær[0]}`),
               aktivitet2: intlHelper(intl, `aktivitetFravær.${aktivitetFravær[1]}`),
           })
         : intlHelper(intl, `step.oppsummering.fravær.aktivitet.1`, {
               aktivitet: intlHelper(intl, `aktivitetFravær.${aktivitetFravær[0]}`),
-          });
+          });*/
 };
 
 const renderEnkeltdagElement = (date: Date): JSX.Element => (
@@ -72,16 +101,21 @@ const renderEnkeltdagElement = (date: Date): JSX.Element => (
 );
 
 const renderFraværAktivitetElement = (
-    aktivitet: ApiAktivitet[],
+    periode: UtbetalingsperiodeApi,
     visAktivitet: boolean,
+    arbeidsforhold: ArbeidsforholdFormData[],
     intl: IntlShape
-): JSX.Element | null => (visAktivitet ? <div>{getFraværAktivitetString(aktivitet, intl)}</div> : null);
+): JSX.Element | null => (visAktivitet ? <div>{getFraværAktivitetString(periode, arbeidsforhold, intl)}</div> : null);
 
 export const renderUtbetalingsperiodeDag = (
-    dag: UtbetalingsperiodeDag,
+    // dag: UtbetalingsperiodeDag,
+    periode: UtbetalingsperiodeApi,
     visAktivitet: boolean,
+    arbeidsforhold: ArbeidsforholdFormData[],
     intl: IntlShape
 ): JSX.Element => {
+    //TODO
+    const dag = periode as unknown as UtbetalingsperiodeDag;
     const antallTimerSkulleJobbet = `${timeToDecimalTime(dag.antallTimerPlanlagt)} ${timeText(
         `${timeToDecimalTime(dag.antallTimerPlanlagt)}`
     )}`;
@@ -92,7 +126,7 @@ export const renderUtbetalingsperiodeDag = (
         <div style={{ marginBottom: '.5rem' }}>
             {renderEnkeltdagElement(apiStringDateToDate(dag.dato))}
             Skulle jobbet {antallTimerSkulleJobbet}. Borte fra jobb {antallTimerBorteFraJobb}.
-            {renderFraværAktivitetElement(dag.aktivitetFravær, visAktivitet, intl)}
+            {renderFraværAktivitetElement(periode, visAktivitet, arbeidsforhold, intl)}
         </div>
     );
 };
@@ -100,6 +134,7 @@ export const renderUtbetalingsperiodeDag = (
 const renderUtbetalingsperiode = (
     periode: UtbetalingsperiodeApi,
     visAktivitet: boolean,
+    arbeidsforhold: ArbeidsforholdFormData[],
     intl: IntlShape
 ): JSX.Element => {
     const fom = apiStringDateToDate(periode.fraOgMed);
@@ -110,12 +145,12 @@ const renderUtbetalingsperiode = (
             {periode.fraOgMed === periode.tilOgMed ? (
                 <div>
                     {renderEnkeltdagElement(fom)}
-                    {renderFraværAktivitetElement(periode.aktivitetFravær, visAktivitet, intl)}
+                    {renderFraværAktivitetElement(periode, visAktivitet, arbeidsforhold, intl)}
                 </div>
             ) : (
                 <div>
                     Fra og med {prettifyDate(fom)}, til og med {prettifyDate(tom)}
-                    {renderFraværAktivitetElement(periode.aktivitetFravær, visAktivitet, intl)}
+                    {renderFraværAktivitetElement(periode, visAktivitet, arbeidsforhold, intl)}
                 </div>
             )}
         </div>
@@ -126,7 +161,7 @@ const harFlereFraværAktiviteter = (perioder: UtbetalingsperiodeApi[]) => {
     return uniq(flatten(perioder.map((p) => p.aktivitetFravær))).length > 1;
 };
 
-const UtbetalingsperioderSummaryView: React.FunctionComponent<Props> = ({ utbetalingsperioder = [] }) => {
+const UtbetalingsperioderSummaryView: React.FC<Props> = ({ utbetalingsperioder = [], arbeidsforhold }) => {
     const perioder: UtbetalingsperiodeApi[] = utbetalingsperioder.filter(
         (p) => p.tilOgMed !== undefined && p.antallTimerBorte === null
     );
@@ -140,7 +175,9 @@ const UtbetalingsperioderSummaryView: React.FunctionComponent<Props> = ({ utbeta
                 <SummaryBlock header={'Hele dager med fravær'}>
                     <SummaryList
                         items={perioder}
-                        itemRenderer={(periode) => renderUtbetalingsperiode(periode, visAktivitetInfo, intl)}
+                        itemRenderer={(periode) =>
+                            renderUtbetalingsperiode(periode, visAktivitetInfo, arbeidsforhold, intl)
+                        }
                     />
                 </SummaryBlock>
             )}
@@ -149,7 +186,12 @@ const UtbetalingsperioderSummaryView: React.FunctionComponent<Props> = ({ utbeta
                     <SummaryList
                         items={dager}
                         itemRenderer={(dag: UtbetalingsperiodeDag) =>
-                            renderUtbetalingsperiodeDag(dag, visAktivitetInfo, intl)
+                            renderUtbetalingsperiodeDag(
+                                dag as unknown as UtbetalingsperiodeApi,
+                                visAktivitetInfo,
+                                arbeidsforhold,
+                                intl
+                            )
                         }
                     />
                 </SummaryBlock>

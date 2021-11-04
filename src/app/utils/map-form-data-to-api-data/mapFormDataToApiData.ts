@@ -13,6 +13,7 @@ import { mapVirksomhetToVirksomhetApiData, Utenlandsopphold } from '@navikt/sif-
 import { Aktiviteter } from '../../types/AktivitetFravær';
 import { getValidSpråk } from '../sprakUtils';
 import { getMedlemsskapApiData, mapBostedUtlandToApiData } from '../medlemsskapApiData';
+import { showFraværFraStep } from '../getAvailableSteps';
 
 export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape): SoknadApiData | undefined => {
     const locale = getValidSpråk(intl.locale);
@@ -91,45 +92,39 @@ export const getUtbetalingsperioderApiFromFormData = (formValues: SoknadFormData
     const arbeidsforholdMedFravær = arbeidsforhold
         .filter((f) => f.harHattFraværHosArbeidsgiver === YesOrNo.YES)
         .map((f) => f.organisasjonsnummer);
-    const apiAktivitet: Aktiviteter = getAktivitetFromAktivitetFravær(
-        aktivitetFravær,
-        erFrilanser,
-        erSN,
-        arbeidsforholdMedFravær
-    );
-    // console.log(apiAktivitet);
-    if (apiAktivitet.apiAktiviteter.length === 1 && apiAktivitet.orgnummere.length < 2) {
+
+    if (!showFraværFraStep(formValues)) {
         return [
-            ...fraværDager.map((dag) => mapFraværDagTilUtbetalingsperiodeApi(dag, apiAktivitet)),
-            ...fraværPerioder.map((periode) => mapFraværPeriodeTilUtbetalingsperiodeApi(periode, apiAktivitet)),
-        ];
-    } else if (
-        apiAktivitet.apiAktiviteter.length > 1 ||
-        (apiAktivitet.apiAktiviteter.length === 1 && apiAktivitet.orgnummere.length > 1)
-    ) {
-        return [
+            ...fraværPerioder.map((periode) =>
+                mapFraværPeriodeTilUtbetalingsperiodeApi(
+                    periode,
+                    getAktivitetFromAktivitetFravær(erFrilanser, erSN, arbeidsforholdMedFravær)
+                )
+            ),
             ...fraværDager.map((dag) =>
                 mapFraværDagTilUtbetalingsperiodeApi(
                     dag,
-                    getApiAktivitetForDag(dag.dato, aktivitetFravær, arbeidsforholdMedFravær, erFrilanser, erSN)
-                )
-            ),
-            ...delFraværPerioderOppIDager(fraværPerioder).map((periodeDag) =>
-                mapFraværPeriodeTilUtbetalingsperiodeApi(
-                    periodeDag,
-                    getApiAktivitetForDag(
-                        periodeDag.fraOgMed,
-                        aktivitetFravær,
-                        arbeidsforholdMedFravær,
-                        erFrilanser,
-                        erSN
-                    )
+                    getAktivitetFromAktivitetFravær(erFrilanser, erSN, arbeidsforholdMedFravær)
                 )
             ),
         ];
     } else {
-        throw new Error('MAP Missing aktivitet');
+        return [
+            ...delFraværPerioderOppIDager(fraværPerioder).map((periodeDag) =>
+                mapFraværPeriodeTilUtbetalingsperiodeApi(
+                    periodeDag,
+                    getApiAktivitetForDag(periodeDag.fraOgMed, aktivitetFravær)
+                )
+            ),
+            ...fraværDager.map((dag) =>
+                mapFraværDagTilUtbetalingsperiodeApi(dag, getApiAktivitetForDag(dag.dato, aktivitetFravær))
+            ),
+        ];
     }
+    //TODO
+    /*} else {
+        throw new Error('MAP Missing aktivitet');
+    }*/
 };
 
 export const mapFraværPeriodeTilUtbetalingsperiodeApi = (

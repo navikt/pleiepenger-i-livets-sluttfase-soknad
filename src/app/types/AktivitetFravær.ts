@@ -1,8 +1,7 @@
 export enum Aktivitet {
     FRILANSER = 'FRILANSER',
-    SELVSTENDIG_VIRKSOMHET = 'SELVSTENDIG_VIRKSOMHET',
+    SELVSTENDIG_NÆRINGSDRIVENDE = 'SELVSTENDIG_NÆRINGSDRIVENDE',
     ARBEIDSTAKER = 'ARBEIDSTAKER',
-    ALLE = 'ALLE',
 }
 
 export interface AktivitetArbeidstaker {
@@ -11,15 +10,15 @@ export interface AktivitetArbeidstaker {
 
 export enum ApiAktivitet {
     FRILANSER = 'FRILANSER',
-    SELVSTENDIG_VIRKSOMHET = 'SELVSTENDIG_VIRKSOMHET',
+    SELVSTENDIG_NÆRINGSDRIVENDE = 'SELVSTENDIG_NÆRINGSDRIVENDE',
     ARBEIDSTAKER = 'ARBEIDSTAKER',
 }
 export interface Aktiviteter {
-    apiAktiviteter: ApiAktivitet[];
+    apiAktiviteter: string[];
     orgnummere: string[];
 }
 
 export interface AktivitetFravær {
     dato: Date;
-    aktivitet: string;
+    aktivitet: string[];
 }

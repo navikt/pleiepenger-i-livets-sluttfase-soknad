@@ -2,7 +2,6 @@ import { ApiStringDate } from '@navikt/sif-common-core/lib/types/ApiStringDate';
 import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 import { VirksomhetApiData } from '@navikt/sif-common-forms/lib';
-import { ApiAktivitet } from './AktivitetFravær';
 import { ArbeidsforholdFormData } from './ArbeidsforholdTypes';
 
 export interface PleietrengendeApi {
@@ -29,7 +28,7 @@ export interface UtbetalingsperiodeApi {
     tilOgMed: ApiStringDate; // @JsonFormat(pattern = "yyyy-MM-dd")
     antallTimerBorte: string | null; // f eks PT5H30M | "null" (type Duration)
     antallTimerPlanlagt: string | null; // f eks PT5H30M | "null" (type Duration)
-    aktivitetFravær: ApiAktivitet[];
+    aktivitetFravær: string[];
     organisasjonsnummer: Array<string> | null;
 }
 

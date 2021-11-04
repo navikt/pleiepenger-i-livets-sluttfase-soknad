@@ -23,7 +23,6 @@ type Props = {
 const OpplysningerOmPleietrengendeStep = ({ søker }: Props) => {
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
-    console.log(values);
     return (
         <SoknadFormStep id={StepID.OPPLYSNINGER_OM_PLEIETRENGENDE}>
             <CounsellorPanel>
