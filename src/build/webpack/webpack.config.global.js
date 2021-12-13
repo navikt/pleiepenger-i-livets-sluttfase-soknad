@@ -2,6 +2,8 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
+const ESLintPlugin = require('eslint-webpack-plugin');
+
 const webpackConfig = {
     entry: {
         bundle: ['babel-polyfill', `${__dirname}/../../app/App.tsx`],
@@ -9,23 +11,36 @@ const webpackConfig = {
     output: {
         path: path.resolve(__dirname, './../../../dist'),
         filename: 'js/[name].js',
-        publicPath: '/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/dist',
+        publicPath: '/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/dist/',
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json', '.jsx'],
         alias: {},
     },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+    },
     module: {
         rules: [
             {
-                test: /\.(ts|tsx)$/,
-                loader: require.resolve('eslint-loader'),
-                enforce: 'pre',
+                test: /\.m?jsx?$/,
+                resolve: {
+                    fullySpecified: false,
+                },
             },
             {
                 test: /\.(ts|tsx)$/,
                 include: [path.resolve(__dirname, './../../app')],
-                loader: require.resolve('ts-loader'),
+                use: [
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            experimentalFileCaching: false,
+                        },
+                    },
+                ],
             },
             {
                 test: /\.less$/,
@@ -49,6 +64,10 @@ const webpackConfig = {
         new MiniCssExtractPlugin({
             filename: 'css/[name].css?[fullhash]-[chunkhash]-[name]',
             linkType: 'text/css',
+        }),
+        new ESLintPlugin({
+            extensions: ['ts', 'tsx'],
+            failOnWarning: false,
         }),
     ],
 };

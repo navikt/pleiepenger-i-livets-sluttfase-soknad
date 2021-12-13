@@ -15,7 +15,7 @@ const ArbeidsforholdSituasjon: React.FC<Props> = ({ parentFieldName, organisasjo
     const intl = useIntl();
 
     const getFieldName = (field: ArbeidsforholdFormDataFields) =>
-        `${parentFieldName}.${field}` as ArbeidsforholdFormDataFields;
+        `${parentFieldName}.${field}` as unknown as ArbeidsforholdFormDataFields;
     return (
         <>
             <FormBlock margin="none">

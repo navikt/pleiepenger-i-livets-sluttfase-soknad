@@ -6,12 +6,7 @@ const server = express();
 
 server.use(express.json());
 server.use((req, res, next) => {
-    const allowedOrigins = [
-        'http://host.docker.internal:8080',
-        'http://localhost:8080',
-        'http://web:8080',
-        'http://192.168.0.115:8080',
-    ];
+    const allowedOrigins = ['http://localhost:8080'];
     const requestOrigin = req.headers.origin;
     if (allowedOrigins.indexOf(requestOrigin) >= 0) {
         res.set('Access-Control-Allow-Origin', requestOrigin);
@@ -61,15 +56,6 @@ const søkerMock = {
     myndig: true,
 };
 
-const søkerMockIkkeMyndig = {
-    fødselsnummer: '30086421581',
-    fornavn: 'GODSLIG',
-    mellomnavn: null,
-    etternavn: 'KRONJUVEL',
-    kontonummer: '17246746060',
-    myndig: false,
-};
-
 const arbeidsgivereMock = {
     organisasjoner: [
         { navn: 'Arbeids- og velferdsetaten', organisasjonsnummer: '123451234' },
@@ -95,11 +81,7 @@ const startExpressServer = () => {
             res.send(søkerMock);
         }, 200);
     });
-    server.get('/soker-ikke-myndig', (req, res) => {
-        setTimeout(() => {
-            res.send(søkerMockIkkeMyndig);
-        }, 200);
-    });
+
     server.get('/arbeidsgiver', (req, res) => {
         res.send(arbeidsgivereMock);
         // res.send(arbeidsgiverMock);
@@ -109,24 +91,6 @@ const startExpressServer = () => {
         res.sendStatus(401);
     });
     server.get('/soker-err', (req, res) => {
-        setTimeout(() => {
-            res.sendStatus(501);
-        }, 200);
-    });
-
-    server.get('/barn', (req, res) => {
-        setTimeout(() => {
-            res.send(barnMock);
-        }, 200);
-    });
-
-    server.get('/barn2', (req, res) => {
-        setTimeout(() => {
-            res.send(barnMock2);
-        }, 200);
-    });
-
-    server.get('/barn-err', (req, res) => {
         setTimeout(() => {
             res.sendStatus(501);
         }, 200);
@@ -142,14 +106,6 @@ const startExpressServer = () => {
         setTimeout(() => {
             res.sendStatus(200);
         }, 2500);
-    });
-    // TODO: endre her
-    server.post('/soknad/alene-err', (req, res) => {
-        const body = req.body;
-        console.log('[POST] body', body);
-        setTimeout(() => {
-            res.sendStatus(501);
-        }, 2000);
     });
 
     server.post('/soknad-logget-ut', (req, res) => {
