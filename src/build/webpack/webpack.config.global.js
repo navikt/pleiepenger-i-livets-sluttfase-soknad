@@ -2,8 +2,6 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
-const ESLintPlugin = require('eslint-webpack-plugin');
-
 const webpackConfig = {
     entry: {
         bundle: ['babel-polyfill', `${__dirname}/../../app/App.tsx`],
@@ -16,11 +14,6 @@ const webpackConfig = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json', '.jsx'],
         alias: {},
-    },
-    optimization: {
-        splitChunks: {
-            chunks: 'all',
-        },
     },
     module: {
         rules: [
@@ -64,10 +57,6 @@ const webpackConfig = {
         new MiniCssExtractPlugin({
             filename: 'css/[name].css?[fullhash]-[chunkhash]-[name]',
             linkType: 'text/css',
-        }),
-        new ESLintPlugin({
-            extensions: ['ts', 'tsx'],
-            failOnWarning: false,
         }),
     ],
 };

@@ -14,8 +14,6 @@
         "API_URL": "https://pleiepenger-livets-sluttfase-api.dev.nav.no",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",
         "LOGIN_URL": "https://loginservice.dev.nav.no/login?redirect=https://pleiepenger-i-livets-sluttfase.dev.nav.no/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad",
-        "NYNORSK": "on",
-        "UTILGJENGELIG": "off",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "APPSTATUS_DATASET": "staging",
         "USE_AMPLITUDE": "false"

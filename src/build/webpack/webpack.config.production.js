@@ -3,10 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-webpackConfig.mode = 'production';
-webpackConfig.devtool = 'source-map';
-webpackConfig.optimization.minimize = true;
-webpackConfig.optimization.minimizer = [new CssMinimizerPlugin(), new TerserPlugin()];
 webpackConfig.plugins.push(
     new HtmlWebpackPlugin({
         template: `${__dirname}/../../app/index.html`,
@@ -15,4 +11,14 @@ webpackConfig.plugins.push(
     })
 );
 
-module.exports = webpackConfig;
+module.exports = Object.assign(webpackConfig, {
+    mode: 'production',
+    devtool: 'source-map',
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+        minimize: true,
+        minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
+    },
+});
