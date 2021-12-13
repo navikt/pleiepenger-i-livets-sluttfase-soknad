@@ -12,7 +12,6 @@ webpackConfig.plugins.push(
         template: './src/app/index.html',
         inject: 'body',
         alwaysWriteToDisk: true,
-        hash: true,
     })
 );
 
