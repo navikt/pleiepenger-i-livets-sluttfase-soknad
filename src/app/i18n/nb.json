@@ -14,8 +14,9 @@
     "fødselsnummer": "Fødselsnummer:",
     "apiVerdierMangler": "Api verdier mangler",
 
-    "page.ikkeMyndig.banner.lastNed": "Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase",
-    "page.ikkeMyndig.tittel": "Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase",
+    "page.ikkeTilgang.sidetittel": "Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase",
+    "page.ikkeTilgang.tekst": "Du har ikke tilgang til denne siden. Dersom du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.",
+    "page.ikkeTilgang.lastNed": "Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase",
 
     "step.velkommen.banner.tittel": "Hei!",
     "step.velkommen.banner.tekst": "Jeg vil hjelpe deg med å registrere søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase.",

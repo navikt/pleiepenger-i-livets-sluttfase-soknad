@@ -4,6 +4,7 @@ interface Lenker {
     rettOgPlikt: string;
     saksbehandlingstider: string;
     medlemskap: string;
+    søknadPåPapir: string;
 }
 
 const LenkerBokmål: Lenker = {
@@ -14,6 +15,7 @@ const LenkerBokmål: Lenker = {
     saksbehandlingstider: 'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV',
     medlemskap:
         'https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+Norge/Relatert+informasjon/medlemskap-i-folketrygden',
+    søknadPåPapir: 'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger#NAV091205',
 };
 
 const getLenker = (locale?: string): Lenker => {
