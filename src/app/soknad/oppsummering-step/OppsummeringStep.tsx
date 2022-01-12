@@ -85,14 +85,14 @@ const OppsummeringStep = ({ søker, apiValues }: Props) => {
                                     <Box margin="s">
                                         <SummaryBlock
                                             header={
-                                                apiValues.vedlegg.length > 0
+                                                apiValues.vedleggUrls.length > 0
                                                     ? intlHelper(intl, 'steg.oppsummering.bekreftelseFraLege.header')
                                                     : ''
                                             }>
-                                            {apiValues.vedlegg.length === 0 && (
+                                            {apiValues.vedleggUrls.length === 0 && (
                                                 <FormattedMessage id={'step.oppsummering.dokumenter.ingenVedlegg'} />
                                             )}
-                                            {apiValues.vedlegg.length > 0 && (
+                                            {apiValues.vedleggUrls.length > 0 && (
                                                 <UploadedDocumentsList
                                                     attachments={apiValues._attachments}
                                                     includeDeletionFunctionality={false}

@@ -67,7 +67,7 @@ export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape):
                 formData.perioder_utenlandsopphold,
                 locale
             ),
-            vedlegg: listOfAttachmentsToListOfUrlStrings(formData.bekreftelseFraLege),
+            vedleggUrls: listOfAttachmentsToListOfUrlStrings(formData.bekreftelseFraLege),
             _attachments: formData.bekreftelseFraLege,
             _arbeidsforhold: formData.arbeidsforhold,
         };

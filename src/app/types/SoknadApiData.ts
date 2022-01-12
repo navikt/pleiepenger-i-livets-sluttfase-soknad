@@ -55,7 +55,7 @@ export interface SoknadApiData {
     frilans?: Frilans;
     selvstendigNæringsdrivende?: VirksomhetApiData;
     _arbeidsforhold: ArbeidsforholdFormData[];
-    vedlegg: string[];
+    vedleggUrls: string[];
     _attachments: Attachment[];
     harBekreftetOpplysninger: boolean;
 }
