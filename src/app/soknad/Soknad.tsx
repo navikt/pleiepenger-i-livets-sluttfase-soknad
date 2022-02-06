@@ -28,16 +28,14 @@ import { getSoknadStepsConfig, StepID } from './soknadStepsConfig';
 import soknadTempStorage, { isStorageDataValid } from './SoknadTempStorage';
 import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
 import { SKJEMANAVN } from '../App';
-import { ArbeidsgiverResponse } from '../types/Arbeidsgiver';
 
 interface Props {
     søker: Person;
-    arbeidsgivere: ArbeidsgiverResponse;
     soknadTempStorage: SoknadTempStorageData;
     route?: string;
 }
 
-const Soknad = ({ søker, arbeidsgivere, soknadTempStorage: tempStorage }: Props) => {
+const Soknad = ({ søker, soknadTempStorage: tempStorage }: Props) => {
     const history = useHistory();
     const [initializing, setInitializing] = useState(true);
 
@@ -84,7 +82,7 @@ const Soknad = ({ søker, arbeidsgivere, soknadTempStorage: tempStorage }: Props
     };
 
     const continueSoknadLater = async (sId: string, stepID: StepID, values: SoknadFormData) => {
-        await soknadTempStorage.update(sId, values, stepID, { søker, arbeidsgivere });
+        await soknadTempStorage.update(sId, values, stepID, { søker });
         await logHendelse(ApplikasjonHendelse.fortsettSenere);
         relocateToNavFrontpage();
     };
@@ -129,7 +127,7 @@ const Soknad = ({ søker, arbeidsgivere, soknadTempStorage: tempStorage }: Props
     };
 
     useEffect(() => {
-        if (isStorageDataValid(tempStorage, { søker, arbeidsgivere })) {
+        if (isStorageDataValid(tempStorage, { søker })) {
             setInitialFormData(tempStorage.formData);
             setSoknadId(tempStorage.metadata.soknadId);
             const currentRoute = history.location.pathname;
@@ -151,7 +149,7 @@ const Soknad = ({ søker, arbeidsgivere, soknadTempStorage: tempStorage }: Props
         } else {
             resetSoknad(history.location.pathname !== AppRoutes.SOKNAD);
         }
-    }, [history, tempStorage, søker, arbeidsgivere]);
+    }, [history, tempStorage, søker]);
 
     return (
         <LoadWrapper
@@ -169,7 +167,6 @@ const Soknad = ({ søker, arbeidsgivere, soknadTempStorage: tempStorage }: Props
                                     try {
                                         await soknadTempStorage.update(soknadId, values, stepToPersist, {
                                             søker,
-                                            arbeidsgivere,
                                         });
                                     } catch (error) {
                                         if (isUserLoggedOut(error)) {
@@ -201,7 +198,7 @@ const Soknad = ({ søker, arbeidsgivere, soknadTempStorage: tempStorage }: Props
                                             navigateToNextStepFromStep(stepID);
                                         },
                                     }}>
-                                    <SoknadRoutes soknadId={soknadId} søker={søker} arbeidsgivere={arbeidsgivere} />
+                                    <SoknadRoutes soknadId={soknadId} søker={søker} />
                                 </SoknadContextProvider>
                             );
                         }}

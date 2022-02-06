@@ -24,15 +24,13 @@ import FraværStep from './fravær-step/FraværStep';
 import ArbeidssituasjonStep from './arbeidssituasjon-step/ArbeidssituasjonStep';
 import FraværFraStep from './fravær-fra-step/FraværFraStep';
 import MedlemsskapStep from './medlemskap-step/MedlemsskapStep';
-import { ArbeidsgiverResponse } from '../types/Arbeidsgiver';
 
 interface Props {
     soknadId?: string;
     søker: Person;
-    arbeidsgivere: ArbeidsgiverResponse;
 }
 
-const SoknadRoutes = ({ soknadId, søker, arbeidsgivere }: Props) => {
+const SoknadRoutes = ({ soknadId, søker }: Props) => {
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
     const availableSteps = getAvailableSteps(values, søker);
@@ -44,7 +42,7 @@ const SoknadRoutes = ({ soknadId, søker, arbeidsgivere }: Props) => {
             case StepID.FRAVÆR:
                 return <FraværStep values={values} />;
             case StepID.ARBEIDSSITUASJON:
-                return <ArbeidssituasjonStep arbeidsgivere={arbeidsgivere} />;
+                return <ArbeidssituasjonStep />;
             case StepID.FRAVÆR_FRA:
                 return <FraværFraStep />;
             case StepID.MEDLEMSKAP:

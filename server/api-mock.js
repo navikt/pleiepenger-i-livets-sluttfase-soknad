@@ -3,6 +3,11 @@ const fs = require('fs');
 const Busboy = require('busboy');
 const express = require('express');
 const server = express();
+const dayjs = require('dayjs');
+const isSameOrAfter = require('dayjs/plugin/isSameOrAfter');
+dayjs.extend(isSameOrAfter);
+const customParseFormat = require('dayjs/plugin/customParseFormat');
+dayjs.extend(customParseFormat);
 
 server.use(express.json());
 server.use((req, res, next) => {
@@ -55,11 +60,39 @@ const søkerMock = {
     kontonummer: '17246746060',
 };
 
-const arbeidsgivereMock = {
-    organisasjoner: [
-        { navn: 'Arbeids- og velferdsetaten', organisasjonsnummer: '123451234' },
-        { navn: 'Arbeids- og sosialdepartementet', organisasjonsnummer: '123451235' },
-    ],
+const arbeidsgivereMock = [
+    {
+        navn: 'Arbeids- og velferdsetaten',
+        organisasjonsnummer: '123451234',
+        startDato: '01.12.2019',
+        sluttDato: '01.05.2021',
+    },
+    {
+        navn: 'Telenor',
+        organisasjonsnummer: '09435628',
+        startDato: '01.06.2021',
+        sluttDato: '01.07.2021',
+    },
+    {
+        navn: 'Arbeids- og sosialdepartementet',
+        organisasjonsnummer: '123451235',
+        startDato: '01.06.2018',
+        sluttDato: '01.11.2021',
+    },
+    {
+        navn: 'Tele2',
+        organisasjonsnummer: '676789999',
+        startDato: '01.06.2018',
+        sluttDato: undefined,
+    },
+];
+
+const getArbeidsgiverMock = (from) => {
+    return arbeidsgivereMock.filter((organisasjon) => {
+        const sluttDato = organisasjon.sluttDato ? dayjs(organisasjon.sluttDato, 'DD.MM.YYYY') : dayjs();
+        const fraDato = dayjs(from, 'YYYY-MM-DD');
+        return sluttDato.isSameOrAfter(fraDato);
+    });
 };
 
 const startExpressServer = () => {
@@ -82,9 +115,8 @@ const startExpressServer = () => {
     });
 
     server.get('/arbeidsgiver', (req, res) => {
-        res.send(arbeidsgivereMock);
-        // res.send(arbeidsgiverMock);
-        // res.send(ingenArbeidsgivererMock);
+        const arbeidsgivere = getArbeidsgiverMock(req.query.fra_og_med);
+        res.send({ organisasjoner: arbeidsgivere });
     });
     server.get('/soker-not-logged-in', (req, res) => {
         res.sendStatus(401);

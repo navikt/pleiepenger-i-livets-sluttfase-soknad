@@ -30,8 +30,8 @@ const SoknadRemoteDataFetcher = () => {
                     )}
                 </>
             )}
-            success={([person, arbeidsgivere, soknadTempStorage]) => {
-                return <Soknad søker={person} arbeidsgivere={arbeidsgivere} soknadTempStorage={soknadTempStorage} />;
+            success={([person, soknadTempStorage]) => {
+                return <Soknad søker={person} soknadTempStorage={soknadTempStorage} />;
             }}
         />
     );

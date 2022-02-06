@@ -20,6 +20,7 @@ export const isArbeidsgiver = (maybeArbeidsgiver: any): maybeArbeidsgiver is Arb
 };
 
 export const isArbeidsgivere = (maybeArbeidsgivere: any): maybeArbeidsgivere is Arbeidsgiver[] => {
+    console.log('maybeArbeidsgivere', maybeArbeidsgivere);
     if (
         maybeArbeidsgivere &&
         typeof Array.isArray(maybeArbeidsgivere) &&

@@ -1,5 +1,4 @@
 import persistence, { PersistenceInterface } from '@navikt/sif-common-core/lib/utils/persistence/persistence';
-import { ArbeidsgiverResponse } from '../types/Arbeidsgiver';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
 import { ApiEndpoint, defaultAxiosConfig } from '../api/api';
@@ -12,7 +11,6 @@ export const STORAGE_VERSION = '1.0';
 
 interface UserHashInfo {
     søker: Person;
-    arbeidsgivere: ArbeidsgiverResponse;
 }
 
 interface SoknadTemporaryStorage extends Omit<PersistenceInterface<SoknadTempStorageData>, 'update'> {
