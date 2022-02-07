@@ -9,7 +9,6 @@ import { timeText } from '@navikt/sif-common-forms/lib/fravær';
 import dayjs from 'dayjs';
 import flatten from 'lodash/flatten';
 import uniq from 'lodash/uniq';
-// import { ApiAktivitet } from '../../../types/AktivitetFravær';
 import { UtbetalingsperiodeApi } from '../../../types/SoknadApiData';
 import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
 import { ArbeidsforholdFormData } from 'app/types/ArbeidsforholdTypes';
@@ -74,24 +73,12 @@ const getFraværAktivitetString = (
 
     const getApiAktiviteter = () => periode.aktivitetFravær.filter((a) => a !== ApiAktivitet.ARBEIDSTAKER);
     const aktiviteterArray = [...getArbeidsgiverNavner(), ...getApiAktiviteter()];
-    const aString = '';
-    const aktiviteterString = aktiviteterArray.map((a) => {
-        console.log(ApiAktivitet.FRILANSER);
-        const aktivitet =
-            a === ApiAktivitet.FRILANSER || a === ApiAktivitet.SELVSTENDIG_NÆRINGSDRIVENDE
-                ? `${intlHelper(intl, `aktivitetFravær.${a}`)}, `
-                : `${a}, `;
-        return aString.concat(aktivitet);
-    });
-    return aktiviteterString;
-    /*return periode.aktivitetFravær.length === 2
-        ? intlHelper(intl, `step.oppsummering.fravær.aktivitet.2`, {
-              aktivitet1: intlHelper(intl, `aktivitetFravær.${aktivitetFravær[0]}`),
-              aktivitet2: intlHelper(intl, `aktivitetFravær.${aktivitetFravær[1]}`),
-          })
-        : intlHelper(intl, `step.oppsummering.fravær.aktivitet.1`, {
-              aktivitet: intlHelper(intl, `aktivitetFravær.${aktivitetFravær[0]}`),
-          });*/
+    const aktiviteterString = aktiviteterArray.map((a) =>
+        a === ApiAktivitet.FRILANSER || a === ApiAktivitet.SELVSTENDIG_NÆRINGSDRIVENDE
+            ? `${intlHelper(intl, `aktivitetFravær.${a}`)}`
+            : `${a}`
+    );
+    return `${aktiviteterString.join(', ')}.`;
 };
 
 const renderEnkeltdagElement = (date: Date): JSX.Element => (
@@ -108,13 +95,11 @@ const renderFraværAktivitetElement = (
 ): JSX.Element | null => (visAktivitet ? <div>{getFraværAktivitetString(periode, arbeidsforhold, intl)}</div> : null);
 
 export const renderUtbetalingsperiodeDag = (
-    // dag: UtbetalingsperiodeDag,
     periode: UtbetalingsperiodeApi,
     visAktivitet: boolean,
     arbeidsforhold: ArbeidsforholdFormData[],
     intl: IntlShape
 ): JSX.Element => {
-    //TODO
     const dag = periode as unknown as UtbetalingsperiodeDag;
     const antallTimerSkulleJobbet = `${timeToDecimalTime(dag.antallTimerPlanlagt)} ${timeText(
         `${timeToDecimalTime(dag.antallTimerPlanlagt)}`
@@ -158,7 +143,10 @@ const renderUtbetalingsperiode = (
 };
 
 const harFlereFraværAktiviteter = (perioder: UtbetalingsperiodeApi[]) => {
-    return uniq(flatten(perioder.map((p) => p.aktivitetFravær))).length > 1;
+    return (
+        uniq(flatten(perioder.map((p) => p.aktivitetFravær))).length > 1 ||
+        uniq(flatten(perioder.map((p) => p.organisasjonsnummer && p.organisasjonsnummer?.length > 1))).length > 1
+    );
 };
 
 const UtbetalingsperioderSummaryView: React.FC<Props> = ({ utbetalingsperioder = [], arbeidsforhold }) => {
@@ -168,7 +156,6 @@ const UtbetalingsperioderSummaryView: React.FC<Props> = ({ utbetalingsperioder =
     const intl = useIntl();
     const dager: UtbetalingsperiodeDag[] = utbetalingsperioder.map(toMaybeUtbetalingsperiodeDag).filter(outNull);
     const visAktivitetInfo = harFlereFraværAktiviteter(utbetalingsperioder);
-
     return (
         <>
             {perioder.length > 0 && (

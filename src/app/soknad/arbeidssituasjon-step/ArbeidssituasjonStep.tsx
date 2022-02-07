@@ -54,7 +54,7 @@ const ArbeidssituasjonStep = () => {
                 setFieldValue(SoknadFormField.arbeidsforhold, updatedArbeidsforholds);
                 setIsLoading(false);
             } else {
-                // setIsLoading(false);
+                setIsLoading(false);
                 appSentryLogger.logError(
                     `listeAvArbeidsgivereApiResponse invalid (SituasjonStepView). Response: ${JSON.stringify(
                         maybeResponse,
@@ -70,7 +70,7 @@ const ArbeidssituasjonStep = () => {
             setDoApiCalls(false);
         }
     }, [doApiCalls, values, setFieldValue]);
-    console.log(values);
+
     return (
         <SoknadFormStep
             id={StepID.ARBEIDSSITUASJON}

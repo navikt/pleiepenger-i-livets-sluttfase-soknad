@@ -34,8 +34,19 @@ const FraværFraStep = () => {
         const aktivitetFravær: AktivitetFravær[] = [];
         utbetalingsdatoer.forEach((d) => {
             const fieldName = getFieldName(d);
+            const cleanedAktiviteter = formData[fieldName].filter((a: string) => {
+                if (a === Aktivitet.FRILANSER) {
+                    return formData.frilans_erFrilanser === YesOrNo.YES;
+                } else if (a === Aktivitet.SELVSTENDIG_NÆRINGSDRIVENDE) {
+                    return formData.selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES;
+                } else
+                    return formData.arbeidsforhold.some(
+                        (forhold) =>
+                            a === forhold.organisasjonsnummer && forhold.harHattFraværHosArbeidsgiver === YesOrNo.YES
+                    );
+            });
             aktivitetFravær.push({
-                aktivitet: formData[fieldName],
+                aktivitet: cleanedAktiviteter,
                 dato: d,
             });
         });
