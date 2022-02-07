@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import FormattedHtmlMessage from '@navikt/sif-common-core/lib/components/formatted-html-message/FormattedHtmlMessage';
@@ -43,21 +42,23 @@ const ArbeidssituasjonStep = () => {
         const søknadsperiode = getSøknadsperiodeFromFormData(values);
 
         const fetchData = async (from: Date, to: Date): Promise<void> => {
-            const maybeResponse: AxiosResponse<ArbeidsgiverResponse> | null = await getArbeidsgivere(from, to);
-            const maybeArbeidsgivere: Arbeidsgiver[] | undefined = maybeResponse?.data?.organisasjoner;
+            const response: AxiosResponse<ArbeidsgiverResponse> | null = await getArbeidsgivere(from, to);
+            const arbeidsgivere: Arbeidsgiver[] | undefined = response?.data?.organisasjoner;
 
-            if (isArbeidsgivere(maybeArbeidsgivere)) {
+            if (isArbeidsgivere(arbeidsgivere)) {
                 const updatedArbeidsforholds: ArbeidsforholdFormData[] = syncArbeidsforholdWithArbeidsgivere(
-                    maybeArbeidsgivere,
+                    arbeidsgivere,
                     values[SoknadFormField.arbeidsforhold]
                 );
+
                 setFieldValue(SoknadFormField.arbeidsforhold, updatedArbeidsforholds);
                 setIsLoading(false);
             } else {
                 setIsLoading(false);
+
                 appSentryLogger.logError(
                     `listeAvArbeidsgivereApiResponse invalid (SituasjonStepView). Response: ${JSON.stringify(
-                        maybeResponse,
+                        response,
                         null,
                         4
                     )}`
@@ -81,34 +82,34 @@ const ArbeidssituasjonStep = () => {
                     <FormattedHtmlMessage id="step.arbeidssituasjon.info.1" />
                 </p>
             </CounsellorPanel>
+
             {isLoading && (
                 <div style={{ display: 'flex', justifyContent: 'center', minHeight: '15rem', alignItems: 'center' }}>
                     <LoadingSpinner type="XXL" />
                 </div>
             )}
-            {!isLoading && values.arbeidsforhold.length > 0 && (
-                <FormBlock>
-                    <div className="arbeidsforhold-liste">
-                        {values.arbeidsforhold.map((forhold, index) => (
-                            <Box padBottom="xl" key={forhold.organisasjonsnummer}>
-                                <ArbeidsforholdSituasjon
-                                    parentFieldName={`${SoknadFormField.arbeidsforhold}.${index}`}
-                                    organisasjonsnavn={forhold.navn}
-                                />
-                            </Box>
-                        ))}
-                    </div>
-                </FormBlock>
-            )}
-            <Box margin="xxl" padBottom="l">
-                <FrilansFormPart formValues={values} />
-            </Box>
 
-            <Box margin="l" padBottom="l">
+            {!isLoading &&
+                values.arbeidsforhold.length > 0 &&
+                values.arbeidsforhold.map((forhold, index) => (
+                    <FormBlock key={forhold.organisasjonsnummer}>
+                        <ArbeidsforholdSituasjon
+                            parentFieldName={`${SoknadFormField.arbeidsforhold}.${index}`}
+                            organisasjonsnavn={forhold.navn}
+                        />
+                    </FormBlock>
+                ))}
+
+            <FormBlock>
+                <FrilansFormPart formValues={values} />
+            </FormBlock>
+
+            <FormBlock>
                 <SelvstendigNæringsdrivendeFormPart formValues={values} />
-            </Box>
+            </FormBlock>
+
             {!showSubmitButton && (
-                <FormBlock margin="l">
+                <FormBlock>
                     <AlertStripeAdvarsel>
                         <FormattedHtmlMessage id="step.arbeidssituasjon.advarsel.ingenSituasjonValgt" />
                     </AlertStripeAdvarsel>

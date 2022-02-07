@@ -18,13 +18,17 @@ const SelvstendigSummary: React.FunctionComponent<Props> = ({ virksomhet }) => {
             <SummaryBlock header={intlHelper(intl, 'step.oppsummering.virksomhet.harDuHattInntekt.header')}>
                 <JaNeiSvar harSvartJa={virksomhet !== undefined} />
             </SummaryBlock>
-            <SummaryBlock header={intlHelper(intl, 'step.oppsummering.virksomhet.harFlereVirksomheter.header')}>
-                <JaNeiSvar harSvartJa={virksomhet?.harFlereAktiveVirksomheter} />
-            </SummaryBlock>
+
             {virksomhet && (
-                <SummaryBlock header={intlHelper(intl, 'step.oppsummering.virksomhet.virksomhetInfo.tittel')}>
-                    <VirksomhetSummary virksomhet={virksomhet} />
-                </SummaryBlock>
+                <>
+                    <SummaryBlock header={intlHelper(intl, 'step.oppsummering.virksomhet.harFlereVirksomheter.header')}>
+                        <JaNeiSvar harSvartJa={virksomhet?.harFlereAktiveVirksomheter} />
+                    </SummaryBlock>
+
+                    <SummaryBlock header={intlHelper(intl, 'step.oppsummering.virksomhet.virksomhetInfo.tittel')}>
+                        <VirksomhetSummary virksomhet={virksomhet} />
+                    </SummaryBlock>
+                </>
             )}
         </SummarySection>
     );

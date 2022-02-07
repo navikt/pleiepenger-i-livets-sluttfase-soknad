@@ -14,7 +14,7 @@ import { getPeriodeBoundaries } from '../../utils/periodeUtils';
 import FraværStepInfo from './FraværStepInfo';
 import fraværStepUtils from './fraværStepUtils';
 import { getFraværDagerValidator, getFraværPerioderValidator } from './fraværFieldValidations';
-import FormSection from '../../components/form-section/FormSection';
+import FormSection from '@navikt/sif-common-core/lib/components/form-section/FormSection';
 import SoknadFormStep from '../SoknadFormStep';
 import SoknadFormComponents from '../SoknadFormComponents';
 import FraværPerioderListAndDialog from '../../components/fravær/FraværPerioderListAndDialog';
@@ -64,21 +64,24 @@ const FraværStep = ({ values }: Props) => {
             <FormBlock>
                 <FraværStepInfo.IntroVeileder />
             </FormBlock>
-            <FormSection title={intlHelper(intl, 'step.fravaer.dager.tittel')}>
-                <p>
-                    <FormattedMessage id="step.fravaer.dager.info" values={{ forrigeÅr, inneværendeÅr }} />
-                </p>
-                <FormBlock>
-                    <SoknadFormComponents.YesOrNoQuestion
-                        name={SoknadFormField.harPerioderMedFravær}
-                        legend={intlHelper(intl, 'step.fravaer.spm.harPerioderMedFravær')}
-                        validate={getYesOrNoValidator()}
-                    />
-                </FormBlock>
-                {/* DAGER MED FULLT FRAVÆR*/}
-                {harPerioderMedFravær === YesOrNo.YES && (
-                    <>
-                        <FormBlock margin="l">
+
+            <FormBlock>
+                <FormSection title={intlHelper(intl, 'step.fravaer.dager.tittel')}>
+                    <p>
+                        <FormattedMessage id="step.fravaer.dager.info" values={{ forrigeÅr, inneværendeÅr }} />
+                    </p>
+
+                    <FormBlock>
+                        <SoknadFormComponents.YesOrNoQuestion
+                            name={SoknadFormField.harPerioderMedFravær}
+                            legend={intlHelper(intl, 'step.fravaer.spm.harPerioderMedFravær')}
+                            validate={getYesOrNoValidator()}
+                        />
+                    </FormBlock>
+
+                    {/* DAGER MED FULLT FRAVÆR*/}
+                    {harPerioderMedFravær === YesOrNo.YES && (
+                        <FormBlock>
                             <FraværPerioderListAndDialog<SoknadFormField>
                                 name={SoknadFormField.fraværPerioder}
                                 periodeDescription={<FraværStepInfo.Tidsbegrensning />}
@@ -97,18 +100,18 @@ const FraværStep = ({ values }: Props) => {
                                 helgedagerIkkeTillat={true}
                             />
                         </FormBlock>
-                    </>
-                )}
-                <FormBlock>
-                    <SoknadFormComponents.YesOrNoQuestion
-                        name={SoknadFormField.harDagerMedDelvisFravær}
-                        legend={intlHelper(intl, 'step.fravaer.spm.harDagerMedDelvisFravær')}
-                        validate={getYesOrNoValidator()}
-                    />
-                </FormBlock>
-                {/* DAGER MED DELVIS FRAVÆR*/}
-                {harDagerMedDelvisFravær === YesOrNo.YES && (
-                    <>
+                    )}
+
+                    <FormBlock>
+                        <SoknadFormComponents.YesOrNoQuestion
+                            name={SoknadFormField.harDagerMedDelvisFravær}
+                            legend={intlHelper(intl, 'step.fravaer.spm.harDagerMedDelvisFravær')}
+                            validate={getYesOrNoValidator()}
+                        />
+                    </FormBlock>
+
+                    {/* DAGER MED DELVIS FRAVÆR*/}
+                    {harDagerMedDelvisFravær === YesOrNo.YES && (
                         <FormBlock margin="l">
                             <FraværDagerListAndDialog<SoknadFormField>
                                 name={SoknadFormField.fraværDager}
@@ -129,19 +132,18 @@ const FraværStep = ({ values }: Props) => {
                                 maksArbeidstidPerDag={24}
                             />
                         </FormBlock>
-                    </>
-                )}
-                {kanIkkeFortsette && (
-                    <FormBlock margin="xxl">
-                        <AlertStripeAdvarsel>
-                            <FormattedMessage id="step.fravaer.måVelgeSituasjon" />
-                        </AlertStripeAdvarsel>
-                    </FormBlock>
-                )}
-            </FormSection>
+                    )}
 
-            {kanIkkeFortsette === false && (
-                <>
+                    {kanIkkeFortsette && (
+                        <FormBlock>
+                            <AlertStripeAdvarsel>
+                                <FormattedMessage id="step.fravaer.måVelgeSituasjon" />
+                            </AlertStripeAdvarsel>
+                        </FormBlock>
+                    )}
+                </FormSection>
+
+                {kanIkkeFortsette === false && (
                     <FormSection title={intlHelper(intl, 'step.fravaer.utenlandsopphold.tittel')}>
                         <SoknadFormComponents.YesOrNoQuestion
                             name={SoknadFormField.perioder_harVærtIUtlandet}
@@ -151,8 +153,9 @@ const FraværStep = ({ values }: Props) => {
                             )}
                             validate={getYesOrNoValidator()}
                         />
+
                         {perioder_harVærtIUtlandet === YesOrNo.YES && (
-                            <FormBlock margin="l">
+                            <FormBlock>
                                 <BostedUtlandListAndDialog<SoknadFormField>
                                     name={SoknadFormField.perioder_utenlandsopphold}
                                     minDate={førsteOgSisteDagMedFravær.min || gyldigTidsrom.from}
@@ -166,8 +169,8 @@ const FraværStep = ({ values }: Props) => {
                             </FormBlock>
                         )}
                     </FormSection>
-                </>
-            )}
+                )}
+            </FormBlock>
         </SoknadFormStep>
     );
 };

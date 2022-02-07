@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
 import { ArbeidsforholdFormDataFields } from '../../types/ArbeidsforholdTypes';
-// import { getRequiredFieldValidator } from '@navikt/sif-common-formik/lib/validation';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import { FormikYesOrNoQuestion } from '@navikt/sif-common-formik/lib';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik/lib/validation';
 
 interface Props {
     parentFieldName: string;
@@ -24,8 +24,15 @@ const ArbeidsforholdSituasjon: React.FC<Props> = ({ parentFieldName, organisasjo
                         organisasjonsnavn,
                     })}
                     name={getFieldName(ArbeidsforholdFormDataFields.harHattFraværHosArbeidsgiver)}
-                    // TODO
-                    // validate={getRequiredFieldValidator}
+                    validate={(value) => {
+                        return getYesOrNoValidator()(value)
+                            ? {
+                                  key: 'validation.arbeidsforhold.erAnsatt.yesOrNoIsUnanswered',
+                                  values: { navn: organisasjonsnavn },
+                                  keepKeyUnaltered: true,
+                              }
+                            : undefined;
+                    }}
                 />
             </FormBlock>
         </>

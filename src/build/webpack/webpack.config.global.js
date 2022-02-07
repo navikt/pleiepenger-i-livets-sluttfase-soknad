@@ -13,7 +13,6 @@ const webpackConfig = {
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json', '.jsx'],
-        alias: {},
     },
     module: {
         rules: [

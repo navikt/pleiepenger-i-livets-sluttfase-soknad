@@ -1,6 +1,6 @@
 const os = require('os');
 const fs = require('fs');
-const Busboy = require('busboy');
+const busboyCons = require('busboy');
 const express = require('express');
 const server = express();
 const dayjs = require('dayjs');
@@ -174,7 +174,7 @@ const startExpressServer = () => {
     server.post('/vedlegg', (req, res) => {
         res.set('Access-Control-Expose-Headers', 'Location');
         res.set('Location', 'nav.no');
-        const busboy = new Busboy({ headers: req.headers });
+        const busboy = busboyCons({ headers: req.headers });
         busboy.on('finish', () => {
             res.writeHead(200, { Location: '/vedlegg' });
             res.end();

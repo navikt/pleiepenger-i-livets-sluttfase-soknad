@@ -61,25 +61,26 @@
     "step.fravaer.utenlandsopphold.tittel": "Utenlandsopphold i dagene med fravær",
     "step.fravaer.utenlandsopphold.addLabel": "Legg til utenlandsopphold",
     "step.fravaer.utenlandsopphold.modalTitle": "Utenlandsopphold siste 12 måneder",
+    "step.fravaer.måVelgeSituasjon": "For å fortsette må du velge en av situasjonene og legge til dager du søker utbetaling for.",
 
     "step.arbeidssituasjon.pageTitle": "Arbeidssituasjon",
     "step.arbeidssituasjon.stepTitle": "Arbeidssituasjon",
     "step.arbeidssituasjon.stepIndicatorLabel": "Arbeidssituasjon",
     "step.arbeidssituasjon.nextButtonLabel": "Fortsett",
     "step.arbeidssituasjon.info.1": "Nå trenger vi å vite hva som var arbeidssituasjonen din i dagene du søker utbetaling for.",
-    "step.arbeidssituasjon.advarsel.ingenSituasjonValgt": "Du må velge minst én av situasjonene over.",
+    "step.arbeidssituasjon.advarsel.ingenSituasjonValgt": "For å fortsette må du svare 'Ja' på minst én av situasjonene ovenfor.",
 
     "step.arbeidssituasjon.arbeidsforhold.harHattFravær.spm": "Har du hatt fravær fra {organisasjonsnavn} fordi du har brukt pleiepengedager? ",
 
     "step.arbeidssituasjon.frilanser.hjelpetekst.tittel": "Hva betyr det å være frilanser?",
     "step.arbeidssituasjon.frilanser.hjelpetekst": "Du er frilanser når du mottar lønn for enkeltstående oppdrag uten å være fast eller midlertidig ansatt hos den du utfører oppdraget for. Hvis du er usikker på om du er frilanser må du sjekke om oppdragene dine er registrert som frilansoppdrag på",
     "step.arbeidssituasjon.frilanser.hjelpetekst.skatteetatenLenke": "skatteetaten sine nettsider.",
-    "step.arbeidssituasjon.frilanser.erFrilanser.spm": "Var du frilanser i dagene du søker utbetaling for?",
+    "step.arbeidssituasjon.frilanser.erFrilanser.spm": "Har du hatt fravær som frilanser fordi du har brukt pleiepengedager?",
     "step.arbeidssituasjon.frilanser.nårStartet.spm": "Når startet du som frilanser?",
     "step.arbeidssituasjon.frilanser.jobberFortsatt.spm": "Jobber du fortsatt som frilanser?",
     "step.arbeidssituasjon.frilanser.nårSluttet.spm": "Når sluttet du som frilanser?",
 
-    "step.arbeidssituasjon.selvstendig.erDuSelvstendigNæringsdrivende.spm": "Var du selvstendig næringsdrivende i dagene du søker utbetaling for?",
+    "step.arbeidssituasjon.selvstendig.erDuSelvstendigNæringsdrivende.spm": "Har du hatt fravær som selvstendig næringsdrivende fordi du har brukt pleiepengedager?",
     "step.arbeidssituasjon.selvstendig.harFlereVirksomheter.spm": "Har du flere enn én næringsvirksomhet som er aktiv?",
     "step.arbeidssituasjon.selvstendig.veileder.flereAktiveVirksomheter": "Når du har flere aktive næringsvirksomheter skal du kun legge inn den virksomheten som er eldst av dem. Har du for eksempel en virksomhet du startet i 2012 og en annen som du startet i 2020, skal du kun legge inn virksomheten du startet i 2012.",
     "step.arbeidssituasjon.selvstendig.hjelpetekst.tittel": "Hva betyr det å være selvstendig næringsdrivende?",
@@ -131,7 +132,7 @@
     "step.oppsummering.arbeidsforhold.harHattFravær.spm": "Har du hatt fravær fra {organisasjonsnavn} fordi du har brukt pleiepengedager? ",
 
     "step.oppsummering.frilanser.header": "Frilanser",
-    "step.oppsummering.frilanser.harDuHattInntekt.header": "Var du frilanser i dagene du søker utbetaling for?",
+    "step.oppsummering.frilanser.harDuHattInntekt.header": "Har du hatt fravær som frilanser fordi du har brukt pleiepengedager?",
     "step.oppsummering.frilanser.nårStartet.header": "Når startet du som frilanser?",
     "step.oppsummering.frilanser.jobberFortsatt.header": "Jobber du fortsatt som frilanser?",
     "step.oppsummering.frilanser.nårSluttet.header": "Når sluttet du som frilanser?",
@@ -149,7 +150,7 @@
     "step.oppsummering.virksomhet.næringsinntekt": "Næringsinntekt: {næringsinntekt}",
     "step.oppsummering.virksomhet.varigEndring.html": "Har hatt varig endring i arbeidsforholdet, virksomheten eller arbeidssituasjonen de siste fire årene. Dato for endring var {dato}, og næringsinntekt etter endringen er <strong>{inntekt}</strong>. Beskrivelse av endringen:",
     "step.oppsummering.virksomhet.yrkesaktivSisteTreFerdigliknedeÅrene": "Ble yrkesaktiv {dato}",
-    "step.oppsummering.virksomhet.harDuHattInntekt.header": "Var du selvstendig næringsdrivende i dagene du søker utbetaling for?",
+    "step.oppsummering.virksomhet.harDuHattInntekt.header": "Har du hatt fravær som selvstendig næringsdrivende fordi du har brukt pleiepengedager?",
     "step.oppsummering.virksomhet.harFlereVirksomheter.header": "Har du flere enn én næringsvirksomhet som er aktiv?",
     "step.oppsummering.virksomhet.virksomhetInfo.tittel": "Næringsvirksomhet som du har lagt inn:",
 
@@ -197,6 +198,39 @@
     "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerIsInvalid": " Du har oppgitt et ugyldig fødselsnummer. Kontroller at du har tastet inn riktig.",
     "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerIsNot11Chars": "Du har oppgitt et ugyldig fødselsnummer. Et gyldig fødselsnummer består av 11 siffer.",
 
-    "validation.harPerioderMedFravær.yesOrNoIsUnanswered": "todo",
+    "validation.harPerioderMedFravær.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har hatt hele dager med fravær fra jobb.",
+    "validation.fraværPerioder.listIsEmpty": "Du har ikke lagt til dager med fullt fravær.",
+    "validation.fraværPerioder.ulikeÅrstall": "Du har lagt til fravær som er i flere år. En søknad kan kun inneholde fravær i ett år.",
+    "validation.harDagerMedDelvisFravær.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har hatt dager med delvis fravær fra jobb.",
+    "validation.fraværDager.listIsEmpty": "Du har ikke lagt til dager med delvis fravær.",
+    "validation.perioder_harVærtIUtlandet.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har vært i utlandet noen av dagene du søker omsorgspenger.",
+    "validation.perioder_utenlandsopphold.listIsEmpty": "Du har svart du har vært i utlandet i perioden du søker for, du må derfor legge til utenlandsopphold.",
+
+    "validation.arbeidsforhold.erAnsatt.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du er ansatt hos {navn} i perioden du søker pleiepenger.",
+
+    "validation.frilans_erFrilanser.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har hatt fravær som frilanser fordi du har brukt pleiepengedager.",
+    "validation.frilans_startdato.dateHasNoValue": "Du må fylle ut når du startet som frilanser.",
+    "validation.frilans_startdato.dateHasInvalidFormat": "Datoen for når du startet som frilanser er ugyldig. Gyldig format er dd.mm.åååå.",
+    "validation.frilans_startdato.dateIsAfterMax": "Datoen for når du startet som frilanser kan ikke være etter dagens dato.",
+    "validation.frilans_sluttdato.dateHasNoValue": "Du må fylle ut når du sluttet som frilanser.",
+    "validation.frilans_sluttdato.dateHasInvalidFormat": "Datoen for når du sluttet som frilanser er ugyldig. Gyldig format er dd.mm.åååå.",
+    "validation.frilans_sluttdato.dateIsAfterMax": "Datoen for når du sluttet som frilanser kan ikke være etter dagens dato.",
+    "validation.frilans_sluttdato.dateIsBeforeMin": "Datoen for når du sluttet som frilanser kan ikke være før datoen du startet.",
+    "validation.frilans_jobberFortsattSomFrilans.yesOrNoIsUnanswered": "Du må svare på om du fortsatt jobber som frilanser.",
+
+    "validation.selvstendig_erSelvstendigNæringsdrivende.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har hatt fravær som selvstendig næringsdrivende fordi du har brukt pleiepengedager",
+    "validation.selvstendig_harFlereVirksomheter.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har flere enn én virksomhet som er aktiv.",
+    "validation.selvstendig_virksomhet.noValue": "Du har ikke registrert informasjon om virksomheten din.",
+    "virksomhetForm.næringstype.noValue": "Du må velge hvilken type virksomhet du har.",
+
+    "validation.aktivitetFravær.noValue": "Du må velge hvilket arbeid du hadde fravær fra {dato}.",
+
+    "validation.harBoddUtenforNorgeSiste12Mnd.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har bodd i utlandet i hele eller deler av de siste 12 månedene.",
+    "validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_ikke_registrert": "Du har oppgitt at du har vært i utlandet de siste 12 månedene. Du må registrere dette utenlandsoppholdet.",
+    "validation.utenlandsoppholdSiste12Mnd.utenlandsopphold_overlapper": "Ett eller flere av utenlandsoppholdene du har lagt inn for de siste 12 månedene, har datoer som overlapper hverandre.",
+    "validation.skalBoUtenforNorgeNeste12Mnd.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du planlegger å bo i utlandet i hele eller deler av de neste 12 månedene.",
+    "validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_ikke_registrert": "Du har oppgitt at du skal oppholde deg i utlandet de neste 12 månedene. Du må registrere dette utenlandsoppholdet.",
+    "validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_overlapper": "Ett eller flere av utenlandsoppholdene du har lagt inn for de neste 12 månedene, har datoer som overlapper hverandre.",
+
     "validation.harBekreftetOpplysninger.notChecked": "Du må bekrefte at opplysningene du har gitt er riktige."
 }
