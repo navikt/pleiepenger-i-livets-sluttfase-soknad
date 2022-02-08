@@ -1,7 +1,6 @@
 import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 import { YesOrNo } from '@navikt/sif-common-formik/lib';
-import { Utenlandsopphold } from '@navikt/sif-common-forms/lib';
-import { FraværDag, FraværPeriode } from '../components/fravær';
+import { FraværPeriode, Utenlandsopphold } from '@navikt/sif-common-forms/lib';
 import { Virksomhet } from '@navikt/sif-common-forms/lib/virksomhet/types';
 import { AktivitetFravær } from './AktivitetFravær';
 import { ArbeidsforholdFormData } from './ArbeidsforholdTypes';
@@ -23,9 +22,7 @@ export enum SoknadFormField {
 
     // Fravær
     harPerioderMedFravær = 'harPerioderMedFravær',
-    harDagerMedDelvisFravær = 'harDagerMedDelvisFravær',
     fraværPerioder = 'fraværPerioder',
-    fraværDager = 'fraværDager',
     perioder_harVærtIUtlandet = 'perioder_harVærtIUtlandet',
     perioder_utenlandsopphold = 'perioder_utenlandsopphold',
 
@@ -58,8 +55,6 @@ export interface SoknadFormData {
     // Fravær
     [SoknadFormField.harPerioderMedFravær]: YesOrNo;
     [SoknadFormField.fraværPerioder]: FraværPeriode[];
-    [SoknadFormField.harDagerMedDelvisFravær]: YesOrNo;
-    [SoknadFormField.fraværDager]: FraværDag[];
     [SoknadFormField.perioder_harVærtIUtlandet]: YesOrNo;
     [SoknadFormField.perioder_utenlandsopphold]: Utenlandsopphold[];
 

@@ -19,7 +19,7 @@ import { getArbeidsgivere, syncArbeidsforholdWithArbeidsgivere } from '../../uti
 import { ArbeidsforholdFormData } from '../../types/ArbeidsforholdTypes';
 import appSentryLogger from '../../utils/appSentryLogger';
 import LoadingSpinner from '@navikt/sif-common-core/lib/components/loading-spinner/LoadingSpinner';
-import { getSøknadsperiodeFromFormData } from '../../utils/dates';
+import { getPeriodeBoundaries } from '../../utils/periodeUtils';
 
 const shouldShowSubmitButton = (søknadFormData: SoknadFormData): boolean => {
     const erFrilanser: YesOrNo = søknadFormData[SoknadFormField.frilans_erFrilanser];
@@ -39,7 +39,7 @@ const ArbeidssituasjonStep = () => {
     const [doApiCalls, setDoApiCalls] = useState(true);
 
     useEffect(() => {
-        const søknadsperiode = getSøknadsperiodeFromFormData(values);
+        const søknadsperiode = getPeriodeBoundaries(values.fraværPerioder);
 
         const fetchData = async (from: Date, to: Date): Promise<void> => {
             const response: AxiosResponse<ArbeidsgiverResponse> | null = await getArbeidsgivere(from, to);
@@ -66,8 +66,8 @@ const ArbeidssituasjonStep = () => {
             }
         };
 
-        if (søknadsperiode && doApiCalls) {
-            fetchData(søknadsperiode.from, søknadsperiode.to);
+        if (søknadsperiode.min && søknadsperiode.max && doApiCalls) {
+            fetchData(søknadsperiode.min, søknadsperiode.max);
             setDoApiCalls(false);
         }
     }, [doApiCalls, values, setFieldValue]);

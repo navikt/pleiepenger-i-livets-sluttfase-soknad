@@ -14,7 +14,6 @@ import KvitteringPage from '../pages/kvittering-page/KvitteringPage';
 import { Person } from '../types/Person';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { getAvailableSteps } from '../utils/getAvailableSteps';
-import { mapFormDataToApiData } from '../utils/map-form-data-to-api-data/mapFormDataToApiData';
 import OppsummeringStep from './oppsummering-step/OppsummeringStep';
 import { useSoknadContext } from './SoknadContext';
 import { StepID } from './soknadStepsConfig';
@@ -48,8 +47,7 @@ const SoknadRoutes = ({ soknadId, søker }: Props) => {
             case StepID.MEDLEMSKAP:
                 return <MedlemsskapStep />;
             case StepID.OPPSUMMERING:
-                const apiValues = mapFormDataToApiData(values, intl);
-                return <OppsummeringStep apiValues={apiValues} søker={søker} />;
+                return <OppsummeringStep søker={søker} values={values} />;
         }
     };
 

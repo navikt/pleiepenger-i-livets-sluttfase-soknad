@@ -16,20 +16,14 @@ import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 
 const FraværFraStep = () => {
     const {
-        values: {
-            fraværDager,
-            fraværPerioder,
-            arbeidsforhold,
-            selvstendig_erSelvstendigNæringsdrivende,
-            frilans_erFrilanser,
-        },
+        values: { fraværPerioder, arbeidsforhold, selvstendig_erSelvstendigNæringsdrivende, frilans_erFrilanser },
     } = useFormikContext<SoknadFormData>();
 
     const getFieldName = (dato: Date): string => {
         const key = dateToISOString(dato);
         return `${SoknadFormField.aktivitetFravær}_${key}`;
     };
-    const utbetalingsdatoer = getUtbetalingsdatoerFraFravær(fraværPerioder, fraværDager);
+    const utbetalingsdatoer = getUtbetalingsdatoerFraFravær(fraværPerioder);
 
     const onStepCleanup = (formData: SoknadFormData): SoknadFormData => {
         const aktivitetFravær: AktivitetFravær[] = [];

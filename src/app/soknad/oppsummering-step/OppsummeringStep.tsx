@@ -5,8 +5,7 @@ import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import ResponsivePanel from '@navikt/sif-common-core/lib/components/responsive-panel/ResponsivePanel';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { Person } from 'app/types/Person';
-import { SoknadApiData } from '../../types/SoknadApiData';
-import { SoknadFormField } from '../../types/SoknadFormData';
+import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { useSoknadContext } from '../SoknadContext';
 import SoknadFormComponents from '../SoknadFormComponents';
 import SoknadFormStep from '../SoknadFormStep';
@@ -24,16 +23,17 @@ import MedlemskapSummaryView from './components/MedlemskapSummaryView';
 import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
 import UploadedDocumentsList from '../../components/uploaded-documents-list/UploadedDocumentsList';
 import ArbeidsforholdSummaryView from './components/ArbeidsforholdSummaryView';
+import { mapFormDataToApiData } from '../../utils/map-form-data-to-api-data/mapFormDataToApiData';
 
 type Props = {
     søker: Person;
-    apiValues?: SoknadApiData;
+    values: SoknadFormData;
 };
 
-const OppsummeringStep = ({ søker, apiValues }: Props) => {
+const OppsummeringStep = ({ søker, values }: Props) => {
     const intl = useIntl();
     const { sendSoknadStatus, sendSoknad } = useSoknadContext();
-
+    const apiValues = mapFormDataToApiData(values, intl);
     return (
         <SoknadFormStep
             id={StepID.OPPSUMMERING}

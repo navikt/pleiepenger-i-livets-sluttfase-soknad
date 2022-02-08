@@ -1,15 +1,13 @@
 import { formatDateToApiFormat } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { YesOrNo } from '@navikt/sif-common-formik/lib';
-import { FraværDag, FraværPeriode } from '../../components/fravær';
 import { SoknadApiData, UtbetalingsperiodeApi, YesNoSpørsmålOgSvar, YesNoSvar } from '../../types/SoknadApiData';
 import { SoknadFormData } from '../../types/SoknadFormData';
 import { listOfAttachmentsToListOfUrlStrings } from './mapVedleggToApiData';
-import { decimalTimeToTime, timeToIso8601Duration } from '@navikt/sif-common-core/lib/utils/timeUtils';
 import { delFraværPerioderOppIDager, getAktivitetFromAktivitetFravær, getApiAktivitetForDag } from '../fraværUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { IntlShape } from 'react-intl';
 import { mapFrilansToApiData } from '../formToApiMaps/mapFrilansToApiData';
-import { mapVirksomhetToVirksomhetApiData, Utenlandsopphold } from '@navikt/sif-common-forms/lib';
+import { FraværPeriode, mapVirksomhetToVirksomhetApiData, Utenlandsopphold } from '@navikt/sif-common-forms/lib';
 import { Aktiviteter } from '../../types/AktivitetFravær';
 import { getValidSpråk } from '../sprakUtils';
 import { getMedlemsskapApiData, mapBostedUtlandToApiData } from '../medlemsskapApiData';
@@ -80,7 +78,6 @@ export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape):
 
 export const getUtbetalingsperioderApiFromFormData = (formValues: SoknadFormData): UtbetalingsperiodeApi[] => {
     const {
-        fraværDager,
         fraværPerioder,
         aktivitetFravær,
         frilans_erFrilanser,
@@ -94,32 +91,19 @@ export const getUtbetalingsperioderApiFromFormData = (formValues: SoknadFormData
         .map((f) => f.organisasjonsnummer);
 
     if (!showFraværFraStep(formValues)) {
-        return [
-            ...fraværPerioder.map((periode) =>
-                mapFraværPeriodeTilUtbetalingsperiodeApi(
-                    periode,
-                    getAktivitetFromAktivitetFravær(erFrilanser, erSN, arbeidsforholdMedFravær)
-                )
-            ),
-            ...fraværDager.map((dag) =>
-                mapFraværDagTilUtbetalingsperiodeApi(
-                    dag,
-                    getAktivitetFromAktivitetFravær(erFrilanser, erSN, arbeidsforholdMedFravær)
-                )
-            ),
-        ];
+        return fraværPerioder.map((periode) =>
+            mapFraværPeriodeTilUtbetalingsperiodeApi(
+                periode,
+                getAktivitetFromAktivitetFravær(erFrilanser, erSN, arbeidsforholdMedFravær)
+            )
+        );
     } else {
-        return [
-            ...delFraværPerioderOppIDager(fraværPerioder).map((periodeDag) =>
-                mapFraværPeriodeTilUtbetalingsperiodeApi(
-                    periodeDag,
-                    getApiAktivitetForDag(periodeDag.fraOgMed, aktivitetFravær)
-                )
-            ),
-            ...fraværDager.map((dag) =>
-                mapFraværDagTilUtbetalingsperiodeApi(dag, getApiAktivitetForDag(dag.dato, aktivitetFravær))
-            ),
-        ];
+        return delFraværPerioderOppIDager(fraværPerioder).map((periodeDag) =>
+            mapFraværPeriodeTilUtbetalingsperiodeApi(
+                periodeDag,
+                getApiAktivitetForDag(periodeDag.fraOgMed, aktivitetFravær)
+            )
+        );
     }
     //TODO
     /*} else {
@@ -134,22 +118,6 @@ export const mapFraværPeriodeTilUtbetalingsperiodeApi = (
     return {
         fraOgMed: formatDateToApiFormat(periode.fraOgMed),
         tilOgMed: formatDateToApiFormat(periode.tilOgMed),
-        antallTimerPlanlagt: null,
-        antallTimerBorte: null,
-        aktivitetFravær: aktivitetFravær.apiAktiviteter,
-        organisasjonsnummer: aktivitetFravær.orgnummere.length > 0 ? aktivitetFravær.orgnummere : null,
-    };
-};
-
-export const mapFraværDagTilUtbetalingsperiodeApi = (
-    fraværDag: FraværDag,
-    aktivitetFravær: Aktiviteter
-): UtbetalingsperiodeApi => {
-    return {
-        fraOgMed: formatDateToApiFormat(fraværDag.dato),
-        tilOgMed: formatDateToApiFormat(fraværDag.dato),
-        antallTimerPlanlagt: timeToIso8601Duration(decimalTimeToTime(parseFloat(fraværDag.timerArbeidsdag))),
-        antallTimerBorte: timeToIso8601Duration(decimalTimeToTime(parseFloat(fraværDag.timerFravær))),
         aktivitetFravær: aktivitetFravær.apiAktiviteter,
         organisasjonsnummer: aktivitetFravær.orgnummere.length > 0 ? aktivitetFravær.orgnummere : null,
     };

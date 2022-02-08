@@ -1,30 +1,20 @@
 import { dateToISOString } from '@navikt/sif-common-formik/lib';
-// import { dateErHelg } from '@navikt/sif-common-forms/lib';
 import { flatten, uniqBy } from 'lodash';
 import { AktivitetFravær, ApiAktivitet, Aktiviteter, Aktivitet } from '../types/AktivitetFravær';
 import { getDatesWithinDateRange, sortByDate } from './dates';
 import dayjs from 'dayjs';
-import { dateErHelg, FraværDag, FraværPeriode } from '../components/fravær';
-// import { ArbeidsforholdFormData } from '../types/ArbeidsforholdTypes';
+import { dateErHelg, FraværPeriode } from '@navikt/sif-common-forms/lib';
 
-export const getUtbetalingsdatoerFraFravær = (perioder: FraværPeriode[], dager: FraværDag[]): Date[] => {
+export const getUtbetalingsdatoerFraFravær = (perioder: FraværPeriode[]): Date[] => {
     const datoerIPeriode = perioder.map((p) => getDatesWithinDateRange({ from: p.fraOgMed, to: p.tilOgMed }));
-    const datoer: Date[] = uniqBy([...flatten(datoerIPeriode), ...dager.map((d) => d.dato)], (d) => {
+    const datoer: Date[] = uniqBy([...flatten(datoerIPeriode)], (d) => {
         return dateToISOString(d);
     });
     return datoer.filter((d) => dateErHelg(d) === false).sort(sortByDate);
 };
 
-/*export const harFraværSomFrilanser = (dager: AktivitetFravær[] = []) => {
-    return dager.some((ff) => ff.aktivitet === Aktivitet.FRILANSER);
-};
-
-export const harFraværSomSN = (fraværFraDag: AktivitetFravær[] = []) => {
-    return fraværFraDag.some((ff) => ff.aktivitet === Aktivitet.SELVSTENDIG_VIRKSOMHET);
-};*/
-
 export const delFraværPeriodeOppIDager = (periode: FraværPeriode): FraværPeriode[] => {
-    const datoer = getUtbetalingsdatoerFraFravær([periode], []);
+    const datoer = getUtbetalingsdatoerFraFravær([periode]);
     return datoer.map((dato) => ({
         ...periode,
         fraOgMed: dato,

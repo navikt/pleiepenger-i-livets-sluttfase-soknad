@@ -7,8 +7,6 @@ export const initialSoknadFormData: Partial<SoknadFormData> = {
     [SoknadFormField.bekreftelseFraLege]: [],
     [SoknadFormField.harPerioderMedFravær]: YesOrNo.UNANSWERED,
     [SoknadFormField.fraværPerioder]: [],
-    [SoknadFormField.harDagerMedDelvisFravær]: YesOrNo.UNANSWERED,
-    [SoknadFormField.fraværDager]: [],
     [SoknadFormField.perioder_harVærtIUtlandet]: YesOrNo.UNANSWERED,
     [SoknadFormField.perioder_utenlandsopphold]: [],
 

@@ -6,33 +6,31 @@ import { date1YearAgo, DateRange, dateToday } from '@navikt/sif-common-core/lib/
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik/lib/validation';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms/lib/bosted-utland/BostedUtlandListAndDialog';
-import { fraværDagToFraværDateRange, fraværPeriodeToDateRange } from '@navikt/sif-common-forms/lib/fravær';
+import { fraværPeriodeToDateRange } from '@navikt/sif-common-forms/lib/fravær';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { StepID } from '../soknadStepsConfig';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { getPeriodeBoundaries } from '../../utils/periodeUtils';
 import FraværStepInfo from './FraværStepInfo';
 import fraværStepUtils from './fraværStepUtils';
-import { getFraværDagerValidator, getFraværPerioderValidator } from './fraværFieldValidations';
+import { getFraværPerioderValidator } from './fraværFieldValidations';
 import FormSection from '@navikt/sif-common-core/lib/components/form-section/FormSection';
 import SoknadFormStep from '../SoknadFormStep';
 import SoknadFormComponents from '../SoknadFormComponents';
-import FraværPerioderListAndDialog from '../../components/fravær/FraværPerioderListAndDialog';
-import FraværDagerListAndDialog from '../../components/fravær/FraværDagerListAndDialog';
+import FraværPerioderListAndDialog from '@navikt/sif-common-forms/lib/fravær/FraværPerioderListAndDialog';
 
 type Props = {
     values: SoknadFormData;
 };
 
 const FraværStep = ({ values }: Props) => {
-    const { harPerioderMedFravær, harDagerMedDelvisFravær, perioder_harVærtIUtlandet, fraværDager, fraværPerioder } =
-        values;
+    const { harPerioderMedFravær, perioder_harVærtIUtlandet, fraværPerioder } = values;
     const intl = useIntl();
     const [årstall, setÅrstall] = useState<number | undefined>();
     const [gyldigTidsrom, setGyldigTidsrom] = useState<DateRange>(
-        fraværStepUtils.getTidsromFromÅrstall(fraværStepUtils.getÅrstallFromFravær(fraværDager, fraværPerioder))
+        fraværStepUtils.getTidsromFromÅrstall(fraværStepUtils.getÅrstallFromFravær(fraværPerioder))
     );
-    const førsteOgSisteDagMedFravær = getPeriodeBoundaries(fraværPerioder, fraværDager);
+    const førsteOgSisteDagMedFravær = getPeriodeBoundaries(fraværPerioder);
 
     const updateÅrstall = useCallback(
         (årstall: number | undefined) => {
@@ -43,14 +41,14 @@ const FraværStep = ({ values }: Props) => {
     );
 
     useEffect(() => {
-        const nyttÅrstall = fraværStepUtils.getÅrstallFromFravær(fraværDager, fraværPerioder);
+        const nyttÅrstall = fraværStepUtils.getÅrstallFromFravær(fraværPerioder);
         if (nyttÅrstall !== årstall) {
             updateÅrstall(nyttÅrstall);
         }
-    }, [årstall, fraværDager, fraværPerioder, updateÅrstall]);
+    }, [årstall, fraværPerioder, updateÅrstall]);
 
-    const kanIkkeFortsette = harPerioderMedFravær === YesOrNo.NO && harDagerMedDelvisFravær === YesOrNo.NO;
-    const harRegistrertFravær = fraværDager.length + fraværPerioder.length > 0;
+    const kanIkkeFortsette = harPerioderMedFravær === YesOrNo.NO;
+    const harRegistrertFravær = fraværPerioder.length > 0;
     const minDateForFravær = harRegistrertFravær ? gyldigTidsrom.from : date1YearAgo;
     const maxDateForFravær = harRegistrertFravær ? gyldigTidsrom.to : dateToday;
     const inneværendeÅr = new Date().getFullYear();
@@ -87,49 +85,14 @@ const FraværStep = ({ values }: Props) => {
                                 periodeDescription={<FraværStepInfo.Tidsbegrensning />}
                                 minDate={minDateForFravær}
                                 maxDate={maxDateForFravær}
-                                validate={getFraværPerioderValidator({ fraværDager, årstall })}
+                                validate={getFraværPerioderValidator({ årstall })}
                                 labels={{
                                     listTitle: intlHelper(intl, 'step.fravaer.harPerioderMedFravær.listTitle'),
                                     addLabel: intlHelper(intl, 'step.fravaer.harPerioderMedFravær.addLabel'),
                                     modalTitle: intlHelper(intl, 'step.fravaer.harPerioderMedFravær.modalTitle'),
                                 }}
-                                dateRangesToDisable={[
-                                    ...values.fraværPerioder.map(fraværPeriodeToDateRange),
-                                    ...values.fraværDager.map(fraværDagToFraværDateRange),
-                                ]}
+                                dateRangesToDisable={[...values.fraværPerioder.map(fraværPeriodeToDateRange)]}
                                 helgedagerIkkeTillat={true}
-                            />
-                        </FormBlock>
-                    )}
-
-                    <FormBlock>
-                        <SoknadFormComponents.YesOrNoQuestion
-                            name={SoknadFormField.harDagerMedDelvisFravær}
-                            legend={intlHelper(intl, 'step.fravaer.spm.harDagerMedDelvisFravær')}
-                            validate={getYesOrNoValidator()}
-                        />
-                    </FormBlock>
-
-                    {/* DAGER MED DELVIS FRAVÆR*/}
-                    {harDagerMedDelvisFravær === YesOrNo.YES && (
-                        <FormBlock margin="l">
-                            <FraværDagerListAndDialog<SoknadFormField>
-                                name={SoknadFormField.fraværDager}
-                                dagDescription={<FraværStepInfo.Tidsbegrensning />}
-                                minDate={minDateForFravær}
-                                maxDate={maxDateForFravær}
-                                validate={getFraværDagerValidator({ fraværPerioder, årstall })}
-                                labels={{
-                                    listTitle: intlHelper(intl, 'step.fravaer.harDagerMedDelvisFravær.listTitle'),
-                                    addLabel: intlHelper(intl, 'step.fravaer.harDagerMedDelvisFravær.addLabel'),
-                                    modalTitle: intlHelper(intl, 'step.fravaer.harDagerMedDelvisFravær.modalTitle'),
-                                }}
-                                dateRangesToDisable={[
-                                    ...values.fraværDager.map(fraværDagToFraværDateRange),
-                                    ...values.fraværPerioder.map(fraværPeriodeToDateRange),
-                                ]}
-                                helgedagerIkkeTillatt={true}
-                                maksArbeidstidPerDag={24}
                             />
                         </FormBlock>
                     )}
