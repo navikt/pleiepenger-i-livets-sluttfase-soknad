@@ -1,8 +1,9 @@
 import { DateRange } from '@navikt/sif-common-formik/lib';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
-
+import isoWeek from 'dayjs/plugin/isoWeek';
 dayjs.extend(isSameOrBefore);
+dayjs.extend(isoWeek);
 
 export const date3MonthsAgo = dayjs().subtract(3, 'months').toDate();
 
@@ -20,4 +21,10 @@ export const getDatesWithinDateRange = ({ from, to }: DateRange): Date[] => {
         currentDate = dayjs(currentDate).add(1, 'day').toDate();
     }
     return dates;
+};
+
+export const erHelg = (date: Date): boolean => {
+    const dateDayjs = dayjs(date);
+    if (dateDayjs) return dateDayjs.isoWeekday() === 6 || dateDayjs.isoWeekday() === 7;
+    return false;
 };

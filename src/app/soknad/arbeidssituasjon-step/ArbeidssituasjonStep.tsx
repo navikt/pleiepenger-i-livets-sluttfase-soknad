@@ -20,15 +20,26 @@ import { ArbeidsforholdFormData } from '../../types/ArbeidsforholdTypes';
 import appSentryLogger from '../../utils/appSentryLogger';
 import LoadingSpinner from '@navikt/sif-common-core/lib/components/loading-spinner/LoadingSpinner';
 import { getPeriodeBoundaries } from '../../utils/periodeUtils';
+import SoknadFormComponents from '../SoknadFormComponents';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import { useIntl } from 'react-intl';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik/lib/validation';
 
 const shouldShowSubmitButton = (søknadFormData: SoknadFormData): boolean => {
-    const erFrilanser: YesOrNo = søknadFormData[SoknadFormField.frilans_erFrilanser];
-    const erSelvstendigNæringsdrivende: YesOrNo | undefined =
-        søknadFormData[SoknadFormField.selvstendig_erSelvstendigNæringsdrivende];
     const erArbeidstaker =
         søknadFormData.arbeidsforhold.length > 0 &&
         søknadFormData.arbeidsforhold.some((forhold) => forhold.harHattFraværHosArbeidsgiver === YesOrNo.YES);
-    return !(erFrilanser === YesOrNo.NO && erSelvstendigNæringsdrivende === YesOrNo.NO) || erArbeidstaker;
+    const erFrilanser: YesOrNo = søknadFormData[SoknadFormField.frilans_erFrilanser];
+    const erSelvstendigNæringsdrivende: YesOrNo | undefined =
+        søknadFormData[SoknadFormField.selvstendig_erSelvstendigNæringsdrivende];
+    const harStønadFraNav: YesOrNo = søknadFormData.harStønadFraNav;
+    return (
+        !(
+            erFrilanser === YesOrNo.NO &&
+            erSelvstendigNæringsdrivende === YesOrNo.NO &&
+            harStønadFraNav === YesOrNo.NO
+        ) || erArbeidstaker
+    );
 };
 
 const ArbeidssituasjonStep = () => {
@@ -37,6 +48,7 @@ const ArbeidssituasjonStep = () => {
     const showSubmitButton = shouldShowSubmitButton(values);
     const [isLoading, setIsLoading] = useState(true);
     const [doApiCalls, setDoApiCalls] = useState(true);
+    const intl = useIntl();
 
     useEffect(() => {
         const søknadsperiode = getPeriodeBoundaries(values.fraværPerioder);
@@ -106,6 +118,14 @@ const ArbeidssituasjonStep = () => {
 
             <FormBlock>
                 <SelvstendigNæringsdrivendeFormPart formValues={values} />
+            </FormBlock>
+
+            <FormBlock>
+                <SoknadFormComponents.YesOrNoQuestion
+                    name={SoknadFormField.harStønadFraNav}
+                    legend={intlHelper(intl, 'step.arbeidssituasjon.harStønadFraNav')}
+                    validate={getYesOrNoValidator()}
+                />
             </FormBlock>
 
             {!showSubmitButton && (

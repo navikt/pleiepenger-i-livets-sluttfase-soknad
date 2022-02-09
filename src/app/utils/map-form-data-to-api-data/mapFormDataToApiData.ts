@@ -83,9 +83,11 @@ export const getUtbetalingsperioderApiFromFormData = (formValues: SoknadFormData
         frilans_erFrilanser,
         selvstendig_erSelvstendigNæringsdrivende,
         arbeidsforhold,
+        harStønadFraNav,
     } = formValues;
     const erFrilanser = frilans_erFrilanser === YesOrNo.YES;
     const erSN = selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES;
+    const harStønad = harStønadFraNav === YesOrNo.YES;
     const arbeidsforholdMedFravær = arbeidsforhold
         .filter((f) => f.harHattFraværHosArbeidsgiver === YesOrNo.YES)
         .map((f) => f.organisasjonsnummer);
@@ -94,7 +96,7 @@ export const getUtbetalingsperioderApiFromFormData = (formValues: SoknadFormData
         return fraværPerioder.map((periode) =>
             mapFraværPeriodeTilUtbetalingsperiodeApi(
                 periode,
-                getAktivitetFromAktivitetFravær(erFrilanser, erSN, arbeidsforholdMedFravær)
+                getAktivitetFromAktivitetFravær(erFrilanser, erSN, harStønad, arbeidsforholdMedFravær)
             )
         );
     } else {

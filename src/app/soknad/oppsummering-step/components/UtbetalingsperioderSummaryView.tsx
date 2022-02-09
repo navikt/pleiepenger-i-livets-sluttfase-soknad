@@ -34,7 +34,9 @@ const getFraværAktivitetString = (
     const getApiAktiviteter = () => periode.aktivitetFravær.filter((a) => a !== ApiAktivitet.ARBEIDSTAKER);
     const aktiviteterArray = [...getArbeidsgiverNavner(), ...getApiAktiviteter()];
     const aktiviteterString = aktiviteterArray.map((a) =>
-        a === ApiAktivitet.FRILANSER || a === ApiAktivitet.SELVSTENDIG_NÆRINGSDRIVENDE
+        a === ApiAktivitet.FRILANSER ||
+        a === ApiAktivitet.SELVSTENDIG_NÆRINGSDRIVENDE ||
+        a === ApiAktivitet.STØNAD_FRA_NAV
             ? `${intlHelper(intl, `aktivitetFravær.${a}`)}`
             : `${a}`
     );
@@ -94,7 +96,7 @@ const UtbetalingsperioderSummaryView: React.FC<Props> = ({ utbetalingsperioder =
     return (
         <>
             {perioder.length > 0 && (
-                <SummaryBlock header={'Hele dager med fravær'}>
+                <SummaryBlock header={'Dager med fravær'}>
                     <SummaryList
                         items={perioder}
                         itemRenderer={(periode) =>

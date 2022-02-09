@@ -38,6 +38,7 @@ export enum SoknadFormField {
     selvstendig_erSelvstendigNæringsdrivende = 'selvstendig_erSelvstendigNæringsdrivende',
     selvstendig_harFlereVirksomheter = 'selvstendig_harFlereVirksomheter',
     selvstendig_virksomhet = 'selvstendig_virksomhet',
+    harStønadFraNav = 'harStønadFraNav',
 
     // Medlemskap
     harBoddUtenforNorgeSiste12Mnd = 'harBoddUtenforNorgeSiste12Mnd',
@@ -70,6 +71,7 @@ export interface SoknadFormData {
     [SoknadFormField.selvstendig_erSelvstendigNæringsdrivende]: YesOrNo;
     [SoknadFormField.selvstendig_harFlereVirksomheter]?: YesOrNo;
     [SoknadFormField.selvstendig_virksomhet]?: Virksomhet;
+    [SoknadFormField.harStønadFraNav]: YesOrNo;
 
     // Medlemskap
     [SoknadFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo;

@@ -16,7 +16,13 @@ import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 
 const FraværFraStep = () => {
     const {
-        values: { fraværPerioder, arbeidsforhold, selvstendig_erSelvstendigNæringsdrivende, frilans_erFrilanser },
+        values: {
+            fraværPerioder,
+            arbeidsforhold,
+            selvstendig_erSelvstendigNæringsdrivende,
+            frilans_erFrilanser,
+            harStønadFraNav,
+        },
     } = useFormikContext<SoknadFormData>();
 
     const getFieldName = (dato: Date): string => {
@@ -36,6 +42,8 @@ const FraværFraStep = () => {
                           return formData.frilans_erFrilanser === YesOrNo.YES;
                       } else if (a === Aktivitet.SELVSTENDIG_NÆRINGSDRIVENDE) {
                           return formData.selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES;
+                      } else if (a === Aktivitet.STØNAD_FRA_NAV) {
+                          return formData.harStønadFraNav === YesOrNo.YES;
                       } else
                           return formData.arbeidsforhold.some(
                               (forhold) =>
@@ -59,25 +67,23 @@ const FraværFraStep = () => {
         .map((forhold) => ({ label: forhold.navn, value: forhold.organisasjonsnummer }));
 
     const snFRadios = () => {
-        const frilans = {
-            label: 'Frilanser',
-            value: Aktivitet.FRILANSER,
-        };
-        const sn = {
-            label: 'Selvstendig næringsdrivende',
-            value: Aktivitet.SELVSTENDIG_NÆRINGSDRIVENDE,
+        const frilans = () => {
+            return frilans_erFrilanser === YesOrNo.YES ? [{ label: 'Frilanser', value: Aktivitet.FRILANSER }] : [];
         };
 
-        if (selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES && frilans_erFrilanser === YesOrNo.YES) {
-            return [frilans, sn];
-        }
-        if (selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES && frilans_erFrilanser === YesOrNo.NO) {
-            return [sn];
-        }
-        if (selvstendig_erSelvstendigNæringsdrivende === YesOrNo.NO && frilans_erFrilanser === YesOrNo.YES) {
-            return [frilans];
-        }
-        return [];
+        const sn = () => {
+            return selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES
+                ? [{ label: 'Selvstendig næringsdrivende', value: Aktivitet.SELVSTENDIG_NÆRINGSDRIVENDE }]
+                : [];
+        };
+
+        const stønadFraNav = () => {
+            return harStønadFraNav === YesOrNo.YES
+                ? [{ label: 'Stønad fra NAV', value: Aktivitet.STØNAD_FRA_NAV }]
+                : [];
+        };
+
+        return [...frilans(), ...sn(), ...stønadFraNav()];
     };
     const aktivitetOptions = [...snFRadios(), ...arbeidsgiverRadios];
     return (

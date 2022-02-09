@@ -16,6 +16,7 @@ export const initialSoknadFormData: Partial<SoknadFormData> = {
     [SoknadFormField.selvstendig_erSelvstendigNæringsdrivende]: YesOrNo.UNANSWERED,
     [SoknadFormField.selvstendig_harFlereVirksomheter]: YesOrNo.UNANSWERED,
     [SoknadFormField.aktivitetFravær]: [],
+    [SoknadFormField.harStønadFraNav]: YesOrNo.UNANSWERED,
 
     // Medlemskap
     [SoknadFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.UNANSWERED,

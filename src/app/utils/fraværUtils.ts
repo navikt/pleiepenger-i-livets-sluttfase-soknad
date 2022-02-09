@@ -1,16 +1,16 @@
 import { dateToISOString } from '@navikt/sif-common-formik/lib';
 import { flatten, uniqBy } from 'lodash';
 import { AktivitetFravær, ApiAktivitet, Aktiviteter, Aktivitet } from '../types/AktivitetFravær';
-import { getDatesWithinDateRange, sortByDate } from './dates';
+import { erHelg, getDatesWithinDateRange, sortByDate } from './dates';
 import dayjs from 'dayjs';
-import { dateErHelg, FraværPeriode } from '@navikt/sif-common-forms/lib';
+import { FraværPeriode } from '@navikt/sif-common-forms/lib';
 
 export const getUtbetalingsdatoerFraFravær = (perioder: FraværPeriode[]): Date[] => {
     const datoerIPeriode = perioder.map((p) => getDatesWithinDateRange({ from: p.fraOgMed, to: p.tilOgMed }));
     const datoer: Date[] = uniqBy([...flatten(datoerIPeriode)], (d) => {
         return dateToISOString(d);
     });
-    return datoer.filter((d) => dateErHelg(d) === false).sort(sortByDate);
+    return datoer.filter((d) => erHelg(d) === false).sort(sortByDate);
 };
 
 export const delFraværPeriodeOppIDager = (periode: FraværPeriode): FraværPeriode[] => {
@@ -29,16 +29,21 @@ export const delFraværPerioderOppIDager = (perioder: FraværPeriode[]): Fravær
 export const getAktivitetFromAktivitetFravær = (
     erFrilanser: boolean,
     erSelvstendigNæringsdrivende: boolean,
+    harStønad: boolean,
     arbeidsforholdMedFravær: string[]
 ): Aktiviteter => {
-    if (erFrilanser && !erSelvstendigNæringsdrivende && arbeidsforholdMedFravær.length === 0) {
+    if (erFrilanser && !erSelvstendigNæringsdrivende && !harStønad && arbeidsforholdMedFravær.length === 0) {
         return { apiAktiviteter: [ApiAktivitet.FRILANSER], orgnummere: [] };
     }
-    if (erSelvstendigNæringsdrivende && !erFrilanser) {
+    if (erSelvstendigNæringsdrivende && !erFrilanser && !harStønad && arbeidsforholdMedFravær.length === 0) {
         return { apiAktiviteter: [ApiAktivitet.SELVSTENDIG_NÆRINGSDRIVENDE], orgnummere: [] };
     }
 
-    if (arbeidsforholdMedFravær.length === 1 && !erSelvstendigNæringsdrivende && !erFrilanser) {
+    if (harStønad && !erSelvstendigNæringsdrivende && !erFrilanser && arbeidsforholdMedFravær.length === 0) {
+        return { apiAktiviteter: [ApiAktivitet.STØNAD_FRA_NAV], orgnummere: [] };
+    }
+
+    if (arbeidsforholdMedFravær.length === 1 && !erSelvstendigNæringsdrivende && !erFrilanser && !harStønad) {
         return { apiAktiviteter: [ApiAktivitet.ARBEIDSTAKER], orgnummere: arbeidsforholdMedFravær };
     }
     return {
@@ -56,6 +61,9 @@ export const getApiAktivitetFromAktivitet = (aktivitet: string[]): Aktiviteter =
             case Aktivitet.SELVSTENDIG_NÆRINGSDRIVENDE: {
                 return true;
             }
+            case Aktivitet.STØNAD_FRA_NAV: {
+                return true;
+            }
         }
         return false;
     };
@@ -65,6 +73,9 @@ export const getApiAktivitetFromAktivitet = (aktivitet: string[]): Aktiviteter =
                 return false;
             }
             case Aktivitet.SELVSTENDIG_NÆRINGSDRIVENDE: {
+                return false;
+            }
+            case Aktivitet.STØNAD_FRA_NAV: {
                 return false;
             }
         }

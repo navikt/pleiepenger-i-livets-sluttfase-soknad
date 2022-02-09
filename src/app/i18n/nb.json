@@ -89,6 +89,8 @@
     "step.arbeidssituasjon.selvstendig.infoDialog.tittel.en": "Opplysninger om virksomheten din",
     "step.arbeidssituasjon.selvstendig.infoDialog.tittel.flere": "Opplysninger om den eldste virksomheten din",
 
+    "step.arbeidssituasjon.harStønadFraNav": "Hadde du stønad fra NAV (dagpenger, foreldrepenger, svangerskapspenger, sykepenger, omsorgspenger, pleiepenger eller opplæringspenger) i dagene du har brukt pleiepengedager?",
+
     "step.fravaerFra.pageTitle": "Fravær fra arbeid som selvstendig næringsdrivende og/eller frilanser",
     "step.fravaerFra.stepTitle": "Fravær fra arbeid som selvstendig næringsdrivende og/eller frilanser",
     "step.fravaerFra.stepIndicatorLabel": "Fravær fra arbeid som selvstendig næringsdrivende og/eller frilanser",
@@ -123,6 +125,7 @@
     "step.oppsummering.utbetalinger.header": "Dager du søker utbetaling for",
     "aktivitetFravær.SELVSTENDIG_NÆRINGSDRIVENDE": "selvstendig næringsdrivende",
     "aktivitetFravær.FRILANSER": "frilanser",
+    "aktivitetFravær.STØNAD_FRA_NAV": "stønad fra NAV",
 
     "step.oppsummering.arbeidsforhold.header": "Arbeidsforhold",
     "step.oppsummering.arbeidsforhold.harHattFravær.spm": "Har du hatt fravær fra {organisasjonsnavn} fordi du har brukt pleiepengedager? ",
@@ -212,10 +215,12 @@
     "validation.frilans_sluttdato.dateIsBeforeMin": "Datoen for når du sluttet som frilanser kan ikke være før datoen du startet.",
     "validation.frilans_jobberFortsattSomFrilans.yesOrNoIsUnanswered": "Du må svare på om du fortsatt jobber som frilanser.",
 
-    "validation.selvstendig_erSelvstendigNæringsdrivende.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har hatt fravær som selvstendig næringsdrivende fordi du har brukt pleiepengedager",
+    "validation.selvstendig_erSelvstendigNæringsdrivende.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har hatt fravær som selvstendig næringsdrivende fordi du har brukt pleiepengedager.",
     "validation.selvstendig_harFlereVirksomheter.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har flere enn én virksomhet som er aktiv.",
     "validation.selvstendig_virksomhet.noValue": "Du har ikke registrert informasjon om virksomheten din.",
     "virksomhetForm.næringstype.noValue": "Du må velge hvilken type virksomhet du har.",
+
+    "validation.harStønadFraNav.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du hadde stønad fra NAV i dagene du har brukt pleiepengedager.",
 
     "validation.aktivitetFravær.noValue": "Du må velge hvilket arbeid du hadde fravær fra {dato}.",
 
