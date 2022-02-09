@@ -1,6 +1,6 @@
 import { SoknadApplicationType, SoknadStepsConfig } from '@navikt/sif-common-soknad/lib/soknad-step/soknadStepTypes';
 import soknadStepUtils from '@navikt/sif-common-soknad/lib/soknad-step/soknadStepUtils';
-import { SoknadFormData } from 'app/types/SoknadFormData';
+import { SoknadFormData } from '../types/SoknadFormData';
 import { showFraværFraStep } from '../utils/getAvailableSteps';
 
 export enum StepID {

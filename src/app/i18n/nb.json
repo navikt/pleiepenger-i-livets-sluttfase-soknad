@@ -123,9 +123,9 @@
     "step.oppsummering.pleietrengende.header": "Om pleietrengende",
 
     "step.oppsummering.utbetalinger.header": "Dager du søker utbetaling for",
-    "aktivitetFravær.SELVSTENDIG_NÆRINGSDRIVENDE": "selvstendig næringsdrivende",
-    "aktivitetFravær.FRILANSER": "frilanser",
-    "aktivitetFravær.STØNAD_FRA_NAV": "stønad fra NAV",
+    "aktivitetFravær.SELVSTENDIG_NÆRINGSDRIVENDE": "Selvstendig næringsdrivende",
+    "aktivitetFravær.FRILANSER": "Frilanser",
+    "aktivitetFravær.STØNAD_FRA_NAV": "Stønad fra NAV",
 
     "step.oppsummering.arbeidsforhold.header": "Arbeidsforhold",
     "step.oppsummering.arbeidsforhold.harHattFravær.spm": "Har du hatt fravær fra {organisasjonsnavn} fordi du har brukt pleiepengedager? ",

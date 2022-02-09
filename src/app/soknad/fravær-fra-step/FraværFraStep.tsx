@@ -106,9 +106,11 @@ const FraværFraStep = () => {
                                 legend={<FormattedMessage id="step.fravaerFra.dag.spm" values={{ dato }} />}
                                 checkboxes={aktivitetOptions}
                                 validate={(value: string[]) => {
-                                    const cleanedValue = value.filter((s) => {
-                                        return aktivitetOptions.find((option) => option.value === s);
-                                    });
+                                    const cleanedValue = value
+                                        ? value.filter((s) => {
+                                              return aktivitetOptions.find((option) => option.value === s);
+                                          })
+                                        : [];
 
                                     const error = getListValidator({ required: true })(cleanedValue);
                                     return error

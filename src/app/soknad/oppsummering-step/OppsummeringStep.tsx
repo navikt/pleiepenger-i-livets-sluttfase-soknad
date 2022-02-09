@@ -34,6 +34,7 @@ const OppsummeringStep = ({ søker, values }: Props) => {
     const intl = useIntl();
     const { sendSoknadStatus, sendSoknad } = useSoknadContext();
     const apiValues = mapFormDataToApiData(values, intl);
+
     return (
         <SoknadFormStep
             id={StepID.OPPSUMMERING}

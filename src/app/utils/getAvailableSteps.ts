@@ -26,10 +26,12 @@ export const showFraværFraStep = ({
     frilans_erFrilanser,
     selvstendig_erSelvstendigNæringsdrivende,
     arbeidsforhold,
+    harStønadFraNav,
 }: SoknadFormData) => {
     let count = 0;
     if (frilans_erFrilanser === YesOrNo.YES) count++;
     if (selvstendig_erSelvstendigNæringsdrivende === YesOrNo.YES) count++;
+    if (harStønadFraNav === YesOrNo.YES) count++;
     count += arbeidsforhold.filter((f) => f.harHattFraværHosArbeidsgiver === YesOrNo.YES).length;
     return count > 1;
 };

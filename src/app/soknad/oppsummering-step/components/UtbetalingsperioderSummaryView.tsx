@@ -23,14 +23,13 @@ const getFraværAktivitetString = (
 ) => {
     const getArbeidsgiverNavner = () => {
         return arbeidsforhold
-            .filter((forhold) =>
-                periode.organisasjonsnummer === null
-                    ? []
-                    : periode.organisasjonsnummer.find((nummer) => nummer === forhold.organisasjonsnummer) !== undefined
+            .filter(
+                (forhold) =>
+                    periode.organisasjonsnummer !== null &&
+                    periode.organisasjonsnummer.find((nummer) => nummer === forhold.organisasjonsnummer) !== undefined
             )
             .map((f) => f.navn);
     };
-
     const getApiAktiviteter = () => periode.aktivitetFravær.filter((a) => a !== ApiAktivitet.ARBEIDSTAKER);
     const aktiviteterArray = [...getArbeidsgiverNavner(), ...getApiAktiviteter()];
     const aktiviteterString = aktiviteterArray.map((a) =>
