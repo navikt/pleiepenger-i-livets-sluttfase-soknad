@@ -12,7 +12,6 @@ enum FraværErrors {
 }
 
 export const getFraværPerioderValidator = () => (fraværPerioder: FraværPeriode[]) => {
-    console.log('fraværPerioder: ', fraværPerioder);
     return validateAll<ValidationError>([
         () => getListValidator({ required: true })(fraværPerioder),
         () => (validateNoCollisions([], fraværPerioder) ? FraværErrors.perioderEllerDagerOverlapper : undefined),
