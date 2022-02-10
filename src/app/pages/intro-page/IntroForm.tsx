@@ -23,10 +23,10 @@ const IntroForm = ({ onValidSubmit }: Props) => {
             onSubmit={() => {
                 onValidSubmit();
             }}
-            renderForm={({ values: { erSokerlestInformasjonen, erSokerAleneOmsorg } }) => {
-                const lestInformasjonenBesvart = erSokerlestInformasjonen === YesOrNo.YES;
-                const AleneOmsorgBesvart = erSokerAleneOmsorg === YesOrNo.YES;
-                const kanFortsette: boolean = lestInformasjonenBesvart && AleneOmsorgBesvart;
+            renderForm={({ values: { erPleietrengendeILivetsSluttfase, pleierDuDenSykeHjemme } }) => {
+                const erPleietrengendeILivetsSluttfaseBesvart = erPleietrengendeILivetsSluttfase === YesOrNo.YES;
+                const pleierDuDenSykeHjemmeBesvart = pleierDuDenSykeHjemme === YesOrNo.YES;
+                const kanFortsette: boolean = erPleietrengendeILivetsSluttfaseBesvart && pleierDuDenSykeHjemmeBesvart;
 
                 return (
                     <IntroFormComponents.Form
@@ -42,19 +42,19 @@ const IntroForm = ({ onValidSubmit }: Props) => {
                             )
                         }>
                         <FormQuestion
-                            legend={intlHelper(intl, `introForm.erSokerlestInformasjonen.spm`)}
-                            name={IntroFormField.erSokerlestInformasjonen}
+                            legend={intlHelper(intl, 'introForm.erPleietrengendeILivetsSluttfase.spm')}
+                            name={IntroFormField.erPleietrengendeILivetsSluttfase}
                             validate={getYesOrNoValidator()}
-                            showStop={erSokerlestInformasjonen === YesOrNo.NO}
-                            stopMessage={intlHelper(intl, 'introForm.erSokerlestInformasjonen.stopMessage')}
+                            showStop={erPleietrengendeILivetsSluttfase === YesOrNo.NO}
+                            stopMessage={intlHelper(intl, 'introForm.erPleietrengendeILivetsSluttfase.stopMessage')}
                         />
-                        {lestInformasjonenBesvart && (
+                        {erPleietrengendeILivetsSluttfaseBesvart && (
                             <FormQuestion
-                                legend={intlHelper(intl, `introForm.erSokerAleneOmsorg.spm`)}
-                                name={IntroFormField.erSokerAleneOmsorg}
+                                legend={intlHelper(intl, 'introForm.pleierDuDenSykeHjemme.spm')}
+                                name={IntroFormField.pleierDuDenSykeHjemme}
                                 validate={getYesOrNoValidator()}
-                                showStop={erSokerAleneOmsorg === YesOrNo.NO}
-                                stopMessage={intlHelper(intl, 'introForm.erSokerAleneOmsorg.stopMessage')}
+                                showStop={pleierDuDenSykeHjemme === YesOrNo.NO}
+                                stopMessage={intlHelper(intl, 'introForm.pleierDuDenSykeHjemme.stopMessage')}
                             />
                         )}
                     </IntroFormComponents.Form>

@@ -4,8 +4,6 @@ const webpackConfig = require('../webpack/webpack.config.dev');
 const configureDevServer = require('../webpack/devserver.config');
 const path = require('path');
 
-require('dotenv').config();
-
 const compiler = webpack({
     ...webpackConfig,
     watch: false,

@@ -5,8 +5,8 @@ import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
 import FødselsnummerSvar from '@navikt/sif-common-soknad/lib/soknad-summary/FødselsnummerSvar';
 import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
 import SummarySection from '@navikt/sif-common-soknad/lib/soknad-summary/summary-section/SummarySection';
-import { Person } from '../../types/Person';
-import { SoknadApiData } from '../../types/SoknadApiData';
+import { Person } from '../../../types/Person';
+import { SoknadApiData } from '../../../types/SoknadApiData';
 
 interface Props {
     søker: Person;
@@ -18,7 +18,7 @@ const SøkerSummary = ({ søker }: Props) => {
     return (
         <SummarySection header={intlHelper(intl, 'step.oppsummering.søker.header')}>
             <SummaryBlock header={formatName(søker.fornavn, søker.etternavn, søker.mellomnavn)}>
-                <FormattedMessage id="Fødselsnummer" />: <FødselsnummerSvar fødselsnummer={søker.fødselsnummer} />
+                <FormattedMessage id="fødselsnummer" /> <FødselsnummerSvar fødselsnummer={søker.fødselsnummer} />
             </SummaryBlock>
         </SummarySection>
     );

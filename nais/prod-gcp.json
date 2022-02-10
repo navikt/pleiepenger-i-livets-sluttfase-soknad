@@ -11,11 +11,9 @@
     "readinessPath": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/health/isReady",
     "env": {
         "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false",
-        "API_URL": "https://pleiepenger-i-livets-sluttfase-api.nav.no",
+        "API_URL": "https://pleiepenger-livets-sluttfase-api.nav.no",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",
         "LOGIN_URL": "https://loginservice.nav.no/login?redirect=https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad",
-        "UTILGJENGELIG": "off",
-        "NYNORSK": "off",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "APPSTATUS_DATASET": "production",
         "USE_AMPLITUDE": "true"

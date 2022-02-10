@@ -7,6 +7,10 @@ export const defaultAxiosConfig = {
     headers: { 'Content-type': 'application/json; charset=utf-8' },
 };
 
+export const axiosConfig = {
+    withCredentials: true,
+};
+
 axios.defaults.baseURL = getEnvironmentVariable('API_URL');
 axios.defaults.withCredentials = true;
 axios.interceptors.request.use((config) => {
@@ -27,9 +31,11 @@ axios.interceptors.response.use(
 
 export enum ApiEndpoint {
     'soker' = 'soker',
+    'arbeidsgiver' = 'arbeidsgiver',
     'mellomlagring' = 'mellomlagring',
     'barn' = 'barn',
     'sendSoknad' = 'soknad',
+    'uploadFile' = 'vedlegg',
 }
 
 const api = {
@@ -37,8 +43,11 @@ const api = {
         const url = `${endpoint}${paramString ? `?${paramString}` : ''}`;
         return axios.get<ResponseType>(url, config || defaultAxiosConfig);
     },
-    post: <DataType = any, ResponseType = any>(endpoint: ApiEndpoint, data: DataType) => {
-        return axios.post<ResponseType>(endpoint, data, defaultAxiosConfig);
+    post: <DataType = any, ResponseType = any>(endpoint: ApiEndpoint, data: DataType, config?: AxiosRequestConfig) => {
+        return axios.post<ResponseType>(endpoint, data, config || defaultAxiosConfig);
+    },
+    delete: <ResponseType = any>(url: string) => {
+        return axios.delete<ResponseType>(url, axiosConfig);
     },
 };
 

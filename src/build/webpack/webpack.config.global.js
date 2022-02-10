@@ -9,23 +9,30 @@ const webpackConfig = {
     output: {
         path: path.resolve(__dirname, './../../../dist'),
         filename: 'js/[name].js',
-        publicPath: '/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/dist',
+        publicPath: '/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/dist/',
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json', '.jsx'],
-        alias: {},
     },
     module: {
         rules: [
             {
-                test: /\.(ts|tsx)$/,
-                loader: require.resolve('eslint-loader'),
-                enforce: 'pre',
+                test: /\.m?jsx?$/,
+                resolve: {
+                    fullySpecified: false,
+                },
             },
             {
                 test: /\.(ts|tsx)$/,
                 include: [path.resolve(__dirname, './../../app')],
-                loader: require.resolve('ts-loader'),
+                use: [
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            experimentalFileCaching: false,
+                        },
+                    },
+                ],
             },
             {
                 test: /\.less$/,
