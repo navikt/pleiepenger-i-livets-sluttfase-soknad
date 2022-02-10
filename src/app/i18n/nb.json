@@ -200,7 +200,8 @@
 
     "validation.harPerioderMedFravær.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har hatt hele dager med fravær fra jobb.",
     "validation.fraværPerioder.listIsEmpty": "Du har ikke lagt til dager med fullt fravær.",
-    "validation.fraværPerioder.ulikeÅrstall": "Du har lagt til fravær som er i flere år. En søknad kan kun inneholde fravær i ett år.",
+    "validation.fraværPerioder.merEnn60dager": "Du kan ikke legge til mer enn 60 dager.",
+
     "validation.perioder_harVærtIUtlandet.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har vært i utlandet noen av dagene du søker omsorgspenger.",
     "validation.perioder_utenlandsopphold.listIsEmpty": "Du har svart du har vært i utlandet i perioden du søker for, du må derfor legge til utenlandsopphold.",
 
