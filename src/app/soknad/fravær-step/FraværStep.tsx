@@ -71,6 +71,7 @@ const FraværStep = ({ values }: Props) => {
                                 }}
                                 dateRangesToDisable={[...values.fraværPerioder.map(fraværPeriodeToDateRange)]}
                                 helgedagerIkkeTillat={true}
+                                ikkeBrukHjemmePgaKorona={true}
                             />
                         </FormBlock>
                     )}
