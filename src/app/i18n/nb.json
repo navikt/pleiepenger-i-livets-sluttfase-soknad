@@ -49,7 +49,7 @@
 
     "step.fravaer.spm.harPerioderMedFravær": "Har du hatt hele dager med fravær fra jobb?",
     "step.fravaer.dager.tittel": "Dager du søker utbetaling for",
-    "step.fravaer.dager.info": "Her skal du legge inn dagene du søker utbetaling for. Du kan kun søke om utbetaling fra ett og samme år. Det betyr at hvis du skal søke om utbetaling for 2020 i tillegg til 2021 må du sende to søknader.",
+    "step.fravaer.dager.info": "Her skal du legge inn dagene du søker utbetaling for.",
     "step.fravaer.harPerioderMedFravær.listTitle": "Dager med fullt fravær fra jobb",
     "step.fravaer.harPerioderMedFravær.addLabel": "Legg til dager med fullt fravær fra jobb",
     "step.fravaer.harPerioderMedFravær.modalTitle": "Dager med fullt fravær fra jobb",
