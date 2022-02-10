@@ -14,7 +14,7 @@ import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import PictureScanningGuide from '@navikt/sif-common-core/lib/components/picture-scanning-guide/PictureScanningGuide';
 import FormikVedleggsKomponent from '../../components/formikVedleggsKomponent/FormikVedleggsKomponent';
 import { useFormikContext } from 'formik';
-import { Ingress } from 'nav-frontend-typografi';
+import FormSection from '@navikt/sif-common-core/lib/components/form-section/FormSection';
 
 type Props = {
     søker: Person;
@@ -33,41 +33,42 @@ const OpplysningerOmPleietrengendeStep = ({ søker }: Props) => {
             </CounsellorPanel>
 
             <FormBlock>
-                <Box margin="l">
-                    <SoknadFormComponents.Input
-                        name={SoknadFormField.pleietrengende__navn}
-                        label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.navn')}
-                        validate={validateNavn}
-                        style={{ maxWidth: '20rem' }}
-                    />
-                </Box>
-
-                <Box margin="l">
-                    <SoknadFormComponents.Input
-                        name={SoknadFormField.pleietrengende__norskIdentitetsnummer}
-                        label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.fnr')}
-                        validate={getFødselsnummerValidator({
-                            required: true,
-                            disallowedValues: [søker.fødselsnummer],
-                        })}
-                        inputMode="numeric"
-                        maxLength={11}
-                        minLength={11}
-                        style={{ maxWidth: '20rem' }}
-                    />
-                </Box>
-                <Box margin="xxl">
-                    <Ingress>{intlHelper(intl, 'step.opplysninger-om-pleietrengende.vedlegg.tittel')}</Ingress>
-                    <Box margin={'xl'}>
-                        <PictureScanningGuide />
+                <FormSection title={intlHelper(intl, 'step.opplysninger-om-pleietrengende.title')}>
+                    <Box margin="l">
+                        <SoknadFormComponents.Input
+                            name={SoknadFormField.pleietrengende__navn}
+                            label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.navn')}
+                            validate={validateNavn}
+                            style={{ maxWidth: '20rem' }}
+                        />
                     </Box>
+
+                    <Box margin="l">
+                        <SoknadFormComponents.Input
+                            name={SoknadFormField.pleietrengende__norskIdentitetsnummer}
+                            label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.fnr')}
+                            validate={getFødselsnummerValidator({
+                                required: true,
+                                disallowedValues: [søker.fødselsnummer],
+                            })}
+                            inputMode="numeric"
+                            maxLength={11}
+                            minLength={11}
+                            style={{ maxWidth: '20rem' }}
+                        />
+                    </Box>
+                </FormSection>
+            </FormBlock>
+            <FormBlock>
+                <FormSection title={intlHelper(intl, 'step.opplysninger-om-pleietrengende.vedlegg.tittel')}>
+                    <PictureScanningGuide />
                     <FormikVedleggsKomponent
                         uploadButtonLabel={intlHelper(intl, 'step.opplysninger-om-pleietrengende.vedlegg')}
                         formikName={SoknadFormField.bekreftelseFraLege}
                         dokumenter={values.bekreftelseFraLege}
                         alleDokumenterISøknaden={values.bekreftelseFraLege}
                     />
-                </Box>
+                </FormSection>
             </FormBlock>
         </SoknadFormStep>
     );

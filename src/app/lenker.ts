@@ -5,6 +5,8 @@ interface Lenker {
     saksbehandlingstider: string;
     medlemskap: string;
     søknadPåPapir: string;
+    skatteetaten: string;
+    skatteetatenSN: string;
 }
 
 const LenkerBokmål: Lenker = {
@@ -16,6 +18,9 @@ const LenkerBokmål: Lenker = {
     medlemskap:
         'https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+Norge/Relatert+informasjon/medlemskap-i-folketrygden',
     søknadPåPapir: 'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger#NAV091205',
+    skatteetaten: 'https://www.skatteetaten.no/skjema/mine-inntekter-og-arbeidsforhold/',
+    skatteetatenSN:
+        'https://www.skatteetaten.no/person/skatt/hjelp-til-riktig-skatt/arbeid-trygd-og-pensjon/hobby-ekstrainntekt-og-smajobber/lonnsarbeid-i-hjemmet/lonn-betalt-over-60-000/naringsdrivende-oppdragstakere',
 };
 
 const getLenker = (locale?: string): Lenker => {

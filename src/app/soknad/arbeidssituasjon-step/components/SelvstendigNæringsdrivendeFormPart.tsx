@@ -10,6 +10,8 @@ import VirksomhetInfoAndDialog from '@navikt/sif-common-forms/lib/virksomhet/Vir
 import { SoknadFormData, SoknadFormField } from '../../../types/SoknadFormData';
 import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
 import SoknadFormComponents from '../../../soknad/SoknadFormComponents';
+import Lenke from 'nav-frontend-lenker';
+import getLenker from '../../../lenker';
 
 interface Props {
     formValues: SoknadFormData;
@@ -30,7 +32,12 @@ const SelvstendigNæringsdrivendeFormPart: React.FunctionComponent<Props> = ({ f
                 validate={getYesOrNoValidator()}
                 description={
                     <ExpandableInfo title={intlHelper(intl, 'step.arbeidssituasjon.selvstendig.hjelpetekst.tittel')}>
-                        <>Tekst</>
+                        <>
+                            {intlHelper(intl, 'step.arbeidssituasjon.selvstendig.hjelpetekst')}{' '}
+                            <Lenke href={getLenker(intl.locale).skatteetatenSN} target="_blank">
+                                <FormattedMessage id="step.arbeidssituasjon.selvstendig.hjelpetekst.snSkatteetatenLenke" />
+                            </Lenke>
+                        </>
                     </ExpandableInfo>
                 }
             />
