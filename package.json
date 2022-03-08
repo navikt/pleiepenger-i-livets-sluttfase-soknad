@@ -31,7 +31,7 @@
         "@navikt/sif-common-forms": "^17.0.0-beta.0",
         "@navikt/sif-common-question-config": "^0.0.7",
         "@navikt/sif-common-sentry": "^0.3.0",
-        "@navikt/sif-common-soknad": "^5.0.0-beta.0",
+        "@navikt/sif-common-soknad": "^5.0.0",
         "@sentry/browser": "^6.18.1",
         "@snyk/protect": "^1.864.0",
         "@testing-library/react": "^12.1.3",
