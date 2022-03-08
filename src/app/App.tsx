@@ -28,6 +28,7 @@ render(
                 sanityConfig: {
                     projectId: getEnvironmentVariable('APPSTATUS_PROJECT_ID'),
                     dataset: getEnvironmentVariable('APPSTATUS_DATASET'),
+                    apiVersion: '2022-03-07',
                 },
             }}
             publicPath={publicPath}>
