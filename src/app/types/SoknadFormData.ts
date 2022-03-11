@@ -1,9 +1,13 @@
 import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 import { YesOrNo } from '@navikt/sif-common-formik/lib';
-import { FraværPeriode, Utenlandsopphold } from '@navikt/sif-common-forms/lib';
+import { Utenlandsopphold } from '@navikt/sif-common-forms/lib';
 import { Virksomhet } from '@navikt/sif-common-forms/lib/virksomhet/types';
-import { AktivitetFravær } from './AktivitetFravær';
+import { AndreYtelserFraNAV } from './AndreYtelserFraNavn';
+import { Arbeidsforhold } from './Arbeidsforhold';
 import { ArbeidsforholdFormData } from './ArbeidsforholdTypes';
+import { Arbeidsgiver } from './Arbeidsgiver';
+import { FrilansFormData } from './FrilansFormData';
+import { SelvstendigFormData } from './SelvstendigFormData';
 
 export interface Pleietrengende {
     navn: string;
@@ -20,14 +24,20 @@ export enum SoknadFormField {
     pleietrengende__norskIdentitetsnummer = 'pleietrengende.norskIdentitetsnummer',
     bekreftelseFraLege = 'bekreftelseFraLege',
 
-    // Fravær
-    harPerioderMedFravær = 'harPerioderMedFravær',
-    fraværPerioder = 'fraværPerioder',
-    perioder_harVærtIUtlandet = 'perioder_harVærtIUtlandet',
-    perioder_utenlandsopphold = 'perioder_utenlandsopphold',
+    // Tidsrom
+    periodeFra = 'periodeFra',
+    periodeTil = 'periodeTil',
+    skalOppholdeSegIUtlandetIPerioden = 'skalOppholdeSegIUtlandetIPerioden',
+    utenlandsoppholdIPerioden = 'utenlandsoppholdIPerioden',
 
-    // Fravær fra
-    aktivitetFravær = 'aktivitetFravær',
+    // Arbeidsforhold
+    ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',
+    frilans = 'frilans',
+    selvstendig = 'selvstendig',
+    frilansoppdrag = 'frilansoppdrag',
+    harVærtEllerErVernepliktig = 'harVærtEllerErVernepliktig',
+    mottarAndreYtelser = 'mottarAndreYtelser',
+    andreYtelser = 'andreYtelser',
 
     // Inntekt
     arbeidsforhold = 'arbeidsforhold',
@@ -53,14 +63,20 @@ export interface SoknadFormData {
     [SoknadFormField.pleietrengende]: Pleietrengende;
     [SoknadFormField.bekreftelseFraLege]: Attachment[];
 
-    // Fravær
-    [SoknadFormField.harPerioderMedFravær]: YesOrNo;
-    [SoknadFormField.fraværPerioder]: FraværPeriode[];
-    [SoknadFormField.perioder_harVærtIUtlandet]: YesOrNo;
-    [SoknadFormField.perioder_utenlandsopphold]: Utenlandsopphold[];
+    //Tidsrom
+    [SoknadFormField.periodeFra]?: string;
+    [SoknadFormField.periodeTil]?: string;
+    [SoknadFormField.skalOppholdeSegIUtlandetIPerioden]?: YesOrNo;
+    [SoknadFormField.utenlandsoppholdIPerioden]?: Utenlandsopphold[];
 
-    // Fravær fra
-    [SoknadFormField.aktivitetFravær]: AktivitetFravær[];
+    // Arbeidsforhold
+    [SoknadFormField.ansatt_arbeidsforhold]: Arbeidsforhold[];
+    [SoknadFormField.frilans]: FrilansFormData;
+    [SoknadFormField.frilansoppdrag]: Arbeidsgiver[];
+    [SoknadFormField.selvstendig]: SelvstendigFormData;
+    [SoknadFormField.harVærtEllerErVernepliktig]?: YesOrNo;
+    [SoknadFormField.mottarAndreYtelser]?: YesOrNo;
+    [SoknadFormField.andreYtelser]?: AndreYtelserFraNAV[];
 
     // Inntekt
     [SoknadFormField.arbeidsforhold]: ArbeidsforholdFormData[];
@@ -80,19 +96,36 @@ export interface SoknadFormData {
     [SoknadFormField.utenlandsoppholdNeste12Mnd]: Utenlandsopphold[];
 }
 
-export type FrilansFormData = Pick<
-    SoknadFormData,
-    | SoknadFormField.frilans_erFrilanser
-    | SoknadFormField.frilans_jobberFortsattSomFrilans
-    | SoknadFormField.frilans_startdato
-    | SoknadFormField.frilans_sluttdato
->;
+export const initialValues: Partial<SoknadFormData> = {
+    [SoknadFormField.harForståttRettigheterOgPlikter]: false,
+    [SoknadFormField.harBekreftetOpplysninger]: false,
+    [SoknadFormField.pleietrengende]: {
+        navn: '',
+        norskIdentitetsnummer: '',
+    },
+    [SoknadFormField.bekreftelseFraLege]: [],
 
-export type SelvstendigFormData = Pick<
-    SoknadFormData,
-    | SoknadFormField.selvstendig_erSelvstendigNæringsdrivende
-    | SoknadFormField.selvstendig_virksomhet
-    | SoknadFormField.selvstendig_harFlereVirksomheter
->;
+    //Tidsrom
+    [SoknadFormField.periodeFra]: undefined,
+    [SoknadFormField.periodeTil]: undefined,
+    [SoknadFormField.skalOppholdeSegIUtlandetIPerioden]: YesOrNo.UNANSWERED,
+    [SoknadFormField.utenlandsoppholdIPerioden]: [],
+
+    // Arbeidssituasjon
+    [SoknadFormField.ansatt_arbeidsforhold]: [],
+    [SoknadFormField.frilans]: {
+        harHattInntektSomFrilanser: YesOrNo.UNANSWERED,
+    },
+    [SoknadFormField.selvstendig]: {
+        harHattInntektSomSN: YesOrNo.UNANSWERED,
+    },
+    [SoknadFormField.frilansoppdrag]: [],
+
+    // Medlemskap
+    [SoknadFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.UNANSWERED,
+    [SoknadFormField.utenlandsoppholdSiste12Mnd]: [],
+    [SoknadFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.UNANSWERED,
+    [SoknadFormField.utenlandsoppholdNeste12Mnd]: [],
+};
 
 export type OpplysningerOmPleietrengendePersonFormData = Pick<SoknadFormData, SoknadFormField.pleietrengende>;

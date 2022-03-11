@@ -1,8 +1,6 @@
 import React from 'react';
 import { apiStringDateToDate, prettifyDateExtended } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-
-import './utenlandsoppholdSummaryItem.less';
 import { BostedUtlandApiData } from '../../../types/SoknadApiData';
 
 const bem = bemUtils('utenlandsoppholdSummaryItem');

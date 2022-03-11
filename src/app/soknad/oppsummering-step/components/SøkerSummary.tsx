@@ -5,11 +5,11 @@ import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
 import FødselsnummerSvar from '@navikt/sif-common-soknad/lib/soknad-summary/FødselsnummerSvar';
 import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
 import SummarySection from '@navikt/sif-common-soknad/lib/soknad-summary/summary-section/SummarySection';
-import { Person } from '../../../types/Person';
 import { SoknadApiData } from '../../../types/SoknadApiData';
+import { Søker } from '../../../types';
 
 interface Props {
-    søker: Person;
+    søker: Søker;
     apiValues: SoknadApiData;
 }
 
