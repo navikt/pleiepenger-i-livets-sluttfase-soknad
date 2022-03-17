@@ -14,6 +14,7 @@ export const getArbeidsgivereISøknadsperiodenApiData = (
     const arbeidsgivere: ArbeidsgiverApiData[] = [];
     formData.ansatt_arbeidsforhold.forEach((forhold) => {
         const { arbeidsgiver } = forhold;
+
         const arbeidsgiverInfo: Omit<ArbeidsgiverApiData, 'erAnsatt' | 'sluttetFørSøknadsperiode' | 'arbeidsforhold'> =
             {
                 type: arbeidsgiver.type,

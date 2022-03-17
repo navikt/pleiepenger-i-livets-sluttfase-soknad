@@ -5,9 +5,29 @@ import { validateFødselsnummer, validateNavn } from './fieldValidation';
 export const welcomingPageIsValid = ({ harForståttRettigheterOgPlikter }: SoknadFormData) =>
     harForståttRettigheterOgPlikter === true;
 
-export const opplysningerOmPleietrengendeStepIsValid = ({ pleietrengende }: SoknadFormData): boolean =>
-    validateNavn(pleietrengende.navn) === undefined &&
-    validateFødselsnummer(pleietrengende.norskIdentitetsnummer) === undefined;
+export const opplysningerOmPleietrengendeStepIsValid = ({ pleietrengende }: SoknadFormData): boolean => {
+    const fødselsnummerValidation = () => {
+        if (
+            pleietrengende.norskIdentitetsnummer &&
+            !pleietrengende.fødselsdato &&
+            !pleietrengende.årsakManglerIdentitetsnummer
+        ) {
+            return validateFødselsnummer(pleietrengende.norskIdentitetsnummer) === undefined;
+        }
+
+        if (
+            !pleietrengende.norskIdentitetsnummer &&
+            pleietrengende.fødselsdato &&
+            pleietrengende.årsakManglerIdentitetsnummer
+        ) {
+            return true;
+        }
+
+        return false;
+    };
+
+    return validateNavn(pleietrengende.navn) === undefined && fødselsnummerValidation();
+};
 
 export const opplysningerOmTidsromStepIsValid = ({ periodeFra, periodeTil }: SoknadFormData) => {
     return periodeFra !== undefined && periodeTil !== undefined;

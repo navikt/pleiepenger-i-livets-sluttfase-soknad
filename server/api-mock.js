@@ -64,32 +64,32 @@ const arbeidsgivereMock = [
     {
         navn: 'Arbeids- og velferdsetaten',
         organisasjonsnummer: '123451234',
-        startDato: '01.12.2019',
-        sluttDato: '01.05.2021',
+        ansattFom: '2019-09-25',
+        ansattTom: null,
     },
     {
         navn: 'Telenor',
         organisasjonsnummer: '09435628',
-        startDato: '01.06.2021',
-        sluttDato: '01.07.2021',
+        ansattFom: '01.06.2021',
+        ansattTom: '01.07.2021',
     },
     {
         navn: 'Arbeids- og sosialdepartementet',
         organisasjonsnummer: '123451235',
-        startDato: '01.06.2018',
-        sluttDato: '01.11.2021',
+        ansattFom: '01.06.2018',
+        ansattTom: '01.11.2021',
     },
     {
         navn: 'Tele2',
         organisasjonsnummer: '676789999',
-        startDato: '01.06.2018',
-        sluttDato: undefined,
+        ansattFom: '01.06.2018',
+        ansattTom: null,
     },
 ];
 
 const getArbeidsgiverMock = (from) => {
     return arbeidsgivereMock.filter((organisasjon) => {
-        const sluttDato = organisasjon.sluttDato ? dayjs(organisasjon.sluttDato, 'DD.MM.YYYY') : dayjs();
+        const sluttDato = organisasjon.ansattTom ? dayjs(organisasjon.ansattTom, 'DD.MM.YYYY') : dayjs();
         const fraDato = dayjs(from, 'YYYY-MM-DD');
         return sluttDato.isSameOrAfter(fraDato);
     });
@@ -116,7 +116,7 @@ const startExpressServer = () => {
 
     server.get('/arbeidsgiver', (req, res) => {
         const arbeidsgivere = getArbeidsgiverMock(req.query.fra_og_med);
-        res.send({ organisasjoner: arbeidsgivere });
+        res.send({ organisasjoner: arbeidsgivere, frilansoppdrag: [], privatarbeidsgiver: [] });
     });
     server.get('/soker-not-logged-in', (req, res) => {
         res.sendStatus(401);

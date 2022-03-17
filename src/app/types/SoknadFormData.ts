@@ -8,10 +8,13 @@ import { ArbeidsforholdFormData } from './ArbeidsforholdTypes';
 import { Arbeidsgiver } from './Arbeidsgiver';
 import { FrilansFormData } from './FrilansFormData';
 import { SelvstendigFormData } from './SelvstendigFormData';
+import { ÅrsakManglerIdentitetsnummer } from './ÅrsakManglerIdentitetsnummer';
 
 export interface Pleietrengende {
     navn: string;
-    norskIdentitetsnummer: string;
+    norskIdentitetsnummer: string | null;
+    årsakManglerIdentitetsnummer?: ÅrsakManglerIdentitetsnummer;
+    fødselsdato?: string;
 }
 
 export enum SoknadFormField {
@@ -20,8 +23,11 @@ export enum SoknadFormField {
 
     // Opplysninger om pleietrengende
     pleietrengende = 'pleietrengende',
+    harIkkeFnr = 'harIkkeFnr',
     pleietrengende__navn = 'pleietrengende.navn',
     pleietrengende__norskIdentitetsnummer = 'pleietrengende.norskIdentitetsnummer',
+    pleietrengende__fødselsdato = 'pleietrengende.fødselsdato',
+    pleietrengende__årsakManglerIdentitetsnummer = 'pleietrengende.årsakManglerIdentitetsnummer',
     bekreftelseFraLege = 'bekreftelseFraLege',
 
     // Tidsrom
@@ -61,6 +67,7 @@ export interface SoknadFormData {
     [SoknadFormField.harForståttRettigheterOgPlikter]: boolean;
     [SoknadFormField.harBekreftetOpplysninger]: boolean;
     [SoknadFormField.pleietrengende]: Pleietrengende;
+    [SoknadFormField.harIkkeFnr]: boolean;
     [SoknadFormField.bekreftelseFraLege]: Attachment[];
 
     //Tidsrom
@@ -102,7 +109,9 @@ export const initialValues: Partial<SoknadFormData> = {
     [SoknadFormField.pleietrengende]: {
         navn: '',
         norskIdentitetsnummer: '',
+        fødselsdato: '',
     },
+    [SoknadFormField.harIkkeFnr]: false,
     [SoknadFormField.bekreftelseFraLege]: [],
 
     //Tidsrom

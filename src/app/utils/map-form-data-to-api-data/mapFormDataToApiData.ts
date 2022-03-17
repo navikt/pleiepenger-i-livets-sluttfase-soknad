@@ -51,7 +51,13 @@ export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape):
                 harForståttRettigheterOgPlikter: formData.harForståttRettigheterOgPlikter,
                 pleietrengende: {
                     navn: formData.pleietrengende.navn,
-                    norskIdentitetsnummer: formData.pleietrengende.norskIdentitetsnummer,
+                    norskIdentitetsnummer: formData.pleietrengende.norskIdentitetsnummer
+                        ? formData.pleietrengende.norskIdentitetsnummer
+                        : null,
+                    årsakManglerIdentitetsnummer: formData.pleietrengende.årsakManglerIdentitetsnummer
+                        ? formData.pleietrengende.årsakManglerIdentitetsnummer
+                        : null,
+                    fødselsdato: formData.pleietrengende.fødselsdato ? formData.pleietrengende.fødselsdato : null,
                 },
                 fraOgMed: formatDateToApiFormat(periodeFra),
                 tilOgMed: formatDateToApiFormat(periodeTil),

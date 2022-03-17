@@ -7,9 +7,12 @@ import { VirksomhetApiData } from '@navikt/sif-common-forms/lib';
 import { JobberIPeriodeSvar } from './JobberIPeriodenSvar';
 import { ISODate, ISODuration } from '@navikt/sif-common-utils';
 import { AndreYtelserFraNAV } from './AndreYtelserFraNavn';
+import { ÅrsakManglerIdentitetsnummer } from './ÅrsakManglerIdentitetsnummer';
 export interface PleietrengendeApi {
     navn: string;
-    norskIdentitetsnummer: string;
+    norskIdentitetsnummer: string | null;
+    årsakManglerIdentitetsnummer: ÅrsakManglerIdentitetsnummer | null;
+    fødselsdato: string | null;
 }
 
 export interface TidEnkeltdagApiData {
