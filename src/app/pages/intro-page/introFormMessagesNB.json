@@ -1,10 +1,10 @@
 {
-    "introform.informationPoster.avsnitt.1": "TODO: INFO",
+    "introform.informationPoster.avsnitt.1": "Denne søknaden bruker du når du må være borte fra jobb for å ta vare på en person som er i livets sluttfase. For å få pleiepenger i denne situasjonen må den som er syk oppholde seg i et privat hjem. ",
 
-    "introForm.erPleietrengendeILivetsSluttfase.spm": "Er den du skal pleie i livets sluttfase?",
-    "introForm.erPleietrengendeILivetsSluttfase.stopMessage": "TODO: stop message",
-    "introForm.pleierDuDenSykeHjemme.spm": "Pleier du den syke hjemme?",
-    "introForm.pleierDuDenSykeHjemme.stopMessage": "TODO: stop message",
+    "introForm.erPleietrengendeILivetsSluttfase.spm": "Er personen du skal ta vare på i livets sluttfase?",
+    "introForm.erPleietrengendeILivetsSluttfase.stopMessage": "For å få pleiepenger i denne situasjonen, må den du skal ta vare på være i livets sluttfase.",
+    "introForm.pleierDuDenSykeHjemme.spm": "Skal du pleie og ta vare på den som er syk i et privat hjem?",
+    "introForm.pleierDuDenSykeHjemme.stopMessage": "Du kan kun få pleiepenger når den som er syk pleies i et privat hjem. Hvis personen er innlagt på sykehus eller en annen institusjon, er det ikke rett til pleiepenger.",
 
     "introForm.start": "Start søknad"
 }

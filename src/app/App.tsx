@@ -18,7 +18,7 @@ import UnavailablePage from './pages/unavailable-page/UnavailablePage';
 import Modal from 'nav-frontend-modal';
 
 export const APPLICATION_KEY = 'pleiepenger-i-livets-sluttfase-soknad';
-export const SKJEMANAVN = 'Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase';
+export const SKJEMANAVN = 'Søknad om pleiepenger i livets sluttfase';
 
 appSentryLogger.init();
 const localeFromSessionStorage = getLocaleFromSessionStorage();

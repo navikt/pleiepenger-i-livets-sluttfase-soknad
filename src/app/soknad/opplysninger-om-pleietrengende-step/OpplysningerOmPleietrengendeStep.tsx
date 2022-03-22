@@ -54,102 +54,100 @@ const OpplysningerOmPleietrengendeStep = ({ onValidSubmit }: StepConfigProps) =>
             </CounsellorPanel>
 
             <FormBlock>
-                <FormSection title={intlHelper(intl, 'step.opplysninger-om-pleietrengende.title')}>
-                    <Box margin="l">
-                        <SoknadFormComponents.Input
-                            name={SoknadFormField.pleietrengende__navn}
-                            label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.navn')}
-                            validate={validateNavn}
-                            style={{ maxWidth: '20rem' }}
-                        />
-                    </Box>
+                <Box margin="l">
+                    <SoknadFormComponents.Input
+                        name={SoknadFormField.pleietrengende__navn}
+                        label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.navn')}
+                        validate={validateNavn}
+                        style={{ maxWidth: '20rem' }}
+                    />
+                </Box>
 
-                    <Box margin="l">
-                        <SoknadFormComponents.Input
-                            name={SoknadFormField.pleietrengende__norskIdentitetsnummer}
-                            label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.fnr')}
-                            validate={
-                                harIkkeFnr
-                                    ? undefined
-                                    : getFødselsnummerValidator({
-                                          required: true,
-                                          disallowedValues: søkerdata?.søker.fødselsnummer
-                                              ? [søkerdata?.søker.fødselsnummer]
-                                              : [],
-                                      })
-                            }
-                            inputMode="numeric"
-                            maxLength={11}
-                            minLength={11}
-                            style={{ maxWidth: '20rem' }}
-                            disabled={harIkkeFnr}
-                        />
-                        <SoknadFormComponents.Checkbox
-                            label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.fnr.harIkkeFnr')}
-                            name={SoknadFormField.harIkkeFnr}
-                            afterOnChange={(newValue) => {
-                                if (newValue) {
-                                    resetFieldValue(
+                <Box margin="l">
+                    <SoknadFormComponents.Input
+                        name={SoknadFormField.pleietrengende__norskIdentitetsnummer}
+                        label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.fnr')}
+                        validate={
+                            harIkkeFnr
+                                ? undefined
+                                : getFødselsnummerValidator({
+                                      required: true,
+                                      disallowedValues: søkerdata?.søker.fødselsnummer
+                                          ? [søkerdata?.søker.fødselsnummer]
+                                          : [],
+                                  })
+                        }
+                        inputMode="numeric"
+                        maxLength={11}
+                        minLength={11}
+                        style={{ maxWidth: '20rem' }}
+                        disabled={harIkkeFnr}
+                    />
+                    <SoknadFormComponents.Checkbox
+                        label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.fnr.harIkkeFnr')}
+                        name={SoknadFormField.harIkkeFnr}
+                        afterOnChange={(newValue) => {
+                            if (newValue) {
+                                resetFieldValue(
+                                    SoknadFormField.pleietrengende__norskIdentitetsnummer,
+                                    setFieldValue,
+                                    initialValues
+                                );
+                            } else {
+                                resetFieldValues(
+                                    [
+                                        SoknadFormField.pleietrengende__årsakManglerIdentitetsnummer,
                                         SoknadFormField.pleietrengende__norskIdentitetsnummer,
-                                        setFieldValue,
-                                        initialValues
-                                    );
-                                } else {
-                                    resetFieldValues(
-                                        [
-                                            SoknadFormField.pleietrengende__årsakManglerIdentitetsnummer,
-                                            SoknadFormField.pleietrengende__norskIdentitetsnummer,
-                                            SoknadFormField.pleietrengende__fødselsdato,
-                                        ],
-                                        setFieldValue,
-                                        initialValues
-                                    );
-                                }
-                            }}
-                        />
-                    </Box>
-                    {harIkkeFnr && (
-                        <>
-                            <FormBlock>
-                                <SoknadFormComponents.DatePicker
-                                    name={SoknadFormField.pleietrengende__fødselsdato}
-                                    label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.fødselsdato')}
-                                    validate={(value) => {
-                                        const dateError = getDateValidator({
-                                            required: true,
-                                            max: dateToday,
-                                        })(value);
+                                        SoknadFormField.pleietrengende__fødselsdato,
+                                    ],
+                                    setFieldValue,
+                                    initialValues
+                                );
+                            }
+                        }}
+                    />
+                </Box>
+                {harIkkeFnr && (
+                    <>
+                        <FormBlock>
+                            <SoknadFormComponents.DatePicker
+                                name={SoknadFormField.pleietrengende__fødselsdato}
+                                label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.fødselsdato')}
+                                validate={(value) => {
+                                    const dateError = getDateValidator({
+                                        required: true,
+                                        max: dateToday,
+                                    })(value);
 
-                                        return dateError;
-                                    }}
-                                    maxDate={dateToday}
-                                    showYearSelector={true}
-                                />
-                            </FormBlock>
-                            <FormBlock margin="l">
-                                <SoknadFormComponents.RadioGroup
-                                    legend={intlHelper(
+                                    return dateError;
+                                }}
+                                maxDate={dateToday}
+                                showYearSelector={true}
+                            />
+                        </FormBlock>
+                        <FormBlock margin="l">
+                            <SoknadFormComponents.RadioGroup
+                                legend={intlHelper(
+                                    intl,
+                                    'step.opplysninger-om-pleietrengende.årsakManglerIdentitetsnummer.spm'
+                                )}
+                                name={SoknadFormField.pleietrengende__årsakManglerIdentitetsnummer}
+                                radios={Object.keys(ÅrsakManglerIdentitetsnummer).map((årsak) => ({
+                                    label: intlHelper(
                                         intl,
-                                        'step.opplysninger-om-pleietrengende.årsakManglerIdentitetsnummer.spm'
-                                    )}
-                                    name={SoknadFormField.pleietrengende__årsakManglerIdentitetsnummer}
-                                    radios={Object.keys(ÅrsakManglerIdentitetsnummer).map((årsak) => ({
-                                        label: intlHelper(
-                                            intl,
-                                            `step.opplysninger-om-pleietrengende.årsakManglerIdentitetsnummer.${årsak}`
-                                        ),
-                                        value: årsak,
-                                    }))}
-                                    validate={getRequiredFieldValidator()}
-                                    checked={
-                                        values.pleietrengende.årsakManglerIdentitetsnummer
-                                            ? values.pleietrengende.årsakManglerIdentitetsnummer
-                                            : undefined
-                                    }></SoknadFormComponents.RadioGroup>
-                            </FormBlock>
-                        </>
-                    )}
-                </FormSection>
+                                        `step.opplysninger-om-pleietrengende.årsakManglerIdentitetsnummer.${årsak}`
+                                    ),
+                                    value: årsak,
+                                }))}
+                                validate={getRequiredFieldValidator()}
+                                checked={
+                                    values.pleietrengende.årsakManglerIdentitetsnummer
+                                        ? values.pleietrengende.årsakManglerIdentitetsnummer
+                                        : undefined
+                                }></SoknadFormComponents.RadioGroup>
+                        </FormBlock>
+                    </>
+                )}
             </FormBlock>
             <FormBlock>
                 <FormSection title={intlHelper(intl, 'step.opplysninger-om-pleietrengende.vedlegg.tittel')}>

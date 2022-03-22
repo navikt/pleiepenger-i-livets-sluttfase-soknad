@@ -1,10 +1,10 @@
 {
-    "application.title": "Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase",
+    "application.title": "Søknad om pleiepenger i livets sluttfase",
 
     "application.loadError.title": "Noe gikk galt ...",
     "application.loadError.message": "Beklager, her har det dessverre skjedd en feil. Dersom feilen fortsetter, prøv igjen litt senere.",
 
-    "page.form.ubesvarteSpørsmålInfo": "For å komme videre, må du svare JA på alle spørsmålene ovenfor",
+    "page.form.ubesvarteSpørsmålInfo": "For å komme videre, må du svare på alle spørsmålene ovenfor.",
     "page.error.pageTitle": "Noe gikk galt ...",
     "fileUploadErrors.part1": "Det har dessverre skjedd en feil under opplasting av følgende vedlegg:",
     "vedleggsliste.fjernKnapp": "Fjern vedlegg",
@@ -35,14 +35,14 @@
     "page.invalidStepPage.tekst": "Du er kommet til en side du ikke trenger å fylle ut. Dette kan skje hvis du går frem og tilbake i søknaden gjennom pilene i nettleseren (pilene helt øverst til venstre på siden). Du unngår dette problemet hvis du heller bruker knapper og lenker som ligger inne i selve søknaden for å gå frem eller tilbake.:",
     "page.invalidStepPage.tilbakeLenke": "Gå tilbake til forrige side",
 
-    "page.ikkeTilgang.sidetittel": "Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase",
+    "page.ikkeTilgang.sidetittel": "Søknad om pleiepenger i livets sluttfase",
     "page.ikkeTilgang.tekst": "Du har ikke tilgang til denne siden. Dersom du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.",
-    "page.ikkeTilgang.lastNed": "Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase",
+    "page.ikkeTilgang.lastNed": "Søknad om pleiepenger i livets sluttfase",
 
-    "welcomingPage.sidetittel": "Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase",
+    "welcomingPage.sidetittel": "Søknad om pleiepenger i livets sluttfase",
     "welcomingPage.banner.tittel": "Hei!",
-    "welcomingPage.banner.tekst": "Jeg vil hjelpe deg med å registrere søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase.",
-    "welcomingPage.introtittel": "Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase",
+    "welcomingPage.banner.tekst": "Jeg vil hjelpe deg med å fylle ut søknad om pleiepenger i livets sluttfase.",
+    "welcomingPage.introtittel": "Søknad om pleiepenger i livets sluttfase",
     "welcomingPage.samtykke.tekst": "Jeg bekrefter at jeg har lest og forstått",
     "welcomingPage.samtykke.harIkkeGodkjentVilkår": "Du må godkjenne vilkårene",
     "welcomingPage.samtykke.harForståttLabel": "For å gå videre må du bekrefte at du har lest og forstått {plikterLink}.",
@@ -86,19 +86,19 @@
     "step.sendButtonLabel": "Send inn søknaden",
     "step.sendButtonAriaLabel": "Send inn søknaden",
 
-    "step.opplysninger-om-pleietrengende.pageTitle": "Opplysninger om den pleietrengende",
-    "step.opplysninger-om-pleietrengende.stepTitle": "Opplysninger om den pleietrengende",
-    "step.opplysninger-om-pleietrengende.stepIndicatorLabel": "Opplysninger om den pleietrengende",
+    "step.opplysninger-om-pleietrengende.pageTitle": "Om den du skal ta vare på og pleie",
+    "step.opplysninger-om-pleietrengende.stepTitle": "Om den du skal ta vare på og pleie",
+    "step.opplysninger-om-pleietrengende.stepIndicatorLabel": "Om den du skal ta vare på og pleie",
     "step.opplysninger-om-pleietrengende.nextButtonLabel": "Fortsett",
-    "step.opplysninger-om-pleietrengende.counsellorPanel.info": "TODO",
-    "step.opplysninger-om-pleietrengende.title": "Om pleietrengende",
+    "step.opplysninger-om-pleietrengende.counsellorPanel.info": "Her skal du gi opplysninger om den du skal ta vare på og pleie. ",
+
     "step.opplysninger-om-pleietrengende.spm.navn": "Navn",
     "step.opplysninger-om-pleietrengende.spm.fnr": "Fødselsnummer",
     "step.opplysninger-om-pleietrengende.årsakManglerIdentitetsnummer.spm": "Hvorfor har ikke pleietrengende fødselsnummer eller D-nummer?",
     "step.opplysninger-om-pleietrengende.årsakManglerIdentitetsnummer.BOR_I_UTLANDET": "Pleietrengende bor i utlandet",
     "step.opplysninger-om-pleietrengende.årsakManglerIdentitetsnummer.ANNET": "Annet",
 
-    "step.opplysninger-om-pleietrengende.fnr.harIkkeFnr": "Pleietrengende har ikke fødselsnummer",
+    "step.opplysninger-om-pleietrengende.fnr.harIkkeFnr": "Personen har ikke fødselsnummer",
     "step.opplysninger-om-pleietrengende.fødselsdato": "Fødselsdato",
     "step.opplysninger-om-pleietrengende.vedlegg.tittel": "Bekreftelse fra lege",
     "step.opplysninger-om-pleietrengende.vedlegg": "Last opp bekreftelse fra lege",
