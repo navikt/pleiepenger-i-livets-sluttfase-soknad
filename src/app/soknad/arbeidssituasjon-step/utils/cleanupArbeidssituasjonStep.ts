@@ -86,5 +86,9 @@ export const cleanupArbeidssituasjonStep = (
         values.andreYtelser = [];
     }
 
+    if (values.harOpptjeningUtland !== YesOrNo.YES) {
+        values.opptjeningUtland = [];
+    }
+
     return values;
 };

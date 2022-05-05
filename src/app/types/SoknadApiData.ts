@@ -3,11 +3,11 @@ import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 import { ArbeidsgiverType } from './Arbeidsgiver';
 import { VirksomhetApiData } from '@navikt/sif-common-forms/lib';
-// import { ArbeidsforholdFormData } from './ArbeidsforholdTypes';
 import { JobberIPeriodeSvar } from './JobberIPeriodenSvar';
 import { ISODate, ISODuration } from '@navikt/sif-common-utils';
 import { AndreYtelserFraNAV } from './AndreYtelserFraNavn';
 import { ÅrsakManglerIdentitetsnummer } from './ÅrsakManglerIdentitetsnummer';
+import { OpptjeningAktivitet } from '../components/pre-common/opptjening-utland';
 export interface PleietrengendeApi {
     navn: string;
     norskIdentitetsnummer: string | null;
@@ -95,6 +95,19 @@ export interface UtenlandsoppholdIPeriodenApiData extends PeriodeApiData {
     landkode: string;
     landnavn: string;
 }
+
+export interface LandApi {
+    landkode: string;
+    landnavn: string;
+}
+
+export interface OpptjeningIUtlandetApi {
+    navn: string;
+    opptjeningType: OpptjeningAktivitet;
+    land: LandApi;
+    fraOgMed: ApiStringDate;
+    tilOgMed: ApiStringDate;
+}
 export interface SoknadApiData {
     språk: Locale;
     harForståttRettigheterOgPlikter: boolean;
@@ -112,7 +125,7 @@ export interface SoknadApiData {
     medlemskap: MedlemskapApiData;
     harBekreftetOpplysninger: boolean;
     vedleggUrls: string[];
-
+    opptjeningUtland?: OpptjeningIUtlandetApi[];
     /** Alle felter med _ brukes ikke i mottak, kun for å vise i oppsummering */
     _attachments: Attachment[];
     _harHattInntektSomFrilanser: boolean;

@@ -8,6 +8,7 @@ import ArbeidsgivereSummary from './ArbeidsgivereSummary';
 import ArbeidssituasjonFrilansSummary from './ArbeidssituasjonFrilansSummary';
 import ArbeidssituasjonSNSummary from './ArbeidssituasjonSNSummary';
 import { Arbeidsgiver } from '../../../types';
+import OpptjeningIUtlandetSummaryView from '../components/OpptjeningIUtlandetSummaryView';
 
 interface Props {
     apiValues: SoknadApiData;
@@ -16,7 +17,7 @@ interface Props {
 }
 
 const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
-    apiValues: { arbeidsgivere, frilans, _frilans, selvstendigNæringsdrivende },
+    apiValues: { arbeidsgivere, frilans, _frilans, selvstendigNæringsdrivende, opptjeningUtland },
     søknadsperiode,
     frilansoppdrag,
 }) => {
@@ -29,6 +30,8 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
             <ArbeidssituasjonFrilansSummary frilans={frilans || _frilans} frilansoppdrag={frilansoppdrag} />
 
             <ArbeidssituasjonSNSummary selvstendigNæringsdrivende={selvstendigNæringsdrivende} />
+
+            <OpptjeningIUtlandetSummaryView opptjeningUtland={opptjeningUtland} />
         </SummarySection>
     );
 };

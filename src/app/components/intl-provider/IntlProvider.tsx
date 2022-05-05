@@ -11,6 +11,7 @@ import utenlandsoppholdMessages from '@navikt/sif-common-forms/lib/utenlandsopph
 import virksomhetMessages from '@navikt/sif-common-forms/lib/virksomhet/virksomhetMessages';
 import { sifCommonPleiepengerMessages } from '@navikt/sif-common-pleiepenger/lib/i18n/index';
 import arbeidstidMessages from '../../soknad/arbeidstid-step/shared/arbeidstid-variert/arbeidstidVariertMessages';
+import opptjeningUtlandMessages from '../pre-common/opptjening-utland/opptjeningUtlandMessages';
 
 const introFormMessages = require('../../pages/intro-page/introFormMessagesNB.json');
 export const appBokmålstekster = require('../../i18n/nb.json');
@@ -25,6 +26,7 @@ const bokmålstekster = {
     ...arbeidstidMessages.nb,
     ...sifCommonPleiepengerMessages.nb,
     ...appBokmålstekster,
+    ...opptjeningUtlandMessages.nb,
 };
 
 export interface IntlProviderProps {

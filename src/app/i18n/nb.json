@@ -171,6 +171,9 @@
     "steg.arbeidssituasjon.andreYtelser.spm": "Mottar du andre utbetalinger fra NAV i perioden med pleiepenger?",
     "steg.arbeidssituasjon.andreYtelser.hvilke.spm": "Mottar du andre utbetalinger fra NAV i perioden med pleiepenger?",
 
+    "steg.arbeidssituasjon.opptjeningUtland.tittel": "Jobb i annet EØS-land",
+    "steg.arbeidssituasjon.opptjeningUtland.spm": "Har du jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før første dag med pleiepenger?",
+
     "arbeidsforhold.part.jobber": "jobber",
     "arbeidsforhold.part.jobbet": "jobbet",
     "arbeidsforhold.part.hosArbeidsgiver": "hos {navn}",
@@ -365,6 +368,8 @@
     "oppsummering.arbeidssituasjon.selvstendig.erSn": "Er selvstendig næringsdrivende i perioden",
     "oppsummering.arbeidssituasjon.selvstendig.flereVirksomheter": "Har flere virksomheter",
     "oppsummering.arbeidssituasjon.selvstendig.enVirksomhet": "Har 1 virksomhet",
+
+    "oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel": "Har du jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før første dag med pleiepenger?",
 
     "oppsummering.arbeidIPeriode.jobbIPerioden.header": "Jobb i søknadsperioden",
     "oppsummering.arbeidIPeriode.jobbIPerioden": "Jobb i søknadsperioden",

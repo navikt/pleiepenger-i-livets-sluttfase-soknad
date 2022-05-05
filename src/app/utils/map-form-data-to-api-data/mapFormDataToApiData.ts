@@ -13,6 +13,7 @@ import { getUtenlandsoppholdIPeriodenApiData } from './getUtenlandsoppholdIPerio
 import { getArbeidsgivereISøknadsperiodenApiData } from './getArbeidsgivereISøknadsperiodenApiData';
 import { getFrilansApiData } from './getFrilansApiData';
 import { getSelvstendigNæringsdrivendeApiData } from './getSelvstendigNæringsdrivendeApiData';
+import { getOpptjeningIUtlandetApiData } from './getOpptjeningUtlandetApiData';
 
 export const mapYesOrNoToSvar = (input: YesOrNo): YesNoSvar => {
     return input === YesOrNo.YES;
@@ -74,6 +75,7 @@ export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape):
                 ...getFrilansApiData(formData.frilans, søknadsperiode, formData.frilansoppdrag),
                 ...getSelvstendigNæringsdrivendeApiData(formData.selvstendig, søknadsperiode, locale),
                 ...getMedlemsskapApiData(formData, locale),
+                opptjeningUtland: getOpptjeningIUtlandetApiData(formData.opptjeningUtland, locale),
                 vedleggUrls: listOfAttachmentsToListOfUrlStrings(formData.bekreftelseFraLege),
                 _attachments: formData.bekreftelseFraLege,
             };

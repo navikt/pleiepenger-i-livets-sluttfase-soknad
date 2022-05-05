@@ -41,7 +41,7 @@ const OpplysningerOmPleietrengendeStep = ({ onValidSubmit }: StepConfigProps) =>
     const totalSize = getTotalSizeOfAttachments(attachments);
     const hasPendingUploads: boolean = attachments.find((a) => a.pending === true) !== undefined;
     const attachmentsSizeOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
-    // console.log(values);
+
     return (
         <SoknadFormStep
             id={StepID.OPPLYSNINGER_OM_PLEIETRENGENDE}

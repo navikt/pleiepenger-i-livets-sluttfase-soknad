@@ -4,9 +4,9 @@ import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
 import FormSection from '@navikt/sif-common-core/lib/components/form-section/FormSection';
 import LoadingSpinner from '@navikt/sif-common-core/lib/components/loading-spinner/LoadingSpinner';
-import { DateRange } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import { date1YearAgo, date1YearFromNow, DateRange } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik/lib/validation';
+import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik/lib/validation';
 import { useFormikContext } from 'formik';
 import { getArbeidsgivereRemoteData } from '../../api/getArbeidsgivereRemoteData';
 import { SøkerdataContext } from '../../context/SøkerdataContext';
@@ -25,6 +25,9 @@ import { cleanupArbeidssituasjonStep } from './utils/cleanupArbeidssituasjonStep
 import { visVernepliktSpørsmål } from './utils/visVernepliktSpørsmål';
 import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
 import AndreYtelserFormPart from './AndreYtelserFormPart';
+import { YesOrNo } from '@navikt/sif-common-formik/lib';
+import OpptjeningUtlandListAndDialog from '../../components/pre-common/opptjening-utland/OpptjeningUtlandListAndDialog';
+import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 
 interface LoadState {
     isLoading: boolean;
@@ -41,7 +44,7 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
     const intl = useIntl();
     const {
         values,
-        values: { ansatt_arbeidsforhold },
+        values: { ansatt_arbeidsforhold, harOpptjeningUtland },
     } = formikProps;
     const [loadState, setLoadState] = useState<LoadState>({ isLoading: false, isLoaded: false });
     const søkerdata = useContext(SøkerdataContext);
@@ -121,6 +124,29 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
                             </Box>
                         </FormSection>
                     )}
+                    <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.opptjeningUtland.tittel')}>
+                        <SoknadFormComponents.YesOrNoQuestion
+                            legend={intlHelper(intl, 'steg.arbeidssituasjon.opptjeningUtland.spm')}
+                            name={SoknadFormField.harOpptjeningUtland}
+                            validate={getYesOrNoValidator()}
+                        />
+                        {harOpptjeningUtland === YesOrNo.YES && (
+                            <FormBlock>
+                                <OpptjeningUtlandListAndDialog
+                                    minDate={date1YearAgo}
+                                    maxDate={date1YearFromNow}
+                                    name={SoknadFormField.opptjeningUtland}
+                                    validate={getListValidator({ required: true })}
+                                    labels={{
+                                        addLabel: 'Legg til jobb i annet EØS-land',
+                                        listTitle: 'Registrerte jobb i annet EØS-land',
+                                        modalTitle: 'Jobb i annet EØS-land',
+                                        emptyListText: 'Ingen jobb i annet EØS-land er lagt til',
+                                    }}
+                                />
+                            </FormBlock>
+                        )}
+                    </FormSection>
 
                     {isFeatureEnabled(Feature.ANDRE_YTELSER) && (
                         <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.andreYtelser.tittel')}>

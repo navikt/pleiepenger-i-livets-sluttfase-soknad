@@ -2,6 +2,7 @@ import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 import { YesOrNo } from '@navikt/sif-common-formik/lib';
 import { Utenlandsopphold } from '@navikt/sif-common-forms/lib';
 import { Virksomhet } from '@navikt/sif-common-forms/lib/virksomhet/types';
+import { OpptjeningUtland } from '../components/pre-common/opptjening-utland';
 import { AndreYtelserFraNAV } from './AndreYtelserFraNavn';
 import { Arbeidsforhold } from './Arbeidsforhold';
 import { ArbeidsforholdFormData } from './ArbeidsforholdTypes';
@@ -44,6 +45,8 @@ export enum SoknadFormField {
     harVærtEllerErVernepliktig = 'harVærtEllerErVernepliktig',
     mottarAndreYtelser = 'mottarAndreYtelser',
     andreYtelser = 'andreYtelser',
+    harOpptjeningUtland = 'harOpptjeningUtland',
+    opptjeningUtland = 'opptjeningUtland',
 
     // Inntekt
     arbeidsforhold = 'arbeidsforhold',
@@ -84,6 +87,8 @@ export interface SoknadFormData {
     [SoknadFormField.harVærtEllerErVernepliktig]?: YesOrNo;
     [SoknadFormField.mottarAndreYtelser]?: YesOrNo;
     [SoknadFormField.andreYtelser]?: AndreYtelserFraNAV[];
+    [SoknadFormField.harOpptjeningUtland]: YesOrNo;
+    [SoknadFormField.opptjeningUtland]: OpptjeningUtland[];
 
     // Inntekt
     [SoknadFormField.arbeidsforhold]: ArbeidsforholdFormData[];
@@ -129,6 +134,8 @@ export const initialValues: Partial<SoknadFormData> = {
         harHattInntektSomSN: YesOrNo.UNANSWERED,
     },
     [SoknadFormField.frilansoppdrag]: [],
+    [SoknadFormField.harOpptjeningUtland]: YesOrNo.UNANSWERED,
+    [SoknadFormField.opptjeningUtland]: [],
 
     // Medlemskap
     [SoknadFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.UNANSWERED,
