@@ -125,7 +125,7 @@ export interface SoknadApiData {
     medlemskap: MedlemskapApiData;
     harBekreftetOpplysninger: boolean;
     vedleggUrls: string[];
-    opptjeningUtland?: OpptjeningIUtlandetApi[];
+    opptjeningIUtlandet?: OpptjeningIUtlandetApi[];
     /** Alle felter med _ brukes ikke i mottak, kun for å vise i oppsummering */
     _attachments: Attachment[];
     _harHattInntektSomFrilanser: boolean;

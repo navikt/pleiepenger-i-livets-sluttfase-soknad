@@ -75,7 +75,7 @@ export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape):
                 ...getFrilansApiData(formData.frilans, søknadsperiode, formData.frilansoppdrag),
                 ...getSelvstendigNæringsdrivendeApiData(formData.selvstendig, søknadsperiode, locale),
                 ...getMedlemsskapApiData(formData, locale),
-                opptjeningUtland: getOpptjeningIUtlandetApiData(formData.opptjeningUtland, locale),
+                opptjeningIUtlandet: getOpptjeningIUtlandetApiData(formData.opptjeningUtland, locale),
                 vedleggUrls: listOfAttachmentsToListOfUrlStrings(formData.bekreftelseFraLege),
                 _attachments: formData.bekreftelseFraLege,
             };

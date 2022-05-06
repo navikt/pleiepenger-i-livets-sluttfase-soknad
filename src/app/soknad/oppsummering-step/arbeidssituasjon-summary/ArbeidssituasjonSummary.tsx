@@ -17,7 +17,7 @@ interface Props {
 }
 
 const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
-    apiValues: { arbeidsgivere, frilans, _frilans, selvstendigNæringsdrivende, opptjeningUtland },
+    apiValues: { arbeidsgivere, frilans, _frilans, selvstendigNæringsdrivende, opptjeningIUtlandet: opptjeningUtland },
     søknadsperiode,
     frilansoppdrag,
 }) => {
