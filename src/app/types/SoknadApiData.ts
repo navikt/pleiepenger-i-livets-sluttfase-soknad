@@ -5,7 +5,6 @@ import { ArbeidsgiverType } from './Arbeidsgiver';
 import { VirksomhetApiData } from '@navikt/sif-common-forms/lib';
 import { JobberIPeriodeSvar } from './JobberIPeriodenSvar';
 import { ISODate, ISODuration } from '@navikt/sif-common-utils';
-import { AndreYtelserFraNAV } from './AndreYtelserFraNavn';
 import { ÅrsakManglerIdentitetsnummer } from './ÅrsakManglerIdentitetsnummer';
 import { OpptjeningAktivitet } from '../components/pre-common/opptjening-utland';
 export interface PleietrengendeApi {
@@ -121,7 +120,6 @@ export interface SoknadApiData {
     arbeidsgivere?: ArbeidsgiverApiData[];
     frilans?: FrilansApiData;
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeApiData;
-    andreYtelserFraNAV?: AndreYtelserFraNAV[];
     medlemskap: MedlemskapApiData;
     harBekreftetOpplysninger: boolean;
     vedleggUrls: string[];

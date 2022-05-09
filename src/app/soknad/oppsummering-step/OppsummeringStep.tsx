@@ -32,8 +32,6 @@ import { navigateTo } from '../../utils/navigationUtils';
 import appSentryLogger from '../../utils/appSentryLogger';
 import routeConfig from '../../config/routeConfig';
 import { SøkerdataContextConsumer } from '../../context/SøkerdataContext';
-import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
-import JaNeiSvar from './components/JaNeiSvar';
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
 import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 import './oppsummeringStep.less';
@@ -100,8 +98,6 @@ const OppsummeringStep = ({ onApplicationSent, values, søknadsdato }: Props) =>
                 // const apiValuesValidationErrors = validateApiValues(apiValues, intl);
                 const apiValuesValidationErrors = undefined;
 
-                const mottarAndreYtelserFraNAV =
-                    apiValues.andreYtelserFraNAV && apiValues.andreYtelserFraNAV.length > 0;
                 return (
                     <SoknadFormStep
                         id={StepID.OPPSUMMERING}
@@ -193,33 +189,6 @@ const OppsummeringStep = ({ onApplicationSent, values, søknadsdato }: Props) =>
                                                 søknadsperiode={søknadsperiode}
                                                 søknadsdato={søknadsdato}
                                             />
-                                            {/* Andre ytelser */}
-                                            {isFeatureEnabled(Feature.ANDRE_YTELSER) && (
-                                                <SummarySection
-                                                    header={intlHelper(intl, 'andreYtelser.summary.header')}>
-                                                    <SummaryBlock
-                                                        header={intlHelper(
-                                                            intl,
-                                                            'andreYtelser.summary.mottarAndreYtelser.header'
-                                                        )}>
-                                                        <JaNeiSvar harSvartJa={mottarAndreYtelserFraNAV} />
-                                                    </SummaryBlock>
-                                                    {mottarAndreYtelserFraNAV && apiValues.andreYtelserFraNAV && (
-                                                        <SummaryBlock
-                                                            header={intlHelper(
-                                                                intl,
-                                                                'andreYtelser.summary.ytelser.header'
-                                                            )}>
-                                                            <SummaryList
-                                                                items={apiValues.andreYtelserFraNAV}
-                                                                itemRenderer={(ytelse) =>
-                                                                    intlHelper(intl, `NAV_YTELSE.${ytelse}`)
-                                                                }
-                                                            />
-                                                        </SummaryBlock>
-                                                    )}
-                                                </SummarySection>
-                                            )}
 
                                             {/* Medlemskap i folketrygden */}
                                             <SummarySection

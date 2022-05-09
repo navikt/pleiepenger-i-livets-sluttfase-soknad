@@ -23,8 +23,6 @@ import ArbeidssituasjonSN from './shared/ArbeidssituasjonSN';
 import { oppdaterSøknadMedArbeidsgivere } from './utils/arbeidsgivereUtils';
 import { cleanupArbeidssituasjonStep } from './utils/cleanupArbeidssituasjonStep';
 import { visVernepliktSpørsmål } from './utils/visVernepliktSpørsmål';
-import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
-import AndreYtelserFormPart from './AndreYtelserFormPart';
 import { YesOrNo } from '@navikt/sif-common-formik/lib';
 import OpptjeningUtlandListAndDialog from '../../components/pre-common/opptjening-utland/OpptjeningUtlandListAndDialog';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
@@ -147,12 +145,6 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
                             </FormBlock>
                         )}
                     </FormSection>
-
-                    {isFeatureEnabled(Feature.ANDRE_YTELSER) && (
-                        <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.andreYtelser.tittel')}>
-                            <AndreYtelserFormPart formValues={values} />
-                        </FormSection>
-                    )}
                 </>
             )}
         </SoknadFormStep>

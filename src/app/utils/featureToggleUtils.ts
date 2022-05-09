@@ -1,5 +1,4 @@
 export enum Feature {
-    'ANDRE_YTELSER' = 'ANDRE_YTELSER',
     'NYNORSK' = 'NYNORSK',
 }
 

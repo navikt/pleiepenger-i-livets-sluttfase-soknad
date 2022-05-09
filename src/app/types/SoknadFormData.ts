@@ -3,7 +3,6 @@ import { YesOrNo } from '@navikt/sif-common-formik/lib';
 import { Utenlandsopphold } from '@navikt/sif-common-forms/lib';
 import { Virksomhet } from '@navikt/sif-common-forms/lib/virksomhet/types';
 import { OpptjeningUtland } from '../components/pre-common/opptjening-utland';
-import { AndreYtelserFraNAV } from './AndreYtelserFraNavn';
 import { Arbeidsforhold } from './Arbeidsforhold';
 import { ArbeidsforholdFormData } from './ArbeidsforholdTypes';
 import { Arbeidsgiver } from './Arbeidsgiver';
@@ -43,8 +42,6 @@ export enum SoknadFormField {
     selvstendig = 'selvstendig',
     frilansoppdrag = 'frilansoppdrag',
     harVærtEllerErVernepliktig = 'harVærtEllerErVernepliktig',
-    mottarAndreYtelser = 'mottarAndreYtelser',
-    andreYtelser = 'andreYtelser',
     harOpptjeningUtland = 'harOpptjeningUtland',
     opptjeningUtland = 'opptjeningUtland',
 
@@ -85,8 +82,6 @@ export interface SoknadFormData {
     [SoknadFormField.frilansoppdrag]: Arbeidsgiver[];
     [SoknadFormField.selvstendig]: SelvstendigFormData;
     [SoknadFormField.harVærtEllerErVernepliktig]?: YesOrNo;
-    [SoknadFormField.mottarAndreYtelser]?: YesOrNo;
-    [SoknadFormField.andreYtelser]?: AndreYtelserFraNAV[];
     [SoknadFormField.harOpptjeningUtland]: YesOrNo;
     [SoknadFormField.opptjeningUtland]: OpptjeningUtland[];
 
