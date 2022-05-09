@@ -90,7 +90,7 @@ const BekreftelseFraLegePart = () => {
                 <Box margin="l">
                     <FormikFileUploader
                         name={SoknadFormField.bekreftelseFraLege}
-                        label={intlHelper(intl, 'steg.lege.vedlegg')}
+                        label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.vedlegg')}
                         onErrorUploadingAttachments={vedleggOpplastingFeilet}
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);

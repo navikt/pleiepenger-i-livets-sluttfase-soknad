@@ -136,10 +136,10 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
                                     name={SoknadFormField.opptjeningUtland}
                                     validate={getListValidator({ required: true })}
                                     labels={{
-                                        addLabel: 'Legg til jobb i annet EØS-land',
-                                        listTitle: 'Registrerte jobb i annet EØS-land',
-                                        modalTitle: 'Jobb i annet EØS-land',
-                                        emptyListText: 'Ingen jobb i annet EØS-land er lagt til',
+                                        addLabel: 'Legg til jobb i et annet EØS-land',
+                                        listTitle: 'Registrerte jobb i et annet EØS-land',
+                                        modalTitle: 'Jobb i et annet EØS-land',
+                                        emptyListText: 'Ingen jobb i et annet EØS-land er lagt til',
                                     }}
                                 />
                             </FormBlock>

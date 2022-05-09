@@ -51,17 +51,9 @@ const OpplysningerOmPleietrengendeStep = ({ onValidSubmit }: StepConfigProps) =>
                 <p>
                     <FormattedMessage id="step.opplysninger-om-pleietrengende.counsellorPanel.info" />
                 </p>
-
-                <FormattedMessage id="step.opplysninger-om-pleietrengende.counsellorPanel.info.list.tittel" />
-
-                <ul>
-                    <li>
-                        <FormattedMessage id="step.opplysninger-om-pleietrengende.counsellorPanel.info.list.item.1" />
-                    </li>
-                    <li>
-                        <FormattedMessage id="step.opplysninger-om-pleietrengende.counsellorPanel.info.list.item.2" />
-                    </li>
-                </ul>
+                <p>
+                    <FormattedMessage id="step.opplysninger-om-pleietrengende.counsellorPanel.info.1" />
+                </p>
             </CounsellorPanel>
 
             <FormBlock>
