@@ -368,7 +368,8 @@
     "oppsummering.arbeidssituasjon.selvstendig.flereVirksomheter": "Har flere virksomheter",
     "oppsummering.arbeidssituasjon.selvstendig.enVirksomhet": "Har 1 virksomhet",
 
-    "oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel": "Har du jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før første dag med pleiepenger?",
+    "oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel": "Jobbet i annet EØS-land",
+    "oppsummering.arbeidssituasjon.optjeningIUtlandet.nei": "Har ikke jobbet i annet EØS-land",
 
     "oppsummering.arbeidIPeriode.jobbIPerioden.header": "Jobb i søknadsperioden",
     "oppsummering.arbeidIPeriode.jobbIPerioden": "Jobb i søknadsperioden",

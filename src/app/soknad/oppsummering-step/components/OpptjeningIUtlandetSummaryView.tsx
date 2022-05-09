@@ -1,9 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import SummaryList from '@navikt/sif-common-core/lib/components/summary-list/SummaryList';
-import JaNeiSvar from './JaNeiSvar';
 import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
 import { renderOpptjeningIUtlandetSummary } from './renderOpptjeningIUtlandetSummary';
 import { OpptjeningIUtlandetApi } from '../../../types/SoknadApiData';
@@ -18,14 +16,17 @@ const OpptjeningIUtlandetSummaryView: React.FC<Props> = (props) => {
 
     return (
         <>
-            <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel')}>
-                <JaNeiSvar harSvartJa={opptjeningUtland !== undefined} />
-            </SummaryBlock>
-            {opptjeningUtland !== undefined && (
-                <Box margin="m">
+            <SummaryBlock
+                header={intlHelper(
+                    intl,
+                    opptjeningUtland === undefined
+                        ? 'oppsummering.arbeidssituasjon.optjeningIUtlandet.nei'
+                        : 'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel'
+                )}>
+                {opptjeningUtland !== undefined && (
                     <SummaryList items={opptjeningUtland} itemRenderer={renderOpptjeningIUtlandetSummary} />
-                </Box>
-            )}
+                )}
+            </SummaryBlock>
         </>
     );
 };
