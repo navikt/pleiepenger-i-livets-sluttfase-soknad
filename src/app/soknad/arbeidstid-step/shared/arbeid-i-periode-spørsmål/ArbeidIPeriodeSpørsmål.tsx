@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IntlShape, useIntl } from 'react-intl';
+import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import ResponsivePanel from '@navikt/sif-common-core/lib/components/responsive-panel/ResponsivePanel';
@@ -27,6 +27,7 @@ import { getArbeidErLiktHverUkeValidator } from '../validation/arbeidErLiktHverU
 import { getArbeidstidTimerEllerProsentValidator } from '../validation/arbeidstidEllerProsentValidator';
 import { getJobberIPeriodenValidator } from '../validation/jobberIPeriodenSpørsmål';
 import InfoSøkerKunHelgedager from './InfoSøkerKunHelgedager';
+import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
 
 interface Props extends ArbeidstidRegistrertLogProps {
     parentFieldName: string;
@@ -125,6 +126,15 @@ const ArbeidIPeriodeSpørsmål = ({
                                 yes: intlHelper(intl, `arbeidIPeriode.erLiktHverUke.ja`),
                                 no: intlHelper(intl, `arbeidIPeriode.erLiktHverUke.nei`),
                             }}
+                            description={
+                                <ExpandableInfo title={intlHelper(intl, 'arbeidIPeriode.erLiktHverUke.spm.hvaBetyr')}>
+                                    <FormattedMessage id={'arbeidIPeriode.erLiktHverUke.spm.hvaBetyr.1'} />
+                                    <br />
+                                    <p>
+                                        <FormattedMessage id={'arbeidIPeriode.erLiktHverUke.spm.hvaBetyr.2'} />
+                                    </p>
+                                </ExpandableInfo>
+                            }
                         />
                     </FormBlock>
 

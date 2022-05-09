@@ -35,12 +35,6 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                     <li>
                         <FormattedMessage id="modal.personopplysninger.4.4" />
                     </li>
-                    <li>
-                        <FormattedMessage id="modal.personopplysninger.4.5" />
-                    </li>
-                    <li>
-                        <FormattedMessage id="modal.personopplysninger.4.6" />
-                    </li>
                 </ul>
                 <p>
                     <FormattedMessage id="modal.personopplysninger.5" />
