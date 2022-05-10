@@ -1,85 +1,43 @@
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import CheckmarkIcon from '@navikt/sif-common-core/lib/components/checkmark-icon/CheckmarkIcon';
-import FormattedHtmlMessage from '@navikt/sif-common-core/lib/components/formatted-html-message/FormattedHtmlMessage';
 import Page from '@navikt/sif-common-core/lib/components/page/Page';
-import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import { Innholdstittel, Undertittel } from 'nav-frontend-typografi';
 import { KvitteringInfo } from '../../types/KvitteringInfo';
-import './confirmationPage.less';
+import Lenke from 'nav-frontend-lenker';
+import getLenker from '../../lenker';
+import Kvittering from '@navikt/sif-common-core/lib/components/kvittering/Kvittering';
 
 interface Props {
     kvitteringInfo?: KvitteringInfo;
 }
 
-const bem = bemUtils('confirmationPage');
-
 const ConfirmationPage = ({ kvitteringInfo }: Props) => {
     const intl = useIntl();
-
     useLogSidevisning(SIFCommonPageKey.kvittering);
 
-    return (
-        <Page title={intlHelper(intl, 'page.confirmation.sidetittel')} className={bem.block}>
-            <div className={bem.element('centeredContent')}>
-                <CheckmarkIcon />
-                <Box margin="xl">
-                    <Innholdstittel>
-                        <FormattedMessage id="page.confirmation.tittel.1" />
-                    </Innholdstittel>
-                    <Box margin="m">
-                        <Innholdstittel tag="h2">
-                            <FormattedMessage id="page.confirmation.tittel.2" />
-                        </Innholdstittel>
-                        <Innholdstittel tag="h2">
-                            <FormattedMessage id="page.confirmation.tittel.3" />
-                        </Innholdstittel>
-                    </Box>
-                </Box>
-            </div>
-            {kvitteringInfo?.arbeidsgivere && (
-                <Box margin="xl">
-                    <AlertStripeAdvarsel>
-                        {intlHelper(intl, 'page.confirmation.tittel.advarsel.list.tittel')}
-                        <ul style={{ marginTop: '0rem', marginBottom: '0rem' }}>
-                            <li>
-                                <FormattedMessage id="page.confirmation.tittel.advarsel.list.item.1" />
-                            </li>
-                            <li>
-                                <FormattedMessage id="page.confirmation.tittel.advarsel.list.item.2" />
-                            </li>
-                        </ul>
-                    </AlertStripeAdvarsel>
-                </Box>
-            )}
+    const punkter: React.ReactNode[] = kvitteringInfo?.arbeidsgivere
+        ? [intlHelper(intl, 'page.confirmation.list.item.1')]
+        : [];
+    punkter.push(intlHelper(intl, 'page.confirmation.list.item.2'));
+    punkter.push(
+        <>
+            <FormattedMessage id="page.confirmation.list.item.3" />{' '}
+            <Lenke href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
+                <FormattedMessage id="page.confirmation.list.item.3.lenke" />
+            </Lenke>{' '}
+            <FormattedMessage id="page.confirmation.list.item.3.1" />
+        </>
+    );
 
-            <Box margin="xxl">
-                <Undertittel>
-                    <FormattedHtmlMessage id="page.confirmation.dinePP.info.tittel" />
-                </Undertittel>
-                <Box margin="m">
-                    <ul>
-                        {kvitteringInfo?.arbeidsgivere && (
-                            <li>
-                                <FormattedMessage id="page.confirmation.dinePP.list.item.1" />
-                            </li>
-                        )}
-                        <li>
-                            <FormattedMessage id="page.confirmation.dinePP.list.item.2" />
-                        </li>
-                        <li>
-                            <FormattedMessage id="page.confirmation.dinePP.list.item.3" />
-                        </li>
-                        <li>
-                            <FormattedMessage id="page.confirmation.dinePP.list.item.4" />
-                        </li>
-                    </ul>
-                </Box>
-            </Box>
+    return (
+        <Page title={intlHelper(intl, 'page.confirmation.sidetittel')}>
+            <Kvittering
+                tittel={intlHelper(intl, 'page.confirmation.tittel')}
+                liste={{
+                    tittel: intlHelper(intl, 'page.confirmation.info.tittel'),
+                    punkter: punkter,
+                }}></Kvittering>
         </Page>
     );
 };

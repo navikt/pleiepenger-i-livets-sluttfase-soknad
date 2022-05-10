@@ -15,7 +15,7 @@ const LenkerBokmål: Lenker = {
     personvern:
         'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/personvern-i-arbeids-og-velferdsetaten/personvernerkl%C3%A6ring-for-arbeids-og-velferdsetaten',
     rettOgPlikt: 'https://nav.no/rettOgPlikt',
-    saksbehandlingstider: 'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV',
+    saksbehandlingstider: 'https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav',
     ettersend:
         'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger/NAV%2009-11.05/ettersendelse',
     medlemskap:

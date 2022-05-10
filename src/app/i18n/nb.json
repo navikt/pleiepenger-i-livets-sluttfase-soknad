@@ -19,12 +19,12 @@
     "dagerMedTid.uke": "Uke {uke}",
     "dagerMedTid.ingenDagerRegistrert": "Ingen dager registrert",
 
-    "page.confirmation.dinePP.info.tittel": "På Dine pleiepenger kan du:",
-    "page.confirmation.dinePP.list.item.1": "Laste ned bekreftelse til arbeidsgiver(e)",
-    "page.confirmation.dinePP.list.item.2": "Ettersende dokumentasjon",
-    "page.confirmation.dinePP.list.item.3": "Melde fra om endring",
-    "page.confirmation.dinePP.list.item.4": "Få informasjon om saksgang",
-    "page.confirmation.dinePP.lenke": "GÅ TIL DINE PLEIEPENGER",
+    "page.confirmation.info.tittel": "Hva skjer videre nå?",
+    "page.confirmation.list.item.1": "Du må be arbeidsgiver/arbeidsgiverne om å sende inntektsmelding så snart som mulig hvis du søker for første gang eller det er mer enn 4 uker siden sist du hadde pleiepenger.",
+    "page.confirmation.list.item.2": "Vi starter behandlingen av søknaden din når vi har mottatt all nødvendig dokumentasjon. Vi kontakter deg hvis vi trenger flere opplysninger i saken din.",
+    "page.confirmation.list.item.3": "Når søknaden er ferdig behandlet, får du svar fra oss på Ditt NAV og i posten. Du kan sjekke",
+    "page.confirmation.list.item.3.lenke": "saksbehandlingstiden",
+    "page.confirmation.list.item.3.1": "her.",
 
     "page.generalErrorPage.sidetittel": "Feil",
     "page.generalErrorPage.tittel": "Noe gikk galt...",
@@ -415,13 +415,10 @@
     "kvittering.info.1": "Når vi har behandlet søknaden din får du en bekreftelse både per post og på Ditt NAV.",
 
     "page.confirmation.sidetittel": "Vi har mottatt søknaden din",
+    "page.confirmation.tittel": "Vi har mottatt søknaden din om pleiepenger i livets sluttfase.",
     "page.confirmation.tittel.1": "Takk!",
     "page.confirmation.tittel.2": "Vi har mottatt søknaden din",
     "page.confirmation.tittel.3": "om pleiepenger i livets sluttfase.",
-
-    "page.confirmation.tittel.advarsel.list.tittel": "Husk å be arbeidsgiver om å sende inntektsmelding så snart som mulig hvis",
-    "page.confirmation.tittel.advarsel.list.item.1": "du søker for første gang, eller",
-    "page.confirmation.tittel.advarsel.list.item.2": "det er 4 uker eller mer siden du hadde pleiepenger sist.",
 
     "validation.harForståttRettigheterOgPlikter.notChecked": "Du må bekrefte at du har lest og forstått dine plikter.",
     "validation.pleietrengende.navn.stringHasNoValue": "Du må skrive inn navnet til personen du skal pleie.",
