@@ -62,6 +62,17 @@ export const validateBekreftelseFraLege = (attachments: Attachment[]): Validatio
     return undefined;
 };
 
+export const validateFradato = (fraDatoString?: string, tilDatoString?: string): ValidationResult<ValidationError> => {
+    const tilDato = datepickerUtils.getDateFromDateString(tilDatoString);
+
+    return getDateRangeValidator({
+        required: true,
+        min: date3YearsAgo,
+        toDate: tilDato,
+        onlyWeekdays: false,
+    }).validateFromDate(fraDatoString);
+};
+
 export const validateTildato = (tilDatoString?: string, fraDatoString?: string): ValidationResult<ValidationError> => {
     return getDateRangeValidator({
         required: true,

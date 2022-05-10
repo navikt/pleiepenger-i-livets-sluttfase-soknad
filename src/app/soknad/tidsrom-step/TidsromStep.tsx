@@ -16,7 +16,7 @@ import SoknadFormComponents from '../SoknadFormComponents';
 import { StepConfigProps, StepID } from '../soknadStepsConfig';
 import { søkerKunHelgedager } from '../../utils/formDataUtils';
 import SoknadFormStep from '../SoknadFormStep';
-import { validateTildato, validateUtenlandsoppholdIPerioden } from '../../validation/fieldValidation';
+import { validateFradato, validateTildato, validateUtenlandsoppholdIPerioden } from '../../validation/fieldValidation';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms/lib/utenlandsopphold/UtenlandsoppholdListAndDialog';
 import { Utenlandsopphold } from '@navikt/sif-common-forms/lib';
 
@@ -31,6 +31,10 @@ const TidsromStep = ({ onValidSubmit }: StepConfigProps) => {
     const periode: DateRange = {
         from: periodeFra || date1YearAgo,
         to: periodeTil || date1YearFromNow,
+    };
+
+    const validateFraDatoField = (date?: string) => {
+        return validateFradato(date, values.periodeTil);
     };
 
     const validateTilDatoField = (date?: string) => {
@@ -62,7 +66,7 @@ const TidsromStep = ({ onValidSubmit }: StepConfigProps) => {
                 }
                 fromInputProps={{
                     label: intlHelper(intl, 'steg.tidsrom.hvilketTidsrom.fom'),
-                    // validate TODO
+                    validate: validateFraDatoField,
                     name: SoknadFormField.periodeFra,
                 }}
                 toInputProps={{
