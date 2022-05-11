@@ -1,7 +1,7 @@
 const opptjeningUtlandMessages = {
     nb: {
         'opptjeningUtland.list.add': '+ Legg til jobb',
-        'opptjeningUtland.form.tittel': 'Jobb i et annet EØS-land',
+        'opptjeningUtland.form.tittel': 'Jobbet i et annet EØS-land',
         'opptjeningUtland.form.tidsperiode.spm': 'Velg tidsperiode for jobb',
         'opptjeningUtland.form.tidsperiode.fraDato': 'Fra og med',
         'opptjeningUtland.form.tidsperiode.tilDato': 'Til og med',
@@ -39,7 +39,7 @@ const opptjeningUtlandMessages = {
     },
     nn: {
         'opptjeningUtland.list.add': '+ Legg til jobb',
-        'opptjeningUtland.form.tittel': 'Jobb i et annet EØS-land',
+        'opptjeningUtland.form.tittel': 'Jobbet i et annet EØS-land',
         'opptjeningUtland.form.tidsperiode.spm': 'Velg tidsperiode for jobb',
         'opptjeningUtland.form.tidsperiode.fraDato': 'Fra og med',
         'opptjeningUtland.form.tidsperiode.tilDato': 'Til og med',

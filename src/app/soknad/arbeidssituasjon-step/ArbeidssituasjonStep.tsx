@@ -138,7 +138,7 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
                                     labels={{
                                         addLabel: 'Legg til jobb i et annet EØS-land',
                                         listTitle: 'Registrerte jobb i et annet EØS-land',
-                                        modalTitle: 'Jobb i et annet EØS-land',
+                                        modalTitle: 'Jobbet i et annet EØS-land',
                                     }}
                                 />
                             </FormBlock>
