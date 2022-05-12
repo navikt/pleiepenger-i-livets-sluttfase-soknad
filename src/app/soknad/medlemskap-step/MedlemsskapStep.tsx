@@ -24,7 +24,6 @@ type Props = {
 const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepConfigProps & Props) => {
     const intl = useIntl();
 
-    // TODO
     const { values } = useFormikContext<SoknadFormData>();
 
     return (

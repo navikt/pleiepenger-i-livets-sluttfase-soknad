@@ -16,9 +16,16 @@ const ConfirmationPage = ({ kvitteringInfo }: Props) => {
     const intl = useIntl();
     useLogSidevisning(SIFCommonPageKey.kvittering);
 
-    const punkter: React.ReactNode[] = kvitteringInfo?.arbeidsgivere
-        ? [intlHelper(intl, 'page.confirmation.list.item.1')]
-        : [];
+    const punkter: React.ReactNode[] = [];
+
+    if (kvitteringInfo?.arbeidsgivere) {
+        punkter.push(
+            <FormattedMessage
+                id={'page.confirmation.list.item.1'}
+                values={{ antall: kvitteringInfo.arbeidsgivere.length }}
+            />
+        );
+    }
     punkter.push(intlHelper(intl, 'page.confirmation.list.item.2'));
     punkter.push(
         <>
