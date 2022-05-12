@@ -84,16 +84,16 @@
     "step.sendButtonLabel": "Send inn søknaden",
     "step.sendButtonAriaLabel": "Send inn søknaden",
 
-    "step.opplysninger-om-pleietrengende.pageTitle": "Om den du har tatt vare på og pleid",
-    "step.opplysninger-om-pleietrengende.stepTitle": "Om den du har tatt vare på og pleid",
-    "step.opplysninger-om-pleietrengende.stepIndicatorLabel": "Om den du har tatt vare på og pleid",
+    "step.opplysninger-om-pleietrengende.pageTitle": "Om personen du har tatt vare på og pleid",
+    "step.opplysninger-om-pleietrengende.stepTitle": "Om personen du har tatt vare på og pleid",
+    "step.opplysninger-om-pleietrengende.stepIndicatorLabel": "Om personen du har tatt vare på og pleid",
     "step.opplysninger-om-pleietrengende.nextButtonLabel": "Fortsett",
     "step.opplysninger-om-pleietrengende.counsellorPanel.info": "Her gir du opplysninger om den du har tatt vare på og pleid i livets sluttfase.",
-    "step.opplysninger-om-pleietrengende.counsellorPanel.info.1": "Når du søker for første gang, må du laste opp en legeerklæring. Legen må bekrefte at personen var i livets sluttfase, og at forventet gjenstående levetid er kort.",
+    "step.opplysninger-om-pleietrengende.counsellorPanel.info.1": "Legen må bekrefte at personen var i livets sluttfase i søknadsperioden, og at forventet gjenstående levetid er/var kort.",
 
     "step.opplysninger-om-pleietrengende.spm.navn": "Navn",
     "step.opplysninger-om-pleietrengende.spm.fnr": "Fødselsnummer",
-    "step.opplysninger-om-pleietrengende.årsakManglerIdentitetsnummer.spm": "Hvorfor har ikke pleietrengende fødselsnummer eller D-nummer?",
+    "step.opplysninger-om-pleietrengende.årsakManglerIdentitetsnummer.spm": "Hvorfor har ikke personen fødselsnummer eller D-nummer?",
     "step.opplysninger-om-pleietrengende.årsakManglerIdentitetsnummer.BOR_I_UTLANDET": "Pleietrengende bor i utlandet",
     "step.opplysninger-om-pleietrengende.årsakManglerIdentitetsnummer.ANNET": "Annet",
 
@@ -110,8 +110,8 @@
     "step.tidsrom.pageTitle": "Pleiepengesøknad - periode",
     "step.tidsrom.stepTitle": "Perioden med pleiepenger",
     "step.tidsrom.stepIndicatorLabel": "Periode",
-    "step.tidsrom.counsellorPanel.avsnit.1": "Du kan kun søke tilbake i tid, altså for dager du allerede har brukt for å ta vare på og pleie personen som er i livets sluttfase.",
-    "step.tidsrom.counsellorPanel.avsnit.2": "Pleiepenger gis i opptil 60 dager totalt. Hvis det er flere som deler på pleien, har dere altså 60 dager å dele på til sammen.",
+    "step.tidsrom.counsellorPanel.avsnit.1": "Du kan kun søke tilbake i tid, altså for dager du allerede har brukt for å ta vare på og pleie personen i livets sluttfase.",
+    "step.tidsrom.counsellorPanel.avsnit.2": "Pleiepenger gis i opptil 60 dager totalt. Hvis det er flere som deler på pleien, har dere altså 60 dager å dele på til sammen. Du trenger ikke å ha tatt ut dagene sammehengende.",
     "step.tidsrom.nextButtonLabel": "Fortsett",
     "step.tidsrom.infotekst": "For å ha rett til pleiepenger må du ha omsorgen for pleietrengende i hele perioden du søker for.",
     "step.tidsrom.søkerKunHelgedager.alert": "Du kan kun få utbetalt pleiepenger for hverdager. Det utbetales ikke pleiepenger for lørdag eller søndag selv om du har hatt fravær fra jobb for å pleie barn. Du kan derfor ikke søke pleiepenger kun for lørdag og/eller søndag.",
@@ -127,8 +127,8 @@
     "steg.tidsrom.ferieuttakIPerioden.modalTitle": "Ferie",
     "steg.tidsrom.ferieuttakIPerioden.addLabel": "Legg til ferie",
 
-    "steg.tidsrom.hjelpetekst.tittel": "Kan jeg søke for flere perioder samtidig?",
-    "steg.tidsrom.hjelpetekst.1": "Du kan søke om flere perioder i samme søknad hvis du har jobbet i din fulle stilling mellom periodene du har hatt pleiepenger.",
+    "steg.tidsrom.hjelpetekst.tittel": "Kan jeg søke for flere perioder i samme søknad, når jeg ikke har tatt ut dagene sammenhengende?",
+    "steg.tidsrom.hjelpetekst.1": "Når du ikke har tatt ut dagene sammenhengende, kan du søke om flere perioder hvis du har jobbet i din fulle stilling mellom periodene du har hatt pleiepenger.",
     "steg.tidsrom.hjelpetekst.2": "Da setter du fra og med dato til den første dagen du har hatt pleiepenger. Til og med dato setter du til den siste dagen du har hatt pleiepenger i den siste perioden.",
     "steg.tidsrom.hjelpetekst.3": "Når du senere i søknaden blir spurt om jobb, legger du inn at du har jobbet fullt i de periodene du ikke har hatt pleiepenger. Du vil ikke få pleiepenger de periodene du har jobbet fullt.",
     "steg.tidsrom.hjelpetekst.4": "Hvis du ikke har jobbet i din fulle stilling mellom periodene med pleiepenger, kan du ikke søke om flere perioder i samme søknad. Da må du sende én søknad for hver periode.",
@@ -182,7 +182,7 @@
     "arbeidsforhold.ikkeAnsatt.info": "Når du ikke er ansatt her lenger, må du be denne arbeidsgiveren om å sende en ny A-melding med sluttdato. Dette gjør de enten via eget lønns- og personalsystem, eller via Altinn.",
     "arbeidsforhold.ikkeFrilansoppdragIPerioden.info": "Informasjon når frilansoppdraget ikke gjelder perioden",
 
-    "arbeidsforhold.erAnsatt.spm": "Stemmer det at var ansatt hos {navn} i perioden du søker for?",
+    "arbeidsforhold.erAnsatt.spm": "Stemmer det at du var ansatt hos {navn} i perioden du søker for?",
     "arbeidsforhold.harFraværIPerioden.spm": "Hadde du fravær fra jobben din hos {navn} i perioden du søker for?",
     "arbeidsforhold.harFrilansoppdrag.spm": "Stemmer det at du har et frilansoppdrag hos {navn} i perioden du søker for?",
     "arbeidsforhold.sluttetFørSøknadsperiode.spm": "Sluttet du hos {navn} før {fraDato}?",
@@ -381,7 +381,8 @@
     "oppsummering.arbeidssituasjon.selvstendig.enVirksomhet": "Har 1 virksomhet",
 
     "oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel": "Jobbet i annet EØS-land",
-    "oppsummering.arbeidssituasjon.optjeningIUtlandet.nei": "Har ikke jobbet i annet EØS-land",
+    "oppsummering.arbeidssituasjon.optjeningIUtlandet.nei.spm": "Har du jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før første dag med pleiepenger?",
+    "oppsummering.arbeidssituasjon.optjeningIUtlandet.nei": "Nei",
 
     "oppsummering.arbeidIPeriode.jobbIPerioden.header": "Jobb i søknadsperioden",
     "oppsummering.arbeidIPeriode.jobbIPerioden": "Jobb i søknadsperioden",
@@ -437,6 +438,7 @@
     "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerHasNoValue": "Du må skrive inn fødselsnummeret til den du har pleid. Et fødselsnummer består av 11 siffer.",
     "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerIsInvalid": " Du har oppgitt et ugyldig fødselsnummer. Kontroller at du har tastet inn riktig.",
     "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerIsNot11Chars": "Du har oppgitt et ugyldig fødselsnummer. Et gyldig fødselsnummer består av 11 siffer.",
+    "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerIsNotAllowed": "Du har oppgitt sitt eget fødselsnummer. Du må skrive inn fødselsnummeret til den du har pleid.",
     "validation.pleietrengende.fødselsdato.dateHasNoValue": "Du må oppgi fødselsdatoen til den den du har pleid. Skriv inn, eller velg dato fra datovelgeren.",
     "validation.pleietrengende.fødselsdato.dateIsAfterMax": "Pleietrengende sin fødselsdato kan ikke være etter dagens dato.",
     "validation.pleietrengende.fødselsdato.dateHasInvalidFormat": "Du må oppgi pleietrengende sin fødselsdato i et gyldig format. Gyldig format er dd.mm.ååå.",
@@ -482,6 +484,8 @@
     "validation.selvstendig.arbeidsforhold.harFraværIPeriode.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har fravær som selvstendig næringsdrivende i perioden.",
     "validation.harVærtEllerErVernepliktig.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du utøvde verneplikt på tidspunktet du søker pleiepenger fra.",
     "virksomhetForm.næringstype.noValue": "Du må velge hvilken type virksomhet du har.",
+
+    "validation.harOpptjeningUtland.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før første dag med pleiepenger.",
 
     "validation.arbeidsforhold.sluttetFørSøknadsperiode.yesOrNoIsUnanswered": "Du må svare på om du sluttet hos {navn} før {fraDato}.",
     "validation.arbeidsforhold.harFraværIPeriode.yesOrNoIsUnanswered": "Du må svare på om du har fravær i perioden hos {navn}.",
