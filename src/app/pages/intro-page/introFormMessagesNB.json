@@ -1,11 +1,11 @@
 {
-    "introform.informationPoster.avsnitt.1": "Denne søknaden bruker du når du har tatt vare på en person i livets sluttfase. For å få pleiepenger i denne situasjonen, må personen oppholde seg i et privat hjem. Hvis personen i dager eller perioder har vært innlagt, er det ikke rett til pleiepenger.",
+    "introform.informationPoster.avsnitt.1": "Denne søknaden bruker du når du har tatt vare på en person i livets sluttfase. For å få pleiepenger i denne situasjonen, må personen oppholde seg i et privat hjem. Det er ikke rett til pleiepenger for dager som personen eventuelt har vært innlagt.",
     "introform.informationPoster.avsnitt.2": "Du kan kun søke tilbake i tid, altså for dager du allerede har brukt for å ta vare på og pleie personen i livets sluttfase.",
 
-    "introForm.erPleietrengendeILivetsSluttfase.spm": "Er personen du har tatt vare i livets sluttfase i perioden du søker for?",
+    "introForm.erPleietrengendeILivetsSluttfase.spm": "Er personen du har tatt vare på i livets sluttfase i perioden du søker for?",
     "introForm.erPleietrengendeILivetsSluttfase.stopMessage": "Den du har tatt vare på må være eller ha vært i livets sluttfase i perioden du søker for.",
     "introForm.pleierDuDenSykeHjemme.spm": "Har du tatt vare på og pleid personen i et privat hjem?",
-    "introForm.pleierDuDenSykeHjemme.stopMessage": "Du kan kun få pleiepenger når du har tatt vare på og pleid personen i et privat hjem. Hvis personen i dager eller perioder har vært innlagt, er det ikke rett til pleiepenger",
+    "introForm.pleierDuDenSykeHjemme.stopMessage": "Det er ikke rett til pleiepenger for dager som personen eventuelt har vært innlagt.",
 
     "introForm.start": "Start søknad"
 }
