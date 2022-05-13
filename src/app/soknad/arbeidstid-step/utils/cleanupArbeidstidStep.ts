@@ -51,7 +51,10 @@ export const cleanupArbeidstidAnsatt = (
 export const cleanupArbeidstidFrilans = (
     frilans: FrilansFormData,
     søknadsperiode: DateRange
-): ArbeidsforholdFrilanser => {
+): ArbeidsforholdFrilanser | undefined => {
+    if (frilans.arbeidsforhold === undefined) {
+        return undefined;
+    }
     const periodeSomFrilanser = getPeriodeSomFrilanserInnenforPeriode(søknadsperiode, frilans);
     return {
         ...frilans.arbeidsforhold,
