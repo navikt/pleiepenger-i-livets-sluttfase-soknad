@@ -21,11 +21,11 @@ describe('visVernepliktSpørsmål', () => {
                 },
             ];
             const frilans = { harHattInntektSomFrilanser: YesOrNo.UNANSWERED };
-            const selvstendig_harHattInntektSomSN = YesOrNo.UNANSWERED;
+            const selvstendig = { harHattInntektSomSN: YesOrNo.UNANSWERED };
             const result = visVernepliktSpørsmål({
                 ansatt_arbeidsforhold,
                 frilans,
-                selvstendig_harHattInntektSomSN,
+                selvstendig,
             });
             expect(result).toBeFalsy();
         });
@@ -34,7 +34,7 @@ describe('visVernepliktSpørsmål', () => {
                 visVernepliktSpørsmål({
                     ansatt_arbeidsforhold: [{ ...defaultAnsattArbeidsforhold, erAnsatt: YesOrNo.YES }],
                     frilans: { harHattInntektSomFrilanser: YesOrNo.NO },
-                    selvstendig_harHattInntektSomSN: YesOrNo.NO,
+                    selvstendig: { harHattInntektSomSN: YesOrNo.NO },
                 })
             ).toBeFalsy();
         });
@@ -48,7 +48,7 @@ describe('visVernepliktSpørsmål', () => {
                         },
                     ],
                     frilans: { harHattInntektSomFrilanser: YesOrNo.NO },
-                    selvstendig_harHattInntektSomSN: YesOrNo.NO,
+                    selvstendig: { harHattInntektSomSN: YesOrNo.NO },
                 })
             ).toBeFalsy();
         });
@@ -63,7 +63,7 @@ describe('visVernepliktSpørsmål', () => {
                         },
                     ],
                     frilans: { harHattInntektSomFrilanser: YesOrNo.NO },
-                    selvstendig_harHattInntektSomSN: YesOrNo.NO,
+                    selvstendig: { harHattInntektSomSN: YesOrNo.NO },
                 })
             ).toBeFalsy();
         });
@@ -78,7 +78,7 @@ describe('visVernepliktSpørsmål', () => {
                         },
                     ],
                     frilans: { harHattInntektSomFrilanser: YesOrNo.NO },
-                    selvstendig_harHattInntektSomSN: YesOrNo.NO,
+                    selvstendig: { harHattInntektSomSN: YesOrNo.NO },
                 })
             ).toBeFalsy();
         });
@@ -87,7 +87,7 @@ describe('visVernepliktSpørsmål', () => {
                 visVernepliktSpørsmål({
                     ansatt_arbeidsforhold: [],
                     frilans: { harHattInntektSomFrilanser: YesOrNo.YES },
-                    selvstendig_harHattInntektSomSN: YesOrNo.NO,
+                    selvstendig: { harHattInntektSomSN: YesOrNo.NO },
                 })
             ).toBeFalsy();
         });
@@ -96,7 +96,7 @@ describe('visVernepliktSpørsmål', () => {
                 visVernepliktSpørsmål({
                     ansatt_arbeidsforhold: [],
                     frilans: { harHattInntektSomFrilanser: YesOrNo.YES },
-                    selvstendig_harHattInntektSomSN: YesOrNo.UNANSWERED,
+                    selvstendig: { harHattInntektSomSN: YesOrNo.UNANSWERED },
                 })
             ).toBeFalsy();
         });
@@ -105,7 +105,7 @@ describe('visVernepliktSpørsmål', () => {
                 visVernepliktSpørsmål({
                     ansatt_arbeidsforhold: [],
                     frilans: { harHattInntektSomFrilanser: YesOrNo.NO },
-                    selvstendig_harHattInntektSomSN: YesOrNo.YES,
+                    selvstendig: { harHattInntektSomSN: YesOrNo.YES },
                 })
             ).toBeFalsy();
         });
@@ -115,7 +115,7 @@ describe('visVernepliktSpørsmål', () => {
             expect(
                 visVernepliktSpørsmål({
                     ansatt_arbeidsforhold: [],
-                    selvstendig_harHattInntektSomSN: YesOrNo.NO,
+                    selvstendig: { harHattInntektSomSN: YesOrNo.NO },
                     frilans: {
                         harHattInntektSomFrilanser: YesOrNo.NO,
                     },
@@ -132,7 +132,7 @@ describe('visVernepliktSpørsmål', () => {
                             sluttetFørSøknadsperiode: YesOrNo.YES,
                         },
                     ],
-                    selvstendig_harHattInntektSomSN: YesOrNo.NO,
+                    selvstendig: { harHattInntektSomSN: YesOrNo.NO },
                     frilans: { harHattInntektSomFrilanser: YesOrNo.NO },
                 })
             ).toBeTruthy();

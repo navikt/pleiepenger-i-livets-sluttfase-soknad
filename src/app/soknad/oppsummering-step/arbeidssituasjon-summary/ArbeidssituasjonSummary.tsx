@@ -9,6 +9,7 @@ import ArbeidssituasjonFrilansSummary from './ArbeidssituasjonFrilansSummary';
 import ArbeidssituasjonSNSummary from './ArbeidssituasjonSNSummary';
 import { Arbeidsgiver } from '../../../types';
 import OpptjeningIUtlandetSummaryView from '../components/OpptjeningIUtlandetSummaryView';
+import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
 
 interface Props {
     apiValues: SoknadApiData;
@@ -17,7 +18,14 @@ interface Props {
 }
 
 const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
-    apiValues: { arbeidsgivere, frilans, _frilans, selvstendigNæringsdrivende, opptjeningIUtlandet: opptjeningUtland },
+    apiValues: {
+        arbeidsgivere,
+        frilans,
+        _frilans,
+        selvstendigNæringsdrivende,
+        opptjeningIUtlandet: opptjeningUtland,
+        harVærtEllerErVernepliktig,
+    },
     søknadsperiode,
     frilansoppdrag,
 }) => {
@@ -30,6 +38,22 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
             <ArbeidssituasjonFrilansSummary frilans={frilans || _frilans} frilansoppdrag={frilansoppdrag} />
 
             <ArbeidssituasjonSNSummary selvstendigNæringsdrivende={selvstendigNæringsdrivende} />
+
+            {/* Vernepliktig */}
+            {harVærtEllerErVernepliktig !== undefined && (
+                <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.verneplikt.header')}>
+                    <ul>
+                        <li>
+                            {intlHelper(
+                                intl,
+                                harVærtEllerErVernepliktig
+                                    ? 'oppsummering.arbeidssituasjon.verneplikt.harVærtVernepliktig'
+                                    : 'oppsummering.arbeidssituasjon.verneplikt.harIkkeVærtVernepliktig'
+                            )}
+                        </li>
+                    </ul>
+                </SummaryBlock>
+            )}
 
             <OpptjeningIUtlandetSummaryView opptjeningUtland={opptjeningUtland} />
         </SummarySection>

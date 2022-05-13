@@ -2,22 +2,23 @@ import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import { isYesOrNoAnswered } from '../../../validation/fieldValidation';
 import { Arbeidsforhold } from '../../../types/Arbeidsforhold';
 import { FrilansFormData } from '../../../types/FrilansFormData';
+import { SelvstendigFormData } from '../../../types/SelvstendigFormData';
 
 export const visVernepliktSpørsmål = ({
     ansatt_arbeidsforhold,
     frilans,
-    selvstendig_harHattInntektSomSN,
+    selvstendig,
 }: {
     ansatt_arbeidsforhold: Arbeidsforhold[];
     frilans: FrilansFormData;
-    selvstendig_harHattInntektSomSN?: YesOrNo;
+    selvstendig: SelvstendigFormData;
 }): boolean => {
     const { harHattInntektSomFrilanser } = frilans || {};
 
     /** Selvstendig næringsdrivende */
     if (
-        isYesOrNoAnswered(selvstendig_harHattInntektSomSN) === false ||
-        selvstendig_harHattInntektSomSN === YesOrNo.YES
+        isYesOrNoAnswered(selvstendig.harHattInntektSomSN) === false ||
+        selvstendig.harHattInntektSomSN === YesOrNo.YES
     ) {
         return false;
     }
