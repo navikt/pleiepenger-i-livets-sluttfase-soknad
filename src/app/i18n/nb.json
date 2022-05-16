@@ -435,7 +435,7 @@
     "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerHasNoValue": "Du må skrive inn fødselsnummeret til den du har pleid. Et fødselsnummer består av 11 siffer.",
     "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerIsInvalid": " Du har oppgitt et ugyldig fødselsnummer. Kontroller at du har tastet inn riktig.",
     "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerIsNot11Chars": "Du har oppgitt et ugyldig fødselsnummer. Et gyldig fødselsnummer består av 11 siffer.",
-    "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerIsNotAllowed": "Du har oppgitt sitt eget fødselsnummer. Du må skrive inn fødselsnummeret til den du har pleid.",
+    "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerIsNotAllowed": "Du har oppgitt ditt eget fødselsnummer. Du må skrive inn fødselsnummeret til den du har pleid.",
     "validation.pleietrengende.fødselsdato.dateHasNoValue": "Du må oppgi fødselsdatoen til den den du har pleid. Skriv inn, eller velg dato fra datovelgeren.",
     "validation.pleietrengende.fødselsdato.dateIsAfterMax": "Pleietrengende sin fødselsdato kan ikke være etter dagens dato.",
     "validation.pleietrengende.fødselsdato.dateHasInvalidFormat": "Du må oppgi pleietrengende sin fødselsdato i et gyldig format. Gyldig format er dd.mm.ååå.",
