@@ -130,7 +130,7 @@ const startExpressServer = () => {
     server.get('/soker-logget-ut', (req, res) => {
         res.sendStatus(401);
     });
-    // TODO: endre her
+
     server.post('/soknad', (req, res) => {
         const body = req.body;
         console.log('[POST] body', body);

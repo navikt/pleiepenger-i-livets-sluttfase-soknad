@@ -114,7 +114,6 @@ const TidsromStep = ({ onValidSubmit }: StepConfigProps) => {
                                 <UtenlandsoppholdListAndDialog<SoknadFormField>
                                     name={SoknadFormField.utenlandsoppholdIPerioden}
                                     minDate={periode.from}
-                                    // TODO max date yesterday og validering
                                     maxDate={periode.to}
                                     excludeInnlagtQuestion={true}
                                     labels={{

@@ -19,7 +19,8 @@ import {
 } from '@navikt/sif-common-formik/lib/validation';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik/lib/validation/types';
 import { Utenlandsopphold } from '@navikt/sif-common-forms/lib';
-import dayjs from 'dayjs';
+import { yesterday } from '../utils/dates';
+// import dayjs from 'dayjs';
 
 export enum AppFieldValidationErrors {
     'samlet_storrelse_for_hoy' = 'validation.samlet_storrelse_for_hoy',
@@ -68,6 +69,7 @@ export const validateFradato = (fraDatoString?: string, tilDatoString?: string):
     return getDateRangeValidator({
         required: true,
         min: date3YearsAgo,
+        max: yesterday,
         toDate: tilDato,
         onlyWeekdays: false,
     }).validateFromDate(fraDatoString);
@@ -77,7 +79,7 @@ export const validateTildato = (tilDatoString?: string, fraDatoString?: string):
     return getDateRangeValidator({
         required: true,
         min: date3YearsAgo,
-        max: fraDatoString ? dayjs(fraDatoString).endOf('day').add(1, 'year').toDate() : undefined,
+        max: yesterday,
         fromDate: datepickerUtils.getDateFromDateString(fraDatoString),
         onlyWeekdays: false,
     }).validateToDate(tilDatoString);

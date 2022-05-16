@@ -115,7 +115,7 @@
     "step.tidsrom.counsellorPanel.avsnit.2": "Pleiepenger gis i opptil 60 dager totalt. Hvis det er flere som deler på pleien, har dere altså 60 dager å dele på til sammen. Du trenger ikke å ha tatt ut dagene sammenhengende.",
     "step.tidsrom.nextButtonLabel": "Fortsett",
     "step.tidsrom.infotekst": "For å ha rett til pleiepenger må du ha omsorgen for pleietrengende i hele perioden du søker for.",
-    "step.tidsrom.søkerKunHelgedager.alert": "Du kan kun få utbetalt pleiepenger for hverdager. Det utbetales ikke pleiepenger for lørdag eller søndag selv om du har hatt fravær fra jobb for å pleie barn. Du kan derfor ikke søke pleiepenger kun for lørdag og/eller søndag.",
+    "step.tidsrom.søkerKunHelgedager.alert": "Du kan kun få utbetalt pleiepenger for hverdager. Det utbetales ikke pleiepenger for lørdag eller søndag selv om du har hatt fravær fra jobb. Du kan derfor ikke søke pleiepenger kun for lørdag og/eller søndag.",
     "steg.tidsrom.veileder.utenlandsopphold": "Når du oppholder deg i et land utenfor EØS, kan du beholde pleiepengene i en begrenset periode på opptil 8 uker av en 12 måneder lang periode.",
 
     "steg.tidsrom.iUtlandetIPerioden.spm": "Har du vært i utlandet i perioden du søker for?",
@@ -137,15 +137,6 @@
     "steg.tidsrom.hvilketTidsrom.spm": "Hvilken periode søker du for?",
     "steg.tidsrom.hvilketTidsrom.fom": "Fra og med",
     "steg.tidsrom.hvilketTidsrom.tom": "Til og med",
-    "steg.tidsrom.hvorMye.spm": "Hvor mye søker du om?",
-    "steg.tidsrom.hvorMye.hjelp.part1": "Kan du jobbe noe? Da reduserer du prosenten tilsvarende.",
-    "steg.tidsrom.hvorMye.hjelp.part2": "Jobber du deltid i utgangspunktet? Du kan likevel søke om 100 % pleiepenger hvis du mister hele inntekten fordi du pleier barnet.",
-    "steg.tidsrom.annenSamtidig.spm": "Er det en annen person som søker om pleiepenger i samme periode som deg?",
-    "steg.tidsrom.samtidigHjemme.spm": "Skal dere være hjemme/på sykehus samtidig for å pleie barnet?",
-    "steg.tidsrom.dagerPerUkeBorteFraJobb.spm": "Hvor mange dager per uke skal du være borte fra jobb for å ta hånd om barnet? Rund av til nærmeste halve dag.",
-
-    "steg.tidsrom.skalPassePåBarnetIHelePerioden.spm": "Skal du passe på barnet i hele tidsrommet du skal ha pleiepenger?",
-    "steg.tidsrom.bekreftOmsorgEkstrainfo.spm": "Beskriv omsorgsrollen du har for barnet i tidsrommet du skal ha pleiepenger:",
 
     "step.arbeidssituasjon.pageTitle": "Arbeidssituasjon",
     "step.arbeidssituasjon.stepTitle": "Arbeidssituasjon",
@@ -286,7 +277,7 @@
     "step.arbeidstid.stepTitle": "Jobb i søknadsperioden",
     "step.arbeidstid.stepIndicatorLabel": "Jobb i søknadsperioden",
 
-    "arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.1": "Du kan kun få utbetalt pleiepenger for hverdager. Det utbetales ikke pleiepenger for lørdag eller søndag selv om du har hatt fravær fra jobb for å pleie barn.",
+    "arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.1": "Du kan kun få utbetalt pleiepenger for hverdager. Det utbetales ikke pleiepenger for lørdag eller søndag selv om du har hatt fravær fra jobb for å pleie personen.",
     "arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.2": "Du kan derfor ikke registrere arbeid kun for lørdag og/eller søndag.",
     "arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.3": "Vennligst gå tilbake til steg \"Perioden med pleiepenger\" og sjekk informasjonen du har fylt ut. Når du har gjort det, trykker du på \"Fortsett\"-knappen for å gå videre.",
 
@@ -454,13 +445,13 @@
     "validation.periodeFra.dateHasInvalidFormat": "Du må oppgi periodens fra-dato i et gyldig datoformat. Gyldig format er dd.mm.åååå.",
     "validation.periodeFra.fromDateIsAfterToDate": "Fra-datoen kan ikke være etter til-datoen. Skriv inn eller velg dato fra kalenderen.",
     "validation.periodeFra.dateIsBeforeMin": "Du kan ikke søke om pleiepenger for en periode som er lenger enn 3 år tilbake i tid.",
-    "validation.periodeFra.dateIsBeforeMin.fødselsdato": "Pleiepengeperioden kan ikke starte før barnet er født.",
     "validation.periodeFra.dateIsNotWeekday": "Periodens fra-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.",
+    "validation.periodeFra.dateIsAfterMax": "Du kan kun søke tilbake i tid, altså for dager du allerede har brukt for å ta vare på og pleie personen i livets sluttfase.",
     "validation.periodeTil.dateHasNoValue": "Du må fylle ut periodens til-dato.",
     "validation.periodeTil.dateHasInvalidFormat": "Du må oppgi periodens til-dato i et gyldig datoformat. Gyldig format er dd.mm.åååå.",
     "validation.periodeTil.dateIsBeforeMin": "Du kan ikke søke om pleiepenger for en periode som er lenger enn 3 år tilbake i tid.",
     "validation.periodeTil.dateIsNotWeekday": "Periodens til-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.",
-    "validation.periodeTil.dateIsAfterMax": "Du kan kun søke pleiepenger for opptil ett år av gangen.",
+    "validation.periodeTil.dateIsAfterMax": "Du kan kun søke tilbake i tid, altså for dager du allerede har brukt for å ta vare på og pleie personen i livets sluttfase.",
     "validation.periodeTil.toDateIsBeforeFromDate": "Til-datoen kan ikke være før fra-datoen. Skriv inn eller velg dato fra kalenderen.",
 
     "validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har vært i utlandet i perioden du søker for.",
