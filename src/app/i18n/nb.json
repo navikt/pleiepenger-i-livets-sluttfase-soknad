@@ -524,5 +524,9 @@
     "validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_ikke_registrert": "Du har oppgitt at du skal oppholde deg i utlandet de neste 12 månedene. Du må registrere dette utenlandsoppholdet.",
     "validation.utenlandsoppholdNeste12Mnd.utenlandsopphold_overlapper": "Ett eller flere av utenlandsoppholdene du har lagt inn for de neste 12 månedene, har datoer som overlapper hverandre.",
 
-    "validation.harBekreftetOpplysninger.notChecked": "Du må bekrefte at opplysningene du har gitt er riktige."
+    "validation.harBekreftetOpplysninger.notChecked": "Du må bekrefte at opplysningene du har gitt er riktige.",
+
+    "page.unavailable.1": "Den digitale pleiepengesøknaden er dessverre ikke tilgjengelig akkurat nå. Vi jobber med saken, slik at du kan søke digitalt. Frem til vi får fikset dette, kan du fylle ut vårt",
+    "page.unavailable.2": "papirskjema for pleiepenger i livets sluttfase",
+    "page.unavailable.3": "Vi beklager."
 }
