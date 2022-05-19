@@ -23,6 +23,9 @@ const IntroPage = () => {
             <Box margin="xxxl">
                 <InformationPoster>
                     <FormattedMessage id="introform.informationPoster.avsnitt.1" />
+                    <p>
+                        <FormattedMessage id="introform.informationPoster.avsnitt.2" />
+                    </p>
                 </InformationPoster>
             </Box>
             <FormBlock>

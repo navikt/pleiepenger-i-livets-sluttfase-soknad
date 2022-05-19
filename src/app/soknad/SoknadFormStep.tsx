@@ -1,69 +1,100 @@
-import React from 'react';
+import * as React from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import soknadStepUtils from '@navikt/sif-common-soknad/lib/soknad-step/soknadStepUtils';
-import StepSubmitButton from '@navikt/sif-common-soknad/lib/soknad-step/step-submit-button/StepSubmitButton';
-import Step from '@navikt/sif-common-soknad/lib/soknad-step/step/Step';
+import { ApplikasjonHendelse, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude';
+import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
+import { useFormikContext } from 'formik';
+import { Knapp } from 'nav-frontend-knapper';
+import { persist, purge } from '../api/api';
+import { getSøknadStepConfig } from './soknadStepsConfig';
 import { SoknadFormData } from '../types/SoknadFormData';
-import { useSoknadContext } from './SoknadContext';
+import { relocateToDinePleiepenger, relocateToSoknad } from '../utils/navigationUtils';
+import { getStepTexts } from '../utils/stepUtils';
 import SoknadFormComponents from './SoknadFormComponents';
-import { StepID } from './soknadStepsConfig';
-import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
-import intlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
-interface OwnProps {
-    id: StepID;
-    onStepCleanup?: (values: SoknadFormData) => SoknadFormData;
-    onSendSoknad?: () => void;
+import InvalidStepPage from '../pages/invalid-step-page/InvalidStepPage';
+import Step, { StepProps } from '../components/step/Step';
+
+export interface FormikStepProps {
+    children: React.ReactNode;
     showSubmitButton?: boolean;
     showButtonSpinner?: boolean;
-    includeValidationSummary?: boolean;
     buttonDisabled?: boolean;
-    children: React.ReactNode;
+    skipValidation?: boolean;
+    onValidFormSubmit?: () => void;
+    customErrorSummary?: () => React.ReactNode;
+    onStepCleanup?: (values: SoknadFormData) => SoknadFormData;
 }
 
-type Props = OwnProps;
+type Props = FormikStepProps & Omit<StepProps, 'onAvbryt' | 'onFortsettSenere'>;
 
-const SoknadFormStep = ({
-    id,
-    onStepCleanup,
-    onSendSoknad,
-    children,
-    showButtonSpinner,
-    showSubmitButton = true,
-    includeValidationSummary = true,
-    buttonDisabled,
-}: Props) => {
+const SoknadFormStep = (props: Props) => {
+    const formik = useFormikContext<SoknadFormData>();
+
     const intl = useIntl();
-    const { soknadStepsConfig, resetSoknad, gotoNextStepFromStep, continueSoknadLater } = useSoknadContext();
-    const stepConfig = soknadStepsConfig[id];
-    const texts = soknadStepUtils.getStepTexts(intl, stepConfig);
+    const {
+        children,
+        onValidFormSubmit,
+        showButtonSpinner,
+        buttonDisabled,
+        id,
+        customErrorSummary,
+        showSubmitButton = true,
+    } = props;
+    const stepConfig = getSøknadStepConfig(formik.values);
     useLogSidevisning(id);
+    const { logHendelse } = useAmplitudeInstance();
+
+    const handleAvbrytSøknad = async () => {
+        await purge();
+        await logHendelse(ApplikasjonHendelse.avbryt);
+        relocateToSoknad();
+    };
+
+    const handleAvsluttOgFortsettSenere = async () => {
+        /** Mellomlagring lagrer forrige steg, derfor må dette hentes ut her **/
+        const prevStep = stepConfig[id].prevStep;
+        await persist(formik.values, prevStep);
+        await logHendelse(ApplikasjonHendelse.fortsettSenere);
+        relocateToDinePleiepenger();
+    };
+
+    if (stepConfig === undefined || stepConfig[id] === undefined || stepConfig[id].included === false) {
+        return <InvalidStepPage stepId={id} />;
+    }
+
+    const texts = getStepTexts(intl, id, stepConfig);
     return (
         <Step
-            bannerTitle={intlHelper(intl, 'application.title')}
-            stepTitle={texts.stepTitle}
-            pageTitle={texts.pageTitle}
-            backLinkHref={stepConfig.backLinkHref}
-            steps={soknadStepUtils.getStepIndicatorStepsFromConfig(soknadStepsConfig, intl)}
-            activeStepId={id}
-            onCancel={resetSoknad}
-            onContinueLater={continueSoknadLater ? () => continueSoknadLater(id) : undefined}>
+            stepConfig={stepConfig}
+            onFortsettSenere={handleAvsluttOgFortsettSenere}
+            onAvbryt={handleAvbrytSøknad}
+            {...props}>
             <SoknadFormComponents.Form
+                onValidSubmit={onValidFormSubmit}
                 includeButtons={false}
-                includeValidationSummary={includeValidationSummary}
+                includeValidationSummary={true}
                 runDelayedFormValidation={true}
-                cleanup={onStepCleanup}
-                onValidSubmit={onSendSoknad ? onSendSoknad : () => gotoNextStepFromStep(id)}
-                formErrorHandler={intlFormErrorHandler(intl, 'validation')}>
+                cleanup={props.onStepCleanup}
+                formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
+                formFooter={
+                    <>
+                        {customErrorSummary && <FormBlock>{customErrorSummary()}</FormBlock>}
+                        {showSubmitButton && (
+                            <FormBlock>
+                                <Knapp
+                                    type="hoved"
+                                    htmlType="submit"
+                                    className={'step__button'}
+                                    spinner={showButtonSpinner || false}
+                                    disabled={buttonDisabled || false}
+                                    aria-label={texts.nextButtonAriaLabel}>
+                                    {texts.nextButtonLabel}
+                                </Knapp>
+                            </FormBlock>
+                        )}
+                    </>
+                }>
                 {children}
-                {showSubmitButton && (
-                    <Box textAlignCenter={true} margin="xl">
-                        <StepSubmitButton disabled={buttonDisabled} showSpinner={showButtonSpinner}>
-                            {texts.nextButtonLabel}
-                        </StepSubmitButton>
-                    </Box>
-                )}
             </SoknadFormComponents.Form>
         </Step>
     );

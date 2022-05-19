@@ -5,18 +5,22 @@ export const initialSoknadFormData: Partial<SoknadFormData> = {
     [SoknadFormField.harForståttRettigheterOgPlikter]: false,
     [SoknadFormField.harBekreftetOpplysninger]: false,
     [SoknadFormField.bekreftelseFraLege]: [],
-    [SoknadFormField.harPerioderMedFravær]: YesOrNo.UNANSWERED,
-    [SoknadFormField.fraværPerioder]: [],
-    [SoknadFormField.perioder_harVærtIUtlandet]: YesOrNo.UNANSWERED,
-    [SoknadFormField.perioder_utenlandsopphold]: [],
+
+    //Tidsrom
+    [SoknadFormField.periodeFra]: undefined,
+    [SoknadFormField.periodeTil]: undefined,
+    [SoknadFormField.skalOppholdeSegIUtlandetIPerioden]: YesOrNo.UNANSWERED,
+    [SoknadFormField.utenlandsoppholdIPerioden]: [],
 
     // Arbeidssituasjon
-    [SoknadFormField.arbeidsforhold]: [],
-    [SoknadFormField.frilans_erFrilanser]: YesOrNo.UNANSWERED,
-    [SoknadFormField.selvstendig_erSelvstendigNæringsdrivende]: YesOrNo.UNANSWERED,
-    [SoknadFormField.selvstendig_harFlereVirksomheter]: YesOrNo.UNANSWERED,
-    [SoknadFormField.aktivitetFravær]: [],
-    [SoknadFormField.harStønadFraNav]: YesOrNo.UNANSWERED,
+    [SoknadFormField.ansatt_arbeidsforhold]: [],
+    [SoknadFormField.frilans]: {
+        harHattInntektSomFrilanser: YesOrNo.UNANSWERED,
+    },
+    [SoknadFormField.selvstendig]: {
+        harHattInntektSomSN: YesOrNo.UNANSWERED,
+    },
+    [SoknadFormField.frilansoppdrag]: [],
 
     // Medlemskap
     [SoknadFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.UNANSWERED,

@@ -3,6 +3,7 @@ interface Lenker {
     personvern: string;
     rettOgPlikt: string;
     saksbehandlingstider: string;
+    ettersend: string;
     medlemskap: string;
     søknadPåPapir: string;
     skatteetaten: string;
@@ -14,7 +15,9 @@ const LenkerBokmål: Lenker = {
     personvern:
         'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/personvern-i-arbeids-og-velferdsetaten/personvernerkl%C3%A6ring-for-arbeids-og-velferdsetaten',
     rettOgPlikt: 'https://nav.no/rettOgPlikt',
-    saksbehandlingstider: 'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Saksbehandlingstider+i+NAV',
+    saksbehandlingstider: 'https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav',
+    ettersend:
+        'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger/NAV%2009-11.05/ettersendelse',
     medlemskap:
         'https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+Norge/Relatert+informasjon/medlemskap-i-folketrygden',
     søknadPåPapir: 'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger#NAV091205',

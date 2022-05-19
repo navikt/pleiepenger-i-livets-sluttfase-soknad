@@ -6,6 +6,8 @@ dayjs.extend(isSameOrBefore);
 dayjs.extend(isoWeek);
 
 export const date3MonthsAgo = dayjs().subtract(3, 'months').toDate();
+export const dateToday = dayjs().toDate();
+export const yesterday = dayjs().endOf('day').subtract(1, 'day').toDate();
 
 export const sortByDate = (d1: Date, d2: Date): number => (dayjs(d1).isAfter(d2, 'day') ? 1 : -1);
 

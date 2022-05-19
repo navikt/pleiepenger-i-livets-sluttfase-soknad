@@ -2,9 +2,20 @@ export interface ArbeidsgiverResponse {
     organisasjoner: Arbeidsgiver[];
 }
 
+export enum ArbeidsgiverType {
+    'PRIVATPERSON' = 'PRIVAT',
+    'ORGANISASJON' = 'ORGANISASJON',
+    'FRILANSOPPDRAG' = 'FRILANSOPPDRAG',
+}
 export interface Arbeidsgiver {
+    /** Organisasjonsnummer eller fødselsnummer */
+    id: string;
+    organisasjonsnummer?: string;
+    offentligIdent?: string;
+    type: ArbeidsgiverType;
     navn: string;
-    organisasjonsnummer: string;
+    ansattFom?: Date;
+    ansattTom?: Date;
 }
 
 export const isArbeidsgiver = (maybeArbeidsgiver: any): maybeArbeidsgiver is Arbeidsgiver => {

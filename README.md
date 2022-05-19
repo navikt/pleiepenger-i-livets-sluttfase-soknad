@@ -1,5 +1,7 @@
 # Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase
 
+(Søknad om pleiepenger i livets sluttfase)
+
 Selvbetjeningsløsning for søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase
 
 ## Komme i gang

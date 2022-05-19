@@ -13,17 +13,21 @@ import getLenker from '../../lenker';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import SoknadFormComponents from '../SoknadFormComponents';
 import MedlemskapStepFieldValidations from './medlemskapFieldValidations';
-import { StepID } from '../soknadStepsConfig';
+import { StepConfigProps, StepID } from '../soknadStepsConfig';
 import SoknadFormStep from '../SoknadFormStep';
+import dayjs from 'dayjs';
 
-const MedlemsskapStep = () => {
+type Props = {
+    søknadsdato: Date;
+};
+
+const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepConfigProps & Props) => {
     const intl = useIntl();
 
-    // TODO
     const { values } = useFormikContext<SoknadFormData>();
 
     return (
-        <SoknadFormStep id={StepID.MEDLEMSKAP}>
+        <SoknadFormStep id={StepID.MEDLEMSKAP} onValidFormSubmit={onValidSubmit}>
             <CounsellorPanel>
                 <p>
                     <FormattedMessage id="step.medlemsskap.info.1" />
@@ -50,7 +54,7 @@ const MedlemsskapStep = () => {
                     <BostedUtlandListAndDialog<SoknadFormField>
                         name={SoknadFormField.utenlandsoppholdSiste12Mnd}
                         minDate={date1YearAgo}
-                        maxDate={dateToday}
+                        maxDate={dayjs(søknadsdato).subtract(1, 'day').toDate()}
                         validate={MedlemskapStepFieldValidations.utenlandsoppholdSiste12Mnd}
                         labels={{
                             addLabel: intlHelper(intl, 'step.medlemsskap.utenlandsopphold.leggTilLabel'),

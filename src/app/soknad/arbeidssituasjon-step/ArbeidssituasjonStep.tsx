@@ -1,139 +1,150 @@
-import * as React from 'react';
-import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import FormattedHtmlMessage from '@navikt/sif-common-core/lib/components/formatted-html-message/FormattedHtmlMessage';
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
-import { useFormikContext } from 'formik';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
-import FrilansFormPart from './components/FrilansFormPart';
-import SelvstendigNæringsdrivendeFormPart from './components/SelvstendigNæringsdrivendeFormPart';
-import SoknadFormStep from '../SoknadFormStep';
-import { StepID } from '../soknadStepsConfig';
-import { Arbeidsgiver, ArbeidsgiverResponse, isArbeidsgivere } from '../../types/Arbeidsgiver';
-import ArbeidsforholdSituasjon from '../../components/formik-arbeidsforhold/ArbeidsforholdSituasjon';
-import { cleanupArbeidssituasjonStep } from './cleanupArbeidssituasjonStep';
-import { useEffect, useState } from 'react';
-import { AxiosResponse } from 'axios';
-import { getArbeidsgivere, syncArbeidsforholdWithArbeidsgivere } from '../../utils/arbeidsforholdUtils';
-import { ArbeidsforholdFormData } from '../../types/ArbeidsforholdTypes';
-import appSentryLogger from '../../utils/appSentryLogger';
+import React, { useContext, useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
+import FormSection from '@navikt/sif-common-core/lib/components/form-section/FormSection';
 import LoadingSpinner from '@navikt/sif-common-core/lib/components/loading-spinner/LoadingSpinner';
-import { getPeriodeBoundaries } from '../../utils/periodeUtils';
-import SoknadFormComponents from '../SoknadFormComponents';
+import { date1YearAgo, date1YearFromNow, DateRange } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { useIntl } from 'react-intl';
-import { getYesOrNoValidator } from '@navikt/sif-common-formik/lib/validation';
+import { getListValidator, getYesOrNoValidator } from '@navikt/sif-common-formik/lib/validation';
+import { useFormikContext } from 'formik';
+import { getArbeidsgivereRemoteData } from '../../api/getArbeidsgivereRemoteData';
+import { SøkerdataContext } from '../../context/SøkerdataContext';
+import useEffectOnce from '../../hooks/useEffectOnce';
+import getLenker from '../../lenker';
+import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
+import SoknadFormComponents from '../SoknadFormComponents';
+import SoknadFormStep from '../SoknadFormStep';
+import { StepConfigProps, StepID } from '../soknadStepsConfig';
+import ArbeidssituasjonStepVeileder from './ArbeidssituasjonStepVeileder';
+import ArbeidssituasjonArbeidsgivere from './shared/ArbeidssituasjonArbeidsgivere';
+import ArbeidssituasjonFrilans from './shared/ArbeidssituasjonFrilans';
+import ArbeidssituasjonSN from './shared/ArbeidssituasjonSN';
+import { oppdaterSøknadMedArbeidsgivere } from './utils/arbeidsgivereUtils';
+import { cleanupArbeidssituasjonStep } from './utils/cleanupArbeidssituasjonStep';
+import { visVernepliktSpørsmål } from './utils/visVernepliktSpørsmål';
+import { YesOrNo } from '@navikt/sif-common-formik/lib';
+import OpptjeningUtlandListAndDialog from '../../components/pre-common/opptjening-utland/OpptjeningUtlandListAndDialog';
+import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 
-const shouldShowSubmitButton = (søknadFormData: SoknadFormData): boolean => {
-    const erArbeidstaker =
-        søknadFormData.arbeidsforhold.length > 0 &&
-        søknadFormData.arbeidsforhold.some((forhold) => forhold.harHattFraværHosArbeidsgiver === YesOrNo.YES);
-    const erFrilanser: YesOrNo = søknadFormData[SoknadFormField.frilans_erFrilanser];
-    const erSelvstendigNæringsdrivende: YesOrNo | undefined =
-        søknadFormData[SoknadFormField.selvstendig_erSelvstendigNæringsdrivende];
-    const harStønadFraNav: YesOrNo = søknadFormData.harStønadFraNav;
-    return (
-        !(
-            erFrilanser === YesOrNo.NO &&
-            erSelvstendigNæringsdrivende === YesOrNo.NO &&
-            harStønadFraNav === YesOrNo.NO
-        ) || erArbeidstaker
-    );
-};
+interface LoadState {
+    isLoading: boolean;
+    isLoaded: boolean;
+}
 
-const ArbeidssituasjonStep = () => {
-    const { values } = useFormikContext<SoknadFormData>();
-    const { setFieldValue } = useFormikContext<SoknadFormData>();
-    const showSubmitButton = shouldShowSubmitButton(values);
-    const [isLoading, setIsLoading] = useState(true);
-    const [doApiCalls, setDoApiCalls] = useState(true);
+interface Props {
+    søknadsdato: Date;
+    søknadsperiode: DateRange;
+}
+
+const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: StepConfigProps & Props) => {
+    const formikProps = useFormikContext<SoknadFormData>();
     const intl = useIntl();
+    const {
+        values,
+        values: { ansatt_arbeidsforhold, harOpptjeningUtland },
+    } = formikProps;
+    const [loadState, setLoadState] = useState<LoadState>({ isLoading: false, isLoaded: false });
+    const søkerdata = useContext(SøkerdataContext);
+    const { isLoading, isLoaded } = loadState;
 
-    useEffect(() => {
-        const søknadsperiode = getPeriodeBoundaries(values.fraværPerioder);
-
-        const fetchData = async (from: Date, to: Date): Promise<void> => {
-            const response: AxiosResponse<ArbeidsgiverResponse> | null = await getArbeidsgivere(from, to);
-            const arbeidsgivere: Arbeidsgiver[] | undefined = response?.data?.organisasjoner;
-
-            if (isArbeidsgivere(arbeidsgivere)) {
-                const updatedArbeidsforholds: ArbeidsforholdFormData[] = syncArbeidsforholdWithArbeidsgivere(
-                    arbeidsgivere,
-                    values[SoknadFormField.arbeidsforhold]
-                );
-
-                setFieldValue(SoknadFormField.arbeidsforhold, updatedArbeidsforholds);
-                setIsLoading(false);
-            } else {
-                setIsLoading(false);
-
-                appSentryLogger.logError(
-                    `listeAvArbeidsgivereApiResponse invalid (SituasjonStepView). Response: ${JSON.stringify(
-                        response,
-                        null,
-                        4
-                    )}`
-                );
+    useEffectOnce(() => {
+        const fetchData = async () => {
+            if (søkerdata && søknadsperiode) {
+                const arbeidsgivere = await getArbeidsgivereRemoteData(søknadsperiode.from, søknadsperiode.to);
+                oppdaterSøknadMedArbeidsgivere(arbeidsgivere, formikProps);
+                setLoadState({ isLoading: false, isLoaded: true });
             }
         };
-
-        if (søknadsperiode.min && søknadsperiode.max && doApiCalls) {
-            fetchData(søknadsperiode.min, søknadsperiode.max);
-            setDoApiCalls(false);
+        if (søknadsperiode && !isLoaded && !isLoading) {
+            setLoadState({ isLoading: true, isLoaded: false });
+            fetchData();
         }
-    }, [doApiCalls, values, setFieldValue]);
+    });
 
     return (
         <SoknadFormStep
             id={StepID.ARBEIDSSITUASJON}
-            showSubmitButton={!isLoading && showSubmitButton}
-            onStepCleanup={() => cleanupArbeidssituasjonStep(values)}>
-            <CounsellorPanel>
-                <p>
-                    <FormattedHtmlMessage id="step.arbeidssituasjon.info.1" />
-                </p>
-            </CounsellorPanel>
+            onValidFormSubmit={onValidSubmit}
+            buttonDisabled={isLoading}
+            onStepCleanup={
+                søknadsperiode
+                    ? (values) => cleanupArbeidssituasjonStep(values, søknadsperiode, values.frilansoppdrag)
+                    : undefined
+            }>
+            {isLoading && <LoadingSpinner type="XS" blockTitle="Henter arbeidsforhold" />}
+            {!isLoading && søknadsperiode && (
+                <>
+                    <Box padBottom="xl">
+                        <ArbeidssituasjonStepVeileder />
+                    </Box>
 
-            {isLoading && (
-                <div style={{ display: 'flex', justifyContent: 'center', minHeight: '15rem', alignItems: 'center' }}>
-                    <LoadingSpinner type="XXL" />
-                </div>
-            )}
-
-            {!isLoading &&
-                values.arbeidsforhold.length > 0 &&
-                values.arbeidsforhold.map((forhold, index) => (
-                    <FormBlock key={forhold.organisasjonsnummer}>
-                        <ArbeidsforholdSituasjon
-                            parentFieldName={`${SoknadFormField.arbeidsforhold}.${index}`}
-                            organisasjonsnavn={forhold.navn}
+                    <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.tittel')}>
+                        <ArbeidssituasjonArbeidsgivere
+                            parentFieldName={SoknadFormField.ansatt_arbeidsforhold}
+                            ansatt_arbeidsforhold={ansatt_arbeidsforhold}
+                            søknadsperiode={søknadsperiode}
                         />
-                    </FormBlock>
-                ))}
+                    </FormSection>
 
-            <FormBlock>
-                <FrilansFormPart formValues={values} />
-            </FormBlock>
+                    <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.frilanser.tittel')}>
+                        <ArbeidssituasjonFrilans
+                            parentFieldName={SoknadFormField.frilans}
+                            frilansoppdrag={values.frilansoppdrag || []}
+                            formValues={values.frilans}
+                            søknadsperiode={søknadsperiode}
+                            søknadsdato={søknadsdato}
+                            urlSkatteetaten={getLenker(intl.locale).skatteetaten}
+                        />
+                    </FormSection>
 
-            <FormBlock>
-                <SelvstendigNæringsdrivendeFormPart formValues={values} />
-            </FormBlock>
+                    <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.sn.tittel')}>
+                        <ArbeidssituasjonSN
+                            formValues={values.selvstendig}
+                            urlSkatteetatenSN={getLenker(intl.locale).skatteetatenSN}
+                        />
+                    </FormSection>
 
-            <FormBlock>
-                <SoknadFormComponents.YesOrNoQuestion
-                    name={SoknadFormField.harStønadFraNav}
-                    legend={intlHelper(intl, 'step.arbeidssituasjon.harStønadFraNav')}
-                    validate={getYesOrNoValidator()}
-                />
-            </FormBlock>
-
-            {!showSubmitButton && (
-                <FormBlock>
-                    <AlertStripeAdvarsel>
-                        <FormattedHtmlMessage id="step.arbeidssituasjon.advarsel.ingenSituasjonValgt" />
-                    </AlertStripeAdvarsel>
-                </FormBlock>
+                    {visVernepliktSpørsmål(values) && (
+                        <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.verneplikt.tittel')}>
+                            <Box margin="l">
+                                <SoknadFormComponents.YesOrNoQuestion
+                                    name={SoknadFormField.harVærtEllerErVernepliktig}
+                                    legend={intlHelper(intl, 'steg.arbeidssituasjon.verneplikt.spm')}
+                                    validate={getYesOrNoValidator()}
+                                    description={
+                                        <ExpandableInfo
+                                            title={intlHelper(intl, 'steg.arbeidssituasjon.verneplikt.info.tittel')}>
+                                            <FormattedMessage id="steg.arbeidssituasjon.verneplikt.info.tekst" />
+                                        </ExpandableInfo>
+                                    }
+                                />
+                            </Box>
+                        </FormSection>
+                    )}
+                    <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.opptjeningUtland.tittel')}>
+                        <SoknadFormComponents.YesOrNoQuestion
+                            legend={intlHelper(intl, 'steg.arbeidssituasjon.opptjeningUtland.spm')}
+                            name={SoknadFormField.harOpptjeningUtland}
+                            validate={getYesOrNoValidator()}
+                        />
+                        {harOpptjeningUtland === YesOrNo.YES && (
+                            <FormBlock>
+                                <OpptjeningUtlandListAndDialog
+                                    minDate={date1YearAgo}
+                                    maxDate={date1YearFromNow}
+                                    name={SoknadFormField.opptjeningUtland}
+                                    validate={getListValidator({ required: true })}
+                                    labels={{
+                                        addLabel: 'Legg til jobb i et annet EØS-land',
+                                        listTitle: 'Registrerte jobb i et annet EØS-land',
+                                        modalTitle: 'Jobbet i et annet EØS-land',
+                                    }}
+                                />
+                            </FormBlock>
+                        )}
+                    </FormSection>
+                </>
             )}
         </SoknadFormStep>
     );
