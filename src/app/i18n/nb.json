@@ -90,7 +90,7 @@
     "step.opplysninger-om-pleietrengende.stepIndicatorLabel": "Om personen du har tatt vare på og pleid",
     "step.opplysninger-om-pleietrengende.nextButtonLabel": "Fortsett",
     "step.opplysninger-om-pleietrengende.counsellorPanel.info": "Her gir du opplysninger om den du har tatt vare på og pleid i livets sluttfase.",
-    "step.opplysninger-om-pleietrengende.counsellorPanel.info.1": "Legen må bekrefte om personen er i livets sluttfase. Med livets sluttfase menes det terminalfasen.",
+    "step.opplysninger-om-pleietrengende.counsellorPanel.info.1": "Når du søker for første gang må du laste opp en legeerklæring. Legen må bekrefte om personen er i livets sluttfase. Med livets sluttfase menes det terminalfasen.",
 
     "step.opplysninger-om-pleietrengende.spm.navn": "Navn",
     "step.opplysninger-om-pleietrengende.spm.fnr": "Fødselsnummer",
@@ -377,8 +377,6 @@
     "oppsummering.arbeidssituasjon.verneplikt.harIkkeVærtVernepliktig": "Utøvde ikke verneplikt på tidspunktet det søkes pleiepenger fra",
 
     "oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel": "Jobbet i annet EØS-land",
-    "oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel.nei": "Jobb i annet EØS-land",
-    "oppsummering.arbeidssituasjon.optjeningIUtlandet.nei.spm": "Har du jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før første dag med pleiepenger?",
     "oppsummering.arbeidssituasjon.optjeningIUtlandet.nei": "Nei",
 
     "oppsummering.arbeidIPeriode.jobbIPerioden.header": "Jobb i søknadsperioden",

@@ -16,17 +16,9 @@ const OpptjeningIUtlandetSummaryView: React.FC<Props> = (props) => {
 
     return (
         <>
-            <SummaryBlock
-                header={intlHelper(
-                    intl,
-                    opptjeningUtland === undefined
-                        ? 'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel.nei'
-                        : 'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel'
-                )}>
+            <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel')}>
                 {opptjeningUtland === undefined && (
-                    <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.optjeningIUtlandet.nei.spm')}>
-                        <FormattedMessage id="oppsummering.arbeidssituasjon.optjeningIUtlandet.nei" />
-                    </SummaryBlock>
+                    <FormattedMessage id="oppsummering.arbeidssituasjon.optjeningIUtlandet.nei" />
                 )}
                 {opptjeningUtland !== undefined && (
                     <SummaryList items={opptjeningUtland} itemRenderer={renderOpptjeningIUtlandetSummary} />
