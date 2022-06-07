@@ -22,7 +22,10 @@ const IntroPage = () => {
             topContentRenderer={() => <StepBanner tag="h1" text={intlHelper(intl, 'application.title')} />}>
             <Box margin="xxxl">
                 <InformationPoster>
-                    <FormattedMessage id="introform.informationPoster.avsnitt.1" />
+                    <p>
+                        <FormattedMessage id="introform.informationPoster.avsnitt.1" />
+                    </p>
+
                     <p>
                         <FormattedMessage id="introform.informationPoster.avsnitt.2" />
                     </p>

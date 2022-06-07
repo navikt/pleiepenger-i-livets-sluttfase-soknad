@@ -76,18 +76,6 @@ const WelcomingPage: React.FunctionComponent<Props> = ({ onValidSubmit }) => {
                 contentLabel={intlHelper(intl, 'welcomingPage.modal.behandlingAvPersonalia.tittel')}>
                 <BehandlingAvPersonopplysningerContent />
             </InfoDialog>
-
-            {/* <DinePlikterModal
-                isOpen={dinePlikterModalOpen}
-                onRequestClose={() => setDinePlikterModalOpen(false)}
-                contentLabel={intlHelper(intl, 'welcomingPage.modal.omDinePlikter.tittel')}
-            />
-
-            <BehandlingAvPersonopplysningerModal
-                isOpen={behandlingAvPersonopplysningerModalOpen}
-                onRequestClose={() => setBehandlingAvPersonopplysningerModalOpen(false)}
-                contentLabel={intlHelper(intl, 'welcomingPage.modal.behandlingAvPersonalia.tittel')}
-            /> */}
         </>
     );
 };
