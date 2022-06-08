@@ -9,8 +9,8 @@ const opptjeningUtlandMessages = {
         'opptjeningUtland.form.opptjeningAktivitet.spm': 'Hva jobbet du som?',
         'opptjeningUtland.form.opptjeningAktivitet.FRILANSER': 'Frilanser',
         'opptjeningUtland.form.opptjeningAktivitet.ARBEIDSTAKER': 'Arbeidstaker',
-        'opptjeningUtland.form.arbeidsgiversNavn': ' Legg inn navn på arbeidsgiver',
-        'opptjeningUtland.form.oppdragsgiverNavn': ' Legg inn navn på oppdragsgiver',
+        'opptjeningUtland.form.arbeidsgiversNavn': 'Skriv inn navnet på arbeidsgiveren',
+        'opptjeningUtland.form.oppdragsgiverNavn': 'Skriv inn navnet på oppdragsgiveren',
         'opptjeningUtland.form.ok': 'Legg til',
         'opptjeningUtland.form.avbryt': 'Avbryt',
         'opptjeningUtlandForm.fom.dateHasNoValue':
@@ -36,6 +36,7 @@ const opptjeningUtlandMessages = {
         'opptjeningUtlandForm.type.noValue': 'Du må velge hva jobbet du som.',
         'opptjeningUtlandForm.oppdragsgiverNavn.noValue': 'Du må skrive inn {opptjeningAktivitet} navn.',
         'opptjeningUtlandForm.navn.noValue': 'Du må skrive inn navn.',
+        'opptjeningUtlandForm.opptjeningType.noValue': 'Du velge hva jobbet du som.',
     },
     nn: {
         'opptjeningUtland.list.add': '+ Legg til jobb',
@@ -47,8 +48,8 @@ const opptjeningUtlandMessages = {
         'opptjeningUtland.form.opptjeningAktivitet.spm': 'Hva jobbet du som?',
         'opptjeningUtland.form.opptjeningAktivitet.FRILANSER': 'Frilanser',
         'opptjeningUtland.form.opptjeningAktivitet.ARBEIDSTAKER': 'Arbeidstaker',
-        'opptjeningUtland.form.arbeidsgiversNavn': ' Legg inn navn på arbeidsgiver',
-        'opptjeningUtland.form.oppdragsgiverNavn': ' Legg inn navn på oppdragsgiver',
+        'opptjeningUtland.form.arbeidsgiversNavn': 'Skriv inn navnet på arbeidsgiveren',
+        'opptjeningUtland.form.oppdragsgiverNavn': 'Skriv inn navnet på oppdragsgiveren',
         'opptjeningUtland.form.ok': 'Legg til',
         'opptjeningUtland.form.avbryt': 'Avbryt',
         'opptjeningUtlandForm.fom.dateHasNoValue':
@@ -74,6 +75,7 @@ const opptjeningUtlandMessages = {
         'opptjeningUtlandForm.type.noValue': 'Du må velge hva jobbet du som.',
         'opptjeningUtlandForm.oppdragsgiverNavn.noValue': 'Du må skrive inn {opptjeningAktivitet} navn.',
         'opptjeningUtlandForm.navn.noValue': 'Du må skrive inn navn.',
+        'opptjeningUtlandForm.opptjeningType.noValue': 'Du velge hva jobbet du som.',
     },
 };
 
