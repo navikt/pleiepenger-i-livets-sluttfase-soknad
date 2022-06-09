@@ -36,9 +36,6 @@ jobs:
         if: startsWith(github.ref, 'refs/heads/dev-') || startsWith(github.ref, 'refs/heads/master') || github.event.deployment.payload.triggered # Build and push docker if branch is either master or dev-*
         needs: test
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                node-version: 16.x
         steps:
             - name: Checkout code
               uses: actions/checkout@v1
