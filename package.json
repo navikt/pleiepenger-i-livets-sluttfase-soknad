@@ -33,7 +33,7 @@
         "@navikt/sif-common-sentry": "^0.3.1",
         "@navikt/sif-common-soknad": "^5.3.0",
         "@navikt/sif-common-utils": "^3.0.3",
-        "@snyk/protect": "^1.932.0",
+        "@snyk/protect": "^1.935.0",
         "amplitude-js": "^8.18.4",
         "axios": "^0.27.2",
         "busboy": "^1.6.0",
