@@ -1,5 +1,4 @@
 FROM node:16-alpine
-
 ENV NPM_CONFIG_CACHE=/tmp
 
 WORKDIR /usr/src/app
