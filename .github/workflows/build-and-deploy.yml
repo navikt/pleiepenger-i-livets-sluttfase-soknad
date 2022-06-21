@@ -69,7 +69,6 @@ jobs:
                   CLUSTER: dev-gcp
                   RESOURCE: nais/naiserator.yml
                   VARS: nais/dev-gcp.json
-                  NPM_CONFIG_CACHE: /tmp
 
     deploy-prod-gcp:
         name: deploy-prod-gcp

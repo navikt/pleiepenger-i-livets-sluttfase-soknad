@@ -16,6 +16,7 @@
         "LOGIN_URL": "https://loginservice.dev.nav.no/login?redirect=https://pleiepenger-i-livets-sluttfase.dev.nav.no/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "APPSTATUS_DATASET": "staging",
-        "USE_AMPLITUDE": "false"
+        "USE_AMPLITUDE": "false",
+        "NPM_CONFIG_CACHE": "/tmp"
     }
 }
