@@ -57,16 +57,14 @@ const OpplysningerOmPleietrengendeStep = ({ onValidSubmit }: StepConfigProps) =>
             </CounsellorPanel>
 
             <FormBlock>
-                <Box margin="l">
-                    <SoknadFormComponents.Input
-                        name={SoknadFormField.pleietrengende__navn}
-                        label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.navn')}
-                        validate={validateNavn}
-                        style={{ maxWidth: '20rem' }}
-                    />
-                </Box>
+                <SoknadFormComponents.Input
+                    name={SoknadFormField.pleietrengende__navn}
+                    label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.navn')}
+                    validate={validateNavn}
+                    style={{ maxWidth: '20rem' }}
+                />
 
-                <Box margin="l">
+                <FormBlock>
                     <SoknadFormComponents.Input
                         name={SoknadFormField.pleietrengende__norskIdentitetsnummer}
                         label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.spm.fnr')}
@@ -86,30 +84,32 @@ const OpplysningerOmPleietrengendeStep = ({ onValidSubmit }: StepConfigProps) =>
                         style={{ maxWidth: '20rem' }}
                         disabled={harIkkeFnr}
                     />
-                    <SoknadFormComponents.Checkbox
-                        label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.fnr.harIkkeFnr')}
-                        name={SoknadFormField.harIkkeFnr}
-                        afterOnChange={(newValue) => {
-                            if (newValue) {
-                                resetFieldValue(
-                                    SoknadFormField.pleietrengende__norskIdentitetsnummer,
-                                    setFieldValue,
-                                    initialValues
-                                );
-                            } else {
-                                resetFieldValues(
-                                    [
-                                        SoknadFormField.pleietrengende__årsakManglerIdentitetsnummer,
+                    <Box margin="m">
+                        <SoknadFormComponents.Checkbox
+                            label={intlHelper(intl, 'step.opplysninger-om-pleietrengende.fnr.harIkkeFnr')}
+                            name={SoknadFormField.harIkkeFnr}
+                            afterOnChange={(newValue) => {
+                                if (newValue) {
+                                    resetFieldValue(
                                         SoknadFormField.pleietrengende__norskIdentitetsnummer,
-                                        SoknadFormField.pleietrengende__fødselsdato,
-                                    ],
-                                    setFieldValue,
-                                    initialValues
-                                );
-                            }
-                        }}
-                    />
-                </Box>
+                                        setFieldValue,
+                                        initialValues
+                                    );
+                                } else {
+                                    resetFieldValues(
+                                        [
+                                            SoknadFormField.pleietrengende__årsakManglerIdentitetsnummer,
+                                            SoknadFormField.pleietrengende__norskIdentitetsnummer,
+                                            SoknadFormField.pleietrengende__fødselsdato,
+                                        ],
+                                        setFieldValue,
+                                        initialValues
+                                    );
+                                }
+                            }}
+                        />
+                    </Box>
+                </FormBlock>
                 {harIkkeFnr && (
                     <>
                         <FormBlock>
