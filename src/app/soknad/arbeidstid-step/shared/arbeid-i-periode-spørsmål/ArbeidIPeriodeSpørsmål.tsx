@@ -29,6 +29,8 @@ import { getJobberIPeriodenValidator } from '../validation/jobberIPeriodenSpørs
 import InfoSøkerKunHelgedager from './InfoSøkerKunHelgedager';
 import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
 
+const BRUK_KUN_KORT_PERIODE = true;
+
 interface Props extends ArbeidstidRegistrertLogProps {
     parentFieldName: string;
     arbeidsforhold: Arbeidsforhold | ArbeidsforholdFrilanser;
@@ -80,7 +82,7 @@ const ArbeidIPeriodeSpørsmål = ({
 
     const { arbeidIPeriode } = arbeidsforhold;
     const { jobberIPerioden, timerEllerProsent, erLiktHverUke, jobberProsent } = arbeidIPeriode || {};
-    const erKortPeriode = getWeeksInDateRange(periode).length < 4;
+    const erKortPeriode = getWeeksInDateRange(periode).length < (BRUK_KUN_KORT_PERIODE ? 100 : 4);
 
     const renderArbeidstidVariertPart = (kanLeggeTilPeriode: boolean) => (
         <ArbeidstidVariert

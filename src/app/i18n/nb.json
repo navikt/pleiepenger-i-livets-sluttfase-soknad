@@ -281,8 +281,8 @@
     "arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.2": "Du kan derfor ikke registrere arbeid kun for lørdag og/eller søndag.",
     "arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.3": "Vennligst gå tilbake til steg \"Perioden med pleiepenger\" og sjekk informasjonen du har fylt ut. Når du har gjort det, trykker du på \"Fortsett\"-knappen for å gå videre.",
 
-    "arbeidIPeriode.StepInfo.1": "Nå trenger vi å vite om du jobbet noe i perioden du har brukt pleiepenger. Dette er informasjon vi trenger, fordi vi graderer pleiepengene mot den tiden du jobber.",
-    "arbeidIPeriode.StepInfo.2": "Gradering betyr at pleiepengene reduseres. Hvis du i søknadsperioden for eksempel jobbet 50 prosent, kan du ha rett til 50 prosent pleiepenger.",
+    "arbeidIPeriode.StepInfo.1": "Nå må vi vite om du har jobbet noe i perioden du har hatt pleiepenger.",
+    "arbeidIPeriode.StepInfo.2": "Hvis du for eksempel har pleid den som er syk en halv dag og jobbet resten av dagen, bruker du også bare en halv dag med pleiepenger. De dagene du jobber fullt, bruker du ikke av pleiepengedagene.",
     "arbeidIPeriode.FrilansLabel": "Frilans",
     "arbeidIPeriode.SNLabel": "Selvstendig næringsdrivende",
     "arbeidIPeriode.jobberIPerioden.spm": "Jobbet du noe {hvor} i perioden du søker for?",

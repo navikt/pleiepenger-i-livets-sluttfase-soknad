@@ -16,6 +16,7 @@ import ApplicationWrapper from './components/application-wrapper/ApplicationWrap
 import AppStatusWrapper from '@navikt/sif-common-core/lib/components/app-status-wrapper/AppStatusWrapper';
 import UnavailablePage from './pages/unavailable-page/UnavailablePage';
 import Modal from 'nav-frontend-modal';
+import './styles/app.less';
 
 export const APPLICATION_KEY = 'pleiepenger-i-livets-sluttfase-soknad';
 export const SKJEMANAVN = 'Søknad om pleiepenger i livets sluttfase';
