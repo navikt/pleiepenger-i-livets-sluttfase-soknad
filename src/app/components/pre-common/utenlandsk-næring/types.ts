@@ -9,7 +9,7 @@ export interface UtenlandskNæring {
     id?: string;
     næringstype: UtenlandskNæringstype;
     navnPåVirksomheten: string;
-    identifikasjonsnummer: string;
+    identifikasjonsnummer?: string;
     land: string;
     fraOgMed: Date;
     tilOgMed?: Date;

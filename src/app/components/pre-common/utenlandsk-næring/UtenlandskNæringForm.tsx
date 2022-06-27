@@ -23,7 +23,6 @@ import {
     mapUtenlandskNæringToFormValues,
 } from './utenlandskNæringUtils';
 import { handleDateRangeValidationError } from '../opptjening-utland/utils';
-// import { handleDateRangeValidationError } from '../utils';
 
 interface Props {
     utenlandskNæring?: UtenlandskNæring;
@@ -179,7 +178,6 @@ const UtenlandskNæringForm = ({ utenlandskNæring, onSubmit, onCancel }: Props)
                                 label={getText('sifForms.utenlandskNæringForm.organisasjonsnummer')}
                                 style={{ maxWidth: '10rem' }}
                                 maxLength={30}
-                                validate={getRequiredFieldValidator()}
                             />
                         </Box>
                         <Box margin="xl">
