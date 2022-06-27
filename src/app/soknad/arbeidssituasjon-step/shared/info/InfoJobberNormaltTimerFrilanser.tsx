@@ -60,11 +60,6 @@ const InfoJobberNormaltTimerFrilanser = () => {
                     <FormattedMessage id={'arbeidsforhold.normalTimer.info.varierende.avsnitt.6'} />
                 </p>
             </ExpandableInfo>
-            <ExpandableInfo
-                filledBackground={false}
-                title={intlHelper(intl, 'arbeidsforhold.normalTimer.info.utbetalingFraNAV.tittel')}>
-                <FormattedMessage id={'arbeidsforhold.normalTimer.info.utbetalingFraNAV.avsnitt.1'} />
-            </ExpandableInfo>
         </ExpandableInfo>
     );
 };
