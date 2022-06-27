@@ -7,7 +7,7 @@ import { renderOpptjeningIUtlandetSummary } from './renderOpptjeningIUtlandetSum
 import { OpptjeningIUtlandetApi } from '../../../types/SoknadApiData';
 
 export interface Props {
-    opptjeningUtland?: OpptjeningIUtlandetApi[];
+    opptjeningUtland: OpptjeningIUtlandetApi[];
 }
 
 const OpptjeningIUtlandetSummaryView: React.FC<Props> = (props) => {
@@ -17,10 +17,10 @@ const OpptjeningIUtlandetSummaryView: React.FC<Props> = (props) => {
     return (
         <>
             <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel')}>
-                {opptjeningUtland === undefined && (
+                {opptjeningUtland.length === 0 && (
                     <FormattedMessage id="oppsummering.arbeidssituasjon.optjeningIUtlandet.nei" />
                 )}
-                {opptjeningUtland !== undefined && (
+                {opptjeningUtland.length > 0 && (
                     <SummaryList items={opptjeningUtland} itemRenderer={renderOpptjeningIUtlandetSummary} />
                 )}
             </SummaryBlock>

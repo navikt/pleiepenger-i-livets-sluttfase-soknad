@@ -6,9 +6,9 @@ import { OpptjeningIUtlandetApi } from '../../types/SoknadApiData';
 export const getOpptjeningIUtlandetApiData = (
     opptjeningUtland: OpptjeningUtland[],
     locale: string
-): OpptjeningIUtlandetApi[] | undefined => {
+): OpptjeningIUtlandetApi[] => {
     if (opptjeningUtland.length === 0) {
-        return undefined;
+        return [];
     }
 
     const apiData: OpptjeningIUtlandetApi[] = opptjeningUtland.map((opptjening) => ({
