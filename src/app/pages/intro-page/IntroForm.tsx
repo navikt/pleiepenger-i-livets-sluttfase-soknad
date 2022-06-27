@@ -8,6 +8,7 @@ import { getTypedFormComponents, UnansweredQuestionsInfo } from '@navikt/sif-com
 import getIntlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
 import { getYesOrNoValidator } from '@navikt/sif-common-formik/lib/validation';
+import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
 
 interface Props {
     onValidSubmit: () => void;
@@ -55,6 +56,12 @@ const IntroForm = ({ onValidSubmit }: Props) => {
                                 validate={getYesOrNoValidator()}
                                 showStop={pleierDuDenSykeHjemme === YesOrNo.NO}
                                 stopMessage={intlHelper(intl, 'introForm.pleierDuDenSykeHjemme.stopMessage')}
+                                description={
+                                    <ExpandableInfo
+                                        title={intlHelper(intl, 'introForm.pleierDuDenSykeHjemme.info.tittel')}>
+                                        <FormattedMessage id={'introForm.pleierDuDenSykeHjemme.info'} />
+                                    </ExpandableInfo>
+                                }
                             />
                         )}
                     </IntroFormComponents.Form>
