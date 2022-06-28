@@ -86,5 +86,9 @@ export const cleanupArbeidssituasjonStep = (
         values.opptjeningUtland = [];
     }
 
+    if (values.harUtenlandskNæring !== YesOrNo.YES) {
+        values.utenlandskNæring = [];
+    }
+
     return values;
 };

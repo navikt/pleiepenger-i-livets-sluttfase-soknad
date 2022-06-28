@@ -164,6 +164,13 @@
     "steg.arbeidssituasjon.opptjeningUtland.tittel": "Jobbet i et annet EØS-land",
     "steg.arbeidssituasjon.opptjeningUtland.spm": "Har du jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden du søker om?",
 
+    "steg.arbeidssituasjon.utenlandskNæring.spm": "Har du jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden du søker om?",
+    "steg.arbeidssituasjon.utenlandskNæring.infoDialog.infoTittel": "Virksomhet",
+    "steg.arbeidssituasjon.utenlandskNæring.infoDialog.endreKnapp": "Endre",
+    "steg.arbeidssituasjon.utenlandskNæring.infoDialog.fjernKnapp": "Fjern",
+    "steg.arbeidssituasjon.utenlandskNæring.infoDialog.registrerKnapp": "Legg til næringsvirksomhet i et annet EØS-land",
+    "steg.arbeidssituasjon.utenlandskNæring.infoDialog.modal.tittel": "Virksomhet",
+
     "arbeidsforhold.part.jobber": "jobber",
     "arbeidsforhold.part.jobbet": "jobbet",
     "arbeidsforhold.part.hosArbeidsgiver": "hos {navn}",
@@ -208,6 +215,9 @@
     "arbeidsforhold.normalTimer.info.varierende.avsnitt.4": "Du jobber altså i snitt 20,8 timer per uke, og det er dette tallet du oppgir.",
     "arbeidsforhold.normalTimer.info.varierende.avsnitt.5": "Slik regner du ut et snitt når du har jobbet mindre enn 12 uker:",
     "arbeidsforhold.normalTimer.info.varierende.avsnitt.6": "Da deler du antall timer med antall uker du har jobbet. Hvis du for eksempel har jobbet i 7 uker, så deler du antall timer du har jobbet med 7.",
+
+    "arbeidsforhold.normalTimer.info.utbetalingFraNAV.tittel": "Hva om jeg får utbetaling fra NAV nå?",
+    "arbeidsforhold.normalTimer.info.utbetalingFraNAV.avsnitt.1": "Hvis du for dette arbeidsforholdet for eksempel får foreldrepenger, sykepenger eller annet fra NAV nå, registrerer du det som var normalarbeidstiden din før du begynte å få denne utbetalingen fra NAV.",
 
     "arbeidstidPeriodeForm.tidFasteDagerEllerProsent.label": "Hvordan vil du oppgi hvor mye du jobbet i perioden?",
     "arbeidstidPeriodeForm.tidFasteDager.label": "Fyll ut hvor mye du jobbet i uken i perioden:",
@@ -379,6 +389,9 @@
     "oppsummering.arbeidssituasjon.optjeningIUtlandet.listetittel": "Jobbet i annet EØS-land",
     "oppsummering.arbeidssituasjon.optjeningIUtlandet.nei": "Nei",
 
+    "oppsummering.arbeidssituasjon.utenlandskNæring.listetittel": "Jobbet som selvstendig næringsdrivende i et annet EØS-land",
+    "oppsummering.arbeidssituasjon.utenlandskNæring.nei": "Nei",
+
     "oppsummering.arbeidIPeriode.jobbIPerioden.header": "Jobb i søknadsperioden",
     "oppsummering.arbeidIPeriode.jobbIPerioden": "Jobb i søknadsperioden",
     "oppsummering.arbeidIPeriode.jobberIPerioden.ja": "jobber",
@@ -480,7 +493,11 @@
     "validation.harVærtEllerErVernepliktig.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du utøvde verneplikt på tidspunktet du søker pleiepenger fra.",
     "virksomhetForm.næringstype.noValue": "Du må velge hvilken type virksomhet du har.",
 
+    "validation.opptjeningUtland.listIsEmpty": "Du må legge til jobb i et annet EØS-land.",
     "validation.harOpptjeningUtland.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før første dag med pleiepenger.",
+
+    "validation.harUtenlandskNæring.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden du søker om.",
+    "validation.utenlandskNæring.listIsEmpty": "Du må legge til jobb som selvstendig næringsdrivende i et annet EØS-land.",
 
     "validation.arbeidsforhold.sluttetFørSøknadsperiode.yesOrNoIsUnanswered": "Du må svare på om du sluttet hos {navn} før {fraDato}.",
     "validation.arbeidsforhold.harFraværIPeriode.yesOrNoIsUnanswered": "Du må svare på om du har fravær i perioden hos {navn}.",

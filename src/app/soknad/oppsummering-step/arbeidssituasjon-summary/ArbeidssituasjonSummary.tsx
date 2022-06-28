@@ -10,6 +10,7 @@ import ArbeidssituasjonSNSummary from './ArbeidssituasjonSNSummary';
 import { Arbeidsgiver } from '../../../types';
 import OpptjeningIUtlandetSummaryView from '../components/OpptjeningIUtlandetSummaryView';
 import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
+import UtenlandskNæringSummary from './ArbeidssituasjonUtenlandskNæringSummary';
 
 interface Props {
     apiValues: SoknadApiData;
@@ -25,6 +26,7 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
         selvstendigNæringsdrivende,
         opptjeningIUtlandet: opptjeningUtland,
         harVærtEllerErVernepliktig,
+        utenlandskNæring,
     },
     søknadsperiode,
     frilansoppdrag,
@@ -38,6 +40,10 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
             <ArbeidssituasjonFrilansSummary frilans={frilans || _frilans} frilansoppdrag={frilansoppdrag} />
 
             <ArbeidssituasjonSNSummary selvstendigNæringsdrivende={selvstendigNæringsdrivende} />
+
+            <OpptjeningIUtlandetSummaryView opptjeningUtland={opptjeningUtland} />
+
+            <UtenlandskNæringSummary utenlandskNæring={utenlandskNæring} />
 
             {/* Vernepliktig */}
             {harVærtEllerErVernepliktig !== undefined && (
@@ -54,8 +60,6 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
                     </ul>
                 </SummaryBlock>
             )}
-
-            <OpptjeningIUtlandetSummaryView opptjeningUtland={opptjeningUtland} />
         </SummarySection>
     );
 };

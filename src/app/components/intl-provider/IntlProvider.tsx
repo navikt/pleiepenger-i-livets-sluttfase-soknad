@@ -12,6 +12,7 @@ import virksomhetMessages from '@navikt/sif-common-forms/lib/virksomhet/virksomh
 import { sifCommonPleiepengerMessages } from '@navikt/sif-common-pleiepenger/lib/i18n/index';
 import arbeidstidMessages from '../../soknad/arbeidstid-step/shared/arbeidstid-variert/arbeidstidVariertMessages';
 import opptjeningUtlandMessages from '../pre-common/opptjening-utland/opptjeningUtlandMessages';
+import utenlandskNæringMessages from '../pre-common/utenlandsk-næring/utenlandskNæringMessages';
 
 const introFormMessages = require('../../pages/intro-page/introFormMessagesNB.json');
 export const appBokmålstekster = require('../../i18n/nb.json');
@@ -27,6 +28,7 @@ const bokmålstekster = {
     ...sifCommonPleiepengerMessages.nb,
     ...appBokmålstekster,
     ...opptjeningUtlandMessages.nb,
+    ...utenlandskNæringMessages.nb,
 };
 
 export interface IntlProviderProps {

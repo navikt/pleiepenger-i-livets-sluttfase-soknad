@@ -26,6 +26,7 @@ import { visVernepliktSpørsmål } from './utils/visVernepliktSpørsmål';
 import { YesOrNo } from '@navikt/sif-common-formik/lib';
 import OpptjeningUtlandListAndDialog from '../../components/pre-common/opptjening-utland/OpptjeningUtlandListAndDialog';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import UtenlandskNæringListAndDialog from '../../components/pre-common/utenlandsk-næring/UtenlandskNæringListAndDialog';
 
 interface LoadState {
     isLoading: boolean;
@@ -42,7 +43,7 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
     const intl = useIntl();
     const {
         values,
-        values: { ansatt_arbeidsforhold, harOpptjeningUtland },
+        values: { ansatt_arbeidsforhold, harOpptjeningUtland, harUtenlandskNæring },
     } = formikProps;
     const [loadState, setLoadState] = useState<LoadState>({ isLoading: false, isLoaded: false });
     const søkerdata = useContext(SøkerdataContext);
@@ -105,23 +106,6 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
                         />
                     </FormSection>
 
-                    {visVernepliktSpørsmål(values) && (
-                        <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.verneplikt.tittel')}>
-                            <Box margin="l">
-                                <SoknadFormComponents.YesOrNoQuestion
-                                    name={SoknadFormField.harVærtEllerErVernepliktig}
-                                    legend={intlHelper(intl, 'steg.arbeidssituasjon.verneplikt.spm')}
-                                    validate={getYesOrNoValidator()}
-                                    description={
-                                        <ExpandableInfo
-                                            title={intlHelper(intl, 'steg.arbeidssituasjon.verneplikt.info.tittel')}>
-                                            <FormattedMessage id="steg.arbeidssituasjon.verneplikt.info.tekst" />
-                                        </ExpandableInfo>
-                                    }
-                                />
-                            </Box>
-                        </FormSection>
-                    )}
                     <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.opptjeningUtland.tittel')}>
                         <SoknadFormComponents.YesOrNoQuestion
                             legend={intlHelper(intl, 'steg.arbeidssituasjon.opptjeningUtland.spm')}
@@ -143,7 +127,61 @@ const ArbeidssituasjonStep = ({ onValidSubmit, søknadsdato, søknadsperiode }: 
                                 />
                             </FormBlock>
                         )}
+                        <FormBlock>
+                            <SoknadFormComponents.YesOrNoQuestion
+                                legend={intlHelper(intl, 'steg.arbeidssituasjon.utenlandskNæring.spm')}
+                                name={SoknadFormField.harUtenlandskNæring}
+                                validate={getYesOrNoValidator()}
+                            />
+                            {harUtenlandskNæring === YesOrNo.YES && (
+                                <FormBlock>
+                                    <UtenlandskNæringListAndDialog
+                                        name={SoknadFormField.utenlandskNæring}
+                                        validate={getListValidator({ required: true })}
+                                        labels={{
+                                            addLabel: intlHelper(
+                                                intl,
+                                                'steg.arbeidssituasjon.utenlandskNæring.infoDialog.registrerKnapp'
+                                            ),
+                                            deleteLabel: intlHelper(
+                                                intl,
+                                                'steg.arbeidssituasjon.utenlandskNæring.infoDialog.fjernKnapp'
+                                            ),
+                                            editLabel: intlHelper(
+                                                intl,
+                                                'steg.arbeidssituasjon.utenlandskNæring.infoDialog.endreKnapp'
+                                            ),
+                                            infoTitle: intlHelper(
+                                                intl,
+                                                'steg.arbeidssituasjon.utenlandskNæring.infoDialog.infoTittel'
+                                            ),
+                                            modalTitle: intlHelper(
+                                                intl,
+                                                'steg.arbeidssituasjon.utenlandskNæring.infoDialog.modal.tittel'
+                                            ),
+                                        }}
+                                    />
+                                </FormBlock>
+                            )}
+                        </FormBlock>
                     </FormSection>
+                    {visVernepliktSpørsmål(values) && (
+                        <FormSection title={intlHelper(intl, 'steg.arbeidssituasjon.verneplikt.tittel')}>
+                            <Box margin="l">
+                                <SoknadFormComponents.YesOrNoQuestion
+                                    name={SoknadFormField.harVærtEllerErVernepliktig}
+                                    legend={intlHelper(intl, 'steg.arbeidssituasjon.verneplikt.spm')}
+                                    validate={getYesOrNoValidator()}
+                                    description={
+                                        <ExpandableInfo
+                                            title={intlHelper(intl, 'steg.arbeidssituasjon.verneplikt.info.tittel')}>
+                                            <FormattedMessage id="steg.arbeidssituasjon.verneplikt.info.tekst" />
+                                        </ExpandableInfo>
+                                    }
+                                />
+                            </Box>
+                        </FormSection>
+                    )}
                 </>
             )}
         </SoknadFormStep>

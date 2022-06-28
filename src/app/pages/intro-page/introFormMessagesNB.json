@@ -6,6 +6,8 @@
     "introForm.erPleietrengendeILivetsSluttfase.stopMessage": "Den du har tatt vare på må være eller ha vært i livets sluttfase i perioden du søker for.",
     "introForm.pleierDuDenSykeHjemme.spm": "Har du tatt vare på og pleid personen i et privat hjem?",
     "introForm.pleierDuDenSykeHjemme.stopMessage": "Det er ikke rett til pleiepenger for dager som personen eventuelt har vært innlagt.",
+    "introForm.pleierDuDenSykeHjemme.info.tittel": "Hva menes med privat hjem?",
+    "introForm.pleierDuDenSykeHjemme.info": "Med privat hjem menes hjemme hos noen, for eksempel hjemme hos deg eller hjemme hos den som er syk. For at du skal ha rett til pleiepenger må altså den som er syk pleies hjemme hos noen, og ikke på sykehus eller en annen institusjon.",
 
     "introForm.start": "Start søknad"
 }

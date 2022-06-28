@@ -7,6 +7,7 @@ import { JobberIPeriodeSvar } from './JobberIPeriodenSvar';
 import { ISODate, ISODuration } from '@navikt/sif-common-utils';
 import { ÅrsakManglerIdentitetsnummer } from './ÅrsakManglerIdentitetsnummer';
 import { OpptjeningAktivitet } from '../components/pre-common/opptjening-utland';
+import { UtenlandskNæringstype } from '../components/pre-common/utenlandsk-næring';
 export interface PleietrengendeApi {
     navn: string;
     norskIdentitetsnummer: string | null;
@@ -107,6 +108,15 @@ export interface OpptjeningIUtlandetApi {
     fraOgMed: ApiStringDate;
     tilOgMed: ApiStringDate;
 }
+
+export interface UtenlandskNæringApi {
+    næringstype: UtenlandskNæringstype;
+    navnPåVirksomheten: string;
+    land: LandApi;
+    organisasjonsnummer?: string;
+    fraOgMed: ApiStringDate;
+    tilOgMed?: ApiStringDate;
+}
 export interface SoknadApiData {
     språk: Locale;
     harForståttRettigheterOgPlikter: boolean;
@@ -124,7 +134,8 @@ export interface SoknadApiData {
     harBekreftetOpplysninger: boolean;
     vedleggUrls: string[];
     harVærtEllerErVernepliktig?: boolean;
-    opptjeningIUtlandet?: OpptjeningIUtlandetApi[];
+    opptjeningIUtlandet: OpptjeningIUtlandetApi[];
+    utenlandskNæring: UtenlandskNæringApi[];
     /** Alle felter med _ brukes ikke i mottak, kun for å vise i oppsummering */
     _attachments: Attachment[];
     _harHattInntektSomFrilanser: boolean;
