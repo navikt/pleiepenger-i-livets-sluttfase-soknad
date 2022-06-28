@@ -7,7 +7,7 @@ export const getUtenlandskNæringApiData = (
     utenlandskNæring: UtenlandskNæring[],
     locale: string
 ): UtenlandskNæringApi[] => {
-    if (utenlandskNæring.length === 0) {
+    if (!utenlandskNæring || utenlandskNæring.length === 0) {
         return [];
     }
 
