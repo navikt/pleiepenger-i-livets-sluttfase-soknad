@@ -543,5 +543,12 @@
 
     "page.unavailable.1": "Den digitale pleiepengesøknaden er dessverre ikke tilgjengelig akkurat nå. Vi jobber med saken, slik at du kan søke digitalt. Frem til vi får fikset dette, kan du fylle ut vårt",
     "page.unavailable.2": "papirskjema for pleiepenger i livets sluttfase",
-    "page.unavailable.3": "Vi beklager."
+    "page.unavailable.3": "Vi beklager.",
+
+    "arbeidssituasjonFrilanser.frilanserPart.tittel": "Om deg som frilanser",
+    "frilansoppdragListe.oppdrag": "Periode: {tidsrom}",
+    "frilansoppdragListe.tidsrom.avsluttet": "fra {fra} til {til}",
+    "frilansoppdragListe.tidsrom.pågående": "fra {fra} - pågående",
+    "frilansoppdragInfo.tittel": "Registrerte frilansoppdrag i perioden:",
+    "frilansoppdragInfo.tekst": "Dette er frilansoppdrag registrert i AA-registeret i perioden du søker om pleiepenger. Dersom informasjonen ikke stemmer, må du ta kontakt med oppdragsgiver og be de oppdatere informasjonen i AA-registeret."
 }

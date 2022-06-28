@@ -86,6 +86,13 @@ const arbeidsgivereMock = [
         ansattTom: null,
     },
 ];
+const frilansoppdrag = {
+    type: 'type oppdrag',
+    organisasjonsnummer: '991012133',
+    navn: 'Hurdal frilanssenter',
+    ansattFom: '2022-01-01',
+    ansattTom: '2022-01-15',
+};
 
 const getArbeidsgiverMock = (from) => {
     return arbeidsgivereMock.filter((organisasjon) => {
@@ -116,7 +123,7 @@ const startExpressServer = () => {
 
     server.get('/arbeidsgiver', (req, res) => {
         const arbeidsgivere = getArbeidsgiverMock(req.query.fra_og_med);
-        res.send({ organisasjoner: arbeidsgivere, frilansoppdrag: [], privatarbeidsgiver: [] });
+        res.send({ organisasjoner: arbeidsgivere, frilansoppdrag: [frilansoppdrag], privatarbeidsgiver: [] });
     });
     server.get('/soker-not-logged-in', (req, res) => {
         res.sendStatus(401);
