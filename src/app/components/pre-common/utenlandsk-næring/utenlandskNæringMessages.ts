@@ -6,8 +6,8 @@ const virksomhetMessages = {
         'sifForms.utenlandskNæringForm.næringstype_ANNEN': 'Annet',
         'sifForms.utenlandskNæringForm.form_title': 'Opplysninger om virksomheten',
         'sifForms.utenlandskNæringForm.hvilken_type_virksomhet': 'Hvilken type virksomhet hadde du?',
-        'sifForms.utenlandskNæringForm.hva_heter_virksomheten': 'Hva heter virksomheten?',
-        'sifForms.utenlandskNæringForm.registert_i_hvilket_land': `I hvilket land er {navnPåVirksomheten} registrert i?`,
+        'sifForms.utenlandskNæringForm.hva_heter_virksomheten': 'Skriv inn navnet på virksomheten',
+        'sifForms.utenlandskNæringForm.registert_i_hvilket_land': `I hvilket land var {navnPåVirksomheten} registrert i?`,
         'sifForms.utenlandskNæringForm.organisasjonsnummer':
             'Skriv inn virksomhetens organisasjonsnummer/identifikasjonsnummer',
         'sifForms.utenlandskNæringForm.startdato': `Når startet du {navnPåVirksomheten}?`,
@@ -57,8 +57,8 @@ const virksomhetMessages = {
         'sifForms.utenlandskNæringForm.form_title.flere': 'Opplysningar om den eldste verksemda di',
         'sifForms.utenlandskNæringForm.hvilken_type_virksomhet': 'Kva type verksemd hadde du?',
 
-        'sifForms.utenlandskNæringForm.hva_heter_virksomheten': 'Kva heiter verksemda?',
-        'sifForms.utenlandskNæringForm.registert_i_hvilket_land': `I kva land er {navnPåVirksomheten} registrert?`,
+        'sifForms.utenlandskNæringForm.hva_heter_virksomheten': 'Skriv inn namnet på verksemda',
+        'sifForms.utenlandskNæringForm.registert_i_hvilket_land': `I kva land var {navnPåVirksomheten} registrert?`,
         'sifForms.utenlandskNæringForm.organisasjonsnummer':
             'Skriv inn organisasjonsnummeret for verksemda/identifikasjonsnummer',
         'sifForms.utenlandskNæringForm.startdato': `Når starta du {navnPåVirksomheten}?`,
