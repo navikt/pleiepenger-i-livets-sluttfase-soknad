@@ -22,7 +22,6 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
     apiValues: {
         arbeidsgivere,
         frilans,
-        _frilans,
         selvstendigNæringsdrivende,
         opptjeningIUtlandet: opptjeningUtland,
         harVærtEllerErVernepliktig,
@@ -37,7 +36,7 @@ const ArbeidssituasjonSummary: React.FunctionComponent<Props> = ({
         <SummarySection header={intlHelper(intl, 'steg.oppsummering.arbeidssituasjon.header')}>
             <ArbeidsgivereSummary arbeidsgivere={arbeidsgivere} søknadsperiode={søknadsperiode} />
 
-            <ArbeidssituasjonFrilansSummary frilans={frilans || _frilans} frilansoppdrag={frilansoppdrag} />
+            <ArbeidssituasjonFrilansSummary frilans={frilans} frilansoppdrag={frilansoppdrag} />
 
             <ArbeidssituasjonSNSummary selvstendigNæringsdrivende={selvstendigNæringsdrivende} />
 

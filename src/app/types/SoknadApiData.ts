@@ -55,6 +55,7 @@ export interface ArbeidsgiverApiData {
 }
 
 export interface FrilansApiData {
+    harHattInntektSomFrilanser: boolean;
     startdato: ApiStringDate;
     jobberFortsattSomFrilans: boolean;
     sluttdato?: ApiStringDate;
@@ -140,9 +141,4 @@ export interface SoknadApiData {
     _attachments: Attachment[];
     _harHattInntektSomFrilanser: boolean;
     _harHattInntektSomSelvstendigNæringsdrivende: boolean;
-    _frilans?: {
-        startdato: ApiStringDate;
-        jobberFortsattSomFrilans: boolean;
-        sluttdato?: ApiStringDate;
-    };
 }

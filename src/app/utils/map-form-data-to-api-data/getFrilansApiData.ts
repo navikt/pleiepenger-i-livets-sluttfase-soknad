@@ -33,6 +33,7 @@ export const getFrilansApiData = (
         return {
             _harHattInntektSomFrilanser: false,
             frilans: {
+                harHattInntektSomFrilanser: false,
                 startdato,
                 jobberFortsattSomFrilans: jobberFortsattSomFrilans === YesOrNo.YES,
                 sluttdato,
@@ -45,6 +46,7 @@ export const getFrilansApiData = (
         : undefined;
 
     const frilansApiData: FrilansApiData = {
+        harHattInntektSomFrilanser: true,
         startdato: startdato,
         jobberFortsattSomFrilans: jobberFortsattSomFrilans === YesOrNo.YES,
         sluttdato: sluttdato,
