@@ -28,6 +28,12 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
     return (
         <SummaryBlock header={intlHelper(intl, 'oppsummering.arbeidssituasjon.frilanser.header')} headerTag="h3">
             <ul>
+                {frilans.harHattInntektSomFrilanser === false && (
+                    <li>
+                        <FormattedMessage id={'oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser'} />
+                    </li>
+                )}
+
                 <li>
                     <FormattedMessage
                         id="oppsummering.arbeidssituasjon.frilans.startet"
