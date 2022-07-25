@@ -89,8 +89,8 @@
     "step.opplysninger-om-pleietrengende.stepTitle": "Om personen du har tatt vare på og pleid",
     "step.opplysninger-om-pleietrengende.stepIndicatorLabel": "Om personen du har tatt vare på og pleid",
     "step.opplysninger-om-pleietrengende.nextButtonLabel": "Fortsett",
-    "step.opplysninger-om-pleietrengende.counsellorPanel.info": "Her gir du opplysninger om den du har tatt vare på og pleid i livets sluttfase.",
-    "step.opplysninger-om-pleietrengende.counsellorPanel.info.1": "Når du søker for første gang må du laste opp en legeerklæring. Legen må bekrefte om personen er i livets sluttfase. Med livets sluttfase menes det terminalfasen.",
+    "step.opplysninger-om-pleietrengende.counsellorPanel.info": "Her gir du opplysninger om den du har tatt vare på, og pleid i livets sluttfase.",
+    "step.opplysninger-om-pleietrengende.counsellorPanel.info.1": "Når du søker for første gang, må du laste opp en legeerklæring som bekrefter at personen er i livets sluttfase. Hvis det allerede er sendt inn en slik legeerklæring, kan du bare gå videre uten å laste opp nytt vedlegg.",
 
     "step.opplysninger-om-pleietrengende.spm.navn": "Navn",
     "step.opplysninger-om-pleietrengende.spm.fnr": "Fødselsnummer",
