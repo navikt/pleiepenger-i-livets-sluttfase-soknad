@@ -1,5 +1,4 @@
 import { IntlShape } from 'react-intl';
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-formik/lib';
 import { StepConfigInterface, StepConfigItemTexts, StepID } from '../soknad/soknadStepsConfig';
@@ -13,6 +12,7 @@ import {
 } from '../validation/stepValidations';
 import { erAnsattISøknadsperiode, harFraværFraArbeidsforholdIPeriode, harFraværIArbeidsforhold } from './ansattUtils';
 import { erFrilanserISøknadsperiode } from './frilanserUtils';
+import { erSNISøknadsperiode } from './selvstendigUtils';
 
 export const getStepTexts = (intl: IntlShape, stepId: StepID, stepConfig: StepConfigInterface): StepConfigItemTexts => {
     const conf = stepConfig[stepId];
@@ -71,7 +71,7 @@ export const skalBrukerSvareArbeidstid = (
         harFraværIArbeidsforhold(formValues.frilans.arbeidsforhold);
 
     const erSelvstendigMedFraværIPerioden =
-        formValues.selvstendig.harHattInntektSomSN === YesOrNo.YES &&
+        erSNISøknadsperiode(søknadsperiode, formValues.selvstendig) &&
         harFraværIArbeidsforhold(formValues.selvstendig.arbeidsforhold);
 
     return erAnsattMedFraværIPerioden || erFrilanserMedFraværIPerioden || erSelvstendigMedFraværIPerioden;
