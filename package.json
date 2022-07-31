@@ -31,7 +31,7 @@
         "@navikt/sif-common-forms": "^17.0.0-beta.0",
         "@navikt/sif-common-pleiepenger": "^3.1.0",
         "@navikt/sif-common-sentry": "^0.3.1",
-        "@navikt/sif-common-soknad": "^5.3.0",
+        "@navikt/sif-common-soknad": "^5.3.1",
         "@navikt/sif-common-utils": "^3.0.3",
         "@snyk/protect": "^1.981.0",
         "amplitude-js": "^8.19.0",
