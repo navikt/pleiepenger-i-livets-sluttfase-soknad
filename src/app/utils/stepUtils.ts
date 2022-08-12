@@ -1,4 +1,3 @@
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-formik/lib';
 import { SoknadFormData } from '../types/SoknadFormData';
 import {
@@ -10,6 +9,7 @@ import {
 } from '../validation/stepValidations';
 import { erAnsattISøknadsperiode, harFraværFraArbeidsforholdIPeriode, harFraværIArbeidsforhold } from './ansattUtils';
 import { erFrilanserISøknadsperiode } from './frilanserUtils';
+import { erSNISøknadsperiode } from './selvstendigUtils';
 
 export const opplysningerOmPleietrengendeStepAvailable = (formData: SoknadFormData) => welcomingPageIsValid(formData);
 
@@ -57,7 +57,8 @@ export const skalBrukerSvareArbeidstid = (
         harFraværIArbeidsforhold(formValues.frilans.arbeidsforhold);
 
     const erSelvstendigMedFraværIPerioden =
-        formValues.selvstendig.harHattInntektSomSN === YesOrNo.YES &&
+        formValues.selvstendig &&
+        erSNISøknadsperiode(søknadsperiode, formValues.selvstendig) &&
         harFraværIArbeidsforhold(formValues.selvstendig.arbeidsforhold);
 
     return erAnsattMedFraværIPerioden || erFrilanserMedFraværIPerioden || erSelvstendigMedFraværIPerioden;
