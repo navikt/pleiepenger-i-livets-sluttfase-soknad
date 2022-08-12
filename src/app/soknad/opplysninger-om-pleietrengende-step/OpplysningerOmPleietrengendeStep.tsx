@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import SoknadFormStep from '../SoknadFormStep';
-import { StepConfigProps, StepID } from '../soknadStepsConfig';
+import { StepID } from '../soknadStepsConfig';
 import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import SoknadFormComponents from '../SoknadFormComponents';
@@ -16,7 +16,6 @@ import { validateNavn } from '../../validation/fieldValidation';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import { useFormikContext } from 'formik';
 import FormSection from '@navikt/sif-common-core/lib/components/form-section/FormSection';
-import { SøkerdataContext } from '../../context/SøkerdataContext';
 import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 import {
     getTotalSizeOfAttachments,
@@ -26,15 +25,19 @@ import BekreftelseFraLegePart from './BekreftelseFraLegePart';
 import { resetFieldValue, resetFieldValues } from '@navikt/sif-common-formik';
 import { dateToday } from '@navikt/sif-common-utils/lib';
 import { ÅrsakManglerIdentitetsnummer } from '../../types/ÅrsakManglerIdentitetsnummer';
+import { Person } from '../../types';
 
-const OpplysningerOmPleietrengendeStep = ({ onValidSubmit }: StepConfigProps) => {
+interface Props {
+    søker: Person;
+}
+
+const OpplysningerOmPleietrengendeStep: React.FC<Props> = ({ søker }: Props) => {
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
     const {
         values: { harIkkeFnr },
         setFieldValue,
     } = useFormikContext<SoknadFormData>();
-    const søkerdata = React.useContext(SøkerdataContext);
     const attachments: Attachment[] = React.useMemo(() => {
         return values ? values[SoknadFormField.bekreftelseFraLege] : [];
     }, [values]);
@@ -45,7 +48,6 @@ const OpplysningerOmPleietrengendeStep = ({ onValidSubmit }: StepConfigProps) =>
     return (
         <SoknadFormStep
             id={StepID.OPPLYSNINGER_OM_PLEIETRENGENDE}
-            onValidFormSubmit={onValidSubmit}
             buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}>
             <CounsellorPanel>
                 <p>
@@ -73,9 +75,7 @@ const OpplysningerOmPleietrengendeStep = ({ onValidSubmit }: StepConfigProps) =>
                                 ? undefined
                                 : getFødselsnummerValidator({
                                       required: true,
-                                      disallowedValues: søkerdata?.søker.fødselsnummer
-                                          ? [søkerdata?.søker.fødselsnummer]
-                                          : [],
+                                      disallowedValues: søker.fødselsnummer ? [søker.fødselsnummer] : [],
                                   })
                         }
                         inputMode="numeric"

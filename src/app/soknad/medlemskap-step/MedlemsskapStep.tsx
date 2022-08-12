@@ -13,7 +13,7 @@ import getLenker from '../../lenker';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import SoknadFormComponents from '../SoknadFormComponents';
 import MedlemskapStepFieldValidations from './medlemskapFieldValidations';
-import { StepConfigProps, StepID } from '../soknadStepsConfig';
+import { StepID } from '../soknadStepsConfig';
 import SoknadFormStep from '../SoknadFormStep';
 import dayjs from 'dayjs';
 
@@ -21,13 +21,12 @@ type Props = {
     søknadsdato: Date;
 };
 
-const MedlemsskapStep = ({ onValidSubmit, søknadsdato }: StepConfigProps & Props) => {
+const MedlemsskapStep: React.FC<Props> = ({ søknadsdato }: Props) => {
     const intl = useIntl();
-
     const { values } = useFormikContext<SoknadFormData>();
 
     return (
-        <SoknadFormStep id={StepID.MEDLEMSKAP} onValidFormSubmit={onValidSubmit}>
+        <SoknadFormStep id={StepID.MEDLEMSKAP}>
             <CounsellorPanel>
                 <p>
                     <FormattedMessage id="step.medlemsskap.info.1" />

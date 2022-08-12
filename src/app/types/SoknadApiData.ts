@@ -81,13 +81,6 @@ export interface BostedUtlandApiData {
     landnavn: string;
 }
 
-export type YesNoSvar = boolean;
-export type Spørsmål = string;
-export interface YesNoSpørsmålOgSvar {
-    spørsmål: Spørsmål;
-    svar: YesNoSvar;
-}
-
 export interface PeriodeApiData {
     fraOgMed: ApiStringDate;
     tilOgMed: ApiStringDate;

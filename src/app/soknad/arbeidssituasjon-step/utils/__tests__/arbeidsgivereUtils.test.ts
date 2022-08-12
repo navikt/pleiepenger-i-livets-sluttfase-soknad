@@ -49,12 +49,6 @@ const arbeidsforholdUbesvart: Arbeidsforhold = {
 
 const arbeidsforhold: Arbeidsforhold[] = [arbeidsforholdErAnsatt, arbeidsforholdUbesvart];
 
-jest.mock('../../../../utils/envUtils', () => {
-    return {
-        getEnvironmentVariable: () => 'someEnvVar',
-    };
-});
-
 describe('syncArbeidsforholdWithArbeidsgivere', () => {
     it('should replace all arbeidsforhold if none present in arbeidsgivere', () => {
         const result = syncAnsattArbeidsforhold(organisasjoner, arbeidsforhold);

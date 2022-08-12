@@ -1,4 +1,7 @@
-import { Søker } from './';
-export interface Søkerdata {
-    søker: Søker;
+export interface Person {
+    etternavn: string;
+    fornavn: string;
+    mellomnavn?: string;
+    fødselsnummer: string;
+    kjønn?: string;
 }

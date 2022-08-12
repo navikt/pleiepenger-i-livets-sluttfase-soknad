@@ -1,7 +1,3 @@
-export interface ArbeidsgiverResponse {
-    organisasjoner: Arbeidsgiver[];
-}
-
 export enum ArbeidsgiverType {
     'PRIVATPERSON' = 'PRIVAT',
     'ORGANISASJON' = 'ORGANISASJON',

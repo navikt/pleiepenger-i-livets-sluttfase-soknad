@@ -1,11 +1,9 @@
 import { formatDateToApiFormat } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { DateRange, YesOrNo } from '@navikt/sif-common-formik/lib';
-import { SoknadApiData, YesNoSpørsmålOgSvar, YesNoSvar } from '../../types/SoknadApiData';
+import { SoknadApiData } from '../../types/SoknadApiData';
 import { SoknadFormData } from '../../types/SoknadFormData';
 import { listOfAttachmentsToListOfUrlStrings } from './mapVedleggToApiData';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { IntlShape } from 'react-intl';
-import { getValidSpråk } from '../sprakUtils';
 import { getMedlemsskapApiData } from '../medlemsskapApiData';
 import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
 import appSentryLogger from '../appSentryLogger';
@@ -15,40 +13,21 @@ import { getFrilansApiData } from './getFrilansApiData';
 import { getSelvstendigNæringsdrivendeApiData } from './getSelvstendigNæringsdrivendeApiData';
 import { getOpptjeningIUtlandetApiData } from './getOpptjeningUtlandetApiData';
 import { getUtenlandskNæringApiData } from './getUtenlandskNæringApiData';
-
-export const mapYesOrNoToSvar = (input: YesOrNo): YesNoSvar => {
-    return input === YesOrNo.YES;
-};
+import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 
 export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape): SoknadApiData | undefined => {
-    const locale = getValidSpråk(intl.locale);
-    const yesOrNoQuestions: YesNoSpørsmålOgSvar[] = [];
-
     const periodeFra = datepickerUtils.getDateFromDateString(formData.periodeFra);
     const periodeTil = datepickerUtils.getDateFromDateString(formData.periodeTil);
 
-    if (formData.frilans_erFrilanser) {
-        yesOrNoQuestions.push({
-            spørsmål: intlHelper(intl, 'step.arbeidssituasjon.frilanser.erFrilanser.spm'),
-            svar: mapYesOrNoToSvar(formData.frilans_erFrilanser),
-        });
-    }
-    if (formData.selvstendig_erSelvstendigNæringsdrivende) {
-        yesOrNoQuestions.push({
-            spørsmål: intlHelper(intl, 'step.arbeidssituasjon.selvstendig.erDuSelvstendigNæringsdrivende.spm'),
-            svar: mapYesOrNoToSvar(formData.selvstendig_erSelvstendigNæringsdrivende),
-        });
-    }
-
     if (periodeFra && periodeTil) {
         try {
-            const sprak = getValidSpråk(locale);
+            const sprak = (intl.locale as any) === 'en' ? 'nn' : (intl.locale as Locale);
             const søknadsperiode: DateRange = {
                 from: periodeFra,
                 to: periodeTil,
             };
             const apiData: SoknadApiData = {
-                språk: locale,
+                språk: sprak,
                 harBekreftetOpplysninger: formData.harBekreftetOpplysninger,
                 harForståttRettigheterOgPlikter: formData.harForståttRettigheterOgPlikter,
                 pleietrengende: {
@@ -74,13 +53,13 @@ export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape):
                 },
                 ...getArbeidsgivereISøknadsperiodenApiData(formData, søknadsperiode),
                 ...getFrilansApiData(formData.frilans, søknadsperiode, formData.frilansoppdrag),
-                ...getSelvstendigNæringsdrivendeApiData(formData.selvstendig, søknadsperiode, locale),
-                ...getMedlemsskapApiData(formData, locale),
+                ...getSelvstendigNæringsdrivendeApiData(formData.selvstendig, søknadsperiode, sprak),
+                ...getMedlemsskapApiData(formData, sprak),
                 harVærtEllerErVernepliktig: formData.harVærtEllerErVernepliktig
                     ? formData.harVærtEllerErVernepliktig === YesOrNo.YES
                     : undefined,
-                opptjeningIUtlandet: getOpptjeningIUtlandetApiData(formData.opptjeningUtland, locale),
-                utenlandskNæring: getUtenlandskNæringApiData(formData.utenlandskNæring, locale),
+                opptjeningIUtlandet: getOpptjeningIUtlandetApiData(formData.opptjeningUtland, sprak),
+                utenlandskNæring: getUtenlandskNæringApiData(formData.utenlandskNæring, sprak),
                 vedleggUrls: listOfAttachmentsToListOfUrlStrings(formData.bekreftelseFraLege),
                 _attachments: formData.bekreftelseFraLege,
             };

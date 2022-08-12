@@ -12,7 +12,6 @@ import ArbeidIPeriodeSummaryItem from './ArbeidIPeriodenSummaryItem';
 interface Props {
     apiValues: SoknadApiData;
     søknadsperiode: DateRange;
-    søknadsdato: Date;
 }
 
 export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {

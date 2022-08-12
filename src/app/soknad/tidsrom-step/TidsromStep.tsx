@@ -13,7 +13,7 @@ import { useFormikContext } from 'formik';
 import Alertstripe from 'nav-frontend-alertstriper';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import SoknadFormComponents from '../SoknadFormComponents';
-import { StepConfigProps, StepID } from '../soknadStepsConfig';
+import { StepID } from '../soknadStepsConfig';
 import { søkerKunHelgedager } from '../../utils/formDataUtils';
 import SoknadFormStep from '../SoknadFormStep';
 import { validateFradato, validateTildato, validateUtenlandsoppholdIPerioden } from '../../validation/fieldValidation';
@@ -25,7 +25,7 @@ import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlo
 
 dayjs.extend(minMax);
 
-const TidsromStep = ({ onValidSubmit }: StepConfigProps) => {
+const TidsromStep = () => {
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
 
@@ -47,7 +47,6 @@ const TidsromStep = ({ onValidSubmit }: StepConfigProps) => {
     return (
         <SoknadFormStep
             id={StepID.TIDSROM}
-            onValidFormSubmit={onValidSubmit}
             showSubmitButton={!søkerKunHelgedager(values.periodeFra, values.periodeTil)}>
             <CounsellorPanel kompakt={true} type="normal">
                 <p>

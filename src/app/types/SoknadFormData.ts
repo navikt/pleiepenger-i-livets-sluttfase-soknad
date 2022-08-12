@@ -108,7 +108,7 @@ export interface SoknadFormData {
     [SoknadFormField.utenlandsoppholdNeste12Mnd]: Utenlandsopphold[];
 }
 
-export const initialValues: Partial<SoknadFormData> = {
+export const initialValues: SoknadFormData = {
     [SoknadFormField.harForståttRettigheterOgPlikter]: false,
     [SoknadFormField.harBekreftetOpplysninger]: false,
     [SoknadFormField.pleietrengende]: {
@@ -126,13 +126,17 @@ export const initialValues: Partial<SoknadFormData> = {
     [SoknadFormField.utenlandsoppholdIPerioden]: [],
 
     // Arbeidssituasjon
+    [SoknadFormField.arbeidsforhold]: [],
     [SoknadFormField.ansatt_arbeidsforhold]: [],
+    [SoknadFormField.frilans_erFrilanser]: YesOrNo.UNANSWERED,
     [SoknadFormField.frilans]: {
         harHattInntektSomFrilanser: YesOrNo.UNANSWERED,
     },
+    [SoknadFormField.selvstendig_erSelvstendigNæringsdrivende]: YesOrNo.UNANSWERED,
     [SoknadFormField.selvstendig]: {
         harHattInntektSomSN: YesOrNo.UNANSWERED,
     },
+    [SoknadFormField.harStønadFraNav]: YesOrNo.UNANSWERED,
     [SoknadFormField.frilansoppdrag]: [],
     [SoknadFormField.harOpptjeningUtland]: YesOrNo.UNANSWERED,
     [SoknadFormField.opptjeningUtland]: [],

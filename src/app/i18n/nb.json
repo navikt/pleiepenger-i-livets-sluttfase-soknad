@@ -286,6 +286,7 @@
     "step.arbeidstid.pageTitle": "Opplysninger om arbeidstid",
     "step.arbeidstid.stepTitle": "Jobb i søknadsperioden",
     "step.arbeidstid.stepIndicatorLabel": "Jobb i søknadsperioden",
+    "step.arbeidstid.nextButtonLabel": "Fortsett",
 
     "arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.1": "Du kan kun få utbetalt pleiepenger for hverdager. Det utbetales ikke pleiepenger for lørdag eller søndag selv om du har hatt fravær fra jobb for å pleie personen.",
     "arbeidIPeriode.søkerKunHelgedager.alert.avsnitt.2": "Du kan derfor ikke registrere arbeid kun for lørdag og/eller søndag.",
@@ -419,7 +420,7 @@
     "step.oppsummering.fravær.aktivitet.2": "Fravær som {aktivitet1} og {aktivitet2}.",
 
     "step.oppsummering.dokumenter.header": "Vedlegg",
-    "step.oppsummering.dokumenter.ingenVedlegg": "Ingen vedlegg er lastet opp. Må ettersendes.",
+    "step.oppsummering.dokumenter.ingenVedlegg": "Ingen vedlegg er lastet opp",
     "steg.oppsummering.bekreftelseFraLege.header": "Legeerklæring",
 
     "step.oppsummering.apiValideringFeil.tittel": "Noe av informasjonen mangler",
