@@ -13,7 +13,7 @@ import { getFrilansApiData } from './getFrilansApiData';
 import { getSelvstendigNæringsdrivendeApiData } from './getSelvstendigNæringsdrivendeApiData';
 import { getOpptjeningIUtlandetApiData } from './getOpptjeningUtlandetApiData';
 import { getUtenlandskNæringApiData } from './getUtenlandskNæringApiData';
-import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
+import { getLocaleForApi } from '@navikt/sif-common-core/lib/utils/localeUtils';
 
 export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape): SoknadApiData | undefined => {
     const periodeFra = datepickerUtils.getDateFromDateString(formData.periodeFra);
@@ -21,7 +21,7 @@ export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape):
 
     if (periodeFra && periodeTil) {
         try {
-            const sprak = (intl.locale as any) === 'en' ? 'nn' : (intl.locale as Locale);
+            const sprak = getLocaleForApi(intl.locale);
             const søknadsperiode: DateRange = {
                 from: periodeFra,
                 to: periodeTil,

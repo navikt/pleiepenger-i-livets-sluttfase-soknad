@@ -4,7 +4,7 @@ import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import SummaryList from '@navikt/sif-common-core/lib/components/summary-list/SummaryList';
 import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
 import { OpptjeningIUtlandetApi } from '../../../types/SoknadApiData';
-
+import { renderOpptjeningIUtlandetSummary } from './renderOpptjeningIUtlandetSummary';
 export interface Props {
     opptjeningUtland: OpptjeningIUtlandetApi[];
 }
@@ -20,7 +20,7 @@ const OpptjeningIUtlandetSummaryView: React.FC<Props> = (props) => {
                     <FormattedMessage id="oppsummering.arbeidssituasjon.optjeningIUtlandet.nei" />
                 )}
                 {opptjeningUtland.length > 0 && (
-                    <SummaryList items={opptjeningUtland} itemRenderer={OpptjeningIUtlandetSummaryView} />
+                    <SummaryList items={opptjeningUtland} itemRenderer={renderOpptjeningIUtlandetSummary} />
                 )}
             </SummaryBlock>
         </>
