@@ -9,7 +9,7 @@ const sendMultipartPostRequest = (url: string, formData: FormData) => {
 };
 
 axios.defaults.baseURL = getEnvironmentVariable('API_URL');
-axios.defaults.withCredentials = false;
+axios.defaults.withCredentials = true;
 axios.interceptors.request.use((config) => {
     return config;
 });
