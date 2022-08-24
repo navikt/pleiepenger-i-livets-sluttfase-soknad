@@ -28,6 +28,7 @@ import { mapFormDataToApiData } from '../utils/map-form-data-to-api-data/mapForm
 import { KvitteringInfo } from '../types/KvitteringInfo';
 import { getSøknadsperiodeFromFormData } from '../utils/formDataUtils';
 import { dateToday } from '@navikt/sif-common-utils/lib';
+import LegeerklæringStep from './legeerklæring-step/LegeerklæringStep';
 
 interface Props {
     søker: Person;
@@ -50,6 +51,8 @@ const SoknadRoutes: React.FC<Props> = ({ søker, kvitteringInfo, soknadId }) => 
         switch (stepID) {
             case StepID.OPPLYSNINGER_OM_PLEIETRENGENDE:
                 return <OpplysningerOmPleietrengendeStep søker={søker} />;
+            case StepID.LEGEERKLÆRING:
+                return <LegeerklæringStep />;
             case StepID.TIDSROM:
                 return <TidsromStep />;
             case StepID.ARBEIDSSITUASJON:

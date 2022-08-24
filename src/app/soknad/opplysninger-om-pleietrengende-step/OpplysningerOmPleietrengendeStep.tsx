@@ -15,13 +15,6 @@ import {
 import { validateNavn } from '../../validation/fieldValidation';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import { useFormikContext } from 'formik';
-import FormSection from '@navikt/sif-common-core/lib/components/form-section/FormSection';
-import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
-import {
-    getTotalSizeOfAttachments,
-    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from '@navikt/sif-common-core/lib/utils/attachmentUtils';
-import BekreftelseFraLegePart from './BekreftelseFraLegePart';
 import { resetFieldValue, resetFieldValues } from '@navikt/sif-common-formik';
 import { dateToday } from '@navikt/sif-common-utils/lib';
 import { ÅrsakManglerIdentitetsnummer } from '../../types/ÅrsakManglerIdentitetsnummer';
@@ -38,23 +31,15 @@ const OpplysningerOmPleietrengendeStep: React.FC<Props> = ({ søker }: Props) =>
         values: { harIkkeFnr },
         setFieldValue,
     } = useFormikContext<SoknadFormData>();
-    const attachments: Attachment[] = React.useMemo(() => {
-        return values ? values[SoknadFormField.bekreftelseFraLege] : [];
-    }, [values]);
-    const totalSize = getTotalSizeOfAttachments(attachments);
-    const hasPendingUploads: boolean = attachments.find((a) => a.pending === true) !== undefined;
-    const attachmentsSizeOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
 
     return (
         <SoknadFormStep
             id={StepID.OPPLYSNINGER_OM_PLEIETRENGENDE}
-            buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}>
+            // buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}
+        >
             <CounsellorPanel>
                 <p>
                     <FormattedMessage id="step.opplysninger-om-pleietrengende.counsellorPanel.info" />
-                </p>
-                <p>
-                    <FormattedMessage id="step.opplysninger-om-pleietrengende.counsellorPanel.info.1" />
                 </p>
             </CounsellorPanel>
 
@@ -151,11 +136,6 @@ const OpplysningerOmPleietrengendeStep: React.FC<Props> = ({ søker }: Props) =>
                         </FormBlock>
                     </>
                 )}
-            </FormBlock>
-            <FormBlock>
-                <FormSection title={intlHelper(intl, 'step.opplysninger-om-pleietrengende.vedlegg.tittel')}>
-                    <BekreftelseFraLegePart />
-                </FormSection>
             </FormBlock>
         </SoknadFormStep>
     );

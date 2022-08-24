@@ -13,6 +13,9 @@ import { erSNISøknadsperiode } from './selvstendigUtils';
 
 export const opplysningerOmPleietrengendeStepAvailable = (formData: SoknadFormData) => welcomingPageIsValid(formData);
 
+export const legeerklæringStepAvailable = (formData: SoknadFormData) =>
+    opplysningerOmPleietrengendeStepAvailable(formData);
+
 export const opplysningerOmTidsromStepAvailable = (formData: SoknadFormData) =>
     welcomingPageIsValid(formData) && opplysningerOmPleietrengendeStepIsValid(formData);
 

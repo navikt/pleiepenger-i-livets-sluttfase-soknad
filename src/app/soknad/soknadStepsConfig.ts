@@ -6,6 +6,7 @@ import { SoknadApplicationType, SoknadStepsConfig } from '@navikt/sif-common-sok
 
 export enum StepID {
     'OPPLYSNINGER_OM_PLEIETRENGENDE' = 'opplysninger-om-pleietrengende',
+    'LEGEERKLÆRING' = 'legeerklæring',
     'TIDSROM' = 'tidsrom',
     'ARBEIDSSITUASJON' = 'arbeidssituasjon',
     'ARBEIDSTID' = 'arbeidstid',
@@ -25,6 +26,7 @@ export const getSoknadSteps = (formValues: SoknadFormData | undefined): StepID[]
 
     const allSteps: ConfigStepHelperType[] = [
         { stepID: StepID.OPPLYSNINGER_OM_PLEIETRENGENDE, included: true },
+        { stepID: StepID.LEGEERKLÆRING, included: true },
         { stepID: StepID.TIDSROM, included: true },
         { stepID: StepID.ARBEIDSSITUASJON, included: true },
         { stepID: StepID.ARBEIDSTID, included: includeArbeidstid },

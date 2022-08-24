@@ -9,6 +9,7 @@ import {
     oppsummeringStepAvailable,
     arbeidIPeriodeStepIsAvailable,
     skalBrukerSvareArbeidstid,
+    legeerklæringStepAvailable,
 } from './stepUtils';
 
 export const getAvailableSteps = (values: SoknadFormData, søknadsperiode?: DateRange): StepID[] => {
@@ -16,6 +17,10 @@ export const getAvailableSteps = (values: SoknadFormData, søknadsperiode?: Date
 
     if (opplysningerOmPleietrengendeStepAvailable(values)) {
         steps.push(StepID.OPPLYSNINGER_OM_PLEIETRENGENDE);
+    }
+
+    if (legeerklæringStepAvailable(values)) {
+        steps.push(StepID.LEGEERKLÆRING);
     }
 
     if (opplysningerOmTidsromStepAvailable(values)) {
