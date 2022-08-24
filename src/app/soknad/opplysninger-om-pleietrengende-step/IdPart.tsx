@@ -6,8 +6,13 @@ import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import { useFormikContext } from 'formik';
 import PictureScanningGuide from '@navikt/sif-common-core/lib/components/picture-scanning-guide/PictureScanningGuide';
 import FormikVedleggsKomponent from '../../components/VedleggComponent/FormikVedleggsKomponent';
+import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 
-const BekreftelseFraLegePart = () => {
+interface Props {
+    alleDokumenterISøknaden: Attachment[];
+}
+
+const IdPart = ({ alleDokumenterISøknaden }: Props) => {
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
 
@@ -17,13 +22,13 @@ const BekreftelseFraLegePart = () => {
                 <PictureScanningGuide />
             </Box>
             <FormikVedleggsKomponent
-                uploadButtonLabel={intlHelper(intl, 'step.opplysninger-om-pleietrengende.vedlegg')}
-                formikName={SoknadFormField.bekreftelseFraLege}
-                dokumenter={values.bekreftelseFraLege}
-                alleDokumenterISøknaden={values.bekreftelseFraLege}
+                uploadButtonLabel={intlHelper(intl, 'step.opplysninger-om-pleietrengende.id.uploadButtonLabel')}
+                formikName={SoknadFormField.pleietrengendeId}
+                dokumenter={values.pleietrengendeId}
+                alleDokumenterISøknaden={alleDokumenterISøknaden}
             />
         </>
     );
 };
 
-export default BekreftelseFraLegePart;
+export default IdPart;

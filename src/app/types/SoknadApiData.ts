@@ -127,6 +127,7 @@ export interface SoknadApiData {
     medlemskap: MedlemskapApiData;
     harBekreftetOpplysninger: boolean;
     vedleggUrls: string[];
+    opplastetIdVedleggUrls: string[];
     harVærtEllerErVernepliktig?: boolean;
     opptjeningIUtlandet: OpptjeningIUtlandetApi[];
     utenlandskNæring: UtenlandskNæringApi[];

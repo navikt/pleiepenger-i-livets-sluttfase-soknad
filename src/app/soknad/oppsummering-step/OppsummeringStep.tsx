@@ -31,11 +31,12 @@ import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 
 interface Props {
     søker: Person;
-    attacments: Attachment[];
+    attachments: Attachment[];
+    pleietrengendeId: Attachment[];
     apiValues?: SoknadApiData;
 }
 
-const OppsummeringStep: React.FC<Props> = ({ søker, attacments, apiValues }: Props) => {
+const OppsummeringStep: React.FC<Props> = ({ søker, attachments, pleietrengendeId, apiValues }: Props) => {
     const intl = useIntl();
     const { sendSoknadStatus, sendSoknad } = useSoknadContext();
     const { values } = useFormikContext<SoknadFormData>();
@@ -57,7 +58,10 @@ const OppsummeringStep: React.FC<Props> = ({ søker, attacments, apiValues }: Pr
                         <ResponsivePanel border={true}>
                             <SøkerSummary søker={søker} apiValues={apiValues} />
 
-                            <PleietrengendePersonSummary pleietrengende={apiValues.pleietrengende} />
+                            <PleietrengendePersonSummary
+                                pleietrengende={apiValues.pleietrengende}
+                                pleietrengendeId={pleietrengendeId}
+                            />
 
                             {/* Perioden du søker pleiepenger for */}
                             <SummarySection header={intlHelper(intl, 'steg.oppsummering.tidsrom.header')}>
@@ -131,8 +135,8 @@ const OppsummeringStep: React.FC<Props> = ({ søker, attacments, apiValues }: Pr
                             {/* Vedlegg */}
                             <SummarySection header={intlHelper(intl, 'steg.oppsummering.vedlegg.header')}>
                                 <Box margin="m">
-                                    <AttachmentList attachments={attacments} />
-                                    {attacments.length === 0 && (
+                                    <AttachmentList attachments={attachments} />
+                                    {attachments.length === 0 && (
                                         <FormattedMessage id="step.oppsummering.dokumenter.ingenVedlegg" />
                                     )}
                                 </Box>

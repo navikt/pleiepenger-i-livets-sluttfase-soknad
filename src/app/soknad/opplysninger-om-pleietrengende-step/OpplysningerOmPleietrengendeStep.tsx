@@ -19,6 +19,14 @@ import { resetFieldValue, resetFieldValues } from '@navikt/sif-common-formik';
 import { dateToday } from '@navikt/sif-common-utils/lib';
 import { ÅrsakManglerIdentitetsnummer } from '../../types/ÅrsakManglerIdentitetsnummer';
 import { Person } from '../../types';
+import IdPart from './IdPart';
+import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
+import { valuesToAlleDokumenterISøknaden } from '../../utils/attachmentUtils';
+import {
+    getTotalSizeOfAttachments,
+    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
+} from '@navikt/sif-common-core/lib/utils/attachmentUtils';
+import FormSection from '@navikt/sif-common-core/lib/components/form-section/FormSection';
 
 interface Props {
     søker: Person;
@@ -32,11 +40,16 @@ const OpplysningerOmPleietrengendeStep: React.FC<Props> = ({ søker }: Props) =>
         setFieldValue,
     } = useFormikContext<SoknadFormData>();
 
+    const alleDokumenterISøknaden: Attachment[] = valuesToAlleDokumenterISøknaden(values);
+    const totalSize = getTotalSizeOfAttachments(alleDokumenterISøknaden);
+    const hasPendingUploads: boolean =
+        (values.pleietrengendeId || []).find((a: any) => a.pending === true) !== undefined;
+    const attachmentsSizeOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
+
     return (
         <SoknadFormStep
             id={StepID.OPPLYSNINGER_OM_PLEIETRENGENDE}
-            // buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}
-        >
+            buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}>
             <CounsellorPanel>
                 <p>
                     <FormattedMessage id="step.opplysninger-om-pleietrengende.counsellorPanel.info" />
@@ -133,6 +146,14 @@ const OpplysningerOmPleietrengendeStep: React.FC<Props> = ({ søker }: Props) =>
                                         ? values.pleietrengende.årsakManglerIdentitetsnummer
                                         : undefined
                                 }></SoknadFormComponents.RadioGroup>
+                        </FormBlock>
+                        <FormBlock margin="m">
+                            <FormSection title={intlHelper(intl, 'step.opplysninger-om-pleietrengende.id.tittel')}>
+                                <Box padBottom="l">
+                                    <FormattedMessage id="step.opplysninger-om-pleietrengende.id.info" />
+                                </Box>
+                                <IdPart alleDokumenterISøknaden={alleDokumenterISøknaden} />
+                            </FormSection>
                         </FormBlock>
                     </>
                 )}

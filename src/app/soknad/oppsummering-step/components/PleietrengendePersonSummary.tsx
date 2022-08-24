@@ -8,12 +8,15 @@ import { PleietrengendeApi } from '../../../types/SoknadApiData';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { apiStringDateToDate, prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import AttachmentList from '@navikt/sif-common-core/lib/components/attachment-list/AttachmentList';
+import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 
 interface Props {
     pleietrengende: PleietrengendeApi;
+    pleietrengendeId: Attachment[];
 }
 
-const PleietrengendePersonSummary = ({ pleietrengende }: Props) => {
+const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId }: Props) => {
     const intl = useIntl();
     return (
         <SummarySection header={intlHelper(intl, 'step.oppsummering.pleietrengende.header')}>
@@ -35,19 +38,29 @@ const PleietrengendePersonSummary = ({ pleietrengende }: Props) => {
                     </>
                 )}
                 {pleietrengende.årsakManglerIdentitetsnummer && !pleietrengende.norskIdentitetsnummer && (
-                    <Box margin="l">
-                        <Normaltekst>
-                            <FormattedMessage
-                                id="steg.oppsummering.pleietrengende.harIkkeFnr"
-                                values={{
-                                    årsak: intlHelper(
-                                        intl,
-                                        `steg.oppsummering.pleietrengende.årsakManglerIdentitetsnummer.${pleietrengende.årsakManglerIdentitetsnummer}`
-                                    ),
-                                }}
-                            />
-                        </Normaltekst>
-                    </Box>
+                    <>
+                        <Box margin="l">
+                            <Normaltekst>
+                                <FormattedMessage
+                                    id="steg.oppsummering.pleietrengende.harIkkeFnr"
+                                    values={{
+                                        årsak: intlHelper(
+                                            intl,
+                                            `steg.oppsummering.pleietrengende.årsakManglerIdentitetsnummer.${pleietrengende.årsakManglerIdentitetsnummer}`
+                                        ),
+                                    }}
+                                />
+                            </Normaltekst>
+                        </Box>
+                        <Box margin="m">
+                            <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.pleietrengende.id')}>
+                                <AttachmentList attachments={pleietrengendeId} />
+                                {pleietrengendeId.length === 0 && (
+                                    <FormattedMessage id="step.oppsummering.pleietrengende.id.ingenId" />
+                                )}
+                            </SummaryBlock>
+                        </Box>
+                    </>
                 )}
             </SummaryBlock>
         </SummarySection>

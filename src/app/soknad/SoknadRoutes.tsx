@@ -63,7 +63,14 @@ const SoknadRoutes: React.FC<Props> = ({ søker, kvitteringInfo, soknadId }) => 
                 return <MedlemsskapStep søknadsdato={søknadsdato} />;
             case StepID.OPPSUMMERING:
                 const apiValues: SoknadApiData | undefined = mapFormDataToApiData(values, intl);
-                return <OppsummeringStep søker={søker} apiValues={apiValues} attacments={values.bekreftelseFraLege} />;
+                return (
+                    <OppsummeringStep
+                        søker={søker}
+                        apiValues={apiValues}
+                        attachments={values.bekreftelseFraLege}
+                        pleietrengendeId={values.pleietrengendeId}
+                    />
+                );
         }
     };
 

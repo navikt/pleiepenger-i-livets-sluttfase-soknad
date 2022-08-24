@@ -14,16 +14,15 @@ import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import { valuesToAlleDokumenterISøknaden } from '../../utils/attachmentUtils';
 
 const LegeerklæringStep: React.FC = () => {
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
-
-    const attachments: Attachment[] = React.useMemo(() => {
-        return values ? values[SoknadFormField.bekreftelseFraLege] : [];
-    }, [values]);
-    const totalSize = getTotalSizeOfAttachments(attachments);
-    const hasPendingUploads: boolean = attachments.find((a) => a.pending === true) !== undefined;
+    const alleDokumenterISøknaden: Attachment[] = valuesToAlleDokumenterISøknaden(values);
+    const totalSize = getTotalSizeOfAttachments(alleDokumenterISøknaden);
+    const hasPendingUploads: boolean =
+        (values.bekreftelseFraLege || []).find((a: any) => a.pending === true) !== undefined;
     const attachmentsSizeOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
 
     return (
@@ -45,7 +44,7 @@ const LegeerklæringStep: React.FC = () => {
                         uploadButtonLabel={intlHelper(intl, 'step.opplysninger-om-pleietrengende.vedlegg')}
                         formikName={SoknadFormField.bekreftelseFraLege}
                         dokumenter={values.bekreftelseFraLege}
-                        alleDokumenterISøknaden={values.bekreftelseFraLege}
+                        alleDokumenterISøknaden={alleDokumenterISøknaden}
                     />
                 </Box>
             </>

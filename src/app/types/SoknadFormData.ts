@@ -29,6 +29,9 @@ export enum SoknadFormField {
     pleietrengende__norskIdentitetsnummer = 'pleietrengende.norskIdentitetsnummer',
     pleietrengende__fødselsdato = 'pleietrengende.fødselsdato',
     pleietrengende__årsakManglerIdentitetsnummer = 'pleietrengende.årsakManglerIdentitetsnummer',
+    pleietrengendeId = 'pleietrengendeId',
+
+    //LEGEERKLÆRING
     bekreftelseFraLege = 'bekreftelseFraLege',
 
     // Tidsrom
@@ -71,6 +74,9 @@ export interface SoknadFormData {
     [SoknadFormField.harBekreftetOpplysninger]: boolean;
     [SoknadFormField.pleietrengende]: Pleietrengende;
     [SoknadFormField.harIkkeFnr]: boolean;
+    [SoknadFormField.pleietrengendeId]: Attachment[];
+
+    //LEGEERKLÆRING
     [SoknadFormField.bekreftelseFraLege]: Attachment[];
 
     //Tidsrom
@@ -117,6 +123,9 @@ export const initialValues: SoknadFormData = {
         fødselsdato: '',
     },
     [SoknadFormField.harIkkeFnr]: false,
+    [SoknadFormField.pleietrengendeId]: [],
+
+    //LEGEERKLÆRING
     [SoknadFormField.bekreftelseFraLege]: [],
 
     //Tidsrom
