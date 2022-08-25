@@ -7,8 +7,8 @@ import utenlandsoppholdMessages from '@navikt/sif-common-forms/lib/utenlandsopph
 import virksomhetMessages from '@navikt/sif-common-forms/lib/virksomhet/virksomhetMessages';
 import { sifCommonPleiepengerMessages } from '@navikt/sif-common-pleiepenger/lib/i18n/index';
 import arbeidstidMessages from '../soknad/arbeidstid-step/shared/arbeidstid-variert/arbeidstidVariertMessages';
-import utenlandskNæringMessages from '../components/pre-common/utenlandsk-næring/utenlandskNæringMessages';
-import opptjeningUtlandMessages from '../components/pre-common/opptjening-utland/opptjeningUtlandMessages';
+import utenlandskNæringMessages from '@navikt/sif-common-forms/lib/utenlandsk-næring/utenlandskNæringMessages';
+import opptjeningUtlandMessages from '@navikt/sif-common-forms/lib/opptjening-utland/opptjeningUtlandMessages';
 import soknadIntlMessages from '@navikt/sif-common-soknad/lib/soknad-intl-messages/soknadIntlMessages';
 
 const introFormMessages = require('../pages/intro-page/introFormMessagesNB.json');

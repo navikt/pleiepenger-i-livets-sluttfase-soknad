@@ -22,11 +22,11 @@ import { oppdaterSøknadMedArbeidsgivere } from './utils/arbeidsgivereUtils';
 import { cleanupArbeidssituasjonStep } from './utils/cleanupArbeidssituasjonStep';
 import { visVernepliktSpørsmål } from './utils/visVernepliktSpørsmål';
 import { YesOrNo } from '@navikt/sif-common-formik/lib';
-import OpptjeningUtlandListAndDialog from '../../components/pre-common/opptjening-utland/OpptjeningUtlandListAndDialog';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import UtenlandskNæringListAndDialog from '../../components/pre-common/utenlandsk-næring/UtenlandskNæringListAndDialog';
+import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms/lib/utenlandsk-næring/UtenlandskNæringListAndDialog';
 import { Person } from '../../types';
 import { getArbeidsgivereRemoteData } from '../../api/getArbeidsgiver';
+import OpptjeningUtlandListAndDialog from '@navikt/sif-common-forms/lib/opptjening-utland/OpptjeningUtlandListAndDialog';
 
 interface LoadState {
     isLoading: boolean;

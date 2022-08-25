@@ -6,8 +6,8 @@ import { VirksomhetApiData } from '@navikt/sif-common-forms/lib';
 import { JobberIPeriodeSvar } from './JobberIPeriodenSvar';
 import { ISODate, ISODuration } from '@navikt/sif-common-utils';
 import { ÅrsakManglerIdentitetsnummer } from './ÅrsakManglerIdentitetsnummer';
-import { OpptjeningAktivitet } from '../components/pre-common/opptjening-utland';
-import { UtenlandskNæringstype } from '../components/pre-common/utenlandsk-næring';
+import { OpptjeningAktivitet } from '@navikt/sif-common-forms/lib/opptjening-utland';
+import { UtenlandskNæringstype } from '@navikt/sif-common-forms/lib/utenlandsk-næring';
 export interface PleietrengendeApi {
     navn: string;
     norskIdentitetsnummer: string | null;
