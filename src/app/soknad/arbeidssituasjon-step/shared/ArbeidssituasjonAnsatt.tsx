@@ -98,23 +98,6 @@ const ArbeidssituasjonAnsatt: React.FC<Props> = ({ arbeidsforhold, parentFieldNa
                         )}
                         {((erAvsluttet && arbeidsforhold.sluttetFørSøknadsperiode === YesOrNo.NO) || !erAvsluttet) && (
                             <>
-                                <AnsattFormComponents.YesOrNoQuestion
-                                    name={getFieldName(ArbeidsforholdFormField.harFraværIPeriode)}
-                                    legend={intlHelper(intl, 'arbeidsforhold.harFraværIPerioden.spm', {
-                                        navn: arbeidsforhold.arbeidsgiver.navn,
-                                    })}
-                                    validate={(value: any) => {
-                                        const error = getYesOrNoValidator()(value);
-                                        if (error) {
-                                            return {
-                                                key: 'validation.arbeidsforhold.harFraværIPeriode.yesOrNoIsUnanswered',
-                                                keepKeyUnaltered: true,
-                                                values: { navn: arbeidsforhold.arbeidsgiver.navn },
-                                            };
-                                        }
-                                        return undefined;
-                                    }}
-                                />
                                 <FormBlock>
                                     <AnsattFormComponents.NumberInput
                                         label={intlHelper(

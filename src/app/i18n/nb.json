@@ -191,7 +191,6 @@
     "arbeidsforhold.ikkeFrilansoppdragIPerioden.info": "Informasjon når frilansoppdraget ikke gjelder perioden",
 
     "arbeidsforhold.erAnsatt.spm": "Stemmer det at du var ansatt hos {navn} i perioden du søker for?",
-    "arbeidsforhold.harFraværIPerioden.spm": "Hadde du fravær fra jobben din hos {navn} i perioden du søker for?",
     "arbeidsforhold.harFrilansoppdrag.spm": "Stemmer det at du har et frilansoppdrag hos {navn} i perioden du søker for?",
     "arbeidsforhold.sluttetFørSøknadsperiode.spm": "Sluttet du hos {navn} før {fraDato}?",
     "arbeidsforhold.avsluttet.info": "Sluttdato var innenfor perioden du søker om pleiepenger. Vi trenger derfor å vite hvordan normalarbeidstiden din var hos {navn}",
@@ -258,7 +257,6 @@
     "frilanser.nårStartet.spm": "Når startet du å jobbe som frilanser?",
     "frilanser.jobberFortsatt.spm": "Jobber du fortsatt som frilanser?",
     "frilanser.nårSluttet.spm": "Når sluttet du som frilanser?",
-    "frilanser.harFraværIPerioden.spm": "Hadde du fravær som frilanser i perioden du søker for?",
     "frilanser.jobberNormaltTimer.spm": "Hvor mange timer jobber du normalt per uke som frilanser når du ikke har fravær?",
     "frilanser.jobberNormaltTimer.avsluttet.spm": "Hvor mange timer jobbet du normalt per uke som frilanser da du ikke hadde fravær?",
 
@@ -285,7 +283,6 @@
 
     "sn.arbeidsforhold.spm": "Hvor mange timer jobber du normalt per uke som selvstendig næringsdrivende når du ikke har fravær?",
     "sn.arbeidsforhold.avsluttet.spm": "Hvor mange timer jobbet du normalt per uke som selvstendig næringsdrivende når du ikke hadde fravær?",
-    "sn.harFraværIPerioden.spm": "Hadde du fravær som selvstendig næringsdrivende i perioden du søker for?",
     "sn.arbeidsforhold.utledet": "timer i uka",
 
     "snF.ArbeidsforholdDetaljer.hvaBetyr.spm": "Hva betyr dette?",
@@ -375,8 +372,6 @@
     "oppsummering.arbeidssituasjon.avsluttet.tid": "Jobbet normalt {timer, plural, one {# time} other {# timer}} per uke",
     "oppsummering.arbeidssituasjon.avsluttet.sluttetFørSøknadsperiode": "Sluttet før {periodeFra}",
     "oppsummering.arbeidssituasjon.avsluttet.sluttetISøknadsperiode": "Sluttet etter {periodeFra}",
-    "oppsummering.arbeidssituasjon.harFravær": "Hadde fravær i perioden",
-    "oppsummering.arbeidssituasjon.harIkkeFravær": "Hadde ikke fravær i perioden",
 
     "oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.header": "Arbeidsgivere",
     "oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.tekst": "Er ikke ansatt i perioden det søkes for",
@@ -496,12 +491,10 @@
     "validation.frilans.sluttdato.dateIsAfterMax": "Datoen for når du sluttet som frilanser kan ikke være etter dagens dato.",
     "validation.frilans.sluttdato.dateIsBeforeMin": "Datoen for når du sluttet som frilanser kan ikke være før datoen du startet.",
     "validation.frilans.jobberFortsattSomFrilans.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du fortsatt jobber som frilanser.",
-    "validation.frilans.arbeidsforhold.harFraværIPeriode.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har fravær som frilanser i perioden.",
 
     "validation.selvstendig.harHattInntektSomSN.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du var selvstendig næringsdrivende i perioden du søker for.",
     "validation.selvstendig.harFlereVirksomheter.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har flere enn én virksomhet som er aktiv.",
     "validation.selvstendig.virksomhet.noValue": "Du må oppgi informasjon om virksomheten din som selvstendig næringsdrivende.",
-    "validation.selvstendig.arbeidsforhold.harFraværIPeriode.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har fravær som selvstendig næringsdrivende i perioden.",
     "validation.harVærtEllerErVernepliktig.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du utøvde verneplikt på tidspunktet du søker pleiepenger fra.",
     "virksomhetForm.næringstype.noValue": "Du må velge hvilken type virksomhet du har.",
 
@@ -512,7 +505,6 @@
     "validation.utenlandskNæring.listIsEmpty": "Du må legge til jobb som selvstendig næringsdrivende i et annet EØS-land.",
 
     "validation.arbeidsforhold.sluttetFørSøknadsperiode.yesOrNoIsUnanswered": "Du må svare på om du sluttet hos {navn} før {fraDato}.",
-    "validation.arbeidsforhold.harFraværIPeriode.yesOrNoIsUnanswered": "Du må svare på om du har fravær i perioden hos {navn}.",
     "validation.arbeidsforhold.jobberNormaltTimer.numberHasNoValue": "Du må oppgi hvor mange timer per uke du {jobber} {hvor} i perioden.",
     "validation.arbeidsforhold.jobberNormaltTimer.numberHasInvalidFormat": "Antall timer du {jobber} per uke {hvor} kan kun bestå av tall.",
 

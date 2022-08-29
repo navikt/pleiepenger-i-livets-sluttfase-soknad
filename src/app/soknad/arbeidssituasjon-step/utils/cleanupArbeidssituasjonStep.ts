@@ -18,14 +18,9 @@ export const cleanupAnsattArbeidsforhold = (arbeidsforhold: Arbeidsforhold): Arb
         cleanedArbeidsforhold.sluttetFørSøknadsperiode === YesOrNo.YES
     ) {
         cleanedArbeidsforhold.jobberNormaltTimer = undefined;
-        cleanedArbeidsforhold.harFraværIPeriode = undefined;
-    }
-    if (
-        cleanedArbeidsforhold.harFraværIPeriode === undefined ||
-        cleanedArbeidsforhold.harFraværIPeriode === YesOrNo.NO
-    ) {
         cleanedArbeidsforhold.arbeidIPeriode = undefined;
     }
+
     return cleanedArbeidsforhold;
 };
 

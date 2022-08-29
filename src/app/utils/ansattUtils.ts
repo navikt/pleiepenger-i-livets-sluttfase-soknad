@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
-import { Arbeidsforhold, ArbeidsforholdFrilanser } from '../types/Arbeidsforhold';
+import { Arbeidsforhold } from '../types/Arbeidsforhold';
 
 export const erAnsattHosArbeidsgiverISøknadsperiode = (arbeidsforhold: Arbeidsforhold): boolean => {
     return (
@@ -8,14 +8,6 @@ export const erAnsattHosArbeidsgiverISøknadsperiode = (arbeidsforhold: Arbeidsf
     );
 };
 
-export const harFraværIArbeidsforhold = (arbeidsforhold?: Arbeidsforhold | ArbeidsforholdFrilanser): boolean => {
-    return arbeidsforhold !== undefined && arbeidsforhold.harFraværIPeriode === YesOrNo.YES;
-};
-
 export const erAnsattISøknadsperiode = (arbeidsforhold: Arbeidsforhold[]): boolean => {
     return arbeidsforhold.some(erAnsattHosArbeidsgiverISøknadsperiode);
-};
-
-export const harFraværFraArbeidsforholdIPeriode = (arbeidsforhold: Arbeidsforhold[]): boolean => {
-    return arbeidsforhold.some(harFraværIArbeidsforhold);
 };
