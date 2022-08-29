@@ -4,7 +4,7 @@ import SummaryBlock from '@navikt/sif-common-core/lib/components/summary-block/S
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { Arbeidsgiver } from '../../../types';
 import { FrilansApiData } from '../../../types/SoknadApiData';
-import { prettifyApiDate } from '../enkeltsvar/DatoSvar';
+import { prettifyApiDate } from '@navikt/sif-common-core/lib/components/summary-enkeltsvar/DatoSvar';
 
 interface Props {
     frilans?: FrilansApiData;

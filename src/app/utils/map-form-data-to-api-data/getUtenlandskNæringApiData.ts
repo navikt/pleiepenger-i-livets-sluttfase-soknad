@@ -1,6 +1,6 @@
 import { formatDateToApiFormat } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { getCountryName } from '@navikt/sif-common-formik';
-import { UtenlandskNæring } from '../../components/pre-common/utenlandsk-næring';
+import { UtenlandskNæring } from '@navikt/sif-common-forms/lib/utenlandsk-næring';
 import { UtenlandskNæringApi } from '../../types/SoknadApiData';
 
 export const getUtenlandskNæringApiData = (

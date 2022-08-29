@@ -3,9 +3,8 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import SummaryList from '@navikt/sif-common-core/lib/components/summary-list/SummaryList';
 import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
-import { renderOpptjeningIUtlandetSummary } from './renderOpptjeningIUtlandetSummary';
 import { OpptjeningIUtlandetApi } from '../../../types/SoknadApiData';
-
+import { renderOpptjeningIUtlandetSummary } from './renderOpptjeningIUtlandetSummary';
 export interface Props {
     opptjeningUtland: OpptjeningIUtlandetApi[];
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import SoknadFormStep from '../SoknadFormStep';
-import { StepConfigProps, StepID } from '../soknadStepsConfig';
+import { StepID } from '../soknadStepsConfig';
 import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import SoknadFormComponents from '../SoknadFormComponents';
@@ -15,44 +15,44 @@ import {
 import { validateNavn } from '../../validation/fieldValidation';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import { useFormikContext } from 'formik';
-import FormSection from '@navikt/sif-common-core/lib/components/form-section/FormSection';
-import { SøkerdataContext } from '../../context/SøkerdataContext';
+import { resetFieldValue, resetFieldValues } from '@navikt/sif-common-formik';
+import { dateToday } from '@navikt/sif-common-utils/lib';
+import { ÅrsakManglerIdentitetsnummer } from '../../types/ÅrsakManglerIdentitetsnummer';
+import { Person } from '../../types';
+import IdPart from './IdPart';
 import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
+import { valuesToAlleDokumenterISøknaden } from '../../utils/attachmentUtils';
 import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
-import BekreftelseFraLegePart from './BekreftelseFraLegePart';
-import { resetFieldValue, resetFieldValues } from '@navikt/sif-common-formik';
-import { dateToday } from '@navikt/sif-common-utils/lib';
-import { ÅrsakManglerIdentitetsnummer } from '../../types/ÅrsakManglerIdentitetsnummer';
+import FormSection from '@navikt/sif-common-core/lib/components/form-section/FormSection';
 
-const OpplysningerOmPleietrengendeStep = ({ onValidSubmit }: StepConfigProps) => {
+interface Props {
+    søker: Person;
+}
+
+const OpplysningerOmPleietrengendeStep: React.FC<Props> = ({ søker }: Props) => {
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
     const {
         values: { harIkkeFnr },
         setFieldValue,
     } = useFormikContext<SoknadFormData>();
-    const søkerdata = React.useContext(SøkerdataContext);
-    const attachments: Attachment[] = React.useMemo(() => {
-        return values ? values[SoknadFormField.bekreftelseFraLege] : [];
-    }, [values]);
-    const totalSize = getTotalSizeOfAttachments(attachments);
-    const hasPendingUploads: boolean = attachments.find((a) => a.pending === true) !== undefined;
+
+    const alleDokumenterISøknaden: Attachment[] = valuesToAlleDokumenterISøknaden(values);
+    const totalSize = getTotalSizeOfAttachments(alleDokumenterISøknaden);
+    const hasPendingUploads: boolean =
+        (values.pleietrengendeId || []).find((a: any) => a.pending === true) !== undefined;
     const attachmentsSizeOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
 
     return (
         <SoknadFormStep
             id={StepID.OPPLYSNINGER_OM_PLEIETRENGENDE}
-            onValidFormSubmit={onValidSubmit}
             buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}>
             <CounsellorPanel>
                 <p>
                     <FormattedMessage id="step.opplysninger-om-pleietrengende.counsellorPanel.info" />
-                </p>
-                <p>
-                    <FormattedMessage id="step.opplysninger-om-pleietrengende.counsellorPanel.info.1" />
                 </p>
             </CounsellorPanel>
 
@@ -73,9 +73,7 @@ const OpplysningerOmPleietrengendeStep = ({ onValidSubmit }: StepConfigProps) =>
                                 ? undefined
                                 : getFødselsnummerValidator({
                                       required: true,
-                                      disallowedValues: søkerdata?.søker.fødselsnummer
-                                          ? [søkerdata?.søker.fødselsnummer]
-                                          : [],
+                                      disallowedValues: søker.fødselsnummer ? [søker.fødselsnummer] : [],
                                   })
                         }
                         inputMode="numeric"
@@ -149,13 +147,16 @@ const OpplysningerOmPleietrengendeStep = ({ onValidSubmit }: StepConfigProps) =>
                                         : undefined
                                 }></SoknadFormComponents.RadioGroup>
                         </FormBlock>
+                        <FormBlock margin="m">
+                            <FormSection title={intlHelper(intl, 'step.opplysninger-om-pleietrengende.id.tittel')}>
+                                <Box padBottom="l">
+                                    <FormattedMessage id="step.opplysninger-om-pleietrengende.id.info" />
+                                </Box>
+                                <IdPart alleDokumenterISøknaden={alleDokumenterISøknaden} />
+                            </FormSection>
+                        </FormBlock>
                     </>
                 )}
-            </FormBlock>
-            <FormBlock>
-                <FormSection title={intlHelper(intl, 'step.opplysninger-om-pleietrengende.vedlegg.tittel')}>
-                    <BekreftelseFraLegePart />
-                </FormSection>
             </FormBlock>
         </SoknadFormStep>
     );

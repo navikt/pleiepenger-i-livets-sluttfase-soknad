@@ -1,20 +1,20 @@
 import { apiStringDateToDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
 import { KvitteringInfo } from '../types/KvitteringInfo';
-import { Søkerdata } from '../types/Søkerdata';
+import { Person } from '../types/Søkerdata';
 import { SoknadApiData } from '../types/SoknadApiData';
 
 export type KvitteringApiData = Pick<SoknadApiData, 'arbeidsgivere' | 'fraOgMed' | 'tilOgMed'>;
 
 export const getKvitteringInfoFromApiData = (
     { arbeidsgivere, fraOgMed, tilOgMed }: KvitteringApiData,
-    søkerdata: Søkerdata
+    søker: Person
 ): KvitteringInfo | undefined => {
     const arbeidsgivereISøknadsperiode = (arbeidsgivere || [])?.filter(
         (a) => a.arbeidsforhold !== undefined && a.sluttetFørSøknadsperiode !== true
     );
     if (arbeidsgivereISøknadsperiode.length > 0) {
-        const { fornavn, mellomnavn, etternavn } = søkerdata.søker;
+        const { fornavn, mellomnavn, etternavn } = søker;
         return {
             arbeidsgivere: arbeidsgivereISøknadsperiode,
             fom: apiStringDateToDate(fraOgMed),

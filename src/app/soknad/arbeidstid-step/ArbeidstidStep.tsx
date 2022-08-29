@@ -16,25 +16,26 @@ import { erAnsattHosArbeidsgiverISøknadsperiode } from '../../utils/ansattUtils
 import { getPeriodeSomFrilanserInnenforPeriode } from '../../utils/frilanserUtils';
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../../utils/selvstendigUtils';
 import SøknadFormStep from '../SoknadFormStep';
-import { StepConfigProps, StepID } from '../soknadStepsConfig';
+import { StepID } from '../soknadStepsConfig';
 import ArbeidIPeriodeSpørsmål from './shared/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
 import { cleanupArbeidstidStep } from './utils/cleanupArbeidstidStep';
-import { useHistory } from 'react-router';
-import usePersistSoknad from '../../hooks/usePersistSoknad';
-import useLogSøknadInfo from '../../hooks/useLogSøknadInfo';
 import { søkerKunHelgedager } from '../../utils/formDataUtils';
+import useLogSøknadInfo from '../../hooks/useLogSøknadInfo';
+import SoknadTempStorage from '../SoknadTempStorage';
+import { Person } from '../../types';
 
-interface Props extends StepConfigProps {
-    periode: DateRange;
+interface Props {
+    søker: Person;
+    periode?: DateRange;
+    soknadId?: string;
 }
 
-const ArbeidstidStep = ({ onValidSubmit, periode }: Props) => {
+const ArbeidstidStep: React.FC<Props> = ({ søker, periode, soknadId }: Props) => {
     const intl = useIntl();
-    const history = useHistory();
+
     const { logArbeidPeriodeRegistrert } = useLogSøknadInfo();
     const { logArbeidEnkeltdagRegistrert } = useLogSøknadInfo();
 
-    const { persist } = usePersistSoknad(history);
     const formikProps = useFormikContext<SoknadFormData>();
     const {
         values: { ansatt_arbeidsforhold, frilans, selvstendig },
@@ -43,33 +44,40 @@ const ArbeidstidStep = ({ onValidSubmit, periode }: Props) => {
     const harAnsattArbeidsforholdMedFravær = ansatt_arbeidsforhold.some((a) => a.harFraværIPeriode === YesOrNo.YES);
 
     const periodeSomFrilanserISøknadsperiode =
-        frilans.arbeidsforhold && frilans.arbeidsforhold.harFraværIPeriode
+        frilans.arbeidsforhold && frilans.arbeidsforhold.harFraværIPeriode && periode
             ? getPeriodeSomFrilanserInnenforPeriode(periode, frilans)
             : undefined;
 
     const periodeSomSelvstendigISøknadsperiode =
-        selvstendig.harHattInntektSomSN === YesOrNo.YES && selvstendig.virksomhet !== undefined
+        selvstendig.harHattInntektSomSN === YesOrNo.YES && selvstendig.virksomhet !== undefined && periode
             ? getPeriodeSomSelvstendigInnenforPeriode(periode, selvstendig.virksomhet)
             : undefined;
 
     const handleArbeidstidChanged = () => {
-        persist(StepID.ARBEIDSTID);
+        if (soknadId !== undefined) {
+            SoknadTempStorage.update(soknadId, formikProps.values, StepID.ARBEIDSTID, { søker });
+        }
     };
 
+    if (periode === undefined) {
+        return <div>Periode mangler</div>;
+    }
+
     return (
-        <SøknadFormStep
-            id={StepID.ARBEIDSTID}
-            onValidFormSubmit={onValidSubmit}
-            onStepCleanup={(values) => cleanupArbeidstidStep(values, periode)}>
+        <SøknadFormStep id={StepID.ARBEIDSTID} onStepCleanup={(values) => cleanupArbeidstidStep(values, periode)}>
             <Box padBottom="m">
                 <CounsellorPanel>
                     <p>
                         <FormattedMessage
                             id={'arbeidIPeriode.StepInfo.1'}
-                            values={{
-                                fra: prettifyDateFull(periode.from),
-                                til: prettifyDateFull(periode.to),
-                            }}
+                            values={
+                                periode
+                                    ? {
+                                          fra: prettifyDateFull(periode.from),
+                                          til: prettifyDateFull(periode.to),
+                                      }
+                                    : undefined
+                            }
                         />
                     </p>
                     <p>
@@ -78,7 +86,7 @@ const ArbeidstidStep = ({ onValidSubmit, periode }: Props) => {
                 </CounsellorPanel>
             </Box>
 
-            {harAnsattArbeidsforholdMedFravær && (
+            {harAnsattArbeidsforholdMedFravær && periode && (
                 <FormBlock>
                     {ansatt_arbeidsforhold.map((arbeidsforhold, index) => {
                         /** Må loope gjennom alle arbeidsforhold for å få riktig index inn til formik */
@@ -108,6 +116,7 @@ const ArbeidstidStep = ({ onValidSubmit, periode }: Props) => {
             )}
 
             {frilans.arbeidsforhold &&
+                periode &&
                 frilans.arbeidsforhold.harFraværIPeriode === YesOrNo.YES &&
                 periodeSomFrilanserISøknadsperiode && (
                     <FormBlock>
@@ -128,6 +137,7 @@ const ArbeidstidStep = ({ onValidSubmit, periode }: Props) => {
                 )}
 
             {selvstendig.harHattInntektSomSN === YesOrNo.YES &&
+                periode &&
                 selvstendig.arbeidsforhold &&
                 selvstendig.arbeidsforhold.harFraværIPeriode === YesOrNo.YES &&
                 periodeSomSelvstendigISøknadsperiode && (

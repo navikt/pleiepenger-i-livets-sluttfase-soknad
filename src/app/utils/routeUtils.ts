@@ -1,5 +1,5 @@
-import RouteConfig from '../config/routeConfig';
-import { getSøknadStepConfig, StepID } from '../soknad/soknadStepsConfig';
+import { DateRange } from '@navikt/sif-common-formik/lib';
+import { StepID } from '../soknad/soknadStepsConfig';
 import { SoknadFormData } from '../types/SoknadFormData';
 import {
     arbeidssituasjonStepAvailable,
@@ -8,38 +8,38 @@ import {
     opplysningerOmTidsromStepAvailable,
     oppsummeringStepAvailable,
     arbeidIPeriodeStepIsAvailable,
+    skalBrukerSvareArbeidstid,
+    legeerklæringStepAvailable,
 } from './stepUtils';
 
-export const getSøknadRoute = (stepId: StepID | undefined) => {
-    if (stepId !== undefined) {
-        return `${RouteConfig.SØKNAD_ROUTE_PREFIX}/${stepId}`;
-    }
-    return undefined;
-};
+export const getAvailableSteps = (values: SoknadFormData, søknadsperiode?: DateRange): StepID[] => {
+    const steps: StepID[] = [];
 
-export const getNextStepRoute = (stepId: StepID, formData?: SoknadFormData): string | undefined => {
-    const stepConfig = getSøknadStepConfig(formData);
-    return stepConfig[stepId] && stepConfig[stepId].included === true
-        ? getSøknadRoute(stepConfig[stepId].nextStep)
-        : undefined;
-};
-
-export const isAvailable = (path: StepID | RouteConfig, values: SoknadFormData, søknadHasBeenSent?: boolean) => {
-    switch (path) {
-        case StepID.OPPLYSNINGER_OM_PLEIETRENGENDE:
-            return opplysningerOmPleietrengendeStepAvailable(values);
-        case StepID.TIDSROM:
-            return opplysningerOmTidsromStepAvailable(values);
-        case StepID.ARBEIDSSITUASJON:
-            return arbeidssituasjonStepAvailable(values);
-        case StepID.ARBEIDSTID:
-            return arbeidIPeriodeStepIsAvailable(values);
-        case StepID.MEDLEMSKAP:
-            return medlemskapStepAvailable(values);
-        case StepID.OPPSUMMERING:
-            return oppsummeringStepAvailable(values);
-        case RouteConfig.SØKNAD_SENDT_ROUTE:
-            return søknadHasBeenSent === true;
+    if (opplysningerOmPleietrengendeStepAvailable(values)) {
+        steps.push(StepID.OPPLYSNINGER_OM_PLEIETRENGENDE);
     }
-    return false;
+
+    if (legeerklæringStepAvailable(values)) {
+        steps.push(StepID.LEGEERKLÆRING);
+    }
+
+    if (opplysningerOmTidsromStepAvailable(values)) {
+        steps.push(StepID.TIDSROM);
+    }
+
+    if (arbeidssituasjonStepAvailable(values)) {
+        steps.push(StepID.ARBEIDSSITUASJON);
+    }
+
+    if (arbeidIPeriodeStepIsAvailable(values) && søknadsperiode && skalBrukerSvareArbeidstid(søknadsperiode, values)) {
+        steps.push(StepID.ARBEIDSTID);
+    }
+    if (medlemskapStepAvailable(values)) {
+        steps.push(StepID.MEDLEMSKAP);
+    }
+    if (oppsummeringStepAvailable(values)) {
+        steps.push(StepID.OPPSUMMERING);
+    }
+
+    return steps;
 };

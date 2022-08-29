@@ -24,6 +24,7 @@ import { yesterday } from '../utils/dates';
 
 export enum AppFieldValidationErrors {
     'samlet_storrelse_for_hoy' = 'validation.samlet_storrelse_for_hoy',
+    'for_mange_dokumenter' = 'validation.for_mange_dokumenter',
     'bekreftelseFraLege_mangler' = 'bekreftelseFraLege.mangler',
     'bekreftelseFraLege_forMangeFiler' = 'bekreftelseFraLege.forMangeFiler',
     'ingen_dokumenter' = 'validation.ingen_dokumenter',
@@ -101,6 +102,36 @@ export const validateUtenlandsoppholdIPerioden = (
     }
     if (dateRangesHasFromDateEqualPreviousRangeToDate(dateRanges)) {
         return AppFieldValidationErrors.utenlandsopphold_overlapper_samme_start_slutt;
+    }
+    return undefined;
+};
+
+export const attachmentsAreValid = (attachments: Attachment[]): boolean => {
+    const uploadedAttachments = attachments.filter((attachment) => {
+        return attachment ? attachmentHasBeenUploaded(attachment) : false;
+    });
+    const totalSizeInBytes: number = getTotalSizeOfAttachments(uploadedAttachments);
+    if (totalSizeInBytes > MAX_TOTAL_ATTACHMENT_SIZE_BYTES) {
+        return false;
+    }
+    if (uploadedAttachments.length > 100) {
+        return false;
+    }
+    return true;
+};
+
+export const alleDokumenterISøknadenToFieldValidationResult = (
+    attachments: Attachment[]
+): ValidationResult<ValidationError> => {
+    const uploadedAttachments = attachments.filter((attachment) => {
+        return attachment ? attachmentHasBeenUploaded(attachment) : false;
+    });
+    const totalSizeInBytes: number = getTotalSizeOfAttachments(uploadedAttachments);
+    if (totalSizeInBytes > MAX_TOTAL_ATTACHMENT_SIZE_BYTES) {
+        return AppFieldValidationErrors.samlet_storrelse_for_hoy;
+    }
+    if (uploadedAttachments.length > 100) {
+        return AppFieldValidationErrors.for_mange_dokumenter;
     }
     return undefined;
 };

@@ -2,8 +2,8 @@ import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 import { YesOrNo } from '@navikt/sif-common-formik/lib';
 import { Utenlandsopphold } from '@navikt/sif-common-forms/lib';
 import { Virksomhet } from '@navikt/sif-common-forms/lib/virksomhet/types';
-import { UtenlandskNæring } from '../components/pre-common/utenlandsk-næring';
-import { OpptjeningUtland } from '../components/pre-common/opptjening-utland';
+import { UtenlandskNæring } from '@navikt/sif-common-forms/lib/utenlandsk-næring';
+import { OpptjeningUtland } from '@navikt/sif-common-forms/lib/opptjening-utland';
 import { Arbeidsforhold } from './Arbeidsforhold';
 import { ArbeidsforholdFormData } from './ArbeidsforholdTypes';
 import { Arbeidsgiver } from './Arbeidsgiver';
@@ -29,6 +29,9 @@ export enum SoknadFormField {
     pleietrengende__norskIdentitetsnummer = 'pleietrengende.norskIdentitetsnummer',
     pleietrengende__fødselsdato = 'pleietrengende.fødselsdato',
     pleietrengende__årsakManglerIdentitetsnummer = 'pleietrengende.årsakManglerIdentitetsnummer',
+    pleietrengendeId = 'pleietrengendeId',
+
+    //LEGEERKLÆRING
     bekreftelseFraLege = 'bekreftelseFraLege',
 
     // Tidsrom
@@ -71,6 +74,9 @@ export interface SoknadFormData {
     [SoknadFormField.harBekreftetOpplysninger]: boolean;
     [SoknadFormField.pleietrengende]: Pleietrengende;
     [SoknadFormField.harIkkeFnr]: boolean;
+    [SoknadFormField.pleietrengendeId]: Attachment[];
+
+    //LEGEERKLÆRING
     [SoknadFormField.bekreftelseFraLege]: Attachment[];
 
     //Tidsrom
@@ -108,7 +114,7 @@ export interface SoknadFormData {
     [SoknadFormField.utenlandsoppholdNeste12Mnd]: Utenlandsopphold[];
 }
 
-export const initialValues: Partial<SoknadFormData> = {
+export const initialValues: SoknadFormData = {
     [SoknadFormField.harForståttRettigheterOgPlikter]: false,
     [SoknadFormField.harBekreftetOpplysninger]: false,
     [SoknadFormField.pleietrengende]: {
@@ -117,6 +123,9 @@ export const initialValues: Partial<SoknadFormData> = {
         fødselsdato: '',
     },
     [SoknadFormField.harIkkeFnr]: false,
+    [SoknadFormField.pleietrengendeId]: [],
+
+    //LEGEERKLÆRING
     [SoknadFormField.bekreftelseFraLege]: [],
 
     //Tidsrom
@@ -126,13 +135,17 @@ export const initialValues: Partial<SoknadFormData> = {
     [SoknadFormField.utenlandsoppholdIPerioden]: [],
 
     // Arbeidssituasjon
+    [SoknadFormField.arbeidsforhold]: [],
     [SoknadFormField.ansatt_arbeidsforhold]: [],
+    [SoknadFormField.frilans_erFrilanser]: YesOrNo.UNANSWERED,
     [SoknadFormField.frilans]: {
         harHattInntektSomFrilanser: YesOrNo.UNANSWERED,
     },
+    [SoknadFormField.selvstendig_erSelvstendigNæringsdrivende]: YesOrNo.UNANSWERED,
     [SoknadFormField.selvstendig]: {
         harHattInntektSomSN: YesOrNo.UNANSWERED,
     },
+    [SoknadFormField.harStønadFraNav]: YesOrNo.UNANSWERED,
     [SoknadFormField.frilansoppdrag]: [],
     [SoknadFormField.harOpptjeningUtland]: YesOrNo.UNANSWERED,
     [SoknadFormField.opptjeningUtland]: [],

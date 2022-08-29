@@ -1,57 +1,45 @@
-import { storageParser } from '@navikt/sif-common-core/lib/utils/persistence/persistence';
-import axios, { AxiosResponse } from 'axios';
-import axiosConfig from '../config/axiosConfig';
-import { AAregArbeidsgiverRemoteData } from './getArbeidsgivereRemoteData';
-import { StepID } from '../soknad/soknadStepsConfig';
-import { ResourceType } from '../types/ResourceType';
-import { SoknadApiData } from '../types/SoknadApiData';
-import { SoknadFormData } from '../types/SoknadFormData';
-import { MELLOMLAGRING_VERSION, SøknadTempStorageData } from '../types/SøknadTempStorageData';
-import { axiosJsonConfig, getApiUrlByResourceType, sendMultipartPostRequest } from './utils/apiUtils';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import { axiosJsonConfig, axiosMultipartConfig } from '../config/axiosConfig';
+import { ApiEndpoint } from '../types/ApiEndpoint';
+import { getEnvironmentVariable } from '@navikt/sif-common-core/lib/utils/envUtils';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core/lib/utils/apiUtils';
 
-export const getPersistUrl = (stepID?: StepID) =>
-    stepID
-        ? `${getApiUrlByResourceType(ResourceType.MELLOMLAGRING)}?lastStepID=${encodeURI(stepID)}`
-        : getApiUrlByResourceType(ResourceType.MELLOMLAGRING);
+const sendMultipartPostRequest = (url: string, formData: FormData) => {
+    return axios.post(url, formData, axiosMultipartConfig);
+};
 
-export const persist = (formData: Partial<SoknadFormData> | undefined, lastStepID?: StepID) => {
-    const url = getPersistUrl(lastStepID);
-    if (formData) {
-        const body: SøknadTempStorageData = {
-            formData,
-            metadata: {
-                lastStepID,
-                version: MELLOMLAGRING_VERSION,
-                updatedTimestemp: new Date().toISOString(),
-            },
-        };
-        return axios.put(url, { ...body }, axiosJsonConfig);
-    } else {
-        return axios.post(url, {}, axiosJsonConfig);
+axios.defaults.baseURL = getEnvironmentVariable('API_URL');
+axios.defaults.withCredentials = true;
+axios.interceptors.request.use((config) => {
+    return config;
+});
+
+axios.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error: AxiosError) => {
+        if (isForbidden(error) || isUnauthorized(error)) {
+            return Promise.reject(error);
+        }
+        return Promise.reject(error);
     }
-};
-export const rehydrate = () =>
-    axios.get(getApiUrlByResourceType(ResourceType.MELLOMLAGRING), {
-        ...axiosJsonConfig,
-        transformResponse: storageParser,
-    });
-export const purge = () =>
-    axios.delete(getApiUrlByResourceType(ResourceType.MELLOMLAGRING), { ...axiosConfig, data: {} });
+);
 
-export const getSøker = () => axios.get(getApiUrlByResourceType(ResourceType.SØKER), axiosJsonConfig);
-export const getArbeidsgiver = (fom: string, tom: string): Promise<AxiosResponse<AAregArbeidsgiverRemoteData>> => {
-    return axios.get(
-        `${getApiUrlByResourceType(ResourceType.ARBEIDSGIVER)}?fra_og_med=${fom}&til_og_med=${tom}&frilansoppdrag=true`,
-        axiosJsonConfig
-    );
+const api = {
+    get: <ResponseType>(endpoint: ApiEndpoint, paramString?: string, config?: AxiosRequestConfig) => {
+        const url = `${endpoint}${paramString ? `?${paramString}` : ''}`;
+        return axios.get<ResponseType>(url, config || axiosJsonConfig);
+    },
+    post: <DataType = any, ResponseType = any>(endpoint: ApiEndpoint, data: DataType) => {
+        return axios.post<ResponseType>(endpoint, data, axiosJsonConfig);
+    },
+    uploadFile: (endpoint: ApiEndpoint, file: File) => {
+        const formData = new FormData();
+        formData.append('vedlegg', file);
+        return sendMultipartPostRequest(endpoint, formData);
+    },
+    deleteFile: (url: string) => axios.delete(url, axiosJsonConfig),
 };
 
-export const sendApplication = (data: SoknadApiData) =>
-    axios.post(getApiUrlByResourceType(ResourceType.SEND_SØKNAD), data, axiosJsonConfig);
-
-export const uploadFile = (file: File) => {
-    const formData = new FormData();
-    formData.append('vedlegg', file);
-    return sendMultipartPostRequest(getApiUrlByResourceType(ResourceType.VEDLEGG), formData);
-};
-export const deleteFile = (url: string) => axios.delete(url, axiosConfig);
+export default api;

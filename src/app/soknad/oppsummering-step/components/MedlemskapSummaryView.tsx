@@ -4,9 +4,9 @@ import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import SummaryList from '@navikt/sif-common-core/lib/components/summary-list/SummaryList';
 import JaNeiSvar from './JaNeiSvar';
-import { renderUtenlandsoppholdIPeriodenSummary } from './renderUtenlandsoppholdSummary';
 import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
 import { MedlemskapApiData } from '../../../types/SoknadApiData';
+import { renderUtenlandsoppholdIPeriodenSummary } from '../summaryItemRenderers';
 
 export interface Props {
     medlemskap: MedlemskapApiData;

@@ -1,8 +1,4 @@
-import { IntlShape } from 'react-intl';
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-formik/lib';
-import { StepConfigInterface, StepConfigItemTexts, StepID } from '../soknad/soknadStepsConfig';
 import { SoknadFormData } from '../types/SoknadFormData';
 import {
     arbeidssituasjonStepIsValid,
@@ -13,19 +9,12 @@ import {
 } from '../validation/stepValidations';
 import { erAnsattISøknadsperiode, harFraværFraArbeidsforholdIPeriode, harFraværIArbeidsforhold } from './ansattUtils';
 import { erFrilanserISøknadsperiode } from './frilanserUtils';
-
-export const getStepTexts = (intl: IntlShape, stepId: StepID, stepConfig: StepConfigInterface): StepConfigItemTexts => {
-    const conf = stepConfig[stepId];
-    return {
-        pageTitle: intlHelper(intl, conf.pageTitle),
-        stepTitle: intlHelper(intl, conf.stepTitle),
-        stepIndicatorLabel: intlHelper(intl, conf.stepIndicatorLabel),
-        nextButtonLabel: conf.nextButtonLabel ? intlHelper(intl, conf.nextButtonLabel) : undefined,
-        nextButtonAriaLabel: conf.nextButtonAriaLabel ? intlHelper(intl, conf.nextButtonAriaLabel) : undefined,
-    };
-};
+import { erSNISøknadsperiode } from './selvstendigUtils';
 
 export const opplysningerOmPleietrengendeStepAvailable = (formData: SoknadFormData) => welcomingPageIsValid(formData);
+
+export const legeerklæringStepAvailable = (formData: SoknadFormData) =>
+    opplysningerOmPleietrengendeStepAvailable(formData);
 
 export const opplysningerOmTidsromStepAvailable = (formData: SoknadFormData) =>
     welcomingPageIsValid(formData) && opplysningerOmPleietrengendeStepIsValid(formData);
@@ -71,7 +60,8 @@ export const skalBrukerSvareArbeidstid = (
         harFraværIArbeidsforhold(formValues.frilans.arbeidsforhold);
 
     const erSelvstendigMedFraværIPerioden =
-        formValues.selvstendig.harHattInntektSomSN === YesOrNo.YES &&
+        formValues.selvstendig &&
+        erSNISøknadsperiode(søknadsperiode, formValues.selvstendig) &&
         harFraværIArbeidsforhold(formValues.selvstendig.arbeidsforhold);
 
     return erAnsattMedFraværIPerioden || erFrilanserMedFraværIPerioden || erSelvstendigMedFraværIPerioden;
