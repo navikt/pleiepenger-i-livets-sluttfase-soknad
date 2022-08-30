@@ -17,6 +17,7 @@ import { SoknadFormField } from '../../types/SoknadFormData';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
 import { ApiEndpoint } from '../../types/ApiEndpoint';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core/lib/utils/apiUtils';
+import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
 
 export type FieldArrayReplaceFn = (index: number, value: any) => void;
 export type FieldArrayPushFn = (obj: any) => void;
@@ -92,7 +93,7 @@ const FormikFileUploader: React.FC<Props> = ({
             try {
                 const response = await api.uploadFile(ApiEndpoint.VEDLEGG, file);
                 attachment = setAttachmentPendingToFalse(attachment);
-                attachment.url = response.headers.location;
+                attachment.url = getAttachmentURLFrontend(response.headers.location);
                 attachment.uploaded = true;
             } catch (error) {
                 if (isForbidden(error) || isUnauthorized(error)) {

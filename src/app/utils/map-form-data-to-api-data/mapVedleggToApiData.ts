@@ -1,4 +1,5 @@
 import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
+import { getAttachmentURLBackend } from '../attachmentUtilsAuthToken';
 
 function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
     return value !== null && value !== undefined;
@@ -7,7 +8,8 @@ function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
 export const listOfAttachmentsToListOfUrlStrings = (attachments: Attachment[]): string[] => {
     return attachments
         .map((attachment: Attachment) => {
-            return attachment.url;
+            const attachmentUrl = getAttachmentURLBackend(attachment.url);
+            return attachmentUrl;
         })
         .filter(notEmpty);
 };

@@ -77,7 +77,7 @@ const getArbeidsgiver = (fom: string, tom: string): Promise<AxiosResponse<AAregA
     }
 };
 
-export async function getArbeidsgivereRemoteData(fromDate: Date, toDate: Date): Promise<Arbeidsgiver[]> {
+export const getArbeidsgivereRemoteData = async (fromDate: Date, toDate: Date): Promise<Arbeidsgiver[]> => {
     try {
         const response = await getArbeidsgiver(formatDateToApiFormat(fromDate), formatDateToApiFormat(toDate));
         const arbeidsgivere = mapAAregArbeidsgiverRemoteDataToArbeidsiver(response.data);
@@ -90,4 +90,4 @@ export async function getArbeidsgivereRemoteData(fromDate: Date, toDate: Date): 
         }
         return Promise.reject([]);
     }
-}
+};

@@ -1,5 +1,5 @@
 const axiosConfig = {
-    withCredentials: true,
+    withCredentials: false,
 };
 
 export const axiosJsonConfig = { ...axiosConfig, headers: { 'Content-type': 'application/json; charset=utf-8' } };

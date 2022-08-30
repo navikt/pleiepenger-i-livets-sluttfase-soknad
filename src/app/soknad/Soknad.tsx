@@ -68,29 +68,59 @@ const Soknad = ({ søker, soknadTempStorage: tempStorage }: Props) => {
     };
 
     const abortSoknad = async () => {
-        await soknadTempStorage.purge();
-        await logHendelse(ApplikasjonHendelse.avbryt);
-        relocateToSoknad();
+        try {
+            await soknadTempStorage.purge();
+            await logHendelse(ApplikasjonHendelse.avbryt);
+            relocateToSoknad();
+        } catch (error) {
+            if (isUserLoggedOut(error)) {
+                logUserLoggedOut('Ved abort av søknad');
+                relocateToLoginPage();
+            } else {
+                console.log('Feil ved abord av søknad: ', error);
+                navigateToErrorPage(history);
+            }
+        }
     };
 
     const startSoknad = async () => {
-        await resetSoknad();
-        const sId = ulid();
-        setSoknadId(sId);
-        const firstStep = StepID.OPPLYSNINGER_OM_PLEIETRENGENDE;
+        try {
+            await resetSoknad();
+            const sId = ulid();
+            setSoknadId(sId);
+            const firstStep = StepID.OPPLYSNINGER_OM_PLEIETRENGENDE;
 
-        await soknadTempStorage.create();
-        await logSoknadStartet(SKJEMANAVN);
+            await soknadTempStorage.create();
+            await logSoknadStartet(SKJEMANAVN);
 
-        setTimeout(() => {
-            navigateTo(soknadStepUtils.getStepRoute(firstStep, SoknadApplicationType.SOKNAD), history);
-        });
+            setTimeout(() => {
+                navigateTo(soknadStepUtils.getStepRoute(firstStep, SoknadApplicationType.SOKNAD), history);
+            });
+        } catch (error) {
+            if (isUserLoggedOut(error)) {
+                logUserLoggedOut('Ved start av søknad');
+                relocateToLoginPage();
+            } else {
+                console.log('Feil ved start av søknad: ', error);
+                navigateToErrorPage(history);
+            }
+        }
     };
 
     const continueSoknadLater = async (sId: string, stepID: StepID, values: SoknadFormData) => {
-        await soknadTempStorage.update(sId, values, stepID, { søker });
-        await logHendelse(ApplikasjonHendelse.fortsettSenere);
-        relocateToNavFrontpage();
+        try {
+            await soknadTempStorage.update(sId, values, stepID, { søker });
+            await logHendelse(ApplikasjonHendelse.fortsettSenere);
+            relocateToNavFrontpage();
+        } catch (error) {
+            if (isUserLoggedOut(error)) {
+                logUserLoggedOut('Ved continueSoknadLater');
+                relocateToLoginPage();
+            } else {
+                console.log('Feil ved continueSoknadLater: ', error);
+                navigateToErrorPage(history);
+            }
+        }
     };
 
     const onSoknadSent = async (apiValues: SoknadApiData, resetFormikForm: resetFormFunc) => {

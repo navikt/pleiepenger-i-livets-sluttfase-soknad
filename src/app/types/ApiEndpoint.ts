@@ -4,5 +4,4 @@ export enum ApiEndpoint {
     SØKER = 'soker',
     VEDLEGG = 'vedlegg',
     MELLOMLAGRING = 'mellomlagring',
-    BEKREFT_OMSORG = 'skalBekrefteOmsorg',
 }

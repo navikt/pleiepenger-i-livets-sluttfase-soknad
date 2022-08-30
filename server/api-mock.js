@@ -183,7 +183,9 @@ const startExpressServer = () => {
         res.set('Location', 'nav.no');
         const busboy = busboyCons({ headers: req.headers });
         busboy.on('finish', () => {
-            res.writeHead(200, { Location: '/vedlegg' });
+            res.writeHead(200, {
+                Location: 'http://localhost:8083/vedlegg/eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdG',
+            });
             res.end();
         });
         req.pipe(busboy);
