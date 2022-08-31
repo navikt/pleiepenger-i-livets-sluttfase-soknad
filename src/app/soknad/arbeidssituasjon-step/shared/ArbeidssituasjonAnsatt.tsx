@@ -68,7 +68,7 @@ const ArbeidssituasjonAnsatt: React.FC<Props> = ({ arbeidsforhold, parentFieldNa
                 <FormBlock margin="l">
                     <ResponsivePanel>
                         {erAvsluttet && (
-                            <Box padBottom={arbeidsforhold.sluttetFørSøknadsperiode === YesOrNo.NO ? 'xl' : 'none'}>
+                            <Box>
                                 <AlertStripeInfo>
                                     <FormattedMessage id="arbeidsforhold.ikkeAnsatt.info" />
                                 </AlertStripeInfo>
@@ -98,26 +98,24 @@ const ArbeidssituasjonAnsatt: React.FC<Props> = ({ arbeidsforhold, parentFieldNa
                         )}
                         {((erAvsluttet && arbeidsforhold.sluttetFørSøknadsperiode === YesOrNo.NO) || !erAvsluttet) && (
                             <>
-                                <FormBlock>
-                                    <AnsattFormComponents.NumberInput
-                                        label={intlHelper(
-                                            intl,
-                                            erAvsluttet
-                                                ? `arbeidsforhold.jobberNormaltTimer.avsluttet.spm`
-                                                : `arbeidsforhold.jobberNormaltTimer.spm`,
-                                            {
-                                                navn: arbeidsforhold.arbeidsgiver.navn,
-                                            }
-                                        )}
-                                        name={getFieldName(ArbeidsforholdFormField.jobberNormaltTimer)}
-                                        suffix={intlHelper(intl, `arbeidsforhold.timer.suffix`)}
-                                        suffixStyle="text"
-                                        description={<InfoJobberNormaltTimerAnsatt />}
-                                        bredde="XS"
-                                        validate={getJobberNormaltTimerValidator(intlValues)}
-                                        value={arbeidsforhold ? arbeidsforhold.jobberNormaltTimer || '' : ''}
-                                    />{' '}
-                                </FormBlock>
+                                <AnsattFormComponents.NumberInput
+                                    label={intlHelper(
+                                        intl,
+                                        erAvsluttet
+                                            ? `arbeidsforhold.jobberNormaltTimer.avsluttet.spm`
+                                            : `arbeidsforhold.jobberNormaltTimer.spm`,
+                                        {
+                                            navn: arbeidsforhold.arbeidsgiver.navn,
+                                        }
+                                    )}
+                                    name={getFieldName(ArbeidsforholdFormField.jobberNormaltTimer)}
+                                    suffix={intlHelper(intl, `arbeidsforhold.timer.suffix`)}
+                                    suffixStyle="text"
+                                    description={<InfoJobberNormaltTimerAnsatt />}
+                                    bredde="XS"
+                                    validate={getJobberNormaltTimerValidator(intlValues)}
+                                    value={arbeidsforhold ? arbeidsforhold.jobberNormaltTimer || '' : ''}
+                                />
                             </>
                         )}
                     </ResponsivePanel>

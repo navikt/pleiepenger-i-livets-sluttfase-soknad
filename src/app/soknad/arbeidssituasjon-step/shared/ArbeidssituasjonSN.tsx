@@ -6,7 +6,7 @@ import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlo
 import ResponsivePanel from '@navikt/sif-common-core/lib/components/responsive-panel/ResponsivePanel';
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { getTypedFormComponents } from '@navikt/sif-common-formik/lib';
+import { DateRange, getTypedFormComponents } from '@navikt/sif-common-formik/lib';
 import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-common-formik/lib/validation';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms/lib/virksomhet/VirksomhetInfoAndDialog';
@@ -16,15 +16,17 @@ import { ArbeidsforholdFormField } from '../../../types/Arbeidsforhold';
 import { SelvstendigFormData, SelvstendigFormField } from '../../../types/SelvstendigFormData';
 import InfoJobberNormaltTimerSN from './info/InfoJobberNormaltTimerSN';
 import { getJobberNormaltTimerValidator } from './validation/jobberNormaltTimerValidator';
+import { getSelvstendigIPeriodeValidator } from './validation/selvstendigIPeriodeValidator';
 
 const ArbSNFormComponents = getTypedFormComponents<SelvstendigFormField, SelvstendigFormData, ValidationError>();
 
 interface Props {
     formValues: SelvstendigFormData;
     urlSkatteetatenSN: string;
+    søknadsperiode: DateRange;
 }
 
-const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN }: Props) => {
+const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN, søknadsperiode }: Props) => {
     const intl = useIntl();
     const { harHattInntektSomSN, virksomhet, harFlereVirksomheter, arbeidsforhold } = formValues;
     const søkerHarFlereVirksomheter = harFlereVirksomheter === YesOrNo.YES;
@@ -88,7 +90,12 @@ const ArbeidssituasjonSN = ({ formValues, urlSkatteetatenSN }: Props) => {
                                             ? intlHelper(intl, 'selvstendig.infoDialog.tittel.flere')
                                             : intlHelper(intl, 'selvstendig.infoDialog.tittel.en'),
                                     }}
-                                    validate={getRequiredFieldValidator()}
+                                    validate={(value) => {
+                                        if (getRequiredFieldValidator()(value) !== undefined) {
+                                            return getRequiredFieldValidator()(value);
+                                        }
+                                        return getSelvstendigIPeriodeValidator(søknadsperiode, virksomhet);
+                                    }}
                                 />
                             </FormBlock>
                         )}
