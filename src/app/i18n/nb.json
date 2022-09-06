@@ -464,12 +464,11 @@
     "validation.periodeFra.fromDateIsAfterToDate": "Fra-datoen kan ikke være etter til-datoen. Skriv inn eller velg dato fra kalenderen.",
     "validation.periodeFra.dateIsBeforeMin": "Du kan ikke søke om pleiepenger for en periode som er lenger enn 3 år tilbake i tid.",
     "validation.periodeFra.dateIsNotWeekday": "Periodens fra-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.",
-    "validation.periodeFra.dateIsAfterMax": "Du kan kun søke tilbake i tid, altså for dager du allerede har brukt for å ta vare på og pleie personen i livets sluttfase.",
     "validation.periodeTil.dateHasNoValue": "Du må fylle ut periodens til-dato.",
     "validation.periodeTil.dateHasInvalidFormat": "Du må oppgi periodens til-dato i et gyldig datoformat. Gyldig format er dd.mm.åååå.",
     "validation.periodeTil.dateIsBeforeMin": "Du kan ikke søke om pleiepenger for en periode som er lenger enn 3 år tilbake i tid.",
     "validation.periodeTil.dateIsNotWeekday": "Periodens til-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.",
-    "validation.periodeTil.dateIsAfterMax": "Du kan kun søke tilbake i tid, altså for dager du allerede har brukt for å ta vare på og pleie personen i livets sluttfase.",
+    "validation.periodeTil.dateIsAfterMax": "Du kan kun søke pleiepenger for opptil ett år av gangen.",
     "validation.periodeTil.toDateIsBeforeFromDate": "Til-datoen kan ikke være før fra-datoen. Skriv inn eller velg dato fra kalenderen.",
 
     "validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du har vært i utlandet i perioden du søker for.",

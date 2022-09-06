@@ -19,7 +19,6 @@ import SoknadFormStep from '../SoknadFormStep';
 import { validateFradato, validateTildato, validateUtenlandsoppholdIPerioden } from '../../validation/fieldValidation';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms/lib/utenlandsopphold/UtenlandsoppholdListAndDialog';
 import { Utenlandsopphold } from '@navikt/sif-common-forms/lib';
-import { yesterday } from '../../utils/dates';
 import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 
@@ -83,12 +82,10 @@ const TidsromStep = () => {
                     }}
                     toInputProps={{
                         label: intlHelper(intl, 'steg.tidsrom.hvilketTidsrom.tom'),
-                        // TODO: Validering max to date i går
                         validate: validateTilDatoField,
                         name: SoknadFormField.periodeTil,
                         dayPickerProps: { initialMonth: periodeFra ? new Date(periodeFra) : undefined },
                     }}
-                    maxDate={yesterday}
                     disableWeekend={false}
                 />
                 {søkerKunHelgedager(values.periodeFra, values.periodeTil) && (
