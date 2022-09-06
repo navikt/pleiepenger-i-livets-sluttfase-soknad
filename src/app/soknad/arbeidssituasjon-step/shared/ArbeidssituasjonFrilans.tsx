@@ -141,13 +141,6 @@ const ArbeidssituasjonFrilans = ({
                         {visSpørsmålOmArbeidsforhold && (
                             <>
                                 <FormBlock>
-                                    <ArbFriFormComponents.YesOrNoQuestion
-                                        name={getArbeidsforholdFieldName(ArbeidsforholdFormField.harFraværIPeriode)}
-                                        legend={intlHelper(intl, 'frilanser.harFraværIPerioden.spm')}
-                                        validate={getYesOrNoValidator()}
-                                    />
-                                </FormBlock>
-                                <FormBlock>
                                     <ArbFriFormComponents.NumberInput
                                         label={intlHelper(
                                             intl,

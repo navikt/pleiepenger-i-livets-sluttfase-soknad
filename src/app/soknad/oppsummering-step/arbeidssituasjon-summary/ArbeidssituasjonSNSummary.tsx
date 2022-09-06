@@ -44,15 +44,6 @@ function ArbeidssituasjonSNSummary({ selvstendigNæringsdrivende }: Props) {
                                         values={{ timer: arbeidsforhold.jobberNormaltTimer }}
                                     />
                                 </li>
-                                <li>
-                                    <FormattedMessage
-                                        id={
-                                            arbeidsforhold.harFraværIPeriode
-                                                ? `oppsummering.arbeidssituasjon.harFravær`
-                                                : 'oppsummering.arbeidssituasjon.harIkkeFravær'
-                                        }
-                                    />
-                                </li>
                             </>
                         )}
                     </ul>

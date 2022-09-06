@@ -41,12 +41,8 @@ const ArbeidstidStep: React.FC<Props> = ({ søker, periode, soknadId }: Props) =
         values: { ansatt_arbeidsforhold, frilans, selvstendig },
     } = formikProps;
 
-    const harAnsattArbeidsforholdMedFravær = ansatt_arbeidsforhold.some((a) => a.harFraværIPeriode === YesOrNo.YES);
-
     const periodeSomFrilanserISøknadsperiode =
-        frilans.arbeidsforhold && frilans.arbeidsforhold.harFraværIPeriode && periode
-            ? getPeriodeSomFrilanserInnenforPeriode(periode, frilans)
-            : undefined;
+        frilans.arbeidsforhold && periode ? getPeriodeSomFrilanserInnenforPeriode(periode, frilans) : undefined;
 
     const periodeSomSelvstendigISøknadsperiode =
         selvstendig.harHattInntektSomSN === YesOrNo.YES && selvstendig.virksomhet !== undefined && periode
@@ -86,14 +82,11 @@ const ArbeidstidStep: React.FC<Props> = ({ søker, periode, soknadId }: Props) =
                 </CounsellorPanel>
             </Box>
 
-            {harAnsattArbeidsforholdMedFravær && periode && (
+            {periode && (
                 <FormBlock>
                     {ansatt_arbeidsforhold.map((arbeidsforhold, index) => {
                         /** Må loope gjennom alle arbeidsforhold for å få riktig index inn til formik */
-                        if (
-                            erAnsattHosArbeidsgiverISøknadsperiode(arbeidsforhold) === false ||
-                            arbeidsforhold.harFraværIPeriode !== YesOrNo.YES
-                        ) {
+                        if (erAnsattHosArbeidsgiverISøknadsperiode(arbeidsforhold) === false) {
                             return null;
                         }
                         return (
@@ -115,31 +108,27 @@ const ArbeidstidStep: React.FC<Props> = ({ søker, periode, soknadId }: Props) =
                 </FormBlock>
             )}
 
-            {frilans.arbeidsforhold &&
-                periode &&
-                frilans.arbeidsforhold.harFraværIPeriode === YesOrNo.YES &&
-                periodeSomFrilanserISøknadsperiode && (
-                    <FormBlock>
-                        <FormSection title={intlHelper(intl, 'arbeidIPeriode.FrilansLabel')}>
-                            <ArbeidIPeriodeSpørsmål
-                                arbeidsstedNavn="Frilansoppdrag"
-                                arbeidsforholdType={ArbeidsforholdType.FRILANSER}
-                                arbeidsforhold={frilans.arbeidsforhold}
-                                periode={periodeSomFrilanserISøknadsperiode}
-                                parentFieldName={FrilansFormField.arbeidsforhold}
-                                søkerKunHelgedager={søkerKunHelgedager(periode.from, periode.to)}
-                                onArbeidstidVariertChange={handleArbeidstidChanged}
-                                onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
-                                onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
-                            />
-                        </FormSection>
-                    </FormBlock>
-                )}
+            {frilans.arbeidsforhold && periode && periodeSomFrilanserISøknadsperiode && (
+                <FormBlock>
+                    <FormSection title={intlHelper(intl, 'arbeidIPeriode.FrilansLabel')}>
+                        <ArbeidIPeriodeSpørsmål
+                            arbeidsstedNavn="Frilansoppdrag"
+                            arbeidsforholdType={ArbeidsforholdType.FRILANSER}
+                            arbeidsforhold={frilans.arbeidsforhold}
+                            periode={periodeSomFrilanserISøknadsperiode}
+                            parentFieldName={FrilansFormField.arbeidsforhold}
+                            søkerKunHelgedager={søkerKunHelgedager(periode.from, periode.to)}
+                            onArbeidstidVariertChange={handleArbeidstidChanged}
+                            onArbeidPeriodeRegistrert={logArbeidPeriodeRegistrert}
+                            onArbeidstidEnkeltdagRegistrert={logArbeidEnkeltdagRegistrert}
+                        />
+                    </FormSection>
+                </FormBlock>
+            )}
 
             {selvstendig.harHattInntektSomSN === YesOrNo.YES &&
                 periode &&
                 selvstendig.arbeidsforhold &&
-                selvstendig.arbeidsforhold.harFraværIPeriode === YesOrNo.YES &&
                 periodeSomSelvstendigISøknadsperiode && (
                     <FormBlock>
                         <FormSection title={intlHelper(intl, 'arbeidIPeriode.SNLabel')}>

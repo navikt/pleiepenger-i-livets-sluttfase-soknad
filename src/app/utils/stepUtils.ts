@@ -7,7 +7,7 @@ import {
     opplysningerOmTidsromStepIsValid,
     welcomingPageIsValid,
 } from '../validation/stepValidations';
-import { erAnsattISøknadsperiode, harFraværFraArbeidsforholdIPeriode, harFraværIArbeidsforhold } from './ansattUtils';
+import { erAnsattISøknadsperiode } from './ansattUtils';
 import { erFrilanserISøknadsperiode } from './frilanserUtils';
 import { erSNISøknadsperiode } from './selvstendigUtils';
 
@@ -43,26 +43,14 @@ export const oppsummeringStepAvailable = (formData: SoknadFormData) =>
     arbeidssituasjonStepIsValid() &&
     medlemskapStepIsValid(formData);
 
-export const skalBrukerSvareArbeidstid = (
-    søknadsperiode: DateRange,
-    formValues: SoknadFormData
-    // søkerdata: Søkerdata | undefined
-): boolean => {
+export const skalBrukerSvareArbeidstid = (søknadsperiode: DateRange, formValues: SoknadFormData): boolean => {
     if (!formValues) {
         return false;
     }
-    const erAnsattMedFraværIPerioden =
-        erAnsattISøknadsperiode(formValues.ansatt_arbeidsforhold) &&
-        harFraværFraArbeidsforholdIPeriode(formValues.ansatt_arbeidsforhold);
 
-    const erFrilanserMedFraværIPerioden =
-        erFrilanserISøknadsperiode(søknadsperiode, formValues.frilans, formValues.frilansoppdrag) &&
-        harFraværIArbeidsforhold(formValues.frilans.arbeidsforhold);
+    const erAnsatt = erAnsattISøknadsperiode(formValues.ansatt_arbeidsforhold);
+    const erFrilanser = erFrilanserISøknadsperiode(søknadsperiode, formValues.frilans, formValues.frilansoppdrag);
+    const erSelvstendig = formValues.selvstendig && erSNISøknadsperiode(søknadsperiode, formValues.selvstendig);
 
-    const erSelvstendigMedFraværIPerioden =
-        formValues.selvstendig &&
-        erSNISøknadsperiode(søknadsperiode, formValues.selvstendig) &&
-        harFraværIArbeidsforhold(formValues.selvstendig.arbeidsforhold);
-
-    return erAnsattMedFraværIPerioden || erFrilanserMedFraværIPerioden || erSelvstendigMedFraværIPerioden;
+    return erAnsatt || erFrilanser || erSelvstendig;
 };

@@ -6,14 +6,12 @@ export enum ArbeidsforholdFormField {
     erAnsatt = 'erAnsatt',
     sluttetFørSøknadsperiode = 'sluttetFørSøknadsperiode',
     jobberNormaltTimer = 'jobberNormaltTimer',
-    harFraværIPeriode = 'harFraværIPeriode',
     arbeidIPeriode = 'arbeidIPeriode',
 }
 
 export interface Arbeidsforhold {
     arbeidsgiver: Arbeidsgiver;
     [ArbeidsforholdFormField.jobberNormaltTimer]?: string;
-    [ArbeidsforholdFormField.harFraværIPeriode]?: YesOrNo;
     [ArbeidsforholdFormField.erAnsatt]?: YesOrNo;
     [ArbeidsforholdFormField.sluttetFørSøknadsperiode]?: YesOrNo;
     [ArbeidsforholdFormField.arbeidIPeriode]?: ArbeidIPeriode;

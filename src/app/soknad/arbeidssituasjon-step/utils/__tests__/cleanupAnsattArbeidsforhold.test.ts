@@ -19,7 +19,6 @@ const ansattArbeidsforhold: Arbeidsforhold = {
         erLiktHverUke: YesOrNo.YES,
     },
     erAnsatt: YesOrNo.YES,
-    harFraværIPeriode: YesOrNo.YES,
     jobberNormaltTimer: '10',
     sluttetFørSøknadsperiode: YesOrNo.NO,
 };
@@ -34,36 +33,31 @@ describe('cleanupAnsattArbeidsforhold', () => {
             });
             expect(result.arbeidIPeriode).toBeUndefined();
             expect(result.jobberNormaltTimer).toBeUndefined();
-            expect(result.harFraværIPeriode).toBeUndefined();
             expect(result.sluttetFørSøknadsperiode).toEqual(YesOrNo.YES);
             expect(result.erAnsatt).toEqual(YesOrNo.NO);
         });
     });
     describe('Når søker er ansatt i søknadsperiode', () => {
-        it('Bruker er ansatt, men har ikke fravær i perioden', () => {
+        it('Bruker er ansatt i hele søknadsperioden', () => {
             const result = cleanupAnsattArbeidsforhold({
                 ...ansattArbeidsforhold,
                 sluttetFørSøknadsperiode: YesOrNo.NO,
-                harFraværIPeriode: YesOrNo.NO,
             });
-            expect(result.arbeidIPeriode).toBeUndefined();
-            expect(result.sluttetFørSøknadsperiode).toBeUndefined();
-            expect(result.harFraværIPeriode).toEqual(YesOrNo.NO);
-            expect(result.jobberNormaltTimer).toBeDefined();
-            expect(result.erAnsatt).toEqual(YesOrNo.YES);
-        });
-        it('Bruker er ansatt, og har fravær i perioden', () => {
-            const result = cleanupAnsattArbeidsforhold({
-                ...ansattArbeidsforhold,
-                erAnsatt: YesOrNo.YES,
-                sluttetFørSøknadsperiode: YesOrNo.NO,
-                harFraværIPeriode: YesOrNo.YES,
-            });
-            expect(result.sluttetFørSøknadsperiode).toBeUndefined();
             expect(result.arbeidIPeriode).toBeDefined();
-            expect(result.jobberNormaltTimer).toBeDefined();
-            expect(result.harFraværIPeriode).toEqual(YesOrNo.YES);
+            expect(result.arbeidsgiver).toBeDefined();
             expect(result.erAnsatt).toEqual(YesOrNo.YES);
+            expect(result.sluttetFørSøknadsperiode).toBeUndefined();
+        });
+        it('Bruker er ikke lenger ansatt men slutter i søknadsperioden', () => {
+            const result = cleanupAnsattArbeidsforhold({
+                ...ansattArbeidsforhold,
+                erAnsatt: YesOrNo.NO,
+                sluttetFørSøknadsperiode: YesOrNo.NO,
+            });
+            expect(result.erAnsatt).toEqual(YesOrNo.NO);
+            expect(result.sluttetFørSøknadsperiode).toEqual(YesOrNo.NO);
+            expect(result.arbeidIPeriode).toBeDefined();
+            expect(result.arbeidsgiver).toBeDefined();
         });
     });
 });

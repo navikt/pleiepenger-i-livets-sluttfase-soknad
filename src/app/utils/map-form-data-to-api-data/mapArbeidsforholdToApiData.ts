@@ -73,7 +73,7 @@ export const mapArbeidsforholdToApiData = (
     /** Periode hvor en er aktiv, f.eks. noen som starter sluttet i søknadsperioden */
     arbeidsperiode?: Partial<DateRange>
 ): ArbeidsforholdApiData => {
-    const { jobberNormaltTimer, arbeidIPeriode, harFraværIPeriode } = arbeidsforhold;
+    const { jobberNormaltTimer, arbeidIPeriode } = arbeidsforhold;
     const jobberNormaltTimerNumber = getNumberFromNumberInputValue(jobberNormaltTimer);
 
     if (jobberNormaltTimerNumber === undefined) {
@@ -81,9 +81,8 @@ export const mapArbeidsforholdToApiData = (
     }
     return {
         jobberNormaltTimer: jobberNormaltTimerNumber,
-        harFraværIPeriode: harFraværIPeriode === YesOrNo.YES,
         arbeidIPeriode:
-            harFraværIPeriode === YesOrNo.YES && arbeidIPeriode !== undefined
+            arbeidIPeriode !== undefined
                 ? mapArbeidIPeriodeToApiData(arbeidIPeriode, søknadsperiode, jobberNormaltTimerNumber, arbeidsperiode)
                 : undefined,
     };

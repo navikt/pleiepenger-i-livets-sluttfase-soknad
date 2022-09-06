@@ -62,15 +62,6 @@ const ArbeidsgivereSummary: React.FunctionComponent<Props> = ({ arbeidsgivere, s
                                             values={{ timer: arbeidsgiver.arbeidsforhold.jobberNormaltTimer }}
                                         />
                                     </li>
-                                    <li>
-                                        <FormattedMessage
-                                            id={
-                                                arbeidsgiver.arbeidsforhold.harFraværIPeriode
-                                                    ? `oppsummering.arbeidssituasjon.harFravær`
-                                                    : 'oppsummering.arbeidssituasjon.harIkkeFravær'
-                                            }
-                                        />
-                                    </li>
                                 </>
                             )}
                             {erAnsatt === false && (
