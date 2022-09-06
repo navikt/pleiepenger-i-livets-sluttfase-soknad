@@ -38,7 +38,6 @@ export interface ArbeidIPeriodeApiData {
 
 export interface ArbeidsforholdApiData {
     jobberNormaltTimer: number;
-    harFraværIPeriode: boolean;
     arbeidIPeriode?: ArbeidIPeriodeApiData;
 }
 

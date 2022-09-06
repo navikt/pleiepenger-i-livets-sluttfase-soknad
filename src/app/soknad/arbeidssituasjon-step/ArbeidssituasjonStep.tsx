@@ -103,6 +103,7 @@ const ArbeidssituasjonStep: React.FC<Props> = ({ søker, søknadsdato, søknadsp
                         <ArbeidssituasjonSN
                             formValues={values.selvstendig}
                             urlSkatteetatenSN={getLenker(intl.locale).skatteetatenSN}
+                            søknadsperiode={søknadsperiode}
                         />
                     </FormSection>
 

@@ -9,7 +9,6 @@ const søknadsperiode = ISODateRangeToDateRange('2021-01-02/2022-01-01');
 const frilanserSluttetIPeriodeValues: FrilansFormData = {
     harHattInntektSomFrilanser: YesOrNo.YES,
     arbeidsforhold: {
-        harFraværIPeriode: YesOrNo.NO,
         jobberNormaltTimer: '10',
         arbeidIPeriode: {
             jobberIPerioden: JobberIPeriodeSvar.JA,
@@ -43,7 +42,6 @@ describe('cleanupFrilansArbeidssituasjon', () => {
             expect(result.jobberFortsattSomFrilans).toBeDefined();
             expect(result.arbeidsforhold).toBeDefined();
             expect(result.arbeidsforhold?.arbeidIPeriode).toBeDefined();
-            expect(result.arbeidsforhold?.harFraværIPeriode).toBeDefined();
             expect(result.arbeidsforhold?.jobberNormaltTimer).toBeDefined();
             expect(result.startdato).toBeDefined();
             expect(result.sluttdato).toBeUndefined();
@@ -62,7 +60,6 @@ describe('cleanupFrilansArbeidssituasjon', () => {
             expect(result.jobberFortsattSomFrilans).toBeDefined();
             expect(result.arbeidsforhold).toBeDefined();
             expect(result.arbeidsforhold?.arbeidIPeriode).toBeDefined();
-            expect(result.arbeidsforhold?.harFraværIPeriode).toBeDefined();
             expect(result.arbeidsforhold?.jobberNormaltTimer).toBeDefined();
             expect(result.startdato).toBeDefined();
             expect(result.sluttdato).toBeDefined();
@@ -113,7 +110,6 @@ describe('cleanupFrilansArbeidssituasjon', () => {
             expect(result.jobberFortsattSomFrilans).toBeDefined();
             expect(result.arbeidsforhold).toBeDefined();
             expect(result.arbeidsforhold?.arbeidIPeriode).toBeDefined();
-            expect(result.arbeidsforhold?.harFraværIPeriode).toBeDefined();
             expect(result.arbeidsforhold?.jobberNormaltTimer).toBeDefined();
             expect(result.startdato).toBeDefined();
             expect(result.sluttdato).toBeUndefined();
@@ -132,7 +128,6 @@ describe('cleanupFrilansArbeidssituasjon', () => {
             expect(result.jobberFortsattSomFrilans).toBeDefined();
             expect(result.arbeidsforhold).toBeDefined();
             expect(result.arbeidsforhold?.arbeidIPeriode).toBeDefined();
-            expect(result.arbeidsforhold?.harFraværIPeriode).toBeDefined();
             expect(result.arbeidsforhold?.jobberNormaltTimer).toBeDefined();
             expect(result.startdato).toBeDefined();
             expect(result.sluttdato).toBeDefined();
