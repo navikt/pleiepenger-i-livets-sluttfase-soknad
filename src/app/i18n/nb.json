@@ -158,9 +158,9 @@
     "steg.arbeidssituasjon.tittel": "Arbeidsgivere",
     "steg.arbeidssituasjon.veileder.1": "Nå trenger vi å vite litt om arbeidssituasjonen din og hvor mye du normalt jobber når du ikke har fravær fra jobben din.",
     "steg.arbeidssituasjon.veileder.2": "Hvis du er arbeidstaker og er usikker på hva som er din normale arbeidstid finner du svaret i arbeidskontrakten din, eller du kan forhøre deg med arbeidsgiveren din.",
-    "steg.arbeidssituasjon.veileder.medArbeidsgiver": "Nedenfor ser du {antall, plural, one {arbeidsgiveren} other {arbeidsgivere}} du var registrert ansatt hos i AA-registeret i perioden du søker om pleiepenger. For at vi skal være sikre på at opplysningene er riktige må du bekrefte om du var ansatt der.",
+    "steg.arbeidssituasjon.veileder.medArbeidsgiver": "Nedenfor ser du {antall, plural, one {arbeidsgiveren} other {arbeidsgivere}} du er registrert ansatt hos i AA-registeret i perioden du søker om pleiepenger. For at vi skal være sikre på at opplysningene er riktige må du bekrefte om du er, eller har vært, ansatt der.",
     "steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet": "Vi har ikke funnet noen arbeidsgivere registrert på deg i AA-registeret.",
-    "steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver": "Hvis du i perioden du søker for var ansatt hos en arbeidsgiver som ikke vises her, må du be arbeidsgiveren om å sende en ny A-melding. Det gjør de enten via eget lønns- og personalsystem, eller via Altinn.",
+    "steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver": "Hvis du i perioden søker for er, eller var, ansatt hos en arbeidsgiver som ikke vises her, må du be arbeidsgiveren om å sende en ny A-melding. Det gjør de enten via eget lønns- og personalsystem, eller via Altinn.",
     "steg.arbeidssituasjon.info.tekst": "Dersom det mangler en arbeidsgiver her, må du be arbeidsgiveren din sende ny A-melding, enten via lønns- og personalsystemet eller gjennom Altinn.",
     "steg.arbeidssituasjon.ingenOpplysninger": "Vi har ikke funnet noen arbeidsgiver registrert på deg.",
 
@@ -193,7 +193,7 @@
     "arbeidsforhold.ikkeAnsatt.info": "Når du ikke er ansatt her lenger, må du be denne arbeidsgiveren om å sende en ny A-melding med sluttdato. Dette gjør de enten via eget lønns- og personalsystem, eller via Altinn.",
     "arbeidsforhold.ikkeFrilansoppdragIPerioden.info": "Informasjon når frilansoppdraget ikke gjelder perioden",
 
-    "arbeidsforhold.erAnsatt.spm": "Stemmer det at du var ansatt hos {navn} i perioden du søker for?",
+    "arbeidsforhold.erAnsatt.spm": "Stemmer det at du er ansatt hos  {navn} i perioden du søker for?",
     "arbeidsforhold.harFrilansoppdrag.spm": "Stemmer det at du har et frilansoppdrag hos {navn} i perioden du søker for?",
     "arbeidsforhold.sluttetFørSøknadsperiode.spm": "Sluttet du hos {navn} før {fraDato}?",
     "arbeidsforhold.avsluttet.info": "Sluttdato var innenfor perioden du søker om pleiepenger. Vi trenger derfor å vite hvordan normalarbeidstiden din var hos {navn}",
@@ -255,7 +255,7 @@
     "arbeidsforhold.varierende.info.tittel": "Hvordan regner jeg ut et snitt i min situasjon?",
     "arbeidsforhold.varierende.info.tekst.1": "Du regner ut et snitt ved å legge sammen antall timer du totalt har jobbet de siste 12 ukene og deler det med 12. Hvis du ikke har jobbet i 12 uker, regner du ut snittet på samme måte ved å bruke de ukene du har jobbet.",
 
-    "frilanser.harDuHattInntekt.spm": "Var du frilanser i perioden du søker for?",
+    "frilanser.harDuHattInntekt.spm": "Er du frilanser i perioden du søker for?",
     "frilanser.harDuAndreFrilansoppdrag.spm": "Har du andre frilansoppdrag du har fravær fra i perioden du søker for?",
     "frilanser.nårStartet.spm": "Når startet du å jobbe som frilanser?",
     "frilanser.jobberFortsatt.spm": "Jobber du fortsatt som frilanser?",
@@ -267,7 +267,7 @@
     "frilanser.hjelpetekst": "Du er frilanser når du mottar lønn for enkeltstående oppdrag uten å være fast eller midlertidig ansatt hos den du utfører oppdraget for. Hvis du er usikker på om du er frilanser må du sjekke om oppdragene dine er registrert som frilansoppdrag på",
     "frilanser.hjelpetekst.skatteetatenLenke": "skatteetaten sine nettsider.",
 
-    "selvstendig.harDuHattInntekt.spm": "Var du selvstendig næringsdrivende i perioden du søker for?",
+    "selvstendig.harDuHattInntekt.spm": "Er du selvstendig næringsdrivende i perioden du søker for?",
     "selvstendig.harDuHattInntekt.hjelpetekst.tittel": "Hva betyr det å være selvstendig næringsdrivende?",
     "selvstendig.harDuHattInntekt.hjelpetekst": "Du er selvstendig næringsdrivende når du enten har et enkeltpersonforetak (ENK), et ansvarlig selskap (ANS), eller et ansvarlig selskap med delt ansvar (DA).",
     "selvstendig.harDuHattInntekt.hjelpetekst.snSkatteetatenLenke": "I tillegg kan du lese på skatteetatens side om andre situasjoner hvor du kan regnes som selvstendig næringsdrivende.",
