@@ -51,9 +51,11 @@ const TidsromStep = () => {
                 <p>
                     <FormattedMessage id="step.tidsrom.counsellorPanel.avsnit.1" />
                 </p>
-
                 <p>
                     <FormattedMessage id="step.tidsrom.counsellorPanel.avsnit.2" />
+                </p>
+                <p>
+                    <FormattedMessage id="step.tidsrom.counsellorPanel.avsnit.3" />
                 </p>
             </CounsellorPanel>
             <FormBlock>
