@@ -345,7 +345,7 @@
     "step.oppsummering.info": "Les gjennom oppsummeringen og sjekk at alt er riktig før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.",
 
     "step.oppsummering.søker.header": "Om deg",
-    "step.oppsummering.pleietrengende.header": "Om den du har tatt vare på og pleid",
+    "step.oppsummering.pleietrengende.header": "Om personen du pleier",
     "steg.oppsummering.pleietrengende.harIkkeFnr": "Oppgitt grunn for at han/hun ikke har fødselsnummer eller D-nummer: {årsak}",
     "steg.oppsummering.pleietrengende.fødselsdato": "Fødselsdato: {dato}",
     "steg.oppsummering.pleietrengende.årsakManglerIdentitetsnummer.BOR_I_UTLANDET": "Personen bor i utlandet",
@@ -356,7 +356,7 @@
     "steg.oppsummering.tidsrom.header": "Perioden du søker pleiepenger for",
     "steg.oppsummering.søknadsperiode.header": "Periode",
     "steg.oppsummering.tidsrom.fomtom": "{fom} - {tom}",
-    "steg.oppsummering.utenlandsoppholdIPerioden.header": "Har du vært i utlandet i perioden?",
+    "steg.oppsummering.utenlandsoppholdIPerioden.header": "Utenlandsopphold i perioden du søker for?",
     "steg.oppsummering.utenlandsoppholdIPerioden.listetittel": "Utenlandsopphold i perioden",
 
     "steg.oppsummering.arbeidssituasjon.header": "Din arbeidssituasjon",
@@ -369,7 +369,7 @@
     "frilans.tittel.startOgSlutt": "Frilanser hos {hvor} (startet {startdato}, sluttet {sluttdato})",
     "selvstendigNæringsdrivende.tittel": "Selvstendig næringsdrivende",
 
-    "oppsummering.arbeidssituasjon.arbeidsgiver.ansatt": "Var ansatt i perioden",
+    "oppsummering.arbeidssituasjon.arbeidsgiver.ansatt": "Er ansatt i perioden",
     "oppsummering.arbeidssituasjon.avsluttet.arbeidsgiver.ansatt": "Er ikke lenger ansatt",
     "oppsummering.arbeidssituasjon.tid": "Jobber normalt {timer, plural, one {# time} other {# timer}} per uke",
     "oppsummering.arbeidssituasjon.avsluttet.tid": "Jobbet normalt {timer, plural, one {# time} other {# timer}} per uke",
@@ -380,15 +380,15 @@
     "oppsummering.arbeidssituasjon.arbeidsgivere.ingenIPeriode.tekst": "Er ikke ansatt i perioden det søkes for",
 
     "oppsummering.arbeidssituasjon.frilanser.header": "Frilanser",
-    "oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser": "Var ikke frilanser i perioden det søkes for",
+    "oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser": "Er ikke frilanser i perioden det søkes for",
     "oppsummering.arbeidssituasjon.frilans.startet": "Startet som frilanser {dato}",
     "oppsummering.arbeidssituasjon.frilans.fortsattFrilanser": "Er fortsatt frilanser",
     "oppsummering.arbeidssituasjon.frilans.sluttet": "Sluttet som frilanser {dato}",
     "oppsummering.arbeidssituasjon.frilans.frilansoppdrag": "Frilansoppdrag registrert i perioden:",
 
     "oppsummering.arbeidssituasjon.selvstendig.header": "Selvstendig næringsdrivende",
-    "oppsummering.arbeidssituasjon.selvstendig.erIkkeSN": "Var ikke selvstendig næringsdrivende i perioden det søkes for",
-    "oppsummering.arbeidssituasjon.selvstendig.erSn": "Var selvstendig næringsdrivende i perioden",
+    "oppsummering.arbeidssituasjon.selvstendig.erIkkeSN": "Er ikke selvstendig næringsdrivende i perioden det søkes for",
+    "oppsummering.arbeidssituasjon.selvstendig.erSn": "Er selvstendig næringsdrivende i perioden",
     "oppsummering.arbeidssituasjon.selvstendig.flereVirksomheter": "Har flere virksomheter",
     "oppsummering.arbeidssituasjon.selvstendig.enVirksomhet": "Har 1 virksomhet",
 
