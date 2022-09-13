@@ -141,10 +141,10 @@
     "steg.tidsrom.ferieuttakIPerioden.addLabel": "Legg til ferie",
 
     "steg.tidsrom.hjelpetekst.tittel": "Kan jeg søke for flere perioder i samme søknad?",
-    "steg.tidsrom.hjelpetekst.1": "Når du ikke har tatt ut dagene sammenhengende, kan du søke om flere perioder hvis du har jobbet i din fulle stilling mellom periodene du har hatt pleiepenger.",
-    "steg.tidsrom.hjelpetekst.2": "Da setter du fra og med dato til den første dagen du har hatt pleiepenger. Til og med dato setter du til den siste dagen du har hatt pleiepenger i den siste perioden.",
-    "steg.tidsrom.hjelpetekst.3": "Når du senere i søknaden blir spurt om jobb, legger du inn at du har jobbet fullt i de periodene du ikke har hatt pleiepenger. Du vil ikke få pleiepenger de periodene du har jobbet fullt.",
-    "steg.tidsrom.hjelpetekst.4": "Hvis du ikke har jobbet i din fulle stilling mellom periodene med pleiepenger, kan du ikke søke om flere perioder i samme søknad. Da må du sende én søknad for hver periode.",
+    "steg.tidsrom.hjelpetekst.1": "Når du ikke tar ut dagene sammenhengende, kan du søke om flere perioder hvis du jobber i din fulle stilling mellom periodene du har pleiepenger.",
+    "steg.tidsrom.hjelpetekst.2": "Da setter du fra og med dato til den første dagen du har pleiepenger. Til og med dato setter du til den siste dagen du har pleiepenger i den siste perioden.",
+    "steg.tidsrom.hjelpetekst.3": "Når du senere i søknaden blir spurt om jobb, legger du inn at du jobber fullt i de periodene du ikke har pleiepenger. Du får ikke pleiepenger i periodene du jobber fullt.",
+    "steg.tidsrom.hjelpetekst.4": "Hvis du ikke jobber i din fulle stilling mellom periodene med pleiepenger, kan du ikke søke om flere perioder i samme søknad. Da må du sende én søknad for hver periode.",
 
     "steg.tidsrom.hvilketTidsrom.spm": "Hvilken periode søker du for?",
     "steg.tidsrom.hvilketTidsrom.fom": "Fra og med",
