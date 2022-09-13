@@ -6,12 +6,12 @@
     "minReplicas": "1",
     "maxReplicas": "1",
     "ingresses": ["https://pleiepenger-i-livets-sluttfase.dev.nav.no"],
-    "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no"],
+    "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "sanity.io"],
     "livenessPath": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/health/isAlive",
     "readinessPath": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/health/isReady",
     "env": {
         "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://pleiepenger-i-livets-sluttfase.dev.nav.no/oauth2/logout",
-        "API_URL": "https://pleiepenger-livets-sluttfase-api.dev.nav.no",
+        "API_URL": "https://k9-brukerdialog-api.dev.nav.no",
         "FRONTEND_VEDLEGG_URL": "https://pleiepenger-i-livets-sluttfase.dev.nav.no/api",
         "FRONTEND_API_PATH": "/api",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",
@@ -20,7 +20,7 @@
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "APPSTATUS_DATASET": "staging",
         "USE_AMPLITUDE": "false",
-        "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:pleiepenger-livets-sluttfase-api",
+        "API_TOKENX_AUDIENCE": "dev-gcp:dusseldorf:k9-brukerdialog-api",
         "NPM_CONFIG_CACHE": "/tmp"
     }
 }

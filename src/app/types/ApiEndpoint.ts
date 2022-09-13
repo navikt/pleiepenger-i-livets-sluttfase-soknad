@@ -1,7 +1,7 @@
 export enum ApiEndpoint {
-    ARBEIDSGIVER = 'arbeidsgiver',
-    SEND_SØKNAD = 'soknad',
-    SØKER = 'soker',
+    ARBEIDSGIVER = 'oppslag/arbeidsgiver',
+    SEND_SØKNAD = 'pleiepenger-livets-sluttfase/innsending',
+    SØKER = 'oppslag/soker',
     VEDLEGG = 'vedlegg',
-    MELLOMLAGRING = 'mellomlagring',
+    MELLOMLAGRING = 'mellomlagring/PLEIEPENGER_LIVETS_SLUTTFASE',
 }
