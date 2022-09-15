@@ -465,7 +465,7 @@
     "validation.periodeTil.toDateIsBeforeFromDate": "Til-datoen kan ikke være før fra-datoen. Skriv inn eller velg dato fra kalenderen.",
 
     "validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du oppholder deg i utlandet i perioden du søker for",
-    "validation.utenlandsoppholdIPerioden.utenlandsopphold_ikke_registrert": "Du har svart ja til at du du oppholder deg i utlandet i perioden du søker for. Legg til minst ett utenlandsopphold.",
+    "validation.utenlandsoppholdIPerioden.utenlandsopphold_ikke_registrert": "Du har svart ja til at du oppholder deg i utlandet i perioden du søker for. Legg til minst ett utenlandsopphold.",
     "validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper": "Du har lagt inn utenlandsopphold med datoer som overlapper hverandre.",
     "validation.utenlandsoppholdIPerioden.utenlandsopphold_utenfor_periode": "Du har lagt inn utenlandsopphold som er utenfor søknadsperioden.",
     "validation.utenlandsoppholdIPerioden.utenlandsopphold_overlapper_samme_start_slutt": "Et utenlandsopphold kan ikke starte samme dag som et annet avsluttes.",
