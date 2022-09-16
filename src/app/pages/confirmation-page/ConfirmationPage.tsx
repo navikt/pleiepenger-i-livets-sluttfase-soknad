@@ -32,8 +32,7 @@ const ConfirmationPage = ({ kvitteringInfo }: Props) => {
             <FormattedMessage id="page.confirmation.list.item.3" />{' '}
             <Lenke href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
                 <FormattedMessage id="page.confirmation.list.item.3.lenke" />
-            </Lenke>{' '}
-            <FormattedMessage id="page.confirmation.list.item.3.1" />
+            </Lenke>
         </>
     );
 
