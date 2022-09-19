@@ -14,7 +14,7 @@ const ansattArbeidsforhold: Arbeidsforhold = {
     },
     arbeidIPeriode: {
         timerEllerProsent: TimerEllerProsent.PROSENT,
-        jobberIPerioden: JobberIPeriodeSvar.JA,
+        jobberIPerioden: JobberIPeriodeSvar.redusert,
         jobberProsent: '20',
         erLiktHverUke: YesOrNo.YES,
     },

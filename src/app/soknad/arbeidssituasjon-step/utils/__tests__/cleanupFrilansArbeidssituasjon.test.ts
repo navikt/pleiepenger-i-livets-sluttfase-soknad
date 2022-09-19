@@ -11,7 +11,7 @@ const frilanserSluttetIPeriodeValues: FrilansFormData = {
     arbeidsforhold: {
         jobberNormaltTimer: '10',
         arbeidIPeriode: {
-            jobberIPerioden: JobberIPeriodeSvar.JA,
+            jobberIPerioden: JobberIPeriodeSvar.redusert,
         },
     },
     jobberFortsattSomFrilans: YesOrNo.NO,

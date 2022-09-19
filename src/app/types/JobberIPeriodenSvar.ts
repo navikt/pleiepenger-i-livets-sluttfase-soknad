@@ -1,4 +1,5 @@
 export enum JobberIPeriodeSvar {
-    JA = 'JA',
-    NEI = 'NEI',
+    'somVanlig' = 'SOM_VANLIG',
+    'redusert' = 'REDUSERT',
+    'heltFravær' = 'HELT_FRAVÆR',
 }

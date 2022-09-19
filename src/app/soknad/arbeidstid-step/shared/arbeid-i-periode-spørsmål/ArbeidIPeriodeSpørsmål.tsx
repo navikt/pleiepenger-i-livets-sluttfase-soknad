@@ -105,18 +105,18 @@ const ArbeidIPeriodeSpørsmål = ({
             <SoknadFormComponents.RadioPanelGroup
                 name={getFieldName(ArbeidIPeriodeField.jobberIPerioden)}
                 legend={intlHelper(intl, `arbeidIPeriode.jobberIPerioden.spm`, intlValues)}
-                useTwoColumns={true}
+                useTwoColumns={false}
                 validate={getJobberIPeriodenValidator(intlValues)}
                 radios={getJobberIPeriodenRadios(intl)}
             />
 
-            {jobberIPerioden === JobberIPeriodeSvar.JA && erKortPeriode === true && (
+            {jobberIPerioden === JobberIPeriodeSvar.redusert && erKortPeriode === true && (
                 <FormBlock>
                     <ResponsivePanel>{renderArbeidstidVariertPart(false)}</ResponsivePanel>
                 </FormBlock>
             )}
 
-            {jobberIPerioden === JobberIPeriodeSvar.JA && erKortPeriode === false && (
+            {jobberIPerioden === JobberIPeriodeSvar.redusert && erKortPeriode === false && (
                 <>
                     <FormBlock>
                         <SoknadFormComponents.YesOrNoQuestion
@@ -235,12 +235,16 @@ const ArbeidIPeriodeSpørsmål = ({
 
 const getJobberIPeriodenRadios = (intl: IntlShape) => [
     {
-        label: intlHelper(intl, `arbeidIPeriode.jobberIPerioden.${JobberIPeriodeSvar.JA}`),
-        value: JobberIPeriodeSvar.JA,
+        label: intlHelper(intl, 'arbeidIPeriode.jobberIPerioden.jobberIkke'),
+        value: JobberIPeriodeSvar.heltFravær,
     },
     {
-        label: intlHelper(intl, `arbeidIPeriode.jobberIPerioden.${JobberIPeriodeSvar.NEI}`),
-        value: JobberIPeriodeSvar.NEI,
+        label: intlHelper(intl, 'arbeidIPeriode.jobberIPerioden.jobberRedusert'),
+        value: JobberIPeriodeSvar.redusert,
+    },
+    {
+        label: intlHelper(intl, 'arbeidIPeriode.jobberIPerioden.jobberVanlig'),
+        value: JobberIPeriodeSvar.somVanlig,
     },
 ];
 

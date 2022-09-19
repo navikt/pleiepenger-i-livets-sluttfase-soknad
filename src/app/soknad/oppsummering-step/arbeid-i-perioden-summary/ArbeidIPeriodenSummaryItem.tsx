@@ -20,7 +20,7 @@ export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
     tittel: string;
 }
 
-const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeriode, normaltimerUke }) => {
+const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, normaltimerUke }) => {
     const intl = useIntl();
 
     const getArbeidProsentTekst = (prosent: number) => {
@@ -33,9 +33,20 @@ const ArbeidIPeriodeSummaryItem: React.FunctionComponent<Props> = ({ arbeidIPeri
 
     return (
         <>
-            {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.NEI && (
+            {(arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.heltFravær ||
+                arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.somVanlig) && (
                 <p style={{ marginTop: 0 }}>
-                    <FormattedMessage id={`oppsummering.arbeidIPeriode.jobberIPerioden.nei`} />
+                    <FormattedMessage
+                        id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`}
+                    />
+                </p>
+            )}
+
+            {arbeidIPeriode.jobberIPerioden === JobberIPeriodeSvar.redusert && (
+                <p style={{ marginTop: 0 }}>
+                    <FormattedMessage
+                        id={`oppsummering.arbeidIPeriode.jobberIPerioden.${arbeidIPeriode.jobberIPerioden}`}
+                    />
                 </p>
             )}
 

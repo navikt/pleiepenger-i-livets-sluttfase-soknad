@@ -39,7 +39,7 @@ export const mapArbeidIPeriodeToApiData = (
     const apiData: ArbeidIPeriodeApiData = {
         jobberIPerioden: arbeid.jobberIPerioden,
     };
-    if (arbeid.jobberIPerioden !== JobberIPeriodeSvar.JA) {
+    if (arbeid.jobberIPerioden !== JobberIPeriodeSvar.redusert) {
         return apiData;
     }
     if (arbeid.timerEllerProsent === TimerEllerProsent.PROSENT) {
