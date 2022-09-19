@@ -70,14 +70,14 @@ const getArbeidsgiver = (fom: string, tom: string): Promise<AxiosResponse<AAregA
     try {
         return api.get<AAregArbeidsgiverRemoteData>(
             ApiEndpoint.ARBEIDSGIVER,
-            `fra_og_med=${fom}&til_og_med=${tom}&frilansoppdrag=true`
+            `ytelse=pleiepenger-livets-sluttfase&fra_og_med=${fom}&til_og_med=${tom}&frilansoppdrag=true`
         );
     } catch (error) {
         return Promise.reject(failure(error));
     }
 };
 
-export async function getArbeidsgivereRemoteData(fromDate: Date, toDate: Date): Promise<Arbeidsgiver[]> {
+export const getArbeidsgivereRemoteData = async (fromDate: Date, toDate: Date): Promise<Arbeidsgiver[]> => {
     try {
         const response = await getArbeidsgiver(formatDateToApiFormat(fromDate), formatDateToApiFormat(toDate));
         const arbeidsgivere = mapAAregArbeidsgiverRemoteDataToArbeidsiver(response.data);
@@ -90,4 +90,4 @@ export async function getArbeidsgivereRemoteData(fromDate: Date, toDate: Date): 
         }
         return Promise.reject([]);
     }
-}
+};

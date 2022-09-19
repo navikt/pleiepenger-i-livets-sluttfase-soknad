@@ -115,13 +115,13 @@ const startExpressServer = () => {
         }, 2000);
     });
 
-    server.get('/soker', (req, res) => {
+    server.get('/oppslag/soker', (req, res) => {
         setTimeout(() => {
             res.send(søkerMock);
         }, 200);
     });
 
-    server.get('/arbeidsgiver', (req, res) => {
+    server.get('/oppslag/arbeidsgiver', (req, res) => {
         const arbeidsgivere = getArbeidsgiverMock(req.query.fra_og_med);
         res.send({ organisasjoner: arbeidsgivere, frilansoppdrag: [frilansoppdrag], privatarbeidsgiver: [] });
     });
@@ -138,7 +138,7 @@ const startExpressServer = () => {
         res.sendStatus(401);
     });
 
-    server.post('/soknad', (req, res) => {
+    server.post('/pleiepenger-livets-sluttfase/innsending', (req, res) => {
         const body = req.body;
         console.log('[POST] body', body);
         setTimeout(() => {
@@ -150,7 +150,7 @@ const startExpressServer = () => {
         res.sendStatus(401);
     });
 
-    server.get('/mellomlagring', (req, res) => {
+    server.get('/mellomlagring/PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
         if (existsSync(MELLOMLAGRING_JSON)) {
             const body = readFileSync(MELLOMLAGRING_JSON);
             res.send(JSON.parse(body));
@@ -159,21 +159,21 @@ const startExpressServer = () => {
         }
     });
 
-    server.put('/mellomlagring', (req, res) => {
+    server.put('/mellomlagring/PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
 
-    server.post('/mellomlagring', (req, res) => {
+    server.post('/mellomlagring/PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
         const body = req.body;
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
 
-    server.delete('/mellomlagring', (req, res) => {
+    server.delete('/mellomlagring/PLEIEPENGER_LIVETS_SLUTTFASE', (req, res) => {
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify({}, null, 2));
         res.sendStatus(200);
     });
@@ -183,7 +183,9 @@ const startExpressServer = () => {
         res.set('Location', 'nav.no');
         const busboy = busboyCons({ headers: req.headers });
         busboy.on('finish', () => {
-            res.writeHead(200, { Location: '/vedlegg' });
+            res.writeHead(200, {
+                Location: 'http://localhost:8083/vedlegg/eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoibm9uZSJ9.eyJqdG',
+            });
             res.end();
         });
         req.pipe(busboy);
