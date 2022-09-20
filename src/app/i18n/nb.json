@@ -450,6 +450,7 @@
     "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerIsInvalid": " Du har oppgitt et ugyldig fødselsnummer. Kontroller at du har tastet inn riktig.",
     "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerIsNot11Chars": "Du har oppgitt et ugyldig fødselsnummer. Et gyldig fødselsnummer består av 11 siffer.",
     "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerIsNotAllowed": "Du har oppgitt ditt eget fødselsnummer. Du må skrive inn fødselsnummeret til personen du pleier.",
+    "validation.pleietrengende.norskIdentitetsnummer.fødselsnummerAsHnrIsNotAllowed": "Fødselsnummeret/D-nummeret du har tastet inn er ikke et gyldig norsk fødselsnummer. Kontroller at du har tastet inn riktig.",
     "validation.pleietrengende.fødselsdato.dateHasNoValue": "Du må oppgi fødselsdatoen til personen du  pleier. Skriv inn, eller velg dato fra datovelgeren.",
     "validation.pleietrengende.fødselsdato.dateIsAfterMax": "Fødselsdatoen kan ikke være etter dagens dato.",
     "validation.pleietrengende.fødselsdato.dateHasInvalidFormat": "Du må oppgi fødselsdatoen i et gyldig format. Gyldig format er dd.mm.åååå.",
