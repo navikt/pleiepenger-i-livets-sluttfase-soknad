@@ -526,7 +526,7 @@
     "validation.arbeidIPeriode.fast.tid.minutesAreNegative": "Antall timer og minutter {dag} {hvor} kan ikke være mindre enn 0 timer og 0 minutter.",
     "validation.arbeidIPeriode.timer.ingenTidRegistrert": "Du må fylle ut hvor mye du jobber i uken {hvor} i perioden.",
     "validation.arbeidIPeriode.timer.forMangeTimer": "Du har oppgitt for mange timer du jobber i uken {hvor} i perioden.",
-    "validation.arbeidIPeriode.jobber": "Du må svare på om du jobber {hvor} i perioden du søker for.",
+    "validation.arbeidIPeriode.jobber": "Du må svare på om hvilken situasjon gjelder for deg {hvor} i perioden du søker for.",
     "validation.arbeidIPeriode.erLiktHverUke": "Du må svare på om du jobber likt {hvor} hver uke i hele perioden.",
     "validation.arbeidIPeriode.timerEllerProsent.noValue": "Du må svare på hvordan du ønsker å oppgi hvor mye du jobber {hvor} i perioden.",
     "validation.arbeidIPeriode_prosentUgyldig": "Prosenten du kan oppgi er fra 1 til 100 prosent for hvor mye du jobber {hvor} i perioden.",
