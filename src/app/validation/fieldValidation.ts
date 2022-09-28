@@ -18,7 +18,7 @@ import {
     getStringValidator,
 } from '@navikt/sif-common-formik/lib/validation';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik/lib/validation/types';
-import { Utenlandsopphold } from '@navikt/sif-common-forms/lib';
+import { Ferieuttak, Utenlandsopphold } from '@navikt/sif-common-forms/lib';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import minMax from 'dayjs/plugin/minMax';
@@ -36,6 +36,9 @@ export enum AppFieldValidationErrors {
     'utenlandsopphold_overlapper' = 'utenlandsopphold_overlapper',
     'utenlandsopphold_overlapper_samme_start_slutt' = 'utenlandsopphold_overlapper_samme_start_slutt',
     'utenlandsopphold_utenfor_periode' = 'utenlandsopphold_utenfor_periode',
+    'ferieuttak_ikke_registrert' = 'ferieuttak_ikke_registrert',
+    'ferieuttak_overlapper' = 'ferieuttak_overlapper',
+    'ferieuttak_utenfor_periode' = 'ferieuttak_utenfor_periode',
 }
 
 export const isYesOrNoAnswered = (answer?: YesOrNo) => {
@@ -135,6 +138,23 @@ export const alleDokumenterISøknadenToFieldValidationResult = (
     }
     if (uploadedAttachments.length > 100) {
         return AppFieldValidationErrors.for_mange_dokumenter;
+    }
+    return undefined;
+};
+
+export const validateFerieuttakIPerioden = (
+    periode: DateRange,
+    ferieuttak: Ferieuttak[]
+): ValidationResult<ValidationError> => {
+    if (ferieuttak.length === 0) {
+        return AppFieldValidationErrors.ferieuttak_ikke_registrert;
+    }
+    const dateRanges = ferieuttak.map((u) => ({ from: u.fom, to: u.tom }));
+    if (dateRangesCollide(dateRanges)) {
+        return AppFieldValidationErrors.ferieuttak_overlapper;
+    }
+    if (dateRangesExceedsRange(dateRanges, periode)) {
+        return AppFieldValidationErrors.ferieuttak_utenfor_periode;
     }
     return undefined;
 };

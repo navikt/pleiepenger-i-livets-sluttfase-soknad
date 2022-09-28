@@ -1,6 +1,6 @@
 import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 import { YesOrNo } from '@navikt/sif-common-formik/lib';
-import { Utenlandsopphold } from '@navikt/sif-common-forms/lib';
+import { Ferieuttak, Utenlandsopphold } from '@navikt/sif-common-forms/lib';
 import { Virksomhet } from '@navikt/sif-common-forms/lib/virksomhet/types';
 import { UtenlandskNæring } from '@navikt/sif-common-forms/lib/utenlandsk-næring';
 import { OpptjeningUtland } from '@navikt/sif-common-forms/lib/opptjening-utland';
@@ -39,6 +39,8 @@ export enum SoknadFormField {
     periodeTil = 'periodeTil',
     skalOppholdeSegIUtlandetIPerioden = 'skalOppholdeSegIUtlandetIPerioden',
     utenlandsoppholdIPerioden = 'utenlandsoppholdIPerioden',
+    skalTaUtFerieIPerioden = 'skalTaUtFerieIPerioden',
+    ferieuttakIPerioden = 'ferieuttakIPerioden',
 
     // Arbeidsforhold
     ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',
@@ -84,6 +86,8 @@ export interface SoknadFormData {
     [SoknadFormField.periodeTil]?: string;
     [SoknadFormField.skalOppholdeSegIUtlandetIPerioden]?: YesOrNo;
     [SoknadFormField.utenlandsoppholdIPerioden]?: Utenlandsopphold[];
+    [SoknadFormField.skalTaUtFerieIPerioden]?: YesOrNo;
+    [SoknadFormField.ferieuttakIPerioden]?: Ferieuttak[];
 
     // Arbeidsforhold
     [SoknadFormField.ansatt_arbeidsforhold]: Arbeidsforhold[];
@@ -133,6 +137,8 @@ export const initialValues: SoknadFormData = {
     [SoknadFormField.periodeTil]: undefined,
     [SoknadFormField.skalOppholdeSegIUtlandetIPerioden]: YesOrNo.UNANSWERED,
     [SoknadFormField.utenlandsoppholdIPerioden]: [],
+    [SoknadFormField.skalTaUtFerieIPerioden]: YesOrNo.UNANSWERED,
+    [SoknadFormField.ferieuttakIPerioden]: [],
 
     // Arbeidssituasjon
     [SoknadFormField.arbeidsforhold]: [],

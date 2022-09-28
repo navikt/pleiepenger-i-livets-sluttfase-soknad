@@ -14,7 +14,7 @@ import SummarySection from '@navikt/sif-common-soknad/lib/soknad-summary/summary
 import MedlemskapSummaryView from './components/MedlemskapSummaryView';
 import SummaryBlock from '@navikt/sif-common-soknad/lib/soknad-summary/summary-block/SummaryBlock';
 import SummaryList from '@navikt/sif-common-core/lib/components/summary-list/SummaryList';
-import { renderUtenlandsoppholdIPeriodenSummary } from './summaryItemRenderers';
+import { renderFerieuttakIPeriodenSummary, renderUtenlandsoppholdIPeriodenSummary } from './summaryItemRenderers';
 import dayjs from 'dayjs';
 import { apiStringDateToDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { SoknadApiData } from '../../types/SoknadApiData';
@@ -108,6 +108,27 @@ const OppsummeringStep: React.FC<Props> = ({ søker, attachments, pleietrengende
                                     </>
                                 )}
                             </SummarySection>
+
+                            {/* Ferieuttak i perioden */}
+                            {apiValues.ferieuttakIPerioden && (
+                                <>
+                                    <SummaryBlock
+                                        header={intlHelper(intl, 'steg.oppsummering.ferieuttakIPerioden.header')}>
+                                        <FormattedMessage
+                                            id={apiValues.ferieuttakIPerioden.skalTaUtFerieIPerioden ? 'Ja' : 'Nei'}
+                                        />
+                                    </SummaryBlock>
+                                    {apiValues.ferieuttakIPerioden.ferieuttak.length > 0 && (
+                                        <Box margin="l" padBottom="xl">
+                                            <SummaryList
+                                                items={apiValues.ferieuttakIPerioden.ferieuttak}
+                                                itemRenderer={renderFerieuttakIPeriodenSummary}
+                                            />
+                                        </Box>
+                                    )}
+                                </>
+                            )}
+
                             {/* Arbeidssituasjon i søknadsperiode */}
                             <ArbeidssituasjonSummary
                                 apiValues={apiValues}
