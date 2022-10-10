@@ -107,27 +107,26 @@ const OppsummeringStep: React.FC<Props> = ({ søker, attachments, pleietrengende
                                         )}
                                     </>
                                 )}
-                            </SummarySection>
-
-                            {/* Ferieuttak i perioden */}
-                            {apiValues.ferieuttakIPerioden && (
-                                <>
-                                    <SummaryBlock
-                                        header={intlHelper(intl, 'steg.oppsummering.ferieuttakIPerioden.header')}>
-                                        <FormattedMessage
-                                            id={apiValues.ferieuttakIPerioden.skalTaUtFerieIPerioden ? 'Ja' : 'Nei'}
-                                        />
-                                    </SummaryBlock>
-                                    {apiValues.ferieuttakIPerioden.ferieuttak.length > 0 && (
-                                        <Box margin="l" padBottom="xl">
-                                            <SummaryList
-                                                items={apiValues.ferieuttakIPerioden.ferieuttak}
-                                                itemRenderer={renderFerieuttakIPeriodenSummary}
+                                {/* Ferieuttak i perioden */}
+                                {apiValues.ferieuttakIPerioden && (
+                                    <>
+                                        <SummaryBlock
+                                            header={intlHelper(intl, 'steg.oppsummering.ferieuttakIPerioden.header')}>
+                                            <FormattedMessage
+                                                id={apiValues.ferieuttakIPerioden.skalTaUtFerieIPerioden ? 'Ja' : 'Nei'}
                                             />
-                                        </Box>
-                                    )}
-                                </>
-                            )}
+                                        </SummaryBlock>
+                                        {apiValues.ferieuttakIPerioden.ferieuttak.length > 0 && (
+                                            <Box margin="l">
+                                                <SummaryList
+                                                    items={apiValues.ferieuttakIPerioden.ferieuttak}
+                                                    itemRenderer={renderFerieuttakIPeriodenSummary}
+                                                />
+                                            </Box>
+                                        )}
+                                    </>
+                                )}
+                            </SummarySection>
 
                             {/* Arbeidssituasjon i søknadsperiode */}
                             <ArbeidssituasjonSummary
