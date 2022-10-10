@@ -1,7 +1,7 @@
 import { StepID } from '../soknad/soknadStepsConfig';
 import { SoknadFormData } from './SoknadFormData';
 
-export const MELLOMLAGRING_VERSION = '4';
+export const MELLOMLAGRING_VERSION = '5.0';
 
 interface StorageMetadata {
     version: string;
