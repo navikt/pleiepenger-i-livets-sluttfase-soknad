@@ -55,9 +55,8 @@ const PleietrengendePersonSummary = ({ pleietrengende, pleietrengendeId }: Props
                         <Box margin="m">
                             <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.pleietrengende.id')}>
                                 <AttachmentList attachments={pleietrengendeId} />
-                                {pleietrengendeId.length === 0 && (
-                                    <FormattedMessage id="step.oppsummering.pleietrengende.id.ingenId" />
-                                )}
+                                {pleietrengendeId.filter(({ pending, uploaded }) => uploaded || pending).length ===
+                                    0 && <FormattedMessage id="step.oppsummering.pleietrengende.id.ingenId" />}
                             </SummaryBlock>
                         </Box>
                     </>
