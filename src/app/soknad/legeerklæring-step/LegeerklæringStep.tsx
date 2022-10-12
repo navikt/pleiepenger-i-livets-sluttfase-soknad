@@ -7,6 +7,7 @@ import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import FormikVedleggsKomponent from '../../components/VedleggComponent/FormikVedleggsKomponent';
 import {
+    attachmentUploadHasFailed,
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
@@ -15,6 +16,14 @@ import { StepID } from '../soknadStepsConfig';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import { valuesToAlleDokumenterISøknaden } from '../../utils/attachmentUtils';
+
+export const cleanupLegeerklæring = (values: SoknadFormData): SoknadFormData => {
+    const cleanedValues = { ...values };
+    cleanedValues.bekreftelseFraLege = cleanedValues.bekreftelseFraLege.filter(
+        (attachment) => !attachmentUploadHasFailed(attachment)
+    );
+    return cleanedValues;
+};
 
 const LegeerklæringStep: React.FC = () => {
     const intl = useIntl();
@@ -29,7 +38,8 @@ const LegeerklæringStep: React.FC = () => {
         <SoknadFormStep
             id={StepID.LEGEERKLÆRING}
             includeValidationSummary={true}
-            buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}>
+            buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}
+            onStepCleanup={cleanupLegeerklæring}>
             <>
                 <CounsellorPanel switchToPlakatOnSmallScreenSize={true}>
                     <Box padBottom={'l'}>

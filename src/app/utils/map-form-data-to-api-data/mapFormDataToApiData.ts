@@ -63,7 +63,8 @@ export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape):
                 opptjeningIUtlandet: getOpptjeningIUtlandetApiData(formData.opptjeningUtland, sprak),
                 utenlandskNæring: getUtenlandskNæringApiData(formData.utenlandskNæring, sprak),
                 vedleggUrls: listOfAttachmentsToListOfUrlStrings(formData.bekreftelseFraLege),
-                opplastetIdVedleggUrls: listOfAttachmentsToListOfUrlStrings(formData.pleietrengendeId),
+                opplastetIdVedleggUrls:
+                    formData.harIkkeFnr === true ? listOfAttachmentsToListOfUrlStrings(formData.pleietrengendeId) : [],
                 _attachments: formData.bekreftelseFraLege,
             };
             return apiData;

@@ -156,9 +156,8 @@ const OppsummeringStep: React.FC<Props> = ({ søker, attachments, pleietrengende
                             <SummarySection header={intlHelper(intl, 'steg.oppsummering.vedlegg.header')}>
                                 <Box margin="m">
                                     <AttachmentList attachments={attachments} />
-                                    {attachments.length === 0 && (
-                                        <FormattedMessage id="step.oppsummering.dokumenter.ingenVedlegg" />
-                                    )}
+                                    {attachments.filter(({ pending, uploaded }) => uploaded || pending).length ===
+                                        0 && <FormattedMessage id="step.oppsummering.dokumenter.ingenVedlegg" />}
                                 </Box>
                             </SummarySection>
                         </ResponsivePanel>

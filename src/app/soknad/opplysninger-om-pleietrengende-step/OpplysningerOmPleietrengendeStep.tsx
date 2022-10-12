@@ -23,6 +23,7 @@ import IdPart from './IdPart';
 import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 import { valuesToAlleDokumenterISøknaden } from '../../utils/attachmentUtils';
 import {
+    attachmentUploadHasFailed,
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
@@ -31,6 +32,17 @@ import FormSection from '@navikt/sif-common-core/lib/components/form-section/For
 interface Props {
     søker: Person;
 }
+
+export const cleanupOpplysningerOmPleietrengende = (values: SoknadFormData): SoknadFormData => {
+    const cleanedValues = { ...values };
+    cleanedValues.pleietrengendeId = cleanedValues.pleietrengendeId.filter(
+        (attachment) => !attachmentUploadHasFailed(attachment)
+    );
+    if (cleanedValues.harIkkeFnr === false) {
+        cleanedValues.pleietrengendeId = [];
+    }
+    return cleanedValues;
+};
 
 const OpplysningerOmPleietrengendeStep: React.FC<Props> = ({ søker }: Props) => {
     const intl = useIntl();
@@ -49,7 +61,8 @@ const OpplysningerOmPleietrengendeStep: React.FC<Props> = ({ søker }: Props) =>
     return (
         <SoknadFormStep
             id={StepID.OPPLYSNINGER_OM_PLEIETRENGENDE}
-            buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}>
+            buttonDisabled={hasPendingUploads || attachmentsSizeOver24Mb}
+            onStepCleanup={cleanupOpplysningerOmPleietrengende}>
             <CounsellorPanel>
                 <p>
                     <FormattedMessage id="step.opplysninger-om-pleietrengende.counsellorPanel.info" />
