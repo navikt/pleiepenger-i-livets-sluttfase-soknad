@@ -102,6 +102,11 @@ export interface OpptjeningIUtlandetApi {
     tilOgMed: ApiStringDate;
 }
 
+export interface FerieuttakIPeriodenApiData {
+    skalTaUtFerieIPerioden: boolean;
+    ferieuttak: PeriodeApiData[];
+}
+
 export interface UtenlandskNæringApi {
     næringstype: UtenlandskNæringstype;
     navnPåVirksomheten: string;
@@ -120,6 +125,7 @@ export interface SoknadApiData {
         skalOppholdeSegIUtlandetIPerioden: boolean;
         opphold: UtenlandsoppholdIPeriodenApiData[];
     };
+    ferieuttakIPerioden?: FerieuttakIPeriodenApiData;
     arbeidsgivere?: ArbeidsgiverApiData[];
     frilans?: FrilansApiData;
     selvstendigNæringsdrivende?: SelvstendigNæringsdrivendeApiData;

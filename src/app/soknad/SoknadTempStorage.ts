@@ -7,8 +7,7 @@ import { StepID } from './soknadStepsConfig';
 import { Person } from '../types/Søkerdata';
 import { ApiEndpoint } from '../types/ApiEndpoint';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
-
-export const STORAGE_VERSION = '4.0';
+import { MELLOMLAGRING_VERSION } from '../types/SøknadTempStorageData';
 
 interface UserHashInfo {
     søker: Person;
@@ -33,7 +32,7 @@ export const isStorageDataValid = (
     userHashInfo: UserHashInfo
 ): SoknadTempStorageData | undefined => {
     if (
-        data?.metadata?.version === STORAGE_VERSION &&
+        data?.metadata?.version === MELLOMLAGRING_VERSION &&
         data?.metadata.lastStepID !== undefined &&
         data.formData !== undefined &&
         data.metadata.soknadId !== undefined &&
@@ -49,7 +48,7 @@ const SøknadTempStorage: SoknadTemporaryStorage = {
     update: (soknadId: string, formData: SoknadFormData, lastStepID: StepID, userHashInfo: UserHashInfo) => {
         return persistSetup.update({
             formData,
-            metadata: { soknadId, lastStepID, version: STORAGE_VERSION, userHash: hash(userHashInfo) },
+            metadata: { soknadId, lastStepID, version: MELLOMLAGRING_VERSION, userHash: hash(userHashInfo) },
         });
     },
     create: persistSetup.create,

@@ -16,11 +16,17 @@ import SoknadFormComponents from '../SoknadFormComponents';
 import { StepID } from '../soknadStepsConfig';
 import { søkerKunHelgedager } from '../../utils/formDataUtils';
 import SoknadFormStep from '../SoknadFormStep';
-import { validateFradato, validateTildato, validateUtenlandsoppholdIPerioden } from '../../validation/fieldValidation';
+import {
+    validateFerieuttakIPerioden,
+    validateFradato,
+    validateTildato,
+    validateUtenlandsoppholdIPerioden,
+} from '../../validation/fieldValidation';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms/lib/utenlandsopphold/UtenlandsoppholdListAndDialog';
-import { Utenlandsopphold } from '@navikt/sif-common-forms/lib';
+import { Ferieuttak, Utenlandsopphold } from '@navikt/sif-common-forms/lib';
 import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import FerieuttakListAndDialog from '@navikt/sif-common-forms/lib/ferieuttak/FerieuttakListAndDialog';
 
 dayjs.extend(minMax);
 
@@ -123,6 +129,32 @@ const TidsromStep = () => {
                                         periode
                                             ? (opphold: Utenlandsopphold[]) =>
                                                   validateUtenlandsoppholdIPerioden(periode, opphold)
+                                            : undefined
+                                    }
+                                />
+                            </Box>
+                        )}
+                        <Box margin="xl">
+                            <SoknadFormComponents.YesOrNoQuestion
+                                legend={intlHelper(intl, 'steg.tidsrom.ferieuttakIPerioden.spm')}
+                                name={SoknadFormField.skalTaUtFerieIPerioden}
+                                validate={getYesOrNoValidator()}
+                            />
+                        </Box>
+                        {values.skalTaUtFerieIPerioden === YesOrNo.YES && (
+                            <Box margin="m" padBottom="l">
+                                <FerieuttakListAndDialog<SoknadFormField>
+                                    name={SoknadFormField.ferieuttakIPerioden}
+                                    minDate={periode.from}
+                                    maxDate={periode.to}
+                                    labels={{
+                                        modalTitle: intlHelper(intl, 'steg.tidsrom.ferieuttakIPerioden.modalTitle'),
+                                        listTitle: intlHelper(intl, 'steg.tidsrom.ferieuttakIPerioden.listTitle'),
+                                        addLabel: intlHelper(intl, 'steg.tidsrom.ferieuttakIPerioden.addLabel'),
+                                    }}
+                                    validate={
+                                        periode
+                                            ? (ferie: Ferieuttak[]) => validateFerieuttakIPerioden(periode, ferie)
                                             : undefined
                                     }
                                 />

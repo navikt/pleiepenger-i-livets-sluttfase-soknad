@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
@@ -23,7 +23,10 @@ import { søkerKunHelgedager } from '../../utils/formDataUtils';
 import useLogSøknadInfo from '../../hooks/useLogSøknadInfo';
 import SoknadTempStorage from '../SoknadTempStorage';
 import { Person } from '../../types';
-
+import { harFraværIPerioden } from './utils/arbeidstidUtils';
+import { ConfirmationDialog } from '../../types/ConfirmationDialog';
+import BekreftDialog from '@navikt/sif-common-core/lib/components/dialogs/bekreft-dialog/BekreftDialog';
+import { getIngenFraværConfirmationDialog } from '../confirmation-dialogs/ingenFraværConfirmation';
 interface Props {
     søker: Person;
     periode?: DateRange;
@@ -32,9 +35,9 @@ interface Props {
 
 const ArbeidstidStep: React.FC<Props> = ({ søker, periode, soknadId }: Props) => {
     const intl = useIntl();
-
-    const { logArbeidPeriodeRegistrert } = useLogSøknadInfo();
-    const { logArbeidEnkeltdagRegistrert } = useLogSøknadInfo();
+    const [confirmationDialog, setConfirmationDialog] = useState<ConfirmationDialog | undefined>(undefined);
+    const { logArbeidPeriodeRegistrert, logArbeidEnkeltdagRegistrert, logBekreftIngenFraværFraJobb } =
+        useLogSøknadInfo();
 
     const formikProps = useFormikContext<SoknadFormData>();
     const {
@@ -60,7 +63,44 @@ const ArbeidstidStep: React.FC<Props> = ({ søker, periode, soknadId }: Props) =
     }
 
     return (
-        <SøknadFormStep id={StepID.ARBEIDSTID} onStepCleanup={(values) => cleanupArbeidstidStep(values, periode)}>
+        <SøknadFormStep
+            id={StepID.ARBEIDSTID}
+            onStepCleanup={(values) => cleanupArbeidstidStep(values, periode)}
+            onBeforeValidSubmit={() => {
+                return new Promise((resolve) => {
+                    if (harFraværIPerioden(ansatt_arbeidsforhold, frilans, selvstendig) === false) {
+                        setTimeout(() => {
+                            setConfirmationDialog(
+                                getIngenFraværConfirmationDialog({
+                                    onCancel: () => {
+                                        logBekreftIngenFraværFraJobb(false);
+                                        setConfirmationDialog(undefined);
+                                    },
+                                    onConfirm: () => {
+                                        logBekreftIngenFraværFraJobb(true);
+                                        setConfirmationDialog(undefined);
+                                        resolve(true);
+                                    },
+                                })
+                            );
+                        });
+                    } else {
+                        resolve(true);
+                    }
+                });
+            }}>
+            {confirmationDialog && (
+                <BekreftDialog
+                    isOpen={true}
+                    bekreftLabel={confirmationDialog.okLabel}
+                    avbrytLabel={confirmationDialog.cancelLabel}
+                    onBekreft={confirmationDialog.onConfirm}
+                    onAvbryt={confirmationDialog.onCancel}
+                    onRequestClose={confirmationDialog.onCancel}
+                    contentLabel={confirmationDialog.title}>
+                    {confirmationDialog.content}
+                </BekreftDialog>
+            )}
             <Box padBottom="m">
                 <CounsellorPanel>
                     <p>

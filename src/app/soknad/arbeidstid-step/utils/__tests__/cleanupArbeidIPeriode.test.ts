@@ -9,7 +9,7 @@ const periodeFromDateString = '2021-02-01';
 const periodeToDateString = '2021-02-12';
 
 const arbeidIPeriode: ArbeidIPeriode = {
-    jobberIPerioden: JobberIPeriodeSvar.JA,
+    jobberIPerioden: JobberIPeriodeSvar.redusert,
     erLiktHverUke: YesOrNo.YES,
     timerEllerProsent: TimerEllerProsent.PROSENT,
     fasteDager: {
@@ -26,8 +26,11 @@ const periode: DateRange = {
 
 describe('cleanupArbeidIPeriode', () => {
     it('Fjerner informasjon dersom en ikke jobber i perioden ', () => {
-        const result = cleanupArbeidIPeriode({ ...arbeidIPeriode, jobberIPerioden: JobberIPeriodeSvar.NEI }, periode);
-        expect(result.jobberIPerioden).toEqual(JobberIPeriodeSvar.NEI);
+        const result = cleanupArbeidIPeriode(
+            { ...arbeidIPeriode, jobberIPerioden: JobberIPeriodeSvar.heltFravær },
+            periode
+        );
+        expect(result.jobberIPerioden).toEqual(JobberIPeriodeSvar.heltFravær);
         expect(Object.keys(result).length).toBe(1);
     });
     it('Beholder riktig informasjon når en jobber likt en prosent i perioden', () => {
@@ -38,7 +41,7 @@ describe('cleanupArbeidIPeriode', () => {
             },
             periode
         );
-        expect(result.jobberIPerioden).toEqual(JobberIPeriodeSvar.JA);
+        expect(result.jobberIPerioden).toEqual(JobberIPeriodeSvar.redusert);
         expect(result.erLiktHverUke).toEqual(YesOrNo.YES);
         expect(result.timerEllerProsent).toEqual(TimerEllerProsent.PROSENT);
         expect(result.jobberProsent).toEqual('20');
@@ -53,7 +56,7 @@ describe('cleanupArbeidIPeriode', () => {
             },
             periode
         );
-        expect(result.jobberIPerioden).toEqual(JobberIPeriodeSvar.JA);
+        expect(result.jobberIPerioden).toEqual(JobberIPeriodeSvar.redusert);
         expect(result.erLiktHverUke).toEqual(YesOrNo.YES);
         expect(result.timerEllerProsent).toEqual(TimerEllerProsent.TIMER);
         expect(result.jobberProsent).toBeUndefined();

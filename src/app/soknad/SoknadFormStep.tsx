@@ -11,7 +11,11 @@ import SoknadFormComponents from './SoknadFormComponents';
 import { StepID } from './soknadStepsConfig';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import intlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
-interface OwnProps {
+
+export interface SoknadFormStepBeforeValidSubmitProps {
+    onBeforeValidSubmit?: () => Promise<boolean>;
+}
+interface Props {
     id: StepID;
     onStepCleanup?: (values: SoknadFormData) => SoknadFormData;
     onSendSoknad?: () => void;
@@ -22,23 +26,37 @@ interface OwnProps {
     children: React.ReactNode;
 }
 
-type Props = OwnProps;
-
-const SoknadFormStep = ({
+const SoknadFormStep: React.FC<Props & SoknadFormStepBeforeValidSubmitProps> = ({
     id,
     onStepCleanup,
     onSendSoknad,
+    onBeforeValidSubmit,
     children,
     showButtonSpinner,
     showSubmitButton = true,
     includeValidationSummary = true,
     buttonDisabled,
-}: Props) => {
+}) => {
     const intl = useIntl();
     const { soknadStepsConfig, resetSoknad, gotoNextStepFromStep, continueSoknadLater } = useSoknadContext();
     const stepConfig = soknadStepsConfig[id];
     const texts = soknadStepUtils.getStepTexts(intl, stepConfig);
+
     useLogSidevisning(id);
+
+    const onValidSubmit = async () => {
+        if (onSendSoknad) {
+            onSendSoknad();
+        }
+        if (onBeforeValidSubmit) {
+            if (await onBeforeValidSubmit()) {
+                gotoNextStepFromStep(id);
+            }
+        } else {
+            gotoNextStepFromStep(id);
+        }
+    };
+
     return (
         <Step
             bannerTitle={intlHelper(intl, 'application.title')}
@@ -54,7 +72,7 @@ const SoknadFormStep = ({
                 includeValidationSummary={includeValidationSummary}
                 runDelayedFormValidation={true}
                 cleanup={onStepCleanup}
-                onValidSubmit={onSendSoknad ? onSendSoknad : () => gotoNextStepFromStep(id)}
+                onValidSubmit={onValidSubmit}
                 formErrorHandler={intlFormErrorHandler(intl, 'validation')}>
                 {children}
                 {showSubmitButton && (

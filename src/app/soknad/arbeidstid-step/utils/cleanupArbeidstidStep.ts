@@ -15,7 +15,7 @@ export const cleanupArbeidIPeriode = (arbeidIPerioden: ArbeidIPeriode, periode: 
         jobberIPerioden: arbeidIPerioden.jobberIPerioden,
     };
 
-    if (arbeid.jobberIPerioden !== JobberIPeriodeSvar.JA) {
+    if (arbeid.jobberIPerioden !== JobberIPeriodeSvar.redusert) {
         return arbeid;
     }
 

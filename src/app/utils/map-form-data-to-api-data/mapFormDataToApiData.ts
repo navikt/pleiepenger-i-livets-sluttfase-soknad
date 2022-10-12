@@ -14,6 +14,7 @@ import { getSelvstendigNæringsdrivendeApiData } from './getSelvstendigNæringsd
 import { getOpptjeningIUtlandetApiData } from './getOpptjeningUtlandetApiData';
 import { getUtenlandskNæringApiData } from './getUtenlandskNæringApiData';
 import { getLocaleForApi } from '@navikt/sif-common-core/lib/utils/localeUtils';
+import { getFerieuttakIPeriodenApiData } from './getFerieuttakIPeriodenApiData';
 
 export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape): SoknadApiData | undefined => {
     const periodeFra = datepickerUtils.getDateFromDateString(formData.periodeFra);
@@ -51,6 +52,7 @@ export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape):
                               )
                             : [],
                 },
+                ferieuttakIPerioden: getFerieuttakIPeriodenApiData(formData),
                 ...getArbeidsgivereISøknadsperiodenApiData(formData, søknadsperiode),
                 ...getFrilansApiData(formData.frilans, søknadsperiode, formData.frilansoppdrag),
                 ...getSelvstendigNæringsdrivendeApiData(formData.selvstendig, søknadsperiode, sprak),

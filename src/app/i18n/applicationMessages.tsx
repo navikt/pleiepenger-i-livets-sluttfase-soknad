@@ -9,6 +9,7 @@ import { sifCommonPleiepengerMessages } from '@navikt/sif-common-pleiepenger/lib
 import arbeidstidMessages from '../soknad/arbeidstid-step/shared/arbeidstid-variert/arbeidstidVariertMessages';
 import utenlandskNæringMessages from '@navikt/sif-common-forms/lib/utenlandsk-næring/utenlandskNæringMessages';
 import opptjeningUtlandMessages from '@navikt/sif-common-forms/lib/opptjening-utland/opptjeningUtlandMessages';
+import ferieuttakMessages from '@navikt/sif-common-forms/lib/ferieuttak/ferieuttakMessages';
 import soknadIntlMessages from '@navikt/sif-common-soknad/lib/soknad-intl-messages/soknadIntlMessages';
 
 const introFormMessages = require('../pages/intro-page/introFormMessagesNB.json');
@@ -27,6 +28,7 @@ const bokmålstekster = {
     ...appBokmålstekster,
     ...opptjeningUtlandMessages.nb,
     ...utenlandskNæringMessages.nb,
+    ...ferieuttakMessages.nb,
     ...soknadIntlMessages.nb,
 };
 
@@ -40,6 +42,7 @@ const nynorsktekster = {
     ...appNynorsktekster,
     ...opptjeningUtlandMessages.nn,
     ...utenlandskNæringMessages.nn,
+    ...ferieuttakMessages.nn,
     ...soknadIntlMessages.nn,
 };
 
