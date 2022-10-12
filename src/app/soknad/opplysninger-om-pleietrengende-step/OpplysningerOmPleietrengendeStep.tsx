@@ -57,7 +57,7 @@ const OpplysningerOmPleietrengendeStep: React.FC<Props> = ({ søker }: Props) =>
     const hasPendingUploads: boolean =
         (values.pleietrengendeId || []).find((a: any) => a.pending === true) !== undefined;
     const attachmentsSizeOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
-    console.log('formData: ', values);
+
     return (
         <SoknadFormStep
             id={StepID.OPPLYSNINGER_OM_PLEIETRENGENDE}
