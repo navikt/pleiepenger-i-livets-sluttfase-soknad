@@ -100,7 +100,7 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
         <>
             {aktiveArbeidsforhold.length > 0 && (
                 <SummarySection header={intlHelper(intl, 'oppsummering.arbeidIPeriode.jobbIPerioden.header')}>
-                    {aktiveArbeidsforhold.map((forhold) =>
+                    {aktiveArbeidsforhold.map((forhold, index) =>
                         forhold.arbeidIPeriode ? (
                             <SummaryBlock header={forhold.tittel} key={forhold.tittel}>
                                 <ArbeidIPeriodeSummaryItem
@@ -110,7 +110,7 @@ const ArbeidIPeriodenSummary: React.FunctionComponent<Props> = ({
                                 />
                             </SummaryBlock>
                         ) : (
-                            <div>Informasjon om arbeid i perioden mangler</div>
+                            <div key={index}>Informasjon om arbeid i perioden mangler</div>
                         )
                     )}
                 </SummarySection>
