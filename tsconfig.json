@@ -20,8 +20,7 @@
         "noUnusedLocals": true,
         "baseUrl": "./src",
         "paths": {},
-
-        "typeRoots": ["./node_modules/@types", "./src/@types"]
+        "types": ["jest", "node", "@types/testing-library__jest-dom"]
     },
     "exclude": ["node_modules", "src/build", "**.js", "dist"]
 }
