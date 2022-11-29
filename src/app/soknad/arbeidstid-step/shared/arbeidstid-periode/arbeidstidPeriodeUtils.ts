@@ -13,7 +13,6 @@ dayjs.extend(isoWeek);
 
 export const getDagerMedTidFraArbeidstidPeriodeData = (
     normalTimer: number,
-    //{ fom, tom, tidFasteDager }: ArbeidstidPeriodeData
     arbeidstidPeriodeData: ArbeidstidPeriodeData
 ): DateDurationMap => {
     const datoerIPeriode = getDatesInDateRange(

@@ -8,14 +8,11 @@ import { DateRange, getNumberFromNumberInputValue, YesOrNo } from '@navikt/sif-c
 import {
     ArbeidIPeriodeIntlValues,
     getArbeidstidFastProsentValidator,
-    // getArbeidstidIPeriodeIntlValues,
     getArbeidstimerFastDagValidator,
-    // getRedusertArbeidstidPerUkeInfo,
     TidFasteUkedagerInput,
     validateFasteArbeidstimerIUke,
 } from '@navikt/sif-common-pleiepenger';
 import { getArbeidstidIPeriodeIntlValues } from '@navikt/sif-common-pleiepenger/lib/arbeidstid/arbeidstid-periode-dialog/utils/arbeidstidPeriodeIntlValuesUtils';
-// import TidFasteUkedagerInput from '@navikt/sif-common-pleiepenger/lib/tid-faste-ukedager-input/TidFasteUkedagerInput';
 import { ArbeidsforholdType } from '@navikt/sif-common-pleiepenger/lib/types';
 import { getWeeksInDateRange } from '@navikt/sif-common-utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';

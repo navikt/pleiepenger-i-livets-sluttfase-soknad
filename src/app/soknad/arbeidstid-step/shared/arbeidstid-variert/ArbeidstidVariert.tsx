@@ -11,15 +11,10 @@ import {
     SøknadsperioderMånedListe,
     TidEnkeltdagEndring,
 } from '@navikt/sif-common-pleiepenger';
-// import ArbeidstidMånedInfo from '@navikt/sif-common-pleiepenger/lib/arbeidstid-måned-info/ArbeidstidMånedInfo';
-// import SøknadsperioderMånedListe from '@navikt/sif-common-pleiepenger/lib/søknadsperioder-måned-liste/SøknadsperioderMånedListe';
-// import { TidEnkeltdagEndring } from '@navikt/sif-common-pleiepenger/lib/tid-enkeltdag-dialog/TidEnkeltdagForm';
-// import { ArbeidstidKalender } from '@navikt/sif-common-pleiepenger/lib/arbeidstid/arbeidstid-kalender/components';
 import { DateDurationMap, getDatesInMonthOutsideDateRange, getMonthsInDateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { Element } from 'nav-frontend-typografi';
 import { SoknadFormData, SoknadFormField } from '../../../../types/SoknadFormData';
-// import ArbeidstidPeriode from '../arbeidstid-periode/ArbeidstidPeriode';
 import { ArbeidstidRegistrertLogProps } from '../types';
 import { validateArbeidsTidEnkeltdager } from '../validation/validateArbeidsTidEnkeltdager';
 import ArbeidstidPeriode from '../arbeidstid-periode/ArbeidstidPeriode';
