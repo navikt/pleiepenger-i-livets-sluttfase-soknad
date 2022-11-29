@@ -40,6 +40,21 @@
     "page.ikkeTilgang.tekst": "Du har ikke tilgang til denne siden. Dersom du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.",
     "page.ikkeTilgang.lastNed": "Søknad om pleiepenger i livets sluttfase",
 
+    "avbrytSøknadDialog.avbrytSøknadLabel": "Ja, avbryt søknad",
+    "avbrytSøknadDialog.fortsettSøknadLabel": "Nei",
+    "avbrytSøknadDialog.intro": "Det du har fylt ut i søknaden blir slettet, og du kommer tilbake til velkomstsiden.",
+    "avbrytSøknadDialog.spørsmål": "Ønsker du å slette søknaden?",
+    "avbrytSøknadDialog.tittel": "Avbryt og slett søknad",
+
+    "fortsettSøknadSenereDialog.avbrytSøknadLabel": "Ja, fortsett senere",
+    "fortsettSøknadSenereDialog.fortsettSøknadLabel": "Nei",
+    "fortsettSøknadSenereDialog.intro": "Vi lagrer det du har fylt ut i 72 timer. Når du vil fortsette, starter du bare søknaden på nytt.",
+    "fortsettSøknadSenereDialog.spørsmål": "Vil du avslutte nå og fortsette senere?",
+    "fortsettSøknadSenereDialog.tittel": "Avslutt og fortsett senere",
+
+    "steg.footer.avbryt": "Avbryt og slett søknad",
+    "steg.footer.fortsettSenere": "Avslutt og fortsett senere",
+
     "welcomingPage.sidetittel": "Søknad om pleiepenger i livets sluttfase",
     "welcomingPage.banner.tittel": "Hei!",
     "welcomingPage.banner.tekst": "Jeg vil hjelpe deg med å fylle ut søknad om pleiepenger i livets sluttfase.",
@@ -441,9 +456,6 @@
     "step.oppsummering.apiValideringFeil.tittel": "Noe av informasjonen mangler",
 
     "step.oppsummering.bekrefterOpplysninger.ikkeBekreftet": "Du må bekrefte opplysningene",
-
-    "steg.footer.avbryt": "Avbryt",
-    "steg.footer.fortsettSenere": "Fortsett senere",
 
     "fieldvalidation.mottakersFnrErSøkersFnr": "Du har tastet inn ditt eget fødselsnummer",
 
