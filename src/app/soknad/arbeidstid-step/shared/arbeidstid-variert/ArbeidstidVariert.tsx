@@ -4,17 +4,25 @@ import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { DateRange, FormikInputGroup } from '@navikt/sif-common-formik/lib';
-import { ArbeidIPeriodeIntlValues, ArbeidsforholdType, ArbeidstidPeriodeData } from '@navikt/sif-common-pleiepenger';
-import ArbeidstidMånedInfo from '@navikt/sif-common-pleiepenger/lib/arbeidstid-måned-info/ArbeidstidMånedInfo';
-import SøknadsperioderMånedListe from '@navikt/sif-common-pleiepenger/lib/søknadsperioder-måned-liste/SøknadsperioderMånedListe';
-import { TidEnkeltdagEndring } from '@navikt/sif-common-pleiepenger/lib/tid-enkeltdag-dialog/TidEnkeltdagForm';
+import {
+    ArbeidIPeriodeIntlValues,
+    ArbeidsforholdType,
+    ArbeidstidKalender,
+    SøknadsperioderMånedListe,
+    TidEnkeltdagEndring,
+} from '@navikt/sif-common-pleiepenger';
+// import ArbeidstidMånedInfo from '@navikt/sif-common-pleiepenger/lib/arbeidstid-måned-info/ArbeidstidMånedInfo';
+// import SøknadsperioderMånedListe from '@navikt/sif-common-pleiepenger/lib/søknadsperioder-måned-liste/SøknadsperioderMånedListe';
+// import { TidEnkeltdagEndring } from '@navikt/sif-common-pleiepenger/lib/tid-enkeltdag-dialog/TidEnkeltdagForm';
+// import { ArbeidstidKalender } from '@navikt/sif-common-pleiepenger/lib/arbeidstid/arbeidstid-kalender/components';
 import { DateDurationMap, getDatesInMonthOutsideDateRange, getMonthsInDateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 import { Element } from 'nav-frontend-typografi';
 import { SoknadFormData, SoknadFormField } from '../../../../types/SoknadFormData';
-import ArbeidstidPeriode from '../arbeidstid-periode/ArbeidstidPeriode';
+// import ArbeidstidPeriode from '../arbeidstid-periode/ArbeidstidPeriode';
 import { ArbeidstidRegistrertLogProps } from '../types';
 import { validateArbeidsTidEnkeltdager } from '../validation/validateArbeidsTidEnkeltdager';
+import ArbeidstidPeriode from '../arbeidstid-periode/ArbeidstidPeriode';
 
 interface Props extends ArbeidstidRegistrertLogProps {
     arbeidsstedNavn: string;
@@ -55,11 +63,10 @@ const ArbeidstidVariert: React.FunctionComponent<Props> = ({
         onArbeidstidVariertChanged ? onArbeidstidVariertChanged(newValues) : undefined;
     };
 
-    const handleOnPeriodeChange = (tid: DateDurationMap, periodeData: ArbeidstidPeriodeData) => {
+    const handleOnPeriodeChange = (tid: DateDurationMap) => {
         if (onArbeidPeriodeRegistrert) {
             onArbeidPeriodeRegistrert({
-                verdi: periodeData.prosent ? 'prosent' : 'ukeplan',
-                prosent: periodeData.prosent,
+                verdi: 'ukeplan',
             });
         }
         const dagerMedArbeid = { ...arbeidstid, ...tid };
@@ -71,7 +78,7 @@ const ArbeidstidVariert: React.FunctionComponent<Props> = ({
 
     const månedContentRenderer = (måned: DateRange) => {
         return (
-            <ArbeidstidMånedInfo
+            <ArbeidstidKalender
                 arbeidsstedNavn={arbeidsstedNavn}
                 arbeidsforholdType={arbeidsforholdType}
                 måned={måned}

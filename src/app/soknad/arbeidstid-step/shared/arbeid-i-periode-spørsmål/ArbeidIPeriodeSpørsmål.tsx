@@ -8,12 +8,14 @@ import { DateRange, getNumberFromNumberInputValue, YesOrNo } from '@navikt/sif-c
 import {
     ArbeidIPeriodeIntlValues,
     getArbeidstidFastProsentValidator,
-    getArbeidstidIPeriodeIntlValues,
+    // getArbeidstidIPeriodeIntlValues,
     getArbeidstimerFastDagValidator,
-    getRedusertArbeidstidPerUkeInfo,
+    // getRedusertArbeidstidPerUkeInfo,
+    TidFasteUkedagerInput,
     validateFasteArbeidstimerIUke,
 } from '@navikt/sif-common-pleiepenger';
-import TidFasteUkedagerInput from '@navikt/sif-common-pleiepenger/lib/tid-faste-ukedager-input/TidFasteUkedagerInput';
+import { getArbeidstidIPeriodeIntlValues } from '@navikt/sif-common-pleiepenger/lib/arbeidstid/arbeidstid-periode-dialog/utils/arbeidstidPeriodeIntlValuesUtils';
+// import TidFasteUkedagerInput from '@navikt/sif-common-pleiepenger/lib/tid-faste-ukedager-input/TidFasteUkedagerInput';
 import { ArbeidsforholdType } from '@navikt/sif-common-pleiepenger/lib/types';
 import { getWeeksInDateRange } from '@navikt/sif-common-utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
@@ -81,7 +83,7 @@ const ArbeidIPeriodeSpørsmål = ({
     const getFieldName = (field: ArbeidIPeriodeField) => `${parentFieldName}.arbeidIPeriode.${field}` as any;
 
     const { arbeidIPeriode } = arbeidsforhold;
-    const { jobberIPerioden, timerEllerProsent, erLiktHverUke, jobberProsent } = arbeidIPeriode || {};
+    const { jobberIPerioden, timerEllerProsent, erLiktHverUke } = arbeidIPeriode || {};
     const erKortPeriode = getWeeksInDateRange(periode).length < (BRUK_KUN_KORT_PERIODE ? 100 : 4);
 
     const renderArbeidstidVariertPart = (kanLeggeTilPeriode: boolean) => (
@@ -182,11 +184,11 @@ const ArbeidIPeriodeSpørsmål = ({
                                                       }
                                                     : undefined;
                                             }}
-                                            suffix={getRedusertArbeidstidPerUkeInfo(
-                                                intl,
-                                                jobberNormaltTimer,
-                                                jobberProsent
-                                            )}
+                                            // suffix={getRedusertArbeidstidPerUkeInfo(
+                                            //     intl,
+                                            //    jobberNormaltTimer,
+                                            //    jobberProsent
+                                            //  )}
                                             suffixStyle="text"
                                         />
                                     </ResponsivePanel>

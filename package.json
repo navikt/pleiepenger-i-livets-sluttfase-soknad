@@ -24,14 +24,14 @@
     },
     "dependencies": {
         "@devexperts/remote-data-ts": "^2.1.1",
-        "@navikt/sif-common-amplitude": "^2.5.1",
-        "@navikt/sif-common-core": "^11.3.0",
-        "@navikt/sif-common-formik": "^23.1.1",
-        "@navikt/sif-common-forms": "^17.4.1",
-        "@navikt/sif-common-pleiepenger": "^3.1.0",
-        "@navikt/sif-common-sentry": "^0.3.1",
-        "@navikt/sif-common-soknad": "^5.3.1",
-        "@navikt/sif-common-utils": "3.0.3",
+        "@navikt/sif-common-amplitude": "^2.6.2",
+        "@navikt/sif-common-core": "^12.0.6",
+        "@navikt/sif-common-formik": "^23.3.3",
+        "@navikt/sif-common-forms": "^17.5.1",
+        "@navikt/sif-common-pleiepenger": "^5.1.0",
+        "@navikt/sif-common-sentry": "^0.4.3",
+        "@navikt/sif-common-soknad": "^6.0.0",
+        "@navikt/sif-common-utils": "3.17.1",
         "@snyk/protect": "^1.1061.0",
         "axios": "^0.27.2",
         "busboy": "^1.6.0",
@@ -108,8 +108,5 @@
     "resolutions": {
         "babel-core": "7.0.0-bridge.0"
     },
-    "snyk": true,
-    "overrides": {
-        "@navikt/sif-common-formik": "^23.1.1"
-    }
+    "snyk": true
 }

@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
-import { ArbeidstidPeriodeData, ArbeidstidPeriodeDialog } from '@navikt/sif-common-pleiepenger/lib';
-import { ArbeidstidPeriodeFormProps } from '@navikt/sif-common-pleiepenger/lib/arbeidstid-periode/arbeidstid-periode-form/ArbeidstidPeriodeForm';
+import {
+    ArbeidstidPeriodeData,
+    ArbeidstidPeriodeDialog,
+    ArbeidstidPeriodeFormProps,
+} from '@navikt/sif-common-pleiepenger/lib';
+//import { ArbeidstidPeriodeFormProps } from '@navikt/sif-common-pleiepenger/lib/arbeidstid-periode/arbeidstid-periode-form/ArbeidstidPeriodeForm';
 import { DateDurationMap } from '@navikt/sif-common-utils/lib';
 import { Knapp } from 'nav-frontend-knapper';
 import { getDagerMedTidFraArbeidstidPeriodeData } from './arbeidstidPeriodeUtils';
