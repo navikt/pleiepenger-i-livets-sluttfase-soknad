@@ -2,11 +2,10 @@ import React from 'react';
 import { render } from 'react-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude/lib';
 import { getEnvironmentVariable } from '@navikt/sif-common-core/lib/utils/envUtils';
-import IntroPage from './pages/intro-page/IntroPage';
 import appSentryLogger from './utils/appSentryLogger';
 import SoknadApplication from '@navikt/sif-common-soknad/lib/soknad-application-setup/SoknadApplication';
 import SoknadApplicationCommonRoutes from '@navikt/sif-common-soknad/lib/soknad-application-setup/SoknadApplicationCommonRoutes';
-import { Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import RouteConfig from './config/routeConfig';
 import Modal from 'nav-frontend-modal';
 import { applicationIntlMessages } from './i18n/applicationMessages';
@@ -37,12 +36,14 @@ const App: React.FC = () => {
                 publicPath={publicPath}>
                 <SoknadApplicationCommonRoutes
                     contentRoutes={[
-                        <Route path="/" key="intro" exact={true} component={IntroPage} />,
                         <Route
                             path={RouteConfig.SØKNAD_ROUTE_PREFIX}
                             key="soknad"
                             component={SoknadRemoteDataFetcher}
                         />,
+                        <Route path="/" key="redirect">
+                            <Redirect path="/" key="start" to={RouteConfig.WELCOMING_PAGE_ROUTE} />
+                        </Route>,
                     ]}
                 />
             </SoknadApplication>

@@ -12,12 +12,10 @@ import opptjeningUtlandMessages from '@navikt/sif-common-forms/lib/opptjening-ut
 import ferieuttakMessages from '@navikt/sif-common-forms/lib/ferieuttak/ferieuttakMessages';
 import soknadIntlMessages from '@navikt/sif-common-soknad/lib/soknad-intl-messages/soknadIntlMessages';
 
-const introFormMessages = require('../pages/intro-page/introFormMessagesNB.json');
 export const appBokmålstekster = require('./nb.json');
 export const appNynorsktekster = require('./nn.json');
 
 const bokmålstekster = {
-    ...introFormMessages,
     ...allCommonMessages.nb,
     ...utenlandsoppholdMessages.nb,
     ...bostedMessages.nb,
@@ -33,7 +31,6 @@ const bokmålstekster = {
 };
 
 const nynorsktekster = {
-    ...introFormMessages,
     ...allCommonMessages.nn,
     ...utenlandsoppholdMessages.nn,
     ...bostedMessages.nn,
