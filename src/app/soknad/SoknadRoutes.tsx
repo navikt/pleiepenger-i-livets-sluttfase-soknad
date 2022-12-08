@@ -47,12 +47,12 @@ const SoknadRoutes: React.FC<Props> = ({ søker, kvitteringInfo, soknadId }) => 
 
     const availableSteps = getAvailableSteps(values, søknadsperiode);
 
-    const renderSoknadStep = (søker: Person, stepID: StepID): React.ReactNode => {
+    const renderSoknadStep = (søker: Person, stepID: StepID, soknadId: string): React.ReactNode => {
         switch (stepID) {
             case StepID.OPPLYSNINGER_OM_PLEIETRENGENDE:
                 return <OpplysningerOmPleietrengendeStep søker={søker} />;
             case StepID.LEGEERKLÆRING:
-                return <LegeerklæringStep />;
+                return <LegeerklæringStep søker={søker} soknadId={soknadId} />;
             case StepID.TIDSROM:
                 return <TidsromStep />;
             case StepID.ARBEIDSSITUASJON:
@@ -110,7 +110,7 @@ const SoknadRoutes: React.FC<Props> = ({ søker, kvitteringInfo, soknadId }) => 
                             key={step}
                             path={soknadStepsConfig[step].route}
                             exact={true}
-                            render={() => renderSoknadStep(søker, step)}
+                            render={() => renderSoknadStep(søker, step, soknadId)}
                         />
                     );
                 })}
