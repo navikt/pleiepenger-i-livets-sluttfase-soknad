@@ -50,7 +50,7 @@ const SoknadRoutes: React.FC<Props> = ({ søker, kvitteringInfo, soknadId }) => 
     const renderSoknadStep = (søker: Person, stepID: StepID, soknadId: string): React.ReactNode => {
         switch (stepID) {
             case StepID.OPPLYSNINGER_OM_PLEIETRENGENDE:
-                return <OpplysningerOmPleietrengendeStep søker={søker} />;
+                return <OpplysningerOmPleietrengendeStep søker={søker} soknadId={soknadId} />;
             case StepID.LEGEERKLÆRING:
                 return <LegeerklæringStep søker={søker} soknadId={soknadId} />;
             case StepID.TIDSROM:
