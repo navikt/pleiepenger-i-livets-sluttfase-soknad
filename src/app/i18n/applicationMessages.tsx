@@ -11,6 +11,7 @@ import utenlandskNæringMessages from '@navikt/sif-common-forms/lib/utenlandsk-n
 import opptjeningUtlandMessages from '@navikt/sif-common-forms/lib/opptjening-utland/opptjeningUtlandMessages';
 import ferieuttakMessages from '@navikt/sif-common-forms/lib/ferieuttak/ferieuttakMessages';
 import soknadIntlMessages from '@navikt/sif-common-soknad/lib/soknad-intl-messages/soknadIntlMessages';
+import { velkommenPageMessages } from '../soknad/velkommen-page/velkommenPageMessages';
 
 export const appBokmålstekster = require('./nb.json');
 export const appNynorsktekster = require('./nn.json');
@@ -28,6 +29,7 @@ const bokmålstekster = {
     ...utenlandskNæringMessages.nb,
     ...ferieuttakMessages.nb,
     ...soknadIntlMessages.nb,
+    ...velkommenPageMessages.nb,
 };
 
 const nynorsktekster = {

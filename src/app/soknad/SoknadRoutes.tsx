@@ -18,7 +18,7 @@ import { isFailure, isInitial, isPending, isSuccess } from '@devexperts/remote-d
 import ErrorPage from '@navikt/sif-common-soknad/lib/soknad-common-pages/ErrorPage';
 import { getAvailableSteps } from '../utils/routeUtils';
 import { SoknadApiData } from '../types/SoknadApiData';
-import VelkommenPage from '../pages/velkommen-page/VelkommenPage';
+import VelkommenPage from './velkommen-page/VelkommenPage';
 import OpplysningerOmPleietrengendeStep from './opplysninger-om-pleietrengende-step/OpplysningerOmPleietrengendeStep';
 import TidsromStep from './tidsrom-step/TidsromStep';
 import ArbeidssituasjonStep from './arbeidssituasjon-step/ArbeidssituasjonStep';
@@ -85,7 +85,7 @@ const SoknadRoutes: React.FC<Props> = ({ søker, kvitteringInfo, soknadId }) => 
     return (
         <Switch>
             <Route path={RouteConfig.SØKNAD_ROUTE_PREFIX} exact={true}>
-                <VelkommenPage />
+                <VelkommenPage søker={søker} />
             </Route>
             <Route path={RouteConfig.SØKNAD_SENDT_ROUTE} exact={true}>
                 <LoadWrapper
