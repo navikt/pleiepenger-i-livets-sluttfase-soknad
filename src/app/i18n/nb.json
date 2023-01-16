@@ -123,6 +123,11 @@
     "steg.tidsrom.hvilketTidsrom.fom": "Fra og med",
     "steg.tidsrom.hvilketTidsrom.tom": "Til og med",
 
+    "steg.tidsrom.pleierDuDenSykeHjemme.spm": "Pleier du personen i et privat hjem i perioden du søker for?",
+    "steg.tidsrom.pleierDuDenSykeHjemme.alert": "For å ha rett på pleiepenger må du pleie personen i et privat hjem. Hvis det er noen dager personen har vært innlagt må du sende en søknad for hver av periodene med pleie i hjemmet.",
+    "steg.tidsrom.pleierDuDenSykeHjemme.info.tittel": "Hva menes med privat hjem?",
+    "steg.tidsrom.pleierDuDenSykeHjemme.info": "Med privat hjem menes hjemme hos noen, for eksempel hjemme hos deg eller hjemme hos den som er syk. For at du skal ha rett til pleiepenger må altså den som er syk pleies hjemme hos noen, og ikke på sykehus eller en annen institusjon.",
+
     "step.arbeidssituasjon.pageTitle": "Arbeidssituasjon",
     "step.arbeidssituasjon.stepTitle": "Arbeidssituasjon",
     "step.arbeidssituasjon.stepIndicatorLabel": "Arbeidssituasjon",
@@ -321,6 +326,9 @@
     "steg.oppsummering.tidsrom.header": "Perioden du søker pleiepenger for",
     "steg.oppsummering.søknadsperiode.header": "Periode",
     "steg.oppsummering.tidsrom.fomtom": "{fom} - {tom}",
+
+    "steg.oppsummering.pleierDuDenSykeHjemme.header": "Pleier du personen i et privat hjem i perioden du søker for?",
+
     "steg.oppsummering.utenlandsoppholdIPerioden.header": "Utenlandsopphold i perioden du søker for?",
     "steg.oppsummering.utenlandsoppholdIPerioden.listetittel": "Utenlandsopphold i perioden",
 
@@ -431,6 +439,8 @@
     "validation.periodeTil.dateIsNotWeekday": "Periodens til-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.",
     "validation.periodeTil.dateIsAfterMax": "Du kan kun søke pleiepenger for opptil ett år av gangen.",
     "validation.periodeTil.toDateIsBeforeFromDate": "Til-datoen kan ikke være før fra-datoen. Skriv inn eller velg dato fra kalenderen.",
+
+    "validation.pleierDuDenSykeHjemme.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du pleier personen i et privat hjem i perioden du søker for.",
 
     "validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du oppholder deg i utlandet i perioden du søker for",
     "validation.utenlandsoppholdIPerioden.utenlandsopphold_ikke_registrert": "Du har svart ja til at du oppholder deg i utlandet i perioden du søker for. Legg til minst ett utenlandsopphold.",

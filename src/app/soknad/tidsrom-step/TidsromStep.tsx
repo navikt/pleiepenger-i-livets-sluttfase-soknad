@@ -108,6 +108,26 @@ const TidsromStep = () => {
                     <>
                         <Box margin="xl">
                             <SoknadFormComponents.YesOrNoQuestion
+                                legend={intlHelper(intl, 'steg.tidsrom.pleierDuDenSykeHjemme.spm')}
+                                name={SoknadFormField.pleierDuDenSykeHjemme}
+                                validate={getYesOrNoValidator()}
+                                description={
+                                    <ExpandableInfo
+                                        title={intlHelper(intl, 'steg.tidsrom.pleierDuDenSykeHjemme.info.tittel')}>
+                                        <FormattedMessage id={'steg.tidsrom.pleierDuDenSykeHjemme.info'} />
+                                    </ExpandableInfo>
+                                }
+                            />
+                        </Box>
+                        <Box margin="l">
+                            {values.pleierDuDenSykeHjemme === YesOrNo.NO && (
+                                <Alertstripe type="advarsel">
+                                    <FormattedMessage id="steg.tidsrom.pleierDuDenSykeHjemme.alert" />
+                                </Alertstripe>
+                            )}
+                        </Box>
+                        <Box margin="xl">
+                            <SoknadFormComponents.YesOrNoQuestion
                                 legend={intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.spm')}
                                 name={SoknadFormField.skalOppholdeSegIUtlandetIPerioden}
                                 validate={getYesOrNoValidator()}
