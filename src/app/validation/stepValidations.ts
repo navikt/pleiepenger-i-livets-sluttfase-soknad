@@ -1,4 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
+import { søkerKunHelgedager } from '../utils/formDataUtils';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { validateFødselsnummer, validateNavn } from './fieldValidation';
 
@@ -29,8 +30,13 @@ export const opplysningerOmPleietrengendeStepIsValid = ({ pleietrengende }: Sokn
     return validateNavn(pleietrengende.navn) === undefined && fødselsnummerValidation();
 };
 
-export const opplysningerOmTidsromStepIsValid = ({ periodeFra, periodeTil }: SoknadFormData) => {
-    return periodeFra !== undefined && periodeTil !== undefined;
+export const opplysningerOmTidsromStepIsValid = ({ periodeFra, periodeTil, pleierDuDenSykeHjemme }: SoknadFormData) => {
+    return (
+        periodeFra !== undefined &&
+        periodeTil !== undefined &&
+        !søkerKunHelgedager(periodeFra, periodeTil) &&
+        pleierDuDenSykeHjemme === YesOrNo.YES
+    );
 };
 
 export const arbeidssituasjonStepIsValid = () => true;

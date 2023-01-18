@@ -52,7 +52,9 @@ const TidsromStep = () => {
     return (
         <SoknadFormStep
             id={StepID.TIDSROM}
-            showSubmitButton={!søkerKunHelgedager(values.periodeFra, values.periodeTil)}>
+            showSubmitButton={
+                !søkerKunHelgedager(values.periodeFra, values.periodeTil) && values.pleierDuDenSykeHjemme !== YesOrNo.NO
+            }>
             <CounsellorPanel kompakt={true} type="normal">
                 <p>
                     <FormattedMessage id="step.tidsrom.counsellorPanel.avsnit.1" />
@@ -119,66 +121,83 @@ const TidsromStep = () => {
                                 }
                             />
                         </Box>
-                        <Box margin="l">
-                            {values.pleierDuDenSykeHjemme === YesOrNo.NO && (
+                        {values.pleierDuDenSykeHjemme === YesOrNo.NO && (
+                            <Box margin="l">
                                 <Alertstripe type="advarsel">
                                     <FormattedMessage id="steg.tidsrom.pleierDuDenSykeHjemme.alert" />
                                 </Alertstripe>
-                            )}
-                        </Box>
-                        <Box margin="xl">
-                            <SoknadFormComponents.YesOrNoQuestion
-                                legend={intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.spm')}
-                                name={SoknadFormField.skalOppholdeSegIUtlandetIPerioden}
-                                validate={getYesOrNoValidator()}
-                            />
-                        </Box>
-                        {values.skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && (
-                            <Box margin="m">
-                                <UtenlandsoppholdListAndDialog<SoknadFormField>
-                                    name={SoknadFormField.utenlandsoppholdIPerioden}
-                                    minDate={periode.from}
-                                    maxDate={periode.to}
-                                    excludeInnlagtQuestion={true}
-                                    labels={{
-                                        modalTitle: intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.modalTitle'),
-                                        listTitle: intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.listTitle'),
-                                        addLabel: intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.addLabel'),
-                                    }}
-                                    validate={
-                                        periode
-                                            ? (opphold: Utenlandsopphold[]) =>
-                                                  validateUtenlandsoppholdIPerioden(periode, opphold)
-                                            : undefined
-                                    }
-                                />
                             </Box>
                         )}
-                        <Box margin="xl">
-                            <SoknadFormComponents.YesOrNoQuestion
-                                legend={intlHelper(intl, 'steg.tidsrom.ferieuttakIPerioden.spm')}
-                                name={SoknadFormField.skalTaUtFerieIPerioden}
-                                validate={getYesOrNoValidator()}
-                            />
-                        </Box>
-                        {values.skalTaUtFerieIPerioden === YesOrNo.YES && (
-                            <Box margin="m" padBottom="l">
-                                <FerieuttakListAndDialog<SoknadFormField>
-                                    name={SoknadFormField.ferieuttakIPerioden}
-                                    minDate={periode.from}
-                                    maxDate={periode.to}
-                                    labels={{
-                                        modalTitle: intlHelper(intl, 'steg.tidsrom.ferieuttakIPerioden.modalTitle'),
-                                        listTitle: intlHelper(intl, 'steg.tidsrom.ferieuttakIPerioden.listTitle'),
-                                        addLabel: intlHelper(intl, 'steg.tidsrom.ferieuttakIPerioden.addLabel'),
-                                    }}
-                                    validate={
-                                        periode
-                                            ? (ferie: Ferieuttak[]) => validateFerieuttakIPerioden(periode, ferie)
-                                            : undefined
-                                    }
-                                />
-                            </Box>
+                        {values.pleierDuDenSykeHjemme === YesOrNo.YES && (
+                            <>
+                                <Box margin="xl">
+                                    <SoknadFormComponents.YesOrNoQuestion
+                                        legend={intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.spm')}
+                                        name={SoknadFormField.skalOppholdeSegIUtlandetIPerioden}
+                                        validate={getYesOrNoValidator()}
+                                    />
+                                </Box>
+                                {values.skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES && (
+                                    <Box margin="m">
+                                        <UtenlandsoppholdListAndDialog<SoknadFormField>
+                                            name={SoknadFormField.utenlandsoppholdIPerioden}
+                                            minDate={periode.from}
+                                            maxDate={periode.to}
+                                            excludeInnlagtQuestion={true}
+                                            labels={{
+                                                modalTitle: intlHelper(
+                                                    intl,
+                                                    'steg.tidsrom.iUtlandetIPerioden.modalTitle'
+                                                ),
+                                                listTitle: intlHelper(
+                                                    intl,
+                                                    'steg.tidsrom.iUtlandetIPerioden.listTitle'
+                                                ),
+                                                addLabel: intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.addLabel'),
+                                            }}
+                                            validate={
+                                                periode
+                                                    ? (opphold: Utenlandsopphold[]) =>
+                                                          validateUtenlandsoppholdIPerioden(periode, opphold)
+                                                    : undefined
+                                            }
+                                        />
+                                    </Box>
+                                )}
+                                <Box margin="xl">
+                                    <SoknadFormComponents.YesOrNoQuestion
+                                        legend={intlHelper(intl, 'steg.tidsrom.ferieuttakIPerioden.spm')}
+                                        name={SoknadFormField.skalTaUtFerieIPerioden}
+                                        validate={getYesOrNoValidator()}
+                                    />
+                                </Box>
+                                {values.skalTaUtFerieIPerioden === YesOrNo.YES && (
+                                    <Box margin="m" padBottom="l">
+                                        <FerieuttakListAndDialog<SoknadFormField>
+                                            name={SoknadFormField.ferieuttakIPerioden}
+                                            minDate={periode.from}
+                                            maxDate={periode.to}
+                                            labels={{
+                                                modalTitle: intlHelper(
+                                                    intl,
+                                                    'steg.tidsrom.ferieuttakIPerioden.modalTitle'
+                                                ),
+                                                listTitle: intlHelper(
+                                                    intl,
+                                                    'steg.tidsrom.ferieuttakIPerioden.listTitle'
+                                                ),
+                                                addLabel: intlHelper(intl, 'steg.tidsrom.ferieuttakIPerioden.addLabel'),
+                                            }}
+                                            validate={
+                                                periode
+                                                    ? (ferie: Ferieuttak[]) =>
+                                                          validateFerieuttakIPerioden(periode, ferie)
+                                                    : undefined
+                                            }
+                                        />
+                                    </Box>
+                                )}
+                            </>
                         )}
                     </>
                 )}

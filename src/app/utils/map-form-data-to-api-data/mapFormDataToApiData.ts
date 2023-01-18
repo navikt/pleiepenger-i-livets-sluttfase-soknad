@@ -19,8 +19,9 @@ import { getFerieuttakIPeriodenApiData } from './getFerieuttakIPeriodenApiData';
 export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape): SoknadApiData | undefined => {
     const periodeFra = datepickerUtils.getDateFromDateString(formData.periodeFra);
     const periodeTil = datepickerUtils.getDateFromDateString(formData.periodeTil);
+    const pleierDuDenSykeHjemme = formData.pleierDuDenSykeHjemme === YesOrNo.YES;
 
-    if (periodeFra && periodeTil) {
+    if (periodeFra && periodeTil && pleierDuDenSykeHjemme === true) {
         try {
             const sprak = getLocaleForApi(intl.locale);
             const søknadsperiode: DateRange = {
@@ -43,7 +44,7 @@ export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape):
                 },
                 fraOgMed: formatDateToApiFormat(periodeFra),
                 tilOgMed: formatDateToApiFormat(periodeTil),
-                pleierDuDenSykeHjemme: formData.pleierDuDenSykeHjemme === YesOrNo.YES ? true : false,
+                pleierDuDenSykeHjemme,
                 utenlandsoppholdIPerioden: {
                     skalOppholdeSegIUtlandetIPerioden: formData.skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES,
                     opphold:
@@ -75,8 +76,8 @@ export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape):
         }
     } else {
         appSentryLogger.logError(
-            'mapFormDataToApiData failed - empty periode',
-            JSON.stringify({ periodeFra, periodeTil })
+            'mapFormDataToApiData failed - empty periode or pleierDuDenSykeHjemme !== yes',
+            JSON.stringify({ periodeFra, periodeTil, pleierDuDenSykeHjemme })
         );
         return undefined;
     }
