@@ -70,7 +70,7 @@ const getArbeidsgiver = (fom: string, tom: string): Promise<AxiosResponse<AAregA
     try {
         return api.get<AAregArbeidsgiverRemoteData>(
             ApiEndpoint.ARBEIDSGIVER,
-            `ytelse=pleiepenger-livets-sluttfase&fra_og_med=${fom}&til_og_med=${tom}&frilansoppdrag=true`
+            `fra_og_med=${fom}&til_og_med=${tom}&frilansoppdrag=true`
         );
     } catch (error) {
         return Promise.reject(failure(error));

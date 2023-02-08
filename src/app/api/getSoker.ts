@@ -8,7 +8,7 @@ export type SokerRemoteData = RemoteData<AxiosError, Person>;
 
 const getSokerRemoteData = async (): Promise<SokerRemoteData> => {
     try {
-        const { data } = await api.get<Person>(ApiEndpoint.SØKER, 'ytelse=pleiepenger-livets-sluttfase');
+        const { data } = await api.get<Person>(ApiEndpoint.SØKER);
         return Promise.resolve(success(data));
     } catch (error) {
         return Promise.reject(failure(error));
