@@ -70,7 +70,7 @@
         "@types/enzyme": "^3.10.12",
         "@types/intl": "^1.2.0",
         "@types/jest": "^28.1.8",
-        "@types/object-hash": "^2.2.1",
+        "@types/object-hash": "^3.0.2",
         "@types/react": "^17.0.40",
         "@types/react-dom": "^17.0.13",
         "@types/react-router-dom": "^5.3.3",
