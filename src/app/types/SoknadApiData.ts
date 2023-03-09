@@ -121,6 +121,7 @@ export interface SoknadApiData {
     pleietrengende: PleietrengendeApi;
     fraOgMed: ApiStringDate;
     tilOgMed: ApiStringDate;
+    pleierDuDenSykeHjemme: boolean;
     utenlandsoppholdIPerioden?: {
         skalOppholdeSegIUtlandetIPerioden: boolean;
         opphold: UtenlandsoppholdIPeriodenApiData[];

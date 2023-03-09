@@ -6,8 +6,7 @@ import hash from 'object-hash';
 import { StepID } from './soknadStepsConfig';
 import { Person } from '../types/Søkerdata';
 import { ApiEndpoint } from '../types/ApiEndpoint';
-import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
-import { MELLOMLAGRING_VERSION } from '../types/SøknadTempStorageData';
+import { SoknadTempStorageData, MELLOMLAGRING_VERSION } from '../types/SoknadTempStorageData';
 
 interface UserHashInfo {
     søker: Person;

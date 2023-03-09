@@ -1,10 +1,9 @@
-import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik/lib';
-import { ArbeidstidPeriodeData, getRedusertArbeidstidSomDuration } from '@navikt/sif-common-pleiepenger/lib';
+import { ArbeiderIPeriodenSvar, ArbeidstidPeriodeData } from '@navikt/sif-common-pleiepenger/lib';
 import {
     DateDurationMap,
     dateToISODate,
     getDatesInDateRange,
-    getDurationForISOWeekday,
+    getDurationForISOWeekdayNumber,
     ISODateToDate,
 } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
@@ -14,25 +13,20 @@ dayjs.extend(isoWeek);
 
 export const getDagerMedTidFraArbeidstidPeriodeData = (
     normalTimer: number,
-    { fom, tom, prosent, tidFasteDager }: ArbeidstidPeriodeData
+    arbeidstidPeriodeData: ArbeidstidPeriodeData
 ): DateDurationMap => {
-    const datoerIPeriode = getDatesInDateRange({ from: fom, to: tom }, true);
+    const datoerIPeriode = getDatesInDateRange(
+        { from: arbeidstidPeriodeData.fom, to: arbeidstidPeriodeData.tom },
+        true
+    );
     const dagerMedTid: DateDurationMap = {};
     datoerIPeriode.forEach((dato) => {
         const isoDate = dateToISODate(dato);
-        if (prosent !== undefined) {
-            const prosentNumber = getNumberFromNumberInputValue(prosent);
-            if (prosentNumber === undefined) {
-                return;
-            }
-            if (prosentNumber === 0) {
-                dagerMedTid[isoDate] = { hours: '0', minutes: '0', percentage: prosentNumber };
-            } else {
-                const isoDurationPerDag = getRedusertArbeidstidSomDuration(normalTimer / 5, prosentNumber);
-                dagerMedTid[isoDate] = { ...isoDurationPerDag, percentage: prosentNumber };
-            }
-        } else if (tidFasteDager) {
-            const varighet = getDurationForISOWeekday(tidFasteDager, dayjs(ISODateToDate(isoDate)).isoWeekday());
+        if (arbeidstidPeriodeData.arbeiderHvordan === ArbeiderIPeriodenSvar.redusert) {
+            const varighet = getDurationForISOWeekdayNumber(
+                arbeidstidPeriodeData.tidFasteDager,
+                dayjs(ISODateToDate(isoDate)).isoWeekday()
+            );
             if (varighet) {
                 dagerMedTid[isoDate] = { ...varighet };
             }

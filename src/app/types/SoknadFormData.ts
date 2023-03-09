@@ -37,6 +37,7 @@ export enum SoknadFormField {
     // Tidsrom
     periodeFra = 'periodeFra',
     periodeTil = 'periodeTil',
+    pleierDuDenSykeHjemme = 'pleierDuDenSykeHjemme',
     skalOppholdeSegIUtlandetIPerioden = 'skalOppholdeSegIUtlandetIPerioden',
     utenlandsoppholdIPerioden = 'utenlandsoppholdIPerioden',
     skalTaUtFerieIPerioden = 'skalTaUtFerieIPerioden',
@@ -84,6 +85,7 @@ export interface SoknadFormData {
     //Tidsrom
     [SoknadFormField.periodeFra]?: string;
     [SoknadFormField.periodeTil]?: string;
+    [SoknadFormField.pleierDuDenSykeHjemme]: YesOrNo;
     [SoknadFormField.skalOppholdeSegIUtlandetIPerioden]?: YesOrNo;
     [SoknadFormField.utenlandsoppholdIPerioden]?: Utenlandsopphold[];
     [SoknadFormField.skalTaUtFerieIPerioden]?: YesOrNo;
@@ -135,6 +137,7 @@ export const initialValues: SoknadFormData = {
     //Tidsrom
     [SoknadFormField.periodeFra]: undefined,
     [SoknadFormField.periodeTil]: undefined,
+    [SoknadFormField.pleierDuDenSykeHjemme]: YesOrNo.UNANSWERED,
     [SoknadFormField.skalOppholdeSegIUtlandetIPerioden]: YesOrNo.UNANSWERED,
     [SoknadFormField.utenlandsoppholdIPerioden]: [],
     [SoknadFormField.skalTaUtFerieIPerioden]: YesOrNo.UNANSWERED,

@@ -1,33 +1,18 @@
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik/lib';
-import { getRedusertArbeidstidSomISODuration } from '@navikt/sif-common-pleiepenger';
+// import { getRedusertArbeidstidSomISODuration } from '@navikt/sif-common-pleiepenger';
 import { isYesOrNoAnswered } from '../../validation/fieldValidation';
-import { JobberIPeriodeSvar, TimerEllerProsent } from '../../types';
+import { JobberIPeriodeSvar } from '../../types';
 import { ArbeidIPeriode } from '../../types/ArbeidIPeriode';
 import { Arbeidsforhold, ArbeidsforholdFrilanser } from '../../types/Arbeidsforhold';
-import { ArbeidIPeriodeApiData, ArbeidsforholdApiData, TidFasteDagerApiData } from '../../types/SoknadApiData';
+import { ArbeidIPeriodeApiData, ArbeidsforholdApiData } from '../../types/SoknadApiData';
 
 import {
     fjernTidUtenforPeriodeOgHelgedager,
     getEnkeltdagerIPeriodeApiData,
     getFasteDagerApiData,
 } from './tidsbrukApiUtils';
-
-const lagFasteDagerUtFraProsentIPeriode = (
-    jobberNormaltTimerNumber: number,
-    jobberProsent: number
-): TidFasteDagerApiData => {
-    const timerPerDag = jobberNormaltTimerNumber / 5;
-    const tid = getRedusertArbeidstidSomISODuration(timerPerDag, jobberProsent);
-    return {
-        mandag: tid,
-        tirsdag: tid,
-        onsdag: tid,
-        torsdag: tid,
-        fredag: tid,
-    };
-};
 
 export const mapArbeidIPeriodeToApiData = (
     arbeid: ArbeidIPeriode,
@@ -41,18 +26,6 @@ export const mapArbeidIPeriodeToApiData = (
     };
     if (arbeid.jobberIPerioden !== JobberIPeriodeSvar.redusert) {
         return apiData;
-    }
-    if (arbeid.timerEllerProsent === TimerEllerProsent.PROSENT) {
-        const jobberProsentNumber = getNumberFromNumberInputValue(arbeid.jobberProsent);
-        if (jobberProsentNumber === undefined) {
-            throw new Error('mapArbeidIPeriodeToApiData - jobberProsentNumber undefined');
-        }
-        return {
-            ...apiData,
-            erLiktHverUke: true,
-            fasteDager: lagFasteDagerUtFraProsentIPeriode(jobberNormaltTimerNumber, jobberProsentNumber),
-            jobberProsent: jobberProsentNumber,
-        };
     }
 
     const erLiktHverUke = isYesOrNoAnswered(arbeid.erLiktHverUke) ? arbeid.erLiktHverUke === YesOrNo.YES : undefined;

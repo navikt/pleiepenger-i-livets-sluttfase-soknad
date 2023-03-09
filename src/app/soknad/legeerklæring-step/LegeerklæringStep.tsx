@@ -16,6 +16,13 @@ import { StepID } from '../soknadStepsConfig';
 import { SoknadFormData, SoknadFormField } from '../../types/SoknadFormData';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import { valuesToAlleDokumenterISøknaden } from '../../utils/attachmentUtils';
+import SøknadTempStorage from '../SoknadTempStorage';
+import { Person } from '../../types';
+
+interface Props {
+    søker: Person;
+    soknadId: string;
+}
 
 export const cleanupLegeerklæring = (values: SoknadFormData): SoknadFormData => {
     const cleanedValues = { ...values };
@@ -25,14 +32,36 @@ export const cleanupLegeerklæring = (values: SoknadFormData): SoknadFormData =>
     return cleanedValues;
 };
 
-const LegeerklæringStep: React.FC = () => {
+const LegeerklæringStep: React.FC<Props> = ({ søker, soknadId }) => {
     const intl = useIntl();
-    const { values } = useFormikContext<SoknadFormData>();
+    const { values, setFieldValue } = useFormikContext<SoknadFormData>();
+
+    const attachments: Attachment[] = React.useMemo(() => {
+        return values ? values[SoknadFormField.bekreftelseFraLege] : [];
+    }, [values]);
+
+    const hasPendingUploads: boolean = attachments.find((a) => a.pending === true) !== undefined;
     const alleDokumenterISøknaden: Attachment[] = valuesToAlleDokumenterISøknaden(values);
     const totalSize = getTotalSizeOfAttachments(alleDokumenterISøknaden);
-    const hasPendingUploads: boolean =
-        (values.bekreftelseFraLege || []).find((a: any) => a.pending === true) !== undefined;
     const attachmentsSizeOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
+    const ref = React.useRef({ attachments });
+
+    React.useEffect(() => {
+        const hasPendingAttachments = attachments.find((a) => a.pending === true);
+        if (hasPendingAttachments) {
+            return;
+        }
+        if (attachments.length !== ref.current.attachments.length) {
+            const formValues = { ...values, bekreftelseFraLege: attachments };
+            setFieldValue(SoknadFormField.bekreftelseFraLege, attachments);
+            SøknadTempStorage.update(soknadId, formValues, StepID.LEGEERKLÆRING, {
+                søker,
+            });
+        }
+        ref.current = {
+            attachments,
+        };
+    }, [attachments, setFieldValue, soknadId, søker, values]);
 
     return (
         <SoknadFormStep

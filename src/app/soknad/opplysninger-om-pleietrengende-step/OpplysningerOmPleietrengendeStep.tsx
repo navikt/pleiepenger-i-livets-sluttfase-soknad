@@ -28,9 +28,11 @@ import {
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
 import FormSection from '@navikt/sif-common-core/lib/components/form-section/FormSection';
+import SøknadTempStorage from '../SoknadTempStorage';
 
 interface Props {
     søker: Person;
+    soknadId: string;
 }
 
 export const cleanupOpplysningerOmPleietrengende = (values: SoknadFormData): SoknadFormData => {
@@ -44,7 +46,7 @@ export const cleanupOpplysningerOmPleietrengende = (values: SoknadFormData): Sok
     return cleanedValues;
 };
 
-const OpplysningerOmPleietrengendeStep: React.FC<Props> = ({ søker }: Props) => {
+const OpplysningerOmPleietrengendeStep: React.FC<Props> = ({ søker, soknadId }: Props) => {
     const intl = useIntl();
     const { values } = useFormikContext<SoknadFormData>();
     const {
@@ -52,11 +54,32 @@ const OpplysningerOmPleietrengendeStep: React.FC<Props> = ({ søker }: Props) =>
         setFieldValue,
     } = useFormikContext<SoknadFormData>();
 
+    const attachments: Attachment[] = React.useMemo(() => {
+        return values ? values[SoknadFormField.pleietrengendeId] : [];
+    }, [values]);
+
+    const hasPendingUploads: boolean = attachments.find((a) => a.pending === true) !== undefined;
     const alleDokumenterISøknaden: Attachment[] = valuesToAlleDokumenterISøknaden(values);
     const totalSize = getTotalSizeOfAttachments(alleDokumenterISøknaden);
-    const hasPendingUploads: boolean =
-        (values.pleietrengendeId || []).find((a: any) => a.pending === true) !== undefined;
     const attachmentsSizeOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
+    const ref = React.useRef({ attachments });
+
+    React.useEffect(() => {
+        const hasPendingAttachments = attachments.find((a) => a.pending === true);
+        if (hasPendingAttachments) {
+            return;
+        }
+        if (attachments.length !== ref.current.attachments.length) {
+            const formValues = { ...values, pleietrengendeId: attachments };
+            setFieldValue(SoknadFormField.pleietrengendeId, attachments);
+            SøknadTempStorage.update(soknadId, formValues, StepID.OPPLYSNINGER_OM_PLEIETRENGENDE, {
+                søker,
+            });
+        }
+        ref.current = {
+            attachments,
+        };
+    }, [attachments, setFieldValue, soknadId, søker, values]);
 
     return (
         <SoknadFormStep

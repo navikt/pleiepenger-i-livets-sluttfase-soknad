@@ -3,10 +3,10 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-formik/lib';
-import { getRedusertArbeidstidSomDuration } from '@navikt/sif-common-pleiepenger';
-import TidEnkeltdager from '@navikt/sif-common-pleiepenger/lib/dager-med-tid/TidEnkeltdager';
-import TidFasteDager from '@navikt/sif-common-pleiepenger/lib/dager-med-tid/TidFasteDager';
-import { formatTimerOgMinutter } from '@navikt/sif-common-pleiepenger/lib/timer-og-minutter/TimerOgMinutter';
+import { TidEnkeltdager, TidFasteDager } from '@navikt/sif-common-pleiepenger';
+// import TidEnkeltdager from '@navikt/sif-common-pleiepenger/lib/dager-med-tid/TidEnkeltdager';
+// import TidFasteDager from '@navikt/sif-common-pleiepenger/lib/dager-med-tid/TidFasteDager';
+// import { formatTimerOgMinutter } from '@navikt/sif-common-pleiepenger/lib/timer-og-minutter/TimerOgMinutter';
 import { JobberIPeriodeSvar } from '../../../types';
 import { ArbeidIPeriodeApiData, ArbeidsforholdApiData } from '../../../types/SoknadApiData';
 
@@ -20,16 +20,8 @@ export interface ArbeidIPeriodenSummaryItemType extends ArbeidsforholdApiData {
     tittel: string;
 }
 
-const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, normaltimerUke }) => {
+const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode }) => {
     const intl = useIntl();
-
-    const getArbeidProsentTekst = (prosent: number) => {
-        const tid = getRedusertArbeidstidSomDuration(prosent, normaltimerUke / 5);
-        return intlHelper(intl, 'oppsummering.arbeidIPeriode.jobberIPerioden.prosent', {
-            prosent: Intl.NumberFormat().format(prosent),
-            timer: formatTimerOgMinutter(intl, tid),
-        });
-    };
 
     return (
         <>
@@ -68,8 +60,6 @@ const ArbeidIPeriodeSummaryItem: React.FC<Props> = ({ arbeidIPeriode, normaltime
                             </Box>
                         </>
                     )}
-                    {/* Prosent - men verdi er fordelt likt på  fasteDager */}
-                    {arbeidIPeriode.jobberProsent !== undefined && getArbeidProsentTekst(arbeidIPeriode.jobberProsent)}
                 </>
             )}
         </>

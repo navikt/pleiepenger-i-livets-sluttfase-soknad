@@ -67,7 +67,6 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag }: Props) => {
                 {frilans.arbeidsforhold && frilansoppdrag && frilansoppdrag.length > 0 && (
                     <li>
                         <FormattedMessage id="oppsummering.arbeidssituasjon.frilans.frilansoppdrag" />
-                        <br />
                         <ul style={{ margin: 0, padding: '0 0 0 1rem' }}>
                             {frilansoppdrag.map((oppdrag) => (
                                 <li key={oppdrag.id}>{oppdrag.navn}</li>
