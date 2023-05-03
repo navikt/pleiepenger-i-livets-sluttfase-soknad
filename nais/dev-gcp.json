@@ -4,11 +4,11 @@
     "namespace": "dusseldorf",
     "team": "dusseldorf",
     "ingresses": ["https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no"],
-    "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no", "sanity.io"],
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "livenessPath": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/health/isAlive",
     "readinessPath": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/health/isReady",
     "env": {
-        "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no/oauth2/logout",
+        "DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no/oauth2/logout",
         "API_URL": "http://k9-brukerdialog-api",
         "VEDLEGG_API_URL": "https://k9-brukerdialog-api",
         "FRONTEND_VEDLEGG_URL": "https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no/api",
