@@ -45,6 +45,7 @@ export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape):
                 fraOgMed: formatDateToApiFormat(periodeFra),
                 tilOgMed: formatDateToApiFormat(periodeTil),
                 pleierDuDenSykeHjemme,
+                flereSokere: formData.flereSokere,
                 utenlandsoppholdIPerioden: {
                     skalOppholdeSegIUtlandetIPerioden: formData.skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES,
                     opphold:

@@ -8,6 +8,7 @@ import { ISODate, ISODuration } from '@navikt/sif-common-utils';
 import { ÅrsakManglerIdentitetsnummer } from './ÅrsakManglerIdentitetsnummer';
 import { OpptjeningAktivitet } from '@navikt/sif-common-forms/lib/opptjening-utland';
 import { UtenlandskNæringstype } from '@navikt/sif-common-forms/lib/utenlandsk-næring';
+import { YesOrNo } from '@navikt/sif-common-formik/lib';
 export interface PleietrengendeApi {
     navn: string;
     norskIdentitetsnummer: string | null;
@@ -115,6 +116,8 @@ export interface UtenlandskNæringApi {
     fraOgMed: ApiStringDate;
     tilOgMed?: ApiStringDate;
 }
+
+export type FlereSokereApiData = YesOrNo;
 export interface SoknadApiData {
     språk: Locale;
     harForståttRettigheterOgPlikter: boolean;
@@ -122,6 +125,7 @@ export interface SoknadApiData {
     fraOgMed: ApiStringDate;
     tilOgMed: ApiStringDate;
     pleierDuDenSykeHjemme: boolean;
+    flereSokere: FlereSokereApiData;
     utenlandsoppholdIPerioden?: {
         skalOppholdeSegIUtlandetIPerioden: boolean;
         opphold: UtenlandsoppholdIPeriodenApiData[];
