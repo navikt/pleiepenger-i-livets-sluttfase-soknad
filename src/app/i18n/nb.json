@@ -335,9 +335,9 @@
 
     "steg.oppsummering.flereSokere.header": "Er dere flere som skal dele på pleiepengene?",
 
-    "steg.oppsummering.yes": "Ja",
-    "steg.oppsummering.no": "Nei",
-    "steg.oppsummering.doNotKnow": "Usikker",
+    "steg.oppsummering.JA": "Ja",
+    "steg.oppsummering.NEI": "Nei",
+    "steg.oppsummering.USIKKER": "Usikker",
 
     "steg.oppsummering.utenlandsoppholdIPerioden.header": "Utenlandsopphold i perioden du søker for?",
     "steg.oppsummering.utenlandsoppholdIPerioden.listetittel": "Utenlandsopphold i perioden",
