@@ -9,10 +9,8 @@
         "build": "node src/build/scripts/production-build.js",
         "dev-api": "PORT=8089 node ./server/api-mock.js",
         "dev": "npm-run-all -p rm:dist dev-api start-no-decorator",
-        "prepare": "npm run snyk-protect",
         "rm:dist": "rimraf dist/",
         "rm:nodemods": "rimraf node_modles/",
-        "snyk-protect": "snyk-protect",
         "start-api-mock": "PORT=8089 node ./server/api-mock.js",
         "start-express": "node ./server.js",
         "snd": "node ./src/build/scripts/start-dev-no-decorator.js",
@@ -32,7 +30,6 @@
         "@navikt/sif-common-sentry": "^0.5.5",
         "@navikt/sif-common-soknad": "^6.0.1",
         "@navikt/sif-common-utils": "3.26.0",
-        "@snyk/protect": "^1.1143.0",
         "axios": "^0.27.2",
         "busboy": "^1.6.0",
         "compression": "^1.7.4",
@@ -113,6 +110,5 @@
     },
     "resolutions": {
         "babel-core": "7.0.0-bridge.0"
-    },
-    "snyk": true
+    }
 }
