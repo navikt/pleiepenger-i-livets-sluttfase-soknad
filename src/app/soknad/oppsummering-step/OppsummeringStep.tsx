@@ -84,6 +84,10 @@ const OppsummeringStep: React.FC<Props> = ({ søker, attachments, pleietrengende
                                     <FormattedMessage id={apiValues.pleierDuDenSykeHjemme ? 'Ja' : 'Nei'} />
                                 </SummaryBlock>
 
+                                <SummaryBlock header={intlHelper(intl, 'steg.oppsummering.flereSokere.header')}>
+                                    <FormattedMessage id={`steg.oppsummering.${apiValues.flereSokere}`} />
+                                </SummaryBlock>
+
                                 {/* Utenlandsopphold i perioden */}
                                 {apiValues.utenlandsoppholdIPerioden && (
                                     <>

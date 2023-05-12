@@ -15,11 +15,13 @@ import { getOpptjeningIUtlandetApiData } from './getOpptjeningUtlandetApiData';
 import { getUtenlandskNæringApiData } from './getUtenlandskNæringApiData';
 import { getLocaleForApi } from '@navikt/sif-common-core/lib/utils/localeUtils';
 import { getFerieuttakIPeriodenApiData } from './getFerieuttakIPeriodenApiData';
+import { getFlereSokereApiData } from './getFlereSokereApiData';
 
 export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape): SoknadApiData | undefined => {
     const periodeFra = datepickerUtils.getDateFromDateString(formData.periodeFra);
     const periodeTil = datepickerUtils.getDateFromDateString(formData.periodeTil);
     const pleierDuDenSykeHjemme = formData.pleierDuDenSykeHjemme === YesOrNo.YES;
+    const flereSokere = getFlereSokereApiData(formData.flereSokere);
 
     if (periodeFra && periodeTil && pleierDuDenSykeHjemme === true) {
         try {
@@ -45,6 +47,7 @@ export const mapFormDataToApiData = (formData: SoknadFormData, intl: IntlShape):
                 fraOgMed: formatDateToApiFormat(periodeFra),
                 tilOgMed: formatDateToApiFormat(periodeTil),
                 pleierDuDenSykeHjemme,
+                flereSokere,
                 utenlandsoppholdIPerioden: {
                     skalOppholdeSegIUtlandetIPerioden: formData.skalOppholdeSegIUtlandetIPerioden === YesOrNo.YES,
                     opphold:

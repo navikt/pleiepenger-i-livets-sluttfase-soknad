@@ -132,6 +132,24 @@ const TidsromStep = () => {
                             <>
                                 <Box margin="xl">
                                     <SoknadFormComponents.YesOrNoQuestion
+                                        legend={intlHelper(intl, 'steg.tidsrom.flereSokere.spm')}
+                                        name={SoknadFormField.flereSokere}
+                                        validate={getYesOrNoValidator()}
+                                        includeDoNotKnowOption={true}
+                                        labels={{ doNotKnow: 'Usikker' }}
+                                        description={
+                                            <ExpandableInfo
+                                                title={intlHelper(
+                                                    intl,
+                                                    'steg.tidsrom.flereSokere.spm.description.tittle'
+                                                )}>
+                                                {intlHelper(intl, 'steg.tidsrom.flereSokere.spm.description')}
+                                            </ExpandableInfo>
+                                        }
+                                    />
+                                </Box>
+                                <Box margin="xl">
+                                    <SoknadFormComponents.YesOrNoQuestion
                                         legend={intlHelper(intl, 'steg.tidsrom.iUtlandetIPerioden.spm')}
                                         name={SoknadFormField.skalOppholdeSegIUtlandetIPerioden}
                                         validate={getYesOrNoValidator()}

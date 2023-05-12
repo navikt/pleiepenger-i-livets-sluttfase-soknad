@@ -103,6 +103,10 @@
     "step.tidsrom.søkerKunHelgedager.alert": "Du kan kun få utbetalt pleiepenger for hverdager. Det utbetales ikke pleiepenger for lørdag eller søndag selv om du har hatt fravær fra jobb. Du kan derfor ikke søke pleiepenger kun for lørdag og/eller søndag.",
     "steg.tidsrom.veileder.utenlandsopphold": "Når du oppholder deg i et land utenfor EØS, kan du beholde pleiepengene i en begrenset periode på opptil 8 uker av en 12 måneder lang periode.",
 
+    "steg.tidsrom.flereSokere.spm": "Er dere flere som skal dele på pleiepengene?",
+    "steg.tidsrom.flereSokere.spm.description.tittle": "Hvorfor spør dere om dette?",
+    "steg.tidsrom.flereSokere.spm.description": "Vi ønsker å vite om dere er flere som skal dele på pleiepengene slik at vi kan fordele pleiepengene riktig mellom dere. Hvis du er usikker på dette tidspunktet om dere er flere som skal dele er det helt greit, da velger du svaralternativet \"Usikker\".",
+
     "steg.tidsrom.iUtlandetIPerioden.spm": "Oppholder du deg i utlandet i perioden du søker for?",
     "steg.tidsrom.iUtlandetIPerioden.listTitle": "Utenlandsopphold i perioden",
     "steg.tidsrom.iUtlandetIPerioden.modalTitle": "Utenlandsopphold",
@@ -329,6 +333,12 @@
 
     "steg.oppsummering.pleierDuDenSykeHjemme.header": "Pleier du personen i et privat hjem i perioden du søker for?",
 
+    "steg.oppsummering.flereSokere.header": "Er dere flere som skal dele på pleiepengene?",
+
+    "steg.oppsummering.JA": "Ja",
+    "steg.oppsummering.NEI": "Nei",
+    "steg.oppsummering.USIKKER": "Usikker",
+
     "steg.oppsummering.utenlandsoppholdIPerioden.header": "Utenlandsopphold i perioden du søker for?",
     "steg.oppsummering.utenlandsoppholdIPerioden.listetittel": "Utenlandsopphold i perioden",
 
@@ -441,6 +451,8 @@
     "validation.periodeTil.toDateIsBeforeFromDate": "Til-datoen kan ikke være før fra-datoen. Skriv inn eller velg dato fra kalenderen.",
 
     "validation.pleierDuDenSykeHjemme.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du pleier personen i et privat hjem i perioden du søker for.",
+
+    "validation.flereSokere.yesOrNoIsUnanswered": "Du må svare ja, nei eller usikker på om dere er flere som skal dele på pleiepengene.",
 
     "validation.skalOppholdeSegIUtlandetIPerioden.yesOrNoIsUnanswered": "Du må svare ja eller nei på om du oppholder deg i utlandet i perioden du søker for",
     "validation.utenlandsoppholdIPerioden.utenlandsopphold_ikke_registrert": "Du har svart ja til at du oppholder deg i utlandet i perioden du søker for. Legg til minst ett utenlandsopphold.",

@@ -38,6 +38,7 @@ export enum SoknadFormField {
     periodeFra = 'periodeFra',
     periodeTil = 'periodeTil',
     pleierDuDenSykeHjemme = 'pleierDuDenSykeHjemme',
+    flereSokere = 'flereSokere',
     skalOppholdeSegIUtlandetIPerioden = 'skalOppholdeSegIUtlandetIPerioden',
     utenlandsoppholdIPerioden = 'utenlandsoppholdIPerioden',
     skalTaUtFerieIPerioden = 'skalTaUtFerieIPerioden',
@@ -86,6 +87,7 @@ export interface SoknadFormData {
     [SoknadFormField.periodeFra]?: string;
     [SoknadFormField.periodeTil]?: string;
     [SoknadFormField.pleierDuDenSykeHjemme]: YesOrNo;
+    [SoknadFormField.flereSokere]: YesOrNo;
     [SoknadFormField.skalOppholdeSegIUtlandetIPerioden]?: YesOrNo;
     [SoknadFormField.utenlandsoppholdIPerioden]?: Utenlandsopphold[];
     [SoknadFormField.skalTaUtFerieIPerioden]?: YesOrNo;
@@ -138,6 +140,7 @@ export const initialValues: SoknadFormData = {
     [SoknadFormField.periodeFra]: undefined,
     [SoknadFormField.periodeTil]: undefined,
     [SoknadFormField.pleierDuDenSykeHjemme]: YesOrNo.UNANSWERED,
+    [SoknadFormField.flereSokere]: YesOrNo.UNANSWERED,
     [SoknadFormField.skalOppholdeSegIUtlandetIPerioden]: YesOrNo.UNANSWERED,
     [SoknadFormField.utenlandsoppholdIPerioden]: [],
     [SoknadFormField.skalTaUtFerieIPerioden]: YesOrNo.UNANSWERED,
