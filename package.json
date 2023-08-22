@@ -29,7 +29,7 @@
         "@navikt/sif-common-pleiepenger": "^5.1.1",
         "@navikt/sif-common-sentry": "^0.5.5",
         "@navikt/sif-common-soknad": "^6.0.1",
-        "@navikt/sif-common-utils": "3.26.0",
+        "@navikt/sif-common-utils": "3.38.0",
         "axios": "^0.27.2",
         "busboy": "^1.6.0",
         "compression": "^1.7.4",
