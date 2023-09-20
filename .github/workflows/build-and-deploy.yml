@@ -15,16 +15,12 @@ jobs:
     test:
         name: Test Code
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                node-version: [16.x]
-
         steps:
-            - uses: actions/checkout@v3
-            - name: Use Node.js ${{ matrix.node-version }}
+            - uses: actions/checkout@v4
+            - name: Use Node.js 18
               uses: actions/setup-node@v3
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: 18
             - name: Test code
               run: |
                   npm ci
@@ -35,13 +31,15 @@ jobs:
         if: startsWith(github.ref, 'refs/heads/dev-') || startsWith(github.ref, 'refs/heads/master') || github.event.deployment.payload.triggered # Build and push docker if branch is either master or dev-*
         needs: test
         runs-on: ubuntu-latest
+        permissions:
+            packages: write
         steps:
             - name: Checkout code
-              uses: actions/checkout@v3
-            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/checkout@v4
+            - name: Use Node.js 18
               uses: actions/setup-node@v3
               with:
-                  node-version: ${{ matrix.node-version }}
+                  node-version: 18
             - name: build code
               run: |
                   npm ci
@@ -61,8 +59,10 @@ jobs:
         if: startsWith(github.ref, 'refs/heads/dev-') || startsWith(github.ref, 'refs/heads/master') # Build and push docker if branch is either master or dev-*
         needs: build-code-and-push-docker # Depends on build-code-and-push-docker job
         runs-on: ubuntu-latest
+        permissions:
+            packages: write
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - uses: nais/deploy/actions/deploy@v1
               env:
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
@@ -75,8 +75,10 @@ jobs:
         if: startsWith(github.ref, 'refs/heads/master')
         needs: build-code-and-push-docker # Depends on build-code-and-push-docker job
         runs-on: ubuntu-latest
+        permissions:
+            packages: write
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - uses: nais/deploy/actions/deploy@v1
               env:
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
