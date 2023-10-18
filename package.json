@@ -68,7 +68,7 @@
         "@testing-library/react": "^12.1.5",
         "@testing-library/react-hooks": "^8.0.1",
         "@testing-library/user-event": "^14.4.3",
-        "@types/intl": "^1.2.0",
+        "@types/intl": "^1.2.1",
         "@types/object-hash": "^3.0.4",
         "@types/react": "^17.0.40",
         "@types/react-dom": "^17.0.13",
